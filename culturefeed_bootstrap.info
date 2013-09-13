@@ -1,0 +1,5 @@
+name = subtheme
+description = Bootstrap subtheme to use with the culturefeed module suite
+version = 0.1
+core = 7.x
+base theme = bootstrap
