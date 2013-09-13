@@ -33,7 +33,7 @@
   <li class="divider-vertical"></li>
 </ul>
 
-<?php if ($no_memberships): ?>
+<?php sdf if (isset($no_memberships) && $no_memberships): ?>
 <div class="pull-right">
   <?php print l($no_membership_text, 'pages/join', array('attributes' => array('class' => array('btn btn-link btn-small')))); ?>
   <?php print l($no_membership_button, 'pages/join', array('attributes' => array('class' => array('btn btn-warning btn-small')))); ?>

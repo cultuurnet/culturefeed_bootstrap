@@ -19,7 +19,7 @@
           <?php print $name;?>
         </p>
       <?php endif; ?>
-      <?php if ($heading_info ): ?>
+      <?php if (isset($heading_info) && $heading_info ): ?>
         <p class="muted">
           <?php print $heading_info; ?>
         </p>
@@ -29,7 +29,7 @@
           <?php print $bio;?>
         </p>
       <?php endif; ?>
-      <?php if ($has_profile) : ?>
+      <?php if (isset($has_profile) && $has_profile) : ?>
         <?php if (!empty($memberships)): ?>
         <dl class="dl-horizontal">
           <dt class="profile-label">Lid van</dt>
