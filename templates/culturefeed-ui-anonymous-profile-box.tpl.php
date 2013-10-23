@@ -10,6 +10,6 @@
  * @var string $link_login_facebook
  */
 ?>
-<ul class="menu nav navbar-nav secondary">
+<ul class="menu nav navbar-nav navbar-right">
   <li class="first last leaf"><?php print $link_login ?></li>
 </ul>
