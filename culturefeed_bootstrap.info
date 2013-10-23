@@ -50,3 +50,7 @@ stylesheets[all][] = css/style.css
 ; ;settings[toggle_search] = 1
 ; ;settings[cdn_bootstrap] = 1
 ; ;settings[bootstrap_cdn] = 3.0.0
+
+; Navbar
+settings[bootstrap_navbar_position] = 'fixed-top'
+settings[bootstrap_navbar_inverse] = 0
