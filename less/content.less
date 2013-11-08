@@ -16,9 +16,41 @@
   font-weight: bold;
 }  
 
-.form-item-nearby .searching-location:before {
-  color: @gray-light;
-  content: 'locatie wordt gezocht';
-  font-size: @font-size-small;
-  font-weight: normal;
+.form-item-nearby {
+  .searching-location:before {
+    color: @gray-light;
+    content: 'locatie wordt gezocht';
+    font-size: @font-size-small;
+    font-weight: normal;
+  }
+}
+
+// culturefeed search ui blocks
+
+.region-sidebar-first {
+  .block-culturefeed-search-ui {
+    margin-bottom: 20px;
+  }
+}
+
+.facet-label {
+  a, .active-label {
+    display: inline-block;
+    max-width: 80%;
+  }
+  &.active {
+    background: @gray;
+    border-radius: @border-radius-small;
+    color: @gray-lighter;
+    margin: @padding-small-vertical -@padding-small-horizontal;
+    padding: @padding-small-vertical @padding-small-horizontal;
+    a {
+      color: @gray-light;
+      font-weight: bold;
+      &:hover {
+        color: @gray-lighter;
+        text-decoration: none;
+      }
+    }
+  }
 }
