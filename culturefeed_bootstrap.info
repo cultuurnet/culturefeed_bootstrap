@@ -53,4 +53,7 @@ stylesheets[all][] = css/style.css
 
 ; Navbar
 settings[bootstrap_navbar_position] = 'fixed-top'
-settings[bootstrap_navbar_inverse] = 0
+settings[bootstrap_navbar_inverse] = 1
+
+; Region Wells
+settings[bootstrap_region_well-header] = 'well'
