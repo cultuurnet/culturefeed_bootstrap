@@ -15,14 +15,7 @@ regions[sidebar_second] = 'Secondary'
 regions[footer]         = 'Footer'
 
 ; Stylesheets
-stylesheets[all][] = css/style.css
-stylesheets[all][] =  less/bootstrap.less
-stylesheets[all][] =  less/content.less
-stylesheets[all][] =  less/footer.less
-stylesheets[all][] =  less/header.less
-stylesheets[all][] =  less/overrides.less
 stylesheets[all][] =  less/style.less
-stylesheets[all][] =  less/variables.less
 
 less[vars][@brand-primary]      = #428bca
 less[vars][@brand-success]      = #5cb85c
@@ -75,3 +68,9 @@ settings[bootstrap_navbar_inverse] = 1
 
 ; Region Wells
 settings[bootstrap_region_well-header] = 'well'
+
+; Information added by drush on 2013-11-14
+version = "master-dev"
+project = "culturefeed_bootstrap"
+datestamp = "1384447762"
+

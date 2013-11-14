@@ -48,3 +48,11 @@
 // Utility classes
 @import "../bootstrap/less/utilities.less";
 @import "../bootstrap/less/responsive-utilities.less";
+
+// https://github.com/leafo/lessphp/issues/481#issuecomment-25442511
+.pull-right {
+    .dropdown-menu() {
+        right: 0;
+        left: auto;
+    }
+}
