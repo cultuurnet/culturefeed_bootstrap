@@ -7,11 +7,13 @@
 
 <div class="media">
 
-  <?php if (!empty($thumbnail)): ?>
-    <a class="pull-left" href="<?php print $url ?>">
+  <a class="pull-left" href="<?php print $url ?>">
+    <?php if (!empty($thumbnail)): ?>
       <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=150&amp;height=150&amp;crop=auto" title="<?php print $title ?>" alt="<?php print $title ?>" />
-    </a>
-  <?php endif; ?>
+    <?php else: ?>
+      <img class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
+    <?php endif; ?>
+  </a>
 
   <div class="media-body container">
 
@@ -66,9 +68,9 @@
     </p>
 
     <?php if (!empty($tickets)): ?>
-      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets'), array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-warning')))); ?></p>
+      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-warning')))); ?></p>
     <?php else: ?>
-      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, t('More info'), array('attributes' => array('class' => array('btn', 'btn-default')))); ?></p>
+      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, t('More info') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default')))); ?></p>
     <?php endif; ?>
 
   </div>
