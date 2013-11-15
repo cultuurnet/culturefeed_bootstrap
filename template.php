@@ -40,5 +40,31 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['#suffix'] = '</div>';
 }
 
+/**
+ * Implements hook_preprocess_culturefeed_agenda_detail().
+ */
+function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables) {
+  // Ticket links.
+  $ticket_links = $variables['ticket_links'];
+  $variables['tickets'] = array();
+  foreach ($ticket_links as $link) {
+    $variables['tickets'][] = l(t('Buy tickets'), $link->getHLink(), array('attributes' => array('class' => 'btn btn-warning btn-xs', 'rel' => 'nofollow'), 'html' => TRUE));
+  }
+}
+
+/**
+ * Implements hook_preprocess_culturefeed_event().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_event(&$variables) {
+  _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
+}
+
+/**
+ * Implements hook_preprocess_culturefeed_production().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_production(&$variables) {
+  _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
+}
+
 
 ?>
