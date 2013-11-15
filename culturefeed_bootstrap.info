@@ -17,6 +17,9 @@ regions[footer]         = 'Footer'
 ; Stylesheets
 stylesheets[all][] = css/style.css
 
+; Scripts
+scripts[] = 'js/custom.js'
+
 ;**********************************
 ; METHOD 1: Bootstrap Source Files
 ;**********************************
