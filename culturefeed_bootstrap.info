@@ -72,6 +72,9 @@ settings[bootstrap_navbar_inverse] = 1
 ; Region Wells
 settings[bootstrap_region_well-header] = 'well'
 
+; Disable jquery_update dependency
+simplytest_dependencies[] = ''
+
 ; Information added by drush on 2013-11-14
 version = "master-dev"
 project = "culturefeed_bootstrap"
