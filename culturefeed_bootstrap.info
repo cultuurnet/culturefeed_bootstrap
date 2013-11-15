@@ -15,7 +15,18 @@ regions[sidebar_second] = 'Secondary'
 regions[footer]         = 'Footer'
 
 ; Stylesheets
-stylesheets[all][] = css/style.css
+stylesheets[all][] =  less/style.less
+
+less[vars][@brand-primary]      = #428bca
+less[vars][@brand-success]      = #5cb85c
+less[vars][@brand-warning]      = #f0ad4e
+less[vars][@brand-danger]       = #d9534f
+less[vars][@brand-info]         = #5bc0de
+less[vars][@border-radius-base]       = 4px
+less[vars][@border-radius-large]      = 6px
+less[vars][@border-radius-small]      = 3px
+less[vars][@font-family-sans-serif]   = Helvetica Neue", Helvetica, Arial, sans-serif
+less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
 
 ; Scripts
 scripts[] = 'js/custom.js'
@@ -60,3 +71,9 @@ settings[bootstrap_navbar_inverse] = 1
 
 ; Region Wells
 settings[bootstrap_region_well-header] = 'well'
+
+; Information added by drush on 2013-11-14
+version = "master-dev"
+project = "culturefeed_bootstrap"
+datestamp = "1384447762"
+
