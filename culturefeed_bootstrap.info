@@ -25,7 +25,7 @@ less[vars][@brand-info]         = #5bc0de
 less[vars][@border-radius-base]       = 4px
 less[vars][@border-radius-large]      = 6px
 less[vars][@border-radius-small]      = 3px
-less[vars][@font-family-sans-serif]   = Helvetica Neue", Helvetica, Arial, sans-serif
+less[vars][@font-family-sans-serif]   = "Helvetica Neue", Helvetica, Arial, sans-serif
 less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
 
 ; Scripts
