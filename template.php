@@ -19,7 +19,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['title'] = array(
     '#prefix' => '<div class="col-sm-2">',
     '#type' => 'item',
-    '#markup' => '<p class="lead"><span class="glyphicon glyphicon-search text-small"></span> Zoek</p>',
+    '#markup' => '<p class="lead"><i class="fa fa-search"></i> Zoek</p>',
     '#suffix' => '</div>',
   );
   $form['category']['#prefix'] = '<div class="col-sm-3">';
