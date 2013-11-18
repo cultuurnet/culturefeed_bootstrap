@@ -72,6 +72,11 @@ settings[bootstrap_navbar_inverse] = 1
 ; Region Wells
 settings[bootstrap_region_well-header] = 'well'
 
+; Breadcrumbs
+settings[bootstrap_breadcrumb] = 1
+settings[bootstrap_breadcrumb_home] = 1
+settings[bootstrap_breadcrumb_title] = 0
+
 ; Disable jquery_update dependency
 simplytest_dependencies[] = ''
 
