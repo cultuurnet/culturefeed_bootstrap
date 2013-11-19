@@ -102,7 +102,7 @@
             <tr>
               <td>
               <a data-toggle="collapse" data-parent="#cf-theme" href="#cf-theme-one"><strong><i class="fa fa-arrow-right"></i> Customize it</strong></a>
-              <p class="text-muted collapse" id="cf-theme-one"><small>Culturefeed Bootstrap has some <a href="#">basic theme settings</a> where you can customize branding colors, font-family, border-radius, navbars, etc. to your own needs. If you are a Drupal themer you can - of course - change all possible less variables and bootstrap overrides or kick everything out and build your own theme :-)</small></p>
+              <p class="text-muted collapse" id="cf-theme-one"><small>Culturefeed Bootstrap has some <a href="/admin/appearance/settings/culturefeed_bootstrap">basic theme settings</a> where you can customize branding colors, font-family, border-radius, navbars, etc. to your own needs. If you are a Drupal themer you can - of course - change all possible less variables and bootstrap overrides or kick everything out and build your own theme :-)</small></p>
               </td>
             </tr>
             <tr>
@@ -119,8 +119,23 @@
             </tr>
           </tbody>
         </table>
-        <p><a href="#" class="btn btn-primary btn-block" role="button">Customize theme &rarr;</a></p>
+        <p><a href="/admin/appearance/settings/culturefeed_bootstrap" class="btn btn-primary btn-block" role="button">Customize theme &rarr;</a></p>
       </div>
     </div>  
+  </div>
+</div>
+<hr>
+<div class="well well-sm">
+  <div class="container">
+    <h3>Working as Culturefeed user with administrator permissions</h3>
+    <p class="text-danger"><i class="fa fa-info-circle"></i> Maybe you've already noticed: when you login to Culturefeed, you are logged out as the admin user.</p>
+    <p class="lead">How to solve this?</p>
+    <ol>
+      <li><a href="/user/logout">Log out</a> with your Culturefeed account</li>
+      <li>Go to the <a href="/admin/people">People section</a> an find the user that Drupal created for you in step 1</li>
+      <li>Give yourself administrator permissions (create a role when necessary).</li>
+      <li><a href="/user/logout">Log out</a> as admin user</li>
+      <li><a href="/culturefeed/oauth/connect">Log in</a> again with your Culturefeed account and smile!</li>
+    </ol>
   </div>
 </div>
