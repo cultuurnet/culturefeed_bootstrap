@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="col-md-8 col-sm-6">
-      <img src="/profiles/culturefeed_kickstart/themes/culturefeed_bootstrap/img/teaser-home.jpg" class="img-responsive hidden-xs" />
+      <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/teaser-home.jpg" class="img-responsive hidden-xs" />
     </div>
   </div>
 </div>
