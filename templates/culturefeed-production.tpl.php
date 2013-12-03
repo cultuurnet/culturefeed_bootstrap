@@ -97,14 +97,14 @@
       </td></tr>
       <?php endif; ?>
     
-      <?php if (!empty($contact['mail']) || (!empty($contact['phone']) && ($contact['phone'] != implode(', ', $reservation['phone']))) || !empty($contact['fax'])) : ?>
+      <?php if (!empty($contact['mail']) || !empty($contact['phone']) || !empty($contact['fax'])) : ?>
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
         <td>
         <?php if (!empty($contact['mail'])): ?>
           <?php print $contact['mail'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['phone'])): ?>
-          <?php if (!empty($reservation['phone']) && ($contact['phone'] != implode(', ', $reservation['phone']))): ?>
+          <?php if (!empty($reservation['phone']) && ($contact['phone'] != implode(', ', $reservation['phone'])) || empty($reservation['phone'])): ?>
             <i class="fa fa-phone"></i> <?php print $contact['phone'] ?><br />
           <?php endif; ?>
         <?php endif; ?>

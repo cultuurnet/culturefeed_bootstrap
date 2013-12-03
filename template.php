@@ -45,10 +45,12 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
  */
 function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables) {
   // Ticket links.
-  $ticket_links = $variables['ticket_links'];
-  $variables['tickets'] = array();
-  foreach ($ticket_links as $link) {
-    $variables['tickets'][] = l(t('Buy tickets'), $link->getHLink(), array('attributes' => array('class' => 'btn btn-warning btn-xs', 'rel' => 'nofollow'), 'html' => TRUE));
+  if (isset($variables['ticket_links'])) {
+    $ticket_links = $variables['ticket_links'];
+    $variables['tickets'] = array();
+    foreach ($ticket_links as $link) {
+      $variables['tickets'][] = l(t('Buy tickets'), $link->getHLink(), array('attributes' => array('class' => 'btn btn-warning btn-xs', 'rel' => 'nofollow'), 'html' => TRUE));
+    }
   }
 }
 
