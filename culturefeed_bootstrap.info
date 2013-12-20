@@ -1,5 +1,5 @@
 name = Culturefeed Bootstrap
-description = Bootstrap subtheme to use with the culturefeed module suite
+description = Bootstrap subtheme to use with the culturefeed module suite (https://github.com/cultuurnet/culturefeed)
 version = 0.1
 core = 7.x
 base theme = bootstrap
