@@ -291,5 +291,62 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
   return $form;
 }
 
+/**
+ * Implements hook_form_{culturefeed_ui_page_account_edit_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(&$form, &$form_state) {
+
+  try {
+    $cf_account = DrupalCultureFeed::getLoggedInUser();
+  }
+  catch (Exception $e) {
+    watchdog_exception('culturefeed_ui', $e);
+    drupal_set_message(t('An error occurred while loading your account, please try again later.'));
+    return;
+  }
+
+  $destination = url('culturefeed/account/edit', array('absolute' => TRUE, 'query' => array('closepopup' => 'true')));
+
+  $url = DrupalCultureFeed::getUrlChangePassword($cf_account->id, $destination);
+
+  $options = array('attributes' => array('class' => array('culturefeedconnect')), 'query' => drupal_get_destination());
+
+  unset($form['view-profile']);
+  unset($form['remove_account']);
+
+
+  $form['nick'] = array(
+    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('My UiTiD') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a> | <i class="fa fa-trash-o"></i> <a href="/culturefeed/removeaccount" class="profile-edit-link">'. t('Delete account') . '</a></span><div class="clearfix"></div></div><div class="panel-body">', 
+    '#type' => 'textfield',
+    '#title' => t('Username'),
+    '#disabled' => TRUE,
+    '#value' => $cf_account->nick,
+    '#weight' => '-999',
+  );
+
+  $form['mbox'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address'),
+    '#default_value' => $cf_account->mbox,
+    '#required' => TRUE,
+    '#weight' => '-989',
+  );
+
+  $form['submit'] = array(
+    '#prefix' => '<div class="row"><div class="col-sm-6">',
+    '#type' => 'submit',
+    '#value' => t('Edit e-mail'),
+    '#attributes' => array('class' => array('btn-primary')),
+    '#weight' => '-979',
+  );
+  
+    $form['change_password'] = array(
+    '#suffix' => '</div></div>',
+    '#markup' => l(t('Change password'), $url, $options),
+    '#weight' => '-969',
+  );
+
+  return $form;
+}
 
 ?>
