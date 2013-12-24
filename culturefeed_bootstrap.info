@@ -16,6 +16,9 @@ regions[footer]         = 'Footer'
 
 ; Stylesheets
 stylesheets[all][] =  less/style.less
+; TEMP
+stylesheets[all][] =  css/bootstrap-switch.css
+
 
 less[vars][@brand-primary]      = #428bca
 less[vars][@brand-success]      = #5cb85c
@@ -36,6 +39,7 @@ scripts[] = 'js/custom.js'
 ;**********************************
 ; 
 ; ; Scripts
+scripts[] = 'js/bootstrap-switch.js'
 ; scripts[] = 'bootstrap/js/affix.js'
 ; scripts[] = 'bootstrap/js/alert.js'
 ; scripts[] = 'bootstrap/js/button.js'
@@ -53,6 +57,7 @@ scripts[] = 'bootstrap/js/transition.js'
 ; settings[toggle_search] = 0
 ; ; Disable the CDN as we are using our own source files.
 settings[bootstrap_cdn] = ''
+
 
 
 ;*************************

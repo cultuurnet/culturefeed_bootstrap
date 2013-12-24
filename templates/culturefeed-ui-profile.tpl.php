@@ -1,18 +1,19 @@
 <div class="panel panel-default">
   <?php if ($profile_edit_link) : ?>
   <div class="panel-heading">
-    <h3 class="panel-title">
-    
+    <h3 class="panel-title pull-left">
     <?php print(t('My UiTiD')) ?>               
-    
+    </h3>
+
     <?php if ($profile_edit_link) : ?>
     <span class="pull-right">
-       <i class="fa fa-pencil-square-o fa-lg"></i> 
+       <i class="fa fa-pencil-square-o"></i> 
        <?php print $profile_edit_link ?>
     </span>
     <?php endif; ?>
     
-    </h3>
+    <div class="clearfix"></div>
+    
   </div>
   <?php endif; ?>
 
