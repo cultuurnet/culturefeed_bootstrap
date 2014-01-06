@@ -1,7 +1,7 @@
 <div class="media-object pull-left visible-desktop thumbnail">
   <?php if($picture): ?> 
     <?php print $picture ?>
-  <? endif; ?>
+  <?php endif; ?>
 </div>
 <div class="media-body">
   <?php print $nick ?>
