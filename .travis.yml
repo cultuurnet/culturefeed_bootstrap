@@ -6,4 +6,6 @@ install:
   - pear channel-discover pear.phing.info
   - pear install phing/phing
   - phpenv rehash
+before-script:
+  - echo 'short_open_tag = Off' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 script: phing
