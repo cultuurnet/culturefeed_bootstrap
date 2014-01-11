@@ -5,8 +5,6 @@
 */
 function culturefeed_bootstrap_page_alter(&$page) {
   // Add Google Tag Manager
-  $account = '127356';
-  $custom_name = 'CFK Testing';
   $container_id = 'GTM-WPZSG2';
 
   $snippet = '<!-- Google Tag Manager -->';
@@ -16,7 +14,7 @@ function culturefeed_bootstrap_page_alter(&$page) {
   $snippet .= 'new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],';
   $snippet .= 'j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=';
   $snippet .= '\'//www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);';
-  $snippet .= '})(window,document,\'script\',\'' . $custom_name . '\',\'' . $container_id . '\');</script>';
+  $snippet .= '})(window,document,\'script\',\'dataLayer\',\'' . $container_id . '\');</script>';
   $snippet .= '<!-- End Google Tag Manager -->';
 
   $page['page_top']['google_tag_manager'] = array(
