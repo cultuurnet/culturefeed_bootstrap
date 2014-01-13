@@ -363,7 +363,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(
   );
   
     $form['change_password'] = array(
-    '#suffix' => '</div></div>',
+    '#suffix' => '</div></div></div>',
     '#markup' => l(t('Change password'), $url, $options),
     '#weight' => '-969',
   );
@@ -371,4 +371,3 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(
   return $form;
 }
 
-?>
