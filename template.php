@@ -63,6 +63,25 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
 }
 
 /**
+ * Helper function to make long (dutch) calendar summary more readable for events and productions.
+ */
+function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
+
+  if (strlen($calsum) > $minlength) {
+    // Search for weekdays to set break
+    $search = array('ma', 'di', 'woe', 'do', 'vrij', 'za', 'zo');
+    $replace = array('<br /><span class="' . $classname . '">ma</span>', '<br /><span class="' . $classname . '">di</span>', '<br /><span class="' . $classname . '">wo</span>', '<br /><span class="' . $classname . '">do</span>', '<br /><span class="' . $classname . '">vr</span>', '<br /><span class="' . $classname . '">za</span>', '<br /><span class="' . $classname . '">zo</span>', );
+    $calsum = str_replace($search, $replace, $calsum);
+    // Remove first break
+    if (strpos($calsum, '<br />') == 0) {
+      $calsum = substr($calsum, 6);;
+    }
+  }
+  return $calsum;
+
+}
+
+/**
  * Implements hook_preprocess_culturefeed_agenda_detail().
  */
 function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables) {
@@ -73,6 +92,10 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
     foreach ($ticket_links as $link) {
       $variables['tickets'][] = l(t('Buy tickets'), $link->getHLink(), array('attributes' => array('class' => 'btn btn-warning btn-xs', 'rel' => 'nofollow'), 'html' => TRUE));
     }
+  }
+  // Calendar Summary.
+  if (isset($variables['when'])) {
+    $variables['when'] = culturefeed_bootstrap_cleanup_calsum($variables['when'], 150, 'calsum-day text-muted');
   }
 }
 
