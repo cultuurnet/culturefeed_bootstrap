@@ -6,9 +6,23 @@
   }
 }
 
+@media @tablet {
+  .facet-label {
+  a, .active-label {
+    max-width: 50%;
+  }
+  }
+}
+
 @media @normal {
   #culturefeed-agenda-search-block-form .form-group {
     margin-bottom: 0;
+  }
+  
+  .facet-label {
+  a, .active-label {
+    max-width: 80%;
+  }
   }
 }
 
@@ -38,7 +52,6 @@
 .facet-label {
   a, .active-label {
     display: inline-block;
-    max-width: 80%;
   }
   &.active {
     background: @gray;

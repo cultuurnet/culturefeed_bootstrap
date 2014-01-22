@@ -1553,6 +1553,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .form-control::-webkit-input-placeholder {
   color: #999999;
 }
+
 .form-control {
   display: block;
   width: 100%;
@@ -1671,6 +1672,7 @@ select.input-lg {
 textarea.input-lg {
   height: auto;
 }
+
 .has-warning .help-block,
 .has-warning .control-label {
   color: #c09853;
