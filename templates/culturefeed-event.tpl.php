@@ -154,6 +154,21 @@
     <?php endif; ?>
 
   </div>
+  
+  <div class="col-sm-8">
+    <div class="col-sm-4 social-col">
+      <?php print $recommend_count; ?>
+      <?php print $recommend_link; ?>
+    </div>
+    <div class="col-sm-4 social-col">
+      <?php print $attend_count; ?>
+      <?php print $attend_link; ?>
+    </div>
+    <div class="col-sm-4 social-col">
+      <?php print $like_count; ?>
+      Likes
+    </div>
+  </div>
 
 </div>
 
