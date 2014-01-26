@@ -154,6 +154,41 @@
     <?php endif; ?>
 
   </div>
+  
+  <div class="col-sm-12">
+    <div class="col-sm-4 social-col">
+    <?php if ($recommend_count > 0): ?>
+      <i class="fa fa-thumbs-o-up"></i>
+      <?php print $recommend_count; ?>
+      <?php print $recommend_link; ?>
+    <?php else: ?>
+      <i class="fa fa-thumbs-o-up"></i>
+      <?php print t('there are no recommendations'); ?>
+      <?php print $recommend_link; ?>
+    <?php endif; ?>
+    </div>
+    
+    <div class="col-sm-4 social-col">
+    <?php if ($attend_count > 0): ?>
+      <i class="fa fa-check-square"></i>
+      <?php print $attend_count; ?>
+      <?php print $attend_link; ?>
+    <?php else: ?>
+      <i class="fa fa-check-square"></i>
+      <?php print t('there are no attendees'); ?>
+      <?php print $attend_link ?>
+    <?php endif; ?>
+    </div>
+    
+    <div class="col-sm-4 social-col">
+    <?php if($like_count > 0): ?>
+      <i class="fa fa-facebook-square"></i>
+      <?php print $like_count . t(' Likes'); ?>
+    <?php else: ?>
+      <i class="fa fa-facebook-square"></i>
+      <?php print t('no Facebook likes'); ?>
+    <?php endif; ?>
+    </div>
 
 </div>
 
