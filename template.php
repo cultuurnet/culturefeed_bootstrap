@@ -97,6 +97,12 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   if (isset($variables['when'])) {
     $variables['when'] = culturefeed_bootstrap_cleanup_calsum($variables['when'], 150, 'calsum-day text-muted');
   }
+  // Remove duplicate contact and reservation mail
+  if (isset($variables['contact']['mail']) && isset($variables['reservation']['mail'])) {
+    if ($variables['contact']['mail'] == $variables['reservation']['mail']) {
+      unset($variables['contact']['mail']);
+    }
+  }
 }
 
 /**

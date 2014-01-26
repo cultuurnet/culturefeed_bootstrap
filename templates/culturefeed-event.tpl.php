@@ -91,8 +91,14 @@
         <?php if (!empty($tickets)): ?>
           <span><?php print implode(' ', $tickets); ?></span>
         <?php endif; ?>
+        <?php if (!empty($reservation['mail'])): ?>
+          <?php print (!empty($tickets) ? ' ' . t('or mail') : ''); ?> <?php print $reservation['mail']; ?>
+        <?php endif; ?>
         <?php if (!empty($reservation['phone'])): ?>
           <?php print (!empty($tickets) ? ' ' . t('or call') : ''); ?> <?php print implode(', ', $reservation['phone']); ?>
+        <?php endif; ?>
+        <?php if (!empty($reservation['fax'])): ?>
+          <?php print (!empty($tickets) ? ' ' . t('or fax') : ''); ?> <?php print implode(', ', $reservation['fax']); ?>
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
@@ -101,12 +107,10 @@
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
         <td>
         <?php if (!empty($contact['mail'])): ?>
-          <?php print $contact['mail'] ?><br />
+          <i class="fa fa-envelope"></i> <?php print $contact['mail'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['phone'])): ?>
-          <?php if (!empty($reservation['phone']) && ($contact['phone'] != implode(', ', $reservation['phone'])) || empty($reservation['phone'])): ?>
-            <i class="fa fa-phone"></i> <?php print $contact['phone'] ?><br />
-          <?php endif; ?>
+          <i class="fa fa-phone"></i> <?php print $contact['phone'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['fax'])): ?>
           <i class="fa fa-print"></i> <?php print $contact['fax'] ?>
