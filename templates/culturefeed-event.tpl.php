@@ -85,20 +85,22 @@
       </td></tr>
       <?php endif; ?>
     
-      <?php if (!empty($reservation)): ?>
+      <?php if (!empty($reservation) || !empty($tickets)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Reservations'); ?></strong><i class="fa fa-ticket hidden-md hidden-lg"></i></td>
       <td>
         <?php if (!empty($tickets)): ?>
-          <span><?php print implode(' ', $tickets); ?></span>
+          <?php foreach ($tickets as $ticket): ?>
+            <?php print l($ticket['text'], $ticket['link'], array('attributes' => array('class' => 'reservation-link btn btn-warning btn-xs'))) . '<br />'; ?>
+          <?php endforeach; ?>
         <?php endif; ?>
         <?php if (!empty($reservation['mail'])): ?>
-          <?php print (!empty($tickets) ? ' ' . t('or mail') : ''); ?> <?php print $reservation['mail']; ?>
+          <?php print $reservation['mail']; ?><br />
         <?php endif; ?>
         <?php if (!empty($reservation['phone'])): ?>
-          <?php print (!empty($tickets) ? ' ' . t('or call') : ''); ?> <?php print implode(', ', $reservation['phone']); ?>
+          <?php print $reservation['phone']; ?><br />
         <?php endif; ?>
-        <?php if (!empty($reservation['fax'])): ?>
-          <?php print (!empty($tickets) ? ' ' . t('or fax') : ''); ?> <?php print implode(', ', $reservation['fax']); ?>
+        <?php if (!empty($reservation['url'])): ?>
+          <?php print $reservation['url']; ?>
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
@@ -107,13 +109,13 @@
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
         <td>
         <?php if (!empty($contact['mail'])): ?>
-          <i class="fa fa-envelope"></i> <?php print $contact['mail'] ?><br />
+          <?php print $contact['mail'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['phone'])): ?>
-          <i class="fa fa-phone"></i> <?php print $contact['phone'] ?><br />
+          <?php print $contact['phone'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['fax'])): ?>
-          <i class="fa fa-print"></i> <?php print $contact['fax'] ?>
+          <?php print $contact['fax'] . '(fax)' ?>
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>

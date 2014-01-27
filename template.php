@@ -85,22 +85,21 @@ function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
  * Implements hook_preprocess_culturefeed_agenda_detail().
  */
 function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables) {
-  // Ticket links.
-  if (isset($variables['ticket_links'])) {
-    $ticket_links = $variables['ticket_links'];
-    $variables['tickets'] = array();
-    foreach ($ticket_links as $link) {
-      $variables['tickets'][] = l(t('Buy tickets'), $link->getHLink(), array('attributes' => array('class' => 'btn btn-warning btn-xs', 'rel' => 'nofollow'), 'html' => TRUE));
-    }
-  }
+
   // Calendar Summary.
   if (isset($variables['when'])) {
     $variables['when'] = culturefeed_bootstrap_cleanup_calsum($variables['when'], 150, 'calsum-day text-muted');
   }
-  // Remove duplicate contact and reservation mail
+
+  // Remove duplicate contact and reservation data
   if (isset($variables['contact']['mail']) && isset($variables['reservation']['mail'])) {
     if ($variables['contact']['mail'] == $variables['reservation']['mail']) {
       unset($variables['contact']['mail']);
+    }
+  }
+  if (isset($variables['contact']['phone']) && isset($variables['reservation']['phone'])) {
+    if ($variables['contact']['phone'] == $variables['reservation']['phone']) {
+      unset($variables['contact']['phone']);
     }
   }
 }
