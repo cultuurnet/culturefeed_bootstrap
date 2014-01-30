@@ -13,7 +13,17 @@
 ?>
 
 <?php if ($active): ?>
-  <div class="facet-label active"><span class="active-label"><?php print check_plain($label); ?></span> <a href="<?php print $url; ?>" class="facet-remove pull-right text-muted" title="<?php print t('Remove filter'); ?>">&times;</a></div>
+  <div class="facet-label active">
+    <div class="row">
+      <div class="col-xs-9"><span class="active-label"><?php print check_plain($label); ?></span></div>
+      <div class="col-xs-3 text-right text-muted"><a href="<?php print $url; ?>" class="" title="<?php print t('Remove filter'); ?>">&times;</a></div>
+    </div>
+  </div>
 <?php else: ?>
-  <div class="facet-label"><a href="<?php print $url; ?>"><?php print check_plain($label); ?></a> <span class="facet-count text-muted pull-right">(<?php print $count; ?>)</span></div>
+  <div class="facet-label">
+    <div class="row">
+      <div class="col-md-8 col-sm-12 col-xs-9"><a href="<?php print $url; ?>"><?php print check_plain($label); ?></a></div>
+      <div class="col-md-4 hidden-sm col-xs-3 text-right text-muted"><small>(<?php print $count; ?>)</small></div>
+    </div>
+  </div>
 <?php endif; ?>
