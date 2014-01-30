@@ -74,9 +74,6 @@ settings[bootstrap_cdn] = ''
 settings[bootstrap_navbar_position] = 'fixed-top'
 settings[bootstrap_navbar_inverse] = 1
 
-; Region Wells
-settings[bootstrap_region_well-header] = 'well'
-
 ; Breadcrumbs
 settings[bootstrap_breadcrumb] = 1
 settings[bootstrap_breadcrumb_home] = 1
