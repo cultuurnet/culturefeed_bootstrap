@@ -37,7 +37,7 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
  * Implements hook_{culturefeed_search_ui_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="row">';
+  $form['#prefix'] = '<div class="container"><div class="row well">';
   $form['title'] = array(
     '#prefix' => '<div class="col-sm-2">',
     '#type' => 'item',
@@ -48,18 +48,37 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['category']['#weight'] = '1';
   $form['category']['#title'] = '';
   $form['category']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-4">';
+  $form['search']['#prefix'] = '<div class="col-sm-5">';
   $form['search']['#weight'] = '2';
   $form['search']['#title'] = '';
   $form['search']['#suffix'] = '</div>';
-  $form['submit']['#prefix'] = '<div class="col-sm-3">';
+  $form['submit']['#prefix'] = '<div class="col-sm-2">';
+  $form['submit']['#attributes']['class'][] = 'btn-block';
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
   $form['nearby']['#weight'] = '3';
   $form['nearby']['#prefix'] = '<div class="visible-xs visible-sm"><div class="col-sm-10 col-sm-offset-2">';
   $form['nearby']['#suffix'] = '</div></div>';
   $form['search']['#autocomplete_path'] = '';
-  $form['#suffix'] = '</div>';
+  $form['#suffix'] = '</div></div>';
+}
+
+/**
+ * Implements hook_{culturefeed_search_ui_search_sortorder_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_alter(&$form, &$form_state) {
+  $form['#prefix'] = '<div class="pull-right">';
+  $form['title'] = array(
+    '#prefix' => '<div class="col-sm-2">',
+    '#type' => 'item',
+    '#markup' => '',
+    '#suffix' => '</div>',
+  );
+  $form['search']['#prefix'] = '<div class="col-sm-5">';
+  $form['search']['#weight'] = '2';
+  $form['search']['#title'] = '';
+  $form['search']['#suffix'] = '</div>';
+  $form['#suffix'] = '</div></div>';
 }
 
 /**
@@ -411,12 +430,12 @@ function culturefeed_bootstrap_links__locale_block(&$variables) {
     $abbr = $info['language']->language;
     $name = $info['language']->native;
     $href = isset($info['href']) ? $info['href'] : '';
-      $li_classes   = array('list-item-class');
+      $li_classes   = array();
       // if the global language is that of this item's language, add the active class
       if($lang === $language->language){
             $li_classes[] = 'active';
       }
-      $link_classes = array('link-class1', 'link-class2');
+      $link_classes = array();
       $options = array('attributes' => array('class'    => $link_classes),
                                              'language' => $info['language'],
                                              'html'     => true
