@@ -5,9 +5,9 @@
         <h2>Congrats!</h2>
         <p class="lead visible-lg">So far, so good! But this is just the beginning. It's only getting better :-)</p>
         <p class="visible-md">So far, so good! But this is just the beginning. It's only getting better :-)</p>
-        <p><a href="/culturefeed/oauth/connect" class="btn btn-warning btn-block">
-          Log in to Culturefeed &rarr;
-        </a></p>
+        <p>
+          <?php print l('Log in to Culturefeed &rarr;', $base_url . 'culturefeed/oauth/connect', array('attributes' => array('class' => 'btn btn-warning btn-block'), 'html' => TRUE)); ?>
+        </p>
         <small class="text-muted hidden-xs hidden-sm">Logging in as a Culturefeed user will demonstrate some additional features.</small>
       </div>
     </div>
