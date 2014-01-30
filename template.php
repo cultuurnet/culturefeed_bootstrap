@@ -68,17 +68,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_alter(&$form, &$form_state) {
   $form['#prefix'] = '<div class="pull-right">';
-  $form['title'] = array(
-    '#prefix' => '<div class="col-sm-2">',
-    '#type' => 'item',
-    '#markup' => '',
-    '#suffix' => '</div>',
-  );
-  $form['search']['#prefix'] = '<div class="col-sm-5">';
-  $form['search']['#weight'] = '2';
-  $form['search']['#title'] = '';
-  $form['search']['#suffix'] = '</div>';
-  $form['#suffix'] = '</div></div>';
+  $form['#suffix'] = '</div>';
 }
 
 /**
