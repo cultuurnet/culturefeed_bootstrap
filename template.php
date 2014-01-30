@@ -403,7 +403,6 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(
  * Implements hook_links__locale_block().
  */
 function culturefeed_bootstrap_links__locale_block(&$variables) {
-  dsm($variables);
   // the global $language variable tells you what the current language is
   global $language;
   // an array of list items
