@@ -399,3 +399,39 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(
   return $form;
 }
 
+/**
+ * Implements hook_links__locale_block().
+ */
+function culturefeed_bootstrap_links__locale_block(&$variables) {
+  dsm($variables);
+  // the global $language variable tells you what the current language is
+  global $language;
+  // an array of list items
+  $items = array();
+  foreach($variables['links'] as $lang => $info) {
+    $abbr = $info['language']->language;
+    $name = $info['language']->native;
+    $href = isset($info['href']) ? $info['href'] : '';
+      $li_classes   = array('list-item-class');
+      // if the global language is that of this item's language, add the active class
+      if($lang === $language->language){
+            $li_classes[] = 'active';
+      }
+      $link_classes = array('link-class1', 'link-class2');
+      $options = array('attributes' => array('class'    => $link_classes),
+                                             'language' => $info['language'],
+                                             'html'     => true
+                                             );
+      $link = l($abbr, $href, $options);
+      // display only translated links
+      if ($href) $items[] = array('data' => $link, 'class' => $li_classes);
+    }
+  // output
+  $attributes = array('class' => array('nav nav-pills'));
+  $output = theme_item_list(array('items' => $items,
+                                  'title' => '',
+                                  'type'  => 'ul',
+                                  'attributes' => $attributes
+                                  ));
+  return $output;
+}
