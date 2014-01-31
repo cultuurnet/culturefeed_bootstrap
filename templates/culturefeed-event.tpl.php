@@ -160,42 +160,60 @@
     <?php endif; ?>
 
   </div>
+
+</div>
+
+<hr />
+
+<div class="row">
   
   <div class="col-sm-12">
-    <div class="col-sm-4 social-col">
-    <?php if ($recommend_count > 0): ?>
-      <i class="fa fa-thumbs-o-up"></i>
-      <?php print $recommend_count; ?>
-      <?php print $recommend_link; ?>
-    <?php else: ?>
-      <i class="fa fa-thumbs-o-up"></i>
-      <?php print t('there are no recommendations'); ?>
-      <?php print $recommend_link; ?>
-    <?php endif; ?>
+
+    <div class="col-xs-4">
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+          </span>
+        </div>
+        <div class="col-sm-9">
+          <?php print $recommend_link; ?>       
+        </div>
+      </div>
     </div>
-    
-    <div class="col-sm-4 social-col">
-    <?php if ($attend_count > 0): ?>
-      <i class="fa fa-check-square"></i>
-      <?php print $attend_count; ?>
-      <?php print $attend_link; ?>
-    <?php else: ?>
-      <i class="fa fa-check-square"></i>
-      <?php print t('there are no attendees'); ?>
-      <?php print $attend_link ?>
-    <?php endif; ?>
+
+    <div class="col-xs-4">
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+          </span>
+        </div>
+        <div class="col-sm-9">
+          <?php print $attend_link; ?>       
+        </div>
+      </div>
     </div>
-    
-    <div class="col-sm-4 social-col">
-    <?php if($like_count > 0): ?>
-      <i class="fa fa-facebook-square"></i>
-      <?php print $like_count . t(' Likes'); ?>
-    <?php else: ?>
-      <i class="fa fa-facebook-square"></i>
-      <?php print t('no Facebook likes'); ?>
-    <?php endif; ?>
+
+    <div class="col-xs-4">
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+          </span>
+        </div>
+        <div class="col-sm-9 text-muted">
+          TODO: integrate share options
+          <?php //print $share_link; ?>       
+        </div>
+      </div>
     </div>
+
   </div>
 
 </div>
 
+<hr />

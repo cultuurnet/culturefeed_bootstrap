@@ -465,3 +465,73 @@ function culturefeed_bootstrap_links__locale_block(&$variables) {
                                   ));
   return $output;
 }
+
+
+/**
+ * Overriding preprocess variables for culturefeed-ui-connect.tpl.php.
+ *
+ * @see culturefeed-ui-connect.tpl.php
+ */
+
+function culturefeed_bootstrap_preprocess_culturefeed_ui_connect_hover(&$variables) {
+
+  $query['destination'] = isset($variables['url']) ? $variables['url'] : $_GET['q'];
+  $query['via'] = 'facebook';
+  $facebook = '<div class="btn-group">';
+  $facebook .= l('<i class="fa fa-facebook fa-lg"></i>', 'culturefeed/oauth/connect', array('html' => TRUE, 'attributes' => array('class' => array('culturefeedconnect connect-facebook btn btn-primary'), 'rel' => 'nofollow'), 'query' => $query));
+  $facebook .= l(t('Login with Facebook'), 'culturefeed/oauth/connect', array('html' => TRUE, 'attributes' => array('class' => array('culturefeedconnect connect-facebook btn btn-primary'), 'rel' => 'nofollow'), 'query' => $query));
+  $facebook .= '</div>';
+  $variables['link_facebook'] = $facebook;
+  $login_links = t('Or with') . ' ' . $variables['link_twitter'] . ', ' . $variables['link_google'] . ' ' . t('or') . ' ' . $variables['link_email'] . '.';
+
+  $variables['login_message'] = $login_links;
+
+}
+
+/**
+ * Theme the login required message when an anonymous user sees a social action.
+ */
+function culturefeed_bootstrap_culturefeed_social_login_required_message($variables) {
+
+  $config = culturefeed_social_activity_get_config($variables['activity_type']);
+
+  if ($variables['activity_type']) {
+
+    if (!empty($variables['item'])) {
+
+      $item = $variables['item'];
+      if (!($item instanceof CultureFeed_Activity)) {
+        $activity_name = CultureFeed_Activity::getNameById($variables['activity_type']);
+        $title = (0 == $item->getActivityCount($activity_name)) ? $config->titleDoFirst : $config->titleDo;
+        $url = empty($variables['url']) ? 'culturefeed/do/' . $config->type . '/' . $item->getType() . '/' . urlencode($item->getId()) : $variables['url'];
+      }
+      else {
+        $title = $config->label;
+        $url = empty($variables['url']) ? 'culturefeed/do/' . $config->type . '/activity/' . $item->nodeId : $variables['url'];
+      }
+
+    }
+    else {
+      $title = $config->titleDo;
+      $url = $variables['url'];
+    }
+
+    $hover = theme('culturefeed_ui_connect_hover', array('url' => $url));
+    $popover_options = array(
+      'class' => '',
+      'data-toggle' => 'popover',
+      'data-content' => $hover,
+      'data-placement' => 'top',
+      'data-title' => '<strong>' . t('Connect with UiTiD') . '</strong>',
+      'data-html' => 'true'
+    );
+
+    return l($title, $url, array('attributes' => $popover_options, 'html' => TRUE));
+
+  }
+
+  $hover = theme('culturefeed_ui_connect_hover', array('url' => $_GET['q']));
+
+  return '<div class="login-required">' . $hover. '</div>';
+
+}
