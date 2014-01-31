@@ -95,6 +95,28 @@ function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
  */
 function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables) {
 
+  $item = $variables['item'];
+  $cdb_item = $item->getEntity();
+
+  $variables['delijn_link'] = '';
+  $variables['map_link'] = '';
+  $variables['route_link'] = '';
+
+  global $language;
+  // Add de lijn and route information links.
+  if (isset($variables['location'])) {
+    $variables['delijn_link'] = l('Routeplanner De Lijn', 'delijn/' . culturefeed_search_detail_path($item->getType(), $item->getId(), $item->getTitle($language->language)));
+  }
+
+  if (isset($variables['coordinates'])) {
+    $variables['map_link'] = l('Stratenplan', 'map/' . culturefeed_search_detail_path($item->getType(), $item->getId(), $item->getTitle($language->language)));
+    $variables['route_link'] = l('Routebeschrijving', 'map/' . culturefeed_search_detail_path($item->getType(), $item->getId(), $item->getTitle($language->language)), array(''));
+    $map = culturefeed_agenda_get_map_render_array($item);
+    unset($map['#attached']['js'][3]); // Remove the init on load.
+    //$map['#attached']['js'][] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/map-toggle.js';
+    $variables['map'] = render($map);
+  }
+
   // Calendar Summary.
   if (isset($variables['when'])) {
     $variables['when'] = culturefeed_bootstrap_cleanup_calsum($variables['when'], 150, 'calsum-day text-muted');

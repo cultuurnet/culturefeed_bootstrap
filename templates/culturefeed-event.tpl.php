@@ -32,12 +32,12 @@
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('With'); ?></strong><i class="fa fa-users hidden-md hidden-lg"></i></td>
       <td><?php print $performers; ?></td></tr>
       <?php endif; ?>
-    
+
       <?php if ($location): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
-        <?php if (!empty($coordinates)): ?>
-        <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right')), 'fragment' => 'cf-map', 'html' => TRUE)) ?>
+        <?php if (!empty($map)): ?>
+        <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE)) ?>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
         <?php print $location['link']; ?><br/>
@@ -53,8 +53,8 @@
         <?php if (!empty($location['city'])): ?>
           <?php print $location['city']; ?>
         <?php endif; ?>
-        <?php if (!empty($coordinates)): ?>
-        <div id="cf-map" class="collapse collapse-in"><img src="http://placehold.it/440x300" class="img-rectangle img-responsive" /><small class="text-muted">TODO: implement Google Map (coordinates = <?php print $coordinates['lat'] ?> - <?php print $coordinates['lng'] ?>)</small></div>
+        <?php if (!empty($map)): ?>
+        <div id="cf-map" class="collapse collapse-in"><?php print $map; ?></div>
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
