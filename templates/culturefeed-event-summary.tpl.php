@@ -9,7 +9,7 @@
 
   <a class="pull-left" href="<?php print $url ?>">
     <?php if (!empty($thumbnail)): ?>
-      <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=150&amp;height=150&amp;crop=auto" title="<?php print $title ?>" alt="<?php print $title ?>" />
+      <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=150" title="<?php print $title ?>" alt="<?php print $title ?>" />
     <?php else: ?>
       <img class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
     <?php endif; ?>
