@@ -88,10 +88,8 @@
       <?php if (!empty($reservation) || !empty($tickets)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Reservations'); ?></strong><i class="fa fa-ticket hidden-md hidden-lg"></i></td>
       <td>
-        <?php if (!empty($tickets)): ?>
-          <?php foreach ($tickets as $ticket): ?>
-            <?php print l($ticket['text'], $ticket['link'], array('attributes' => array('class' => 'reservation-link btn btn-warning btn-xs'))) . '<br />'; ?>
-          <?php endforeach; ?>
+        <?php if (!empty($ticket_buttons)): ?>
+          <?php print $ticket_buttons; ?><br />
         <?php endif; ?>
         <?php if (!empty($reservation['mail'])): ?>
           <?php print $reservation['mail']; ?><br />
