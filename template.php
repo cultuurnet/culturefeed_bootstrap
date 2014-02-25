@@ -550,3 +550,26 @@ function culturefeed_bootstrap_culturefeed_social_login_required_message($variab
   return '<div class="login-required">' . $hover. '</div>';
 
 }
+
+/**
+ * Show the form to add a new message.
+ * @param $object
+ *   Object to send this message to. Can be a page or a message.
+ */
+ 
+
+ 
+function culturefeed_bootstrap_form_culturefeed_messages_new_message_form_alter(&$form, &$form_state, &$variables) {
+
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#attributes' => array('class' => array(t('btn btn-primary'))),
+    '#value' => t('Send message'),
+  );
+
+  $form['#theme'] = 'culturefeed_messages_new_message_form';
+
+  return $form;
+
+}
