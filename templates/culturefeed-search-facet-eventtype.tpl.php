@@ -1,21 +1,15 @@
 <?php
 /**
  * @file
- * Template file for one culturefeed search facet.
+ * * Template file for one culturefeed search facet of an event type.
  */
-
 /**
  * @var string $items
  */
 ?>
 
 <ul class="facet-search facet-level-1 list-unstyled">
-<?php foreach ($items as $facet_item): ?>
-    <?php if (!empty($facet_item['sub_items'])): ?>
-      <?php foreach ($facet_item['sub_items'] as $sub_item): ?>
-        <li><?php print $sub_item; ?></li>
-      <?php endforeach; ?>
-    <?php endif; ?>
-
-<?php endforeach; ?>
+  <?php foreach ($event_types as $facet_item): ?>
+    <li><?php print $facet_item; ?></li>
+  <?php endforeach; ?>
 </ul>
