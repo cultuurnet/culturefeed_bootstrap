@@ -557,8 +557,6 @@ function culturefeed_bootstrap_culturefeed_social_login_required_message($variab
  *   Object to send this message to. Can be a page or a message.
  */
  
-
- 
 function culturefeed_bootstrap_form_culturefeed_messages_new_message_form_alter(&$form, &$form_state, &$variables) {
 
 
@@ -571,5 +569,63 @@ function culturefeed_bootstrap_form_culturefeed_messages_new_message_form_alter(
   $form['#theme'] = 'culturefeed_messages_new_message_form';
 
   return $form;
+
+}
+
+/**
+ * Form callback for the basic search form.
+ */
+
+function culturefeed_bootstrap_form_culturefeed_pages_basic_search_form_alter(&$form, &$form_state) {
+
+  $form['page'] = array(
+    '#prefix' => '<div class="row"><div class="col-xs-10">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#attributes' => array('placeholder' => array(t('Keyword'))),
+    '#autocomplete_path' => 'ajax/culturefeed/pages/page-suggestion',
+    '#default_value' => isset($_GET['search']) ? $_GET['search'] : '',
+  );
+
+  $form['submit'] = array(
+    '#prefix' => '<div class="col-xs-2 form-group">',
+    '#suffix' => '</div></div>',
+    '#attributes' => array('class' => array('btn btn-primary')),
+    '#type' => 'submit',
+    '#value' => t('Search Page'),
+  );
+
+  return $form;
+
+}
+
+/**
+ * Preprocess the culturefeed pages basic search page.
+ * @see culturefeed-pages-basic-search-page.tpl.php
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_pages_basic_search_page(&$variables) {
+
+  if (!empty($variables['results'])) {
+
+    $variables['items'] = array();
+    foreach ($variables['results'] as $item) {
+      $variables['items'][] = theme('culturefeed_pages_basic_search_result_item', array('item' => $item));
+    }
+
+  }
+
+  if ($variables['total_results'] > 0) {
+    $variables['total_results_message'] = '<p class="text-muted">' . t("<strong>@total</strong> pages found for '@search'", array('@total' => $variables['total_results'], '@search' => $variables['search'], 'html' => TRUE)) . '</p>';
+  }
+  else {
+    $variables['total_results_message'] =  '<p class="text-muted">' .t("<strong>0</strong> pages found for '@search'", array('@search' => $variables['search'], 'html' => TRUE)) . '</p>';
+  }
+
+  $query = drupal_get_query_parameters();
+
+  $cf_user = DrupalCultureFeed::getLoggedInUser();
+  
+  
+    $variables['create_message'] = '<hr /><div class="row"><div class="col-xs-12">' . l('<i class="fa fa-plus"></i>' . ' ' . t('Create your own page'), 'pages/add', array('query' => $query, 'html' => TRUE, 'attributes' => array('class' => array('btn btn-default')))) . '</div></div>';
 
 }
