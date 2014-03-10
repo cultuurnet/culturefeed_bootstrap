@@ -615,10 +615,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_basic_search_page(&$
   }
 
   if ($variables['total_results'] > 0) {
-    $variables['total_results_message'] = '<p class="text-muted">' . t("<strong>@total</strong> pages found for '@search'", array('@total' => $variables['total_results'], '@search' => $variables['search'], 'html' => TRUE)) . '</p>';
+    $variables['total_results_message'] = '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for '@search'", array('@total' => $variables['total_results'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
   }
   else {
-    $variables['total_results_message'] =  '<p class="text-muted">' .t("<strong>0</strong> pages found for '@search'", array('@search' => $variables['search'], 'html' => TRUE)) . '</p>';
+    $variables['total_results_message'] =  '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for '@search'", array('@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
   }
 
   $query = drupal_get_query_parameters();
