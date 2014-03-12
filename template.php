@@ -793,3 +793,68 @@ function culturefeed_bootstrap_pager($variables) {
   }
   return $output;
 }
+
+/**
+ * Preprocess the general variables for a culturefeed page.
+ */
+ 
+function culturefeed_bootstrap_preprocess_culturefeed_page(&$variables) {
+
+  $item = $variables['item'];
+  if ($item instanceof CultureFeed_Cdb_Item_Page) {
+    $page = $item;
+  }
+  else {
+    $page = $item->getEntity();
+  }
+
+
+  $variables['title'] = check_plain($page->getName());
+  $variables['id'] = $page->getId();
+  $variables['description'] = check_markup($page->getDescription(), 'filtered_html');
+  $variables['links'] = $page->getLinks();
+  $variables['image'] = $page->getImage();
+
+  $logged_in = $variables['logged_in'];
+
+  // Add join link if user is logged in and not a member yet.
+  if (!culturefeed_pages_is_user_member_of_page($page->getId()) && $page->getPermissions()->allowMembers && $logged_in) {
+    $query = array('destination' => culturefeed_search_detail_path('page', $page->getId(), $page->getName()), '/');
+    $variables['become_member_link'] = l(t('Become a member'), 'culturefeed/pages/join/nojs/' . $page->getId(), array('query' => $query, 'attributes' => array( 'class' => 'btn btn-primary btn-sm')));
+  }
+
+  // Address information
+  $address = $page->getAddress();
+  if (!empty($address)) {
+
+    $variables['address'] = array();
+
+    $variables['address']['street'] = '';
+    if ($address->getStreet()) {
+      $variables['address']['street'] = check_plain($address->getStreet() . ' ' . $address->getHouseNumber());
+    }
+
+    $variables['address']['city'] = check_plain($address->getCity());
+    $variables['address']['zip'] = check_plain($address->getZip());
+
+    $coordinates = $address->getGeoInformation();
+    if ($coordinates) {
+      $variables['coordinates'] = array(
+        'lat' => $coordinates->getYCoordinate(),
+        'lng' => $coordinates->getXCoordinate(),
+      );
+    }
+
+  }
+
+  // Contact information.
+  $variables['contact'] = array();
+  if ($page->getTelephone()) {
+    $variables['contact']['tel'] = check_plain($page->getTelephone());
+  }
+  if ($page->getEmail()) {
+    $variables['contact']['mail'] = check_plain($page->getEmail());
+  }
+
+}
+
