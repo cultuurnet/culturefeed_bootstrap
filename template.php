@@ -91,9 +91,77 @@ function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
 }
 
 /**
+ * Show a share link to facebook.
+ */
+function culturefeed_bootstrap_share_link($item) {
+
+  if (method_exists($item, 'getId')) {
+    global $language;
+    $activity_content_type = culturefeed_get_content_type($item->getType());
+    $id = $item->getId();
+    $path = culturefeed_search_detail_path($item->getType(), $item->getId(), $item->getTitle($language->language));
+  }
+  else {
+
+    $activity_content_type = culturefeed_get_content_type(get_class($item));
+    $id = $item->id;
+    $path = $_GET['q'];
+
+  }
+
+  $share_url = url($path, array('absolute' => TRUE));
+
+  $options = array(
+    'attributes' => array(
+      'target' => '_blank',
+      'class' => 'link-icon facebook-share-link',
+    ),
+    'title' => t('Share on Facebook'),
+    'query' => array('u' => $share_url),
+    'html' => TRUE,
+  );
+
+  if (culturefeed_is_culturefeed_user()) {
+    $options['attributes']['rel'] = url('culturefeed/do/' . CultureFeed_Activity::TYPE_FACEBOOK .'/' . $activity_content_type . '/' . urlencode($id) . '/ajax');
+  }
+
+  return l(t('Share on Facebook'), 'http://nl-nl.facebook.com/share.php', $options);
+
+}
+
+/**
+ * Helper preprocess function for the general agenda item variables.
+ */
+function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
+
+  $item = $variables['item'];
+  $entity = $item->getEntity();
+
+  if (!culturefeed_is_culturefeed_user()) {
+    $variables['recommend_link'] = theme('culturefeed_social_login_required_message', array(
+      'activity_type' => CultureFeed_Activity::TYPE_RECOMMEND,
+      'item' => $item,
+      'url' => 'culturefeed/do/15/' . $item->getType() . '/' . $item->getId() . '/redirect',
+    ));
+    
+    $variables['attend_link'] = theme('culturefeed_social_login_required_message', array(
+      'activity_type' => CultureFeed_Activity::TYPE_IK_GA,
+      'item' => $item,
+      'url' => 'culturefeed/do/8/' . $item->getType() . '/' . $item->getId() . '/redirect',
+    ));
+  }
+
+  $variables['share_link'] = culturefeed_bootstrap_share_link($item);
+
+  $variables['print_link'] = l(t('Print'), '', array('attributes' => array('onclick' => 'javascript: window.print(); return false;'), 'external' => TRUE));
+
+}
+
+/**
  * Implements hook_preprocess_culturefeed_agenda_detail().
  */
 function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables) {
+  _culturefeed_bootstrap_preprocess_culturefeed_agenda($variables);
 
   $item = $variables['item'];
   $cdb_item = $item->getEntity();
