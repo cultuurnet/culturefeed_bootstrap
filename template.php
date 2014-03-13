@@ -67,8 +67,19 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
  * Implements hook_{culturefeed_search_ui_search_sortorder_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="pull-right">';
-  $form['#suffix'] = '</div>';
+  $form['#prefix'] = '<div class="pull-right"><div class="row">';
+  $form['title'] = array(
+    '#prefix' => '<div class="col-sm-6">',
+    '#type' => 'item',
+    '#markup' => '<p class="text-right"><strong>' . t('Sort') . '</strong>',
+    '#suffix' => '</div>',
+  );
+  $form['sort']['#prefix'] = '<div class="col-sm-6">';
+  $form['sort']['#weight'] = '2';
+  $form['sort']['#attributes']['class'][] = 'input-sm';
+  $form['sort']['#title'] = '';
+  $form['sort']['#suffix'] = '</div>';
+  $form['#suffix'] = '</div></div>';
 }
 
 /**
