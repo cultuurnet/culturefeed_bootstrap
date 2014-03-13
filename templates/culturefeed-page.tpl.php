@@ -117,7 +117,28 @@
             <?php print $link; ?>
           </a> 
         </p>       
-        <?php endif; ?>
+        <?php elseif ($class == 'linkBlog'): ?>
+        <p class="text-muted">
+          <i title="<?php print $title ?> Blog" class="fa fa-stack-exchange fa-lg fa-fw"></i>
+          <a class="text-muted"   href="<?php print $link; ?>">
+            <?php print $link; ?>
+          </a> 
+        </p>       
+        <?php elseif ($class == 'linkTicketing'): ?>
+        <p class="text-muted">
+          <i title="<?php print $title ?> <?php print t('Buy'); ?> tickets" class="fa fa-ticket fa-lg fa-fw"></i>
+          <a class="text-muted"   href="<?php print $link; ?>">
+            <?php print $link; ?>
+          </a> 
+        </p>       
+        <?php elseif ($class == 'linkYouTube'): ?>
+        <p class="text-muted">
+          <i title="<?php print $title ?> <?php print t('on'); ?> Youtube" class="fa fa-youtube fa-lg fa-fw"></i>
+          <a class="text-muted"   href="<?php print $link; ?>">
+            <?php print $link; ?>
+          </a> 
+        </p>       
+        <?php endif; ?>        
       
       <?php endforeach; ?>
   
