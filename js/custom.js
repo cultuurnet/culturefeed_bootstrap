@@ -55,5 +55,32 @@ jQuery(function($) {
   $(".map-toggle").click(function() {
     Drupal.CultureFeed.Agenda.initializeMap();
   });
+  
+  // Count characters input field - limit - general
+  function limitChars(textid, limit, infodiv)
+  {
+  	var text = $('#'+textid).val();
+  	text=text.replace(/[\n\r\n]+/g, '  ');
+  	var textlength = text.length;
+  	if(textlength > limit)
+  	{
+  		$('#' + infodiv).html('Maximum '+limit+' karakters!');
+  		$('#'+textid).val(text.substr(0,limit));
+  		return false;
+  	}
+  	else
+  	{
+  		$('#' + infodiv).html('Nog '+ (limit - textlength) +' resterende karakters');
+  		return true;
+  	}
+  }
 
+  // Count characters input field - limit 400 characters
+  $(function(){
+   	$('#limit-400').keyup(function(){
+   		limitChars('limit-400', 400, 'charlimitinfo');
+   	})
+  });
+  
+  
 });
