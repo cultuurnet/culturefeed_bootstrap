@@ -167,7 +167,7 @@
   
   <div class="col-sm-12">
 
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <div class="row">
         <div class="col-sm-3">
           <span class="fa-stack fa-lg">
@@ -181,7 +181,7 @@
       </div>
     </div>
 
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <div class="row">
         <div class="col-sm-3">
           <span class="fa-stack fa-lg">
@@ -195,7 +195,7 @@
       </div>
     </div>
 
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <div class="row">
         <div class="col-sm-3">
           <span class="fa-stack fa-lg">
@@ -203,9 +203,22 @@
             <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
           </span>
         </div>
-        <div class="col-sm-9 text-muted">
-          TODO: integrate share options
-          <?php //print $share_link; ?>       
+        <div class="col-sm-9">
+          <?php print $share_link; ?>       
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-3">
+      <div class="row">
+        <div class="col-sm-3">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-print fa-stack-1x fa-inverse"></i>
+          </span>
+        </div>
+        <div class="col-sm-9">
+          <?php print $print_link; ?>       
         </div>
       </div>
     </div>
