@@ -40,7 +40,7 @@
   
     <p><?php print $description ?></p>
 
-    <p><a class="btn btn-primary btn-sm" href="<?php print $url; ?>"><?php print $more_text; ?> &rarr;</a></p>
+    <p><a class="btn btn-default btn-sm" href="<?php print $url; ?>"><?php print $more_text; ?> &rarr;</a></p>
   
   </div>
 
