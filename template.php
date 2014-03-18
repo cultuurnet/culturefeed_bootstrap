@@ -598,7 +598,7 @@ function culturefeed_bootstrap_culturefeed_social_profile_box_item_notifications
 function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_item($variables) {
 
 
-  $icon = '<i class="icon-bell"></i>';
+  $icon = '<i class="icon-envelope"></i>';
   $text = format_plural($variables['total'], '@count new messages', '@count new messages');
   $url = 'culturefeed/messages';
 
