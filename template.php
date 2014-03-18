@@ -873,6 +873,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
   unset($form['contactInfoTel']);
   unset($form['contactInfoEmail']);
   unset($form['linkWebsite']);
+  unset($form['otherWebsites']);
 
   $query = drupal_get_query_parameters();
   $page_name = !empty($query['search']) ? $query['search'] : '';
@@ -971,75 +972,74 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#field_suffix' => '</div>',
     '#attributes' => array('placeholder' => 'www.mywebsite.com'),   
   );
-
-  $form['otherWebsites'] = array(
-    '#type' => 'fieldset',
-    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-otherwebsites" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('External links or websites') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
-    '#default_value' => '',
-    '#weight' => 13,
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-  );
-
-  $form['otherWebsites']['linkTicketing'] = array(
+    
+  $form['contact']['linkTicketing'] = array(
+    '#prefix' => '<button type="button" class="btn btn-default btn-small" data-toggle="collapse" data-target="#otherwebsites">' . t('Other websites') . '</button><div id="otherwebsites" class="collapse">',
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Ticketing') . '</span>',
     '#default_value' => '',
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Ticketing') . '" class="fa fa-ticket fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
     '#attributes' => array('placeholder' => 'www.sherpa.be'),
+    '#weight' => 13,
   );
 
-  $form['otherWebsites']['linkFacebook'] = array(
+  $form['contact']['linkFacebook'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Facebook') . '</span>',
     '#default_value' => '',
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Facebook') . '" class="fa fa-facebook fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.facebook.com/mypage'),  
+    '#attributes' => array('placeholder' => 'www.facebook.com/mypage'),
+    '#weight' => 14,
     );
 
-  $form['otherWebsites']['linkTwitter'] = array(
+  $form['contact']['linkTwitter'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Twitter') . '</span>',
     '#default_value' => '',
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Twitter') . '" class="fa fa-twitter fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),  
+    '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),
+    '#weight' => 15,
     );
     
-  $form['otherWebsites']['linkGooglePlus'] = array(
+  $form['contact']['linkGooglePlus'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Google+') . '</span>',
     '#default_value' => '',
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Google+') . '" class="fa fa-google-plus fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.google.com/mypage'),  
+    '#attributes' => array('placeholder' => 'www.google.com/mypage'),
+    '#weight' => 16,
     );
   
-  $form['otherWebsites']['linkYouTube'] = array(
+  $form['contact']['linkYouTube'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Youtube') . '</span>',
     '#default_value' => '',
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Youtube') . '" class="fa fa-youtube fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.youtube.com/mychannel'),  
+    '#attributes' => array('placeholder' => 'www.youtube.com/mychannel'),
+    '#weight' => 17,
     );
 
-  $form['otherWebsites']['linkBlog'] = array(
+  $form['contact']['linkBlog'] = array(
+    '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Blog') . '</span>',
     '#default_value' => '',
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Blog') . '" class="fa fa-stack-exchange fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.blogger.com/myblog'),  
+    '#attributes' => array('placeholder' => 'www.blogger.com/myblog'),
+    '#weight' => 18,
     );
 
   $form['customizeLayout'] = array(
     '#type' => 'fieldset',
     '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-customizelayout" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Page layout') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
     '#default_value' => '',
-    '#weight' => 13,
+    '#weight' => 20,
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
@@ -1050,7 +1050,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#default_value' => '',
-    '#weight' => 16,
+    '#weight' => 21,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
@@ -1062,7 +1062,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#type' => 'textfield',
     '#title' => t('Baseline'),
     '#default_value' => '',
-    '#weight' => 17,
+    '#weight' => 22,
   );
   
   $form['customizeLayout']['cover'] = array(
@@ -1071,7 +1071,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#default_value' => '',
-    '#weight' => 18,
+    '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
@@ -1087,7 +1087,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save Page'),
-    '#weight' => 20,
+    '#weight' => 999,
   );
 
   $form['#validate'] = array(
