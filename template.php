@@ -1461,3 +1461,92 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   $form['submit']['#value'] = t('Update Page');
 
 }
+
+/**
+ * Form callback to render a page to configure a page.
+ * E.g. delete a page.
+ * @param array $form
+ * @param array $form_state
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_alter(&$form, &$form_state){
+
+  $page =  $form_state['page'];
+
+  // Link to the detail page.
+  $form['detail_link'] = array(
+    '#prefix' => '<p class="text-right"><small><i class="fa fa-eye"></i> ',
+    '#suffix' => '</small></p>',
+    '#type' => 'markup',
+    '#markup' => culturefeed_search_detail_l("page", $page->getId(), $page->getName(), t('View page'), array('attributes' => array('class' => array('view-link')))),
+    '#weight' => -25,
+  );
+
+  // General information.
+  $form['basic'] = array(
+    '#type' => 'markup',
+    '#markup' => '<h2>' . t('Features') . '</h2>',
+    '#weight' => -20,
+  );
+
+  // Hidden page ID.
+  $form['pageId'] = array(
+    '#type' => 'hidden',
+    '#value' => $page->getId(),
+  );
+
+  $permissions = $page->getPermissions();
+
+  $form['allow_followers'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Allow users to follow my page'),
+    '#description' => '<span class="text-muted">' . t('Followers receive a notification when your page is updated, so that they stay informed of new activities, threads, ...') . '</span>',
+    '#default_value' => !empty($permissions->allowFollowers),
+  );
+
+  $form['allow_members'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Allow users to request membership'),
+    '#description' => '<span class="text-muted">' . t('Members can, depending on the roles or rights, collaborate to maintain and update your page. Furthermore, page memberships are added to user profiles and can be used as an alias to add comments.') . '</span>',
+    '#default_value' => !empty($permissions->allowMembers),
+  );
+
+  $form['allow_comments'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Allow users to add comments to my activities'),
+    '#description' => '<span class="text-muted">' . t('Only available for organizations who added their activities via <a href="http://www.uitdatabank.be" target="_blank">www.uitdatabank.be</a>.') . '</span>',
+    '#default_value' => !empty($permissions->allowComments),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Update'),
+  );
+  
+  unset($form['remove-link']);
+
+  $form['#suffix'] = '
+    <div id="page_confirm" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-body outer"></div>
+    </div>';
+
+  culturefeed_pages_set_page_breadcrumb($page);
+
+  return $form;
+
+}
+
+/**
+ * Show the administration menu for the current page.
+ */
+ 
+function culturefeed_bootstrap_block_view_alter(&$data, $block) {
+
+  switch ($block->delta) {
+    case 'pages-admin-menu':
+      $page = menu_get_object('culturefeed_pages_page', 1);
+      $data['subject'] = '<div class="btn-group pull-right"><a class="btn btn-primary" dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . '</a><a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="fa fa-caret-down"></span></a>' ;
+      $data['content'] =  _culturefeed_pages_block_pages_admin_menu($page) . '</div><div class="clearfix"></div><hr />';    
+      break;
+  }
+}
