@@ -1187,3 +1187,277 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
 
 }
 
+/**
+ * Form to edit a page.
+ * @param array $form
+ * @param array $form_state
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$form, &$form_state) {
+
+  $page = $form_state['page'];
+
+  // Hidden page ID.
+  $form['pageId'] = array(
+    '#type' => 'hidden',
+    '#value' => $page->getId(),
+    '#weight' => 1,
+  );
+
+ // Link to the detail page.
+  $form['detail_link'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<p class="text-right"><small><i class="fa fa-eye"></i> ',
+    '#suffix' => '</small></p>',
+    '#markup' => culturefeed_search_detail_l("page", $page->getId(), $page->getName(), t('View page'), array('attributes' => array('class' => array('view-link')))),
+    '#weight' => -999,
+  );  
+  
+  unset($form['categoryId']);
+  unset($form['image']);
+  unset($form['cover']);
+  unset($form['tagline']);
+  unset($form['street']);
+  unset($form['zip']);
+  unset($form['city']);
+  unset($form['contactInfoTel']);
+  unset($form['contactInfoEmail']);
+  unset($form['linkWebsite']);
+  unset($form['otherWebsites']);
+  
+  $form['name']['#default_value'] = $page->getName();
+  $form['name']['#weight'] = 1;
+  $form['description']['#default_value'] = $page->getDescription();
+  $form['description']['#weight'] = 2;
+
+  $address = $page->getAddress();
+  $links = $page->getLinks();
+  
+  $form['contact'] = array(
+    '#type' => 'fieldset',
+    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
+    '#default_value' => '',
+    '#weight' => 10,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  
+  // Address.
+
+  $form['contact']['street'] = array(
+    '#prefix' => '<div class="row"><div class="col-xs-12">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#title' => t('Street and number'),
+    '#default_value' => $address->getStreet(),
+    '#weight' => 11,
+  );
+
+  $form['contact']['zip'] = array(
+    '#prefix' => '<div class="col-xs-3">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#title' => t('Zipcode'),
+    '#default_value' => $address->getZip(),
+    '#weight' => 12,
+  );
+
+  $form['contact']['city'] = array(
+    '#prefix' => '<div class="col-xs-9">',
+    '#suffix' => '</div></div><hr />',
+    '#type' => 'textfield',
+    '#title' => t('City'),
+    '#default_value' => $address->getCity(),
+    '#weight' => 13,
+  );
+
+  // Contact information.
+  
+  $form['contact']['contactInfoTel'] = array(
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Phone number') . '</span>',
+    '#default_value' => $page->getTelephone(),
+    '#weight' => 14,
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Phone number') . '" class="fa fa-phone fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => '+32473589641'),
+  );
+
+  $form['contact']['contactInfoEmail'] = array(
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Email address') . '</span>',
+    '#default_value' => $page->getEmail(),
+    '#weight' => 15,
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Email address') . '" class="fa fa-envelope fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'jane.doe@outlook.com'),  
+  );
+  
+  $form['contact']['linkWebsite'] = array(
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Website') . '</span>',
+    '#default_value' => isset($links['linkWebsite']) ? $links['linkWebsite'] : '',
+    '#weight' => 16,
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Website') . '" class="fa fa-globe fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'www.mywebsite.com'),   
+  );
+ 
+  // Websites list.
+ 
+    $form['contact']['linkTicketing'] = array(
+    '#prefix' => '<button type="button" class="btn btn-default btn-small" data-toggle="collapse" data-target="#otherwebsites">' . t('Other websites') . '</button><div id="otherwebsites" class="collapse">',
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Ticketing') . '</span>',
+    '#default_value' => isset($links['linkTicketing']) ? $links['linkTicketing'] : '',
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Ticketing') . '" class="fa fa-ticket fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'www.sherpa.be'),
+    '#weight' => 17,
+  );
+
+  $form['contact']['linkFacebook'] = array(
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Facebook') . '</span>',
+    '#default_value' => isset($links['linkFacebook']) ? $links['linkFacebook'] : '',
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Facebook') . '" class="fa fa-facebook fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'www.facebook.com/mypage'),
+    '#weight' => 18,
+    );
+
+  $form['contact']['linkTwitter'] = array(
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Twitter') . '</span>',
+    '#default_value' => isset($links['linkTwitter']) ? $links['linkTwitter'] : '',
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Twitter') . '" class="fa fa-twitter fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),
+    '#weight' => 19,
+    );
+    
+  $form['contact']['linkGooglePlus'] = array(
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Google+') . '</span>',
+    '#default_value' => isset($links['linkGooglePlus']) ? $links['linkGooglePlus'] : '',
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Google+') . '" class="fa fa-google-plus fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'www.google.com/mypage'),
+    '#weight' => 20,
+    );
+  
+  $form['contact']['linkYouTube'] = array(
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Youtube') . '</span>',
+    '#default_value' => isset($links['linkYouTube']) ? $links['linkYouTube'] : '',
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Youtube') . '" class="fa fa-youtube fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'www.youtube.com/mychannel'),
+    '#weight' => 21,
+    );
+
+  $form['contact']['linkBlog'] = array(
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#title' => '<span class="hidden">' . t('Blog') . '</span>',
+    '#default_value' => isset($links['linkBlog']) ? $links['linkBlog'] : '',
+    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Blog') . '" class="fa fa-stack-exchange fa-fw"></i> </span>',
+    '#field_suffix' => '</div>',
+    '#attributes' => array('placeholder' => 'www.blogger.com/myblog'),
+    '#weight' => 22,
+    );
+  
+  $form['customizeLayout'] = array(
+    '#type' => 'fieldset',
+    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-customizelayout" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Page layout') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
+    '#default_value' => '',
+    '#weight' => 20,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  
+  // The image.
+  $image = $page->getImage();
+  $form_state['#old_image'] = 0;
+  
+  
+  $form['customizeLayout']['image'] = array(
+    '#type' => 'managed_file',
+    '#title' => t('Image or Logo'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#size' => 26,
+    '#weight' => 21,
+    '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
+    '#upload_validators' => array(
+      'file_validate_extensions' => array('jpg jpeg png gif'),
+    ),
+    '#upload_location' => 'public://pages',
+  );
+  
+  if (!empty($image)) {
+
+    // Create temp file to preview the external image.
+    $file = culturefeed_create_temporary_image($image, file_default_scheme() . '://pages');
+    if ($file) {
+      $form_state['#old_image'] = $file->fid;
+      $form['customizeLayout']['image']['#default_value'] = $file->fid;
+    }
+
+    $form['customizeLayout']['image']['#title'] = t('Select another Image or Logo');
+
+  }
+    
+  // The cover.
+  $cover = $page->getCover();
+  $form_state['#old_cover'] = 0;
+  
+  $form['customizeLayout']['cover'] = array(
+    '#type' => 'managed_file',
+    '#title' => t('Cover Photo'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#size' => 26,
+    '#weight' => 23,
+    '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
+    '#upload_validators' => array(
+      'file_validate_extensions' => array('jpg jpeg png gif'),
+    ),
+    '#upload_location' => 'public://pages',
+  );
+  
+  if (!empty($cover)) {
+    
+    // Creat temp file to preview the external cover.
+    $file_cover = culturefeed_create_temporary_image($cover, file_default_scheme() . '://pages');
+    if ($file_cover) {
+      $form_state['customizeLayout']['#old_cover'] = $file_cover->fid;
+      $form['customizeLayout']['cover']['#default_value'] = $file_cover->fid;
+    }
+
+    $form['customizeLayout']['cover']['#title'] = t('Select another Cover Photo');
+  }
+  
+  // Tagline
+  $tagline = $page->getTagline();
+  
+  $form['customizeLayout']['tagline'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Baseline'),
+    '#default_value' => '',
+    '#weight' => 22,
+  );
+  
+  if (!empty($tagline)) {
+    $form['customizeLayout']['tagline']['#default_value'] = isset($tagline) ? $tagline : '';
+  }
+
+  $form['#validate'] = array(
+    'culturefeed_pages_add_arguments_prepare',
+    'culturefeed_pages_edit_request_send',
+  );
+
+  $form['#submit'] = array(
+    'culturefeed_pages_add_form_submit'
+  );
+
+  $form['submit']['#value'] = t('Update Page');
+
+}
