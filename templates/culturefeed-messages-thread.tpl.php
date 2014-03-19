@@ -4,8 +4,8 @@
   </div>
   <div class="lead"><?php $subject ? print $subject : print '<span class="text-muted">' . t('No subject') . '</span>' ; ?></div>
 <div>
-    <strong>Van:</strong> <?php print $sender_link; ?> <?php isset($sender_page) ? print '<small class="text-muted">(' . $sender_page . ')</small>' : '' ; ?><br />
-    <strong>Aan:</strong> <?php print $recipient_links; ?> <?php isset($recipient_page) ? print '<small class="text-muted">(' . $recipient_page . ')</small>' : '' ; ?><br /></div>
+  <strong>Van:</strong> <?php print $sender; ?><br />
+  <strong>Aan:</strong> <?php print $recipient; ?><br /></div>
 </div>
 
 <?php foreach ($messages as $message): ?>
