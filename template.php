@@ -12,7 +12,7 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 }
 
 /**
- * Implements hook_{culturefeed_search_ui_search_block_form}_alter().
+ * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
   $form['#prefix'] = '<div class="container"><div class="row well">';
@@ -29,6 +29,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['search']['#prefix'] = '<div class="col-sm-5">';
   $form['search']['#weight'] = '2';
   $form['search']['#title'] = '';
+  $form['search']['#autocomplete_path'] = '';
   $form['search']['#suffix'] = '</div>';
   $form['submit']['#prefix'] = '<div class="col-sm-2">';
   $form['submit']['#attributes']['class'][] = 'btn-block';
@@ -37,7 +38,33 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['nearby']['#weight'] = '3';
   $form['nearby']['#prefix'] = '<div class="visible-xs visible-sm"><div class="col-sm-10 col-sm-offset-2">';
   $form['nearby']['#suffix'] = '</div></div>';
+  $form['#suffix'] = '</div></div>';
+}
+
+/**
+ * Implements hook_{culturefeed_search_ui_search_block_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alter(&$form, &$form_state) {
+  $form['#prefix'] = '<div class="container"><div class="row well">';
+  $form['title'] = array(
+    '#prefix' => '<div class="col-sm-2">',
+    '#type' => 'item',
+    '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
+    '#suffix' => '</div>',
+  );
+  $form['type']['#prefix'] = '<div class="col-sm-3">';
+  $form['type']['#weight'] = '1';
+  $form['type']['#title'] = '';
+  $form['type']['#suffix'] = '</div>';
+  $form['search']['#prefix'] = '<div class="col-sm-5">';
+  $form['search']['#weight'] = '2';
+  $form['search']['#title'] = '';
   $form['search']['#autocomplete_path'] = '';
+  $form['search']['#suffix'] = '</div>';
+  $form['submit']['#prefix'] = '<div class="col-sm-2">';
+  $form['submit']['#attributes']['class'][] = 'btn-block';
+  $form['submit']['#weight'] = '3';
+  $form['submit']['#suffix'] = '</div>';
   $form['#suffix'] = '</div></div>';
 }
 
