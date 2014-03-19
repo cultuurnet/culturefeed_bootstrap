@@ -1474,6 +1474,8 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
 
   // Link to the detail page.
   $form['detail_link'] = array(
+    '#prefix' => '<p class="text-right"><small><i class="fa fa-eye"></i> ',
+    '#suffix' => '</small></p>',
     '#type' => 'markup',
     '#markup' => culturefeed_search_detail_l("page", $page->getId(), $page->getName(), t('View page'), array('attributes' => array('class' => array('view-link')))),
     '#weight' => -25,
@@ -1531,4 +1533,20 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
 
   return $form;
 
+}
+
+/**
+ * Show the administration menu for the current page.
+ */
+ 
+function culturefeed_bootstrap_block_view_alter(&$data, $block) {
+
+  switch ($block->delta) {
+    case 'pages-admin-menu':
+      $page = menu_get_object('culturefeed_pages_page', 1);
+      $data['subject'] = '<div class="btn-group pull-right"><a class="btn btn-primary" dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . '</a><a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="fa fa-caret-down"></span></a>' ;
+      $data['content'] =  _culturefeed_pages_block_pages_admin_menu($page) . '</div><div class="clearfix"></div><hr />';    
+      break;
+  }
 }
