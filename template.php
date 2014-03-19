@@ -2,7 +2,7 @@
 
 /**
  * Implements hook_js_alter().
-*/
+
 
 function culturefeed_bootstrap_js_alter(&$javascript) {
   // Replace with current version.
@@ -10,12 +10,12 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
   $javascript['misc/jquery.js']['data'] = drupal_get_path('theme', 'culturefeed_bootstrap').'/js/lib/jquery.1.8.3.min.js';
   $javascript['misc/jquery.js']['version'] = $jQuery_version;
 }
-
+*/
 /**
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="container"><div class="row well">';
+  $form['#prefix'] = '<div class="well"><div class="row">';
   $form['title'] = array(
     '#prefix' => '<div class="col-sm-2">',
     '#type' => 'item',
@@ -45,7 +45,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
  * Implements hook_{culturefeed_search_ui_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="container"><div class="row well">';
+  $form['#prefix'] = '<div class="well"><div class="row">';
   $form['title'] = array(
     '#prefix' => '<div class="col-sm-2">',
     '#type' => 'item',
