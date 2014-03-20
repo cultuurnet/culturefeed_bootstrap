@@ -1,4 +1,4 @@
-<div class="followers-block">
+<div class="followers-block user-list">
 
   <div class="count-number pull-right"><span class="badge"><?php print $num_followers ?></span></div>
 

@@ -1,4 +1,4 @@
-<div class="members-block">
+<div class="members-block user-list">
 
   <div class="count-number pull-right"><span class="badge"><?php print $num_members ?></span></div>
 
