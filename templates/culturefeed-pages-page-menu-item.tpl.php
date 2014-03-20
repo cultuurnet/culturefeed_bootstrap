@@ -10,7 +10,7 @@
     print '<i class="fa fa-group fa-fw fa-lg"></i> <strong>' . $title . '</strong>';
     }
   elseif (strstr($link,'events')) {
-    print '<i class="fa fa-calendar fa-lg"></i> <strong>' . $title . '</strong>';
+    print '<i class="fa fa-calendar fa-fw fa-lg"></i> <strong>' . $title . '</strong>';
     }
   ?>
   <br />
