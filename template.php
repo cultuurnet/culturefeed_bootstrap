@@ -661,15 +661,16 @@ function culturefeed_bootstrap_form_culturefeed_messages_new_message_form_alter(
  */
 function culturefeed_bootstrap_culturefeed_social_profile_box_item_notifications($variables) {
 
-  $icon = '<i class="fa fa-lg fa-bell"></i>';
+  $icon = '<i class="fa fa-lg fa-bell-o"></i>';
+  $icon_new = '<i class="fa fa-lg fa-bell"></i>';
   $total = $variables['total'];
   $url = 'culturefeed/notifications';
 
   if ($total > 0) {
-    return l($icon . ' ' . '<small class="notification-count"><span class="new-notifications label label-danger">' . $total . '</span></small>', $url, array('html' => TRUE));
+    return l($icon_new . ' ' . '<small class="notification-count"><span class="new-notifications label label-danger">' . $total . '</span></small>', $url, array('html' => TRUE));
   }
   else {
-    return l($icon . ' ' . '<small class="notification-count"><span class="no-new-notifications label label-default">' . $total . '</span></small>', $url, array('html' => TRUE));
+    return l($icon, $url, array('html' => TRUE));
   }
 
 }
@@ -679,16 +680,16 @@ function culturefeed_bootstrap_culturefeed_social_profile_box_item_notifications
  */
 function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_item($variables) {
 
-
-  $icon = '<i class="fa fa-lg fa-envelope"></i>';
+  $icon = '<i class="fa fa-lg fa-envelope-o"></i>';
+  $icon_new = '<i class="fa fa-lg fa-envelope"></i>';
   $total = $variables['total'];
   $url = 'culturefeed/messages';
 
   if ($total > 0) {
-    return l($icon . ' ' . '<small class="notification-count"><span class="new-messages label label-danger">' . $total . '</span></small>', $url, array('html' => TRUE));
+    return l($icon_new . ' ' . '<small class="notification-count"><span class="new-messages label label-danger">' . $total . '</span></small>', $url, array('html' => TRUE));
   }
   else {
-    return l($icon . ' ' . '<small class="notification-count"><span class="no-new-messages label label-default">' . $total . '</span></small>', $url, array('html' => TRUE));
+    return l($icon, $url, array('html' => TRUE));
   }
 
 }
