@@ -661,8 +661,8 @@ function culturefeed_bootstrap_form_culturefeed_messages_new_message_form_alter(
  */
 function culturefeed_bootstrap_culturefeed_social_profile_box_item_notifications($variables) {
 
-  $icon = '<i class="fa fa-bell-o"></i>';
-  $text = format_plural($variables['total'], '@count new notification', '@count new notifications');
+  $icon = '<i class="fa fa-bell"></i>';
+  $text = '';
   $url = 'culturefeed/notifications';
 
   if ($variables['total'] > 0) {
@@ -680,8 +680,8 @@ function culturefeed_bootstrap_culturefeed_social_profile_box_item_notifications
 function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_item($variables) {
 
 
-  $icon = '<i class="fa fa-envelope-o"></i>';
-  $text = format_plural($variables['total'], '@count new messages', '@count new messages');
+  $icon = '<i class="fa fa-envelope"></i>';
+  $text = '';
   $url = 'culturefeed/messages';
 
   if ($variables['total'] > 0) {
