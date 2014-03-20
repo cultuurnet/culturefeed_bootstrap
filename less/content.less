@@ -5,7 +5,7 @@
   font-weight: @headings-font-weight;
   font-size: 24px;
   line-height: @headings-line-height;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 // culturefeed agenda search block
@@ -44,6 +44,12 @@
 .region-sidebar-first {
   .block-culturefeed-search-ui {
     margin-bottom: 20px;
+  }
+}
+
+.region-sidebar-second {
+  .block {
+    margin-bottom: 40px;
   }
 }
 
@@ -127,9 +133,37 @@ blockquote p {
     left: 12px;
   }
 }
-
 // profile menu
 
 #block-culturefeed-ui-my-uitid .profile-menu {
   margin-top: -37px;
+}
+
+// block count labels
+
+.count-number {
+  position: absolute;
+  right: 20px;
+  top: 0;
+}
+
+// followers block
+
+.followers-block ul,
+.members-block ul {
+  max-height: 300px;
+  overflow-y: auto;
+  li {
+    padding-bottom: 10px;  
+    padding-left: 0;  
+    padding-right: 6px;
+    padding-top: 0;
+  }
+}
+
+// related items
+
+hr.small {
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
