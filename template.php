@@ -1585,3 +1585,141 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
       break;
   }
 }
+
+/**
+ * Show the manage members page for 1 culturefeed page.
+ */
+function culturefeed_bootstrap_culturefeed_pages_page_manage_members(&$variables) {
+
+  try {
+
+    $cf_pages = DrupalCultureFeed::getLoggedInUserInstance()->pages();
+    $user_list = $cf_pages->getUserList($page->getId(),  array(CultureFeed_Pages_Membership::MEMBERSHIP_ROLE_ADMIN, CultureFeed_Pages_Membership::MEMBERSHIP_ROLE_MEMBER));
+
+    $list = culturefeed_pages_manage_members_list($page, $user_list, $cf_user);
+
+  }
+  catch (Exception $e) {
+    watchdog_exception('culturefeed_pages', $e);
+  }
+
+  if ($request_type == 'ajax') {
+
+    $build = array('page' => $list);
+    $commands = array(
+      ajax_command_html('#manage-members', render($build)),
+    );
+
+    ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
+    return;
+
+  }
+
+  // Non-ajax pages should have more data.
+  $build['view_page'] = array(
+    '#markup' => '<div id="view-page">' . culturefeed_search_detail_l('page', $page->getId(), $page->getName(), t('View page 123')) . '</div>'
+  );
+  $build['page'] = $list;
+  $build['search_form'] = drupal_get_form('culturefeed_pages_search_user_form');
+
+  if (isset($_GET['search'])) {
+    if (strlen($_GET['search']) >= 3) {
+      $build['search_result'] = culturefeed_pages_user_search_result($_GET['search'], $page, $user_list);
+    }
+    else {
+      drupal_set_message(t('Please enter at least 3 characters'), 'error');
+    }
+  }
+
+  culturefeed_pages_set_page_breadcrumb($page);
+
+  return $build;
+
+}
+
+
+/**
+ * Preprocess the search results on a user.
+ * @see culturefeed-pages-user-search-result.tpl.php
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_pages_user_search_result(&$variables) {
+
+  $variables['total'] = $variables['result']->total;
+  $accounts = culturefeed_get_uids_for_users($variables['result']->objects);
+
+  $members = array();
+  foreach ($variables['user_list']->memberships as $membership) {
+    $members[] = $membership->user->id;
+  }
+
+  $add_options = array(
+    'attributes' => array(
+      'role' => 'button',
+      'data-toggle' => 'modal',
+      'data-target' => '#page_confirm',
+    ),
+    'query' => drupal_get_query_parameters(),
+  );
+
+  $variables['results'] = array();
+  foreach ($variables['result']->objects as $object) {
+
+    if (!isset($accounts[$object->id])) {
+      continue;
+    }
+
+    $result = array();
+    $result['nick'] = check_plain($object->nick);
+    $result['profile_link'] = l(t('View profile'), 'user/' . $accounts[$object->id]);
+    $result['profile_url'] =  url('user/' . $accounts[$object->id]); 
+    $add_options['attributes']['data-remote'] = url('pages/' . $variables['page']->getId() . '/membership/add/' . $object->id . '/ajax', array('query' => $add_options['query']));
+    $result['add_link'] = in_array($object->id, $members) ? '<small class="text-muted">' . t('Member of') . ' ' . $variables['page']->getName() . '</small>' : '<a class="btn btn-default btn-xs" href="' . url('pages/' . $variables['page']->getId() . '/membership/add/' . $object->id . '/nojs', $add_options) . '"><i class="fa fa-user fa-fw"></i>' . ' ' . t('Add as member') . '</a>';
+    $variables['results'][] = $result;
+
+  }
+
+}
+
+/**
+ * Form callback for the search user form.
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_search_user_form_alter(&$form, &$form_state) {
+
+  $form['#prefix'] = '<hr /><div class="row"><div class="col-xs-12">';
+  $form['#suffix'] = '</div></div>';
+  $form['#attributes'] = array('class' => 'well');
+
+  
+  $form['title'] = array(
+    '#markup' => '<p class="lead"><i class="fa fa-group"></i>  ' . t('Add new members') . '</p>',
+    '#weight' => -999,
+  );
+
+  $form['search'] = array(
+    '#title' => '<span class="sr-only">' . 'Keyword' . '</span>',
+    '#type' => 'textfield',
+    '#default_value' => isset($_GET['search']) ? $_GET['search'] : '',
+    '#attributes' => array('placeholder' => 'Keyword'),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Search User'),
+  );
+
+}
+
+/**
+ * Theme the message shown when a user can not delete his membership.
+ */
+function culturefeed_bootstrap_culturefeed_pages_membership_delete_not_possible($variables) {
+
+  $output = '<p class="text-muted">';
+  $output .= t('Not possible to remove');
+  $output .= ' <span href="#" data-toggle="tooltip" data-placement="top" title data-original-title="' . t('You\'re the only administrator of this page. You can not remove yourself as a member') . '">';
+  $output .= '<i class="fa fa-info-circle"></i>';
+  $output .= '</span></p>';
+
+  return $output;
+}
+
