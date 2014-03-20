@@ -1581,9 +1581,7 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
   switch ($block->delta) {
     case 'pages-admin-menu':
       $page = menu_get_object('culturefeed_pages_page', 1);
-      $data['subject'] = '<div class="btn-group pull-right"><a class="btn btn-primary" dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . '</a><a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-    <span class="fa fa-caret-down"></span></a>' ;
-      $data['content'] =  _culturefeed_pages_block_pages_admin_menu($page) . '</div><div class="clearfix"></div><hr />';    
+      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . ' ' . '<span class="caret"></span></button>'.  $data['content'] . '</div><div class="clearfix"></div><hr />';    
       break;
   }
 }
