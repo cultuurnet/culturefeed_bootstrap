@@ -334,7 +334,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
   $form['gender'] = array(
     '#suffix' => '</div></div>',
     '#type' => 'radios',
-    '#title' => 'Geslacht',
+    '#title' => t('Gender'),
     '#options' => array('male' => t('Male'), 'female' => t('Female')),
     '#default_value' => $cf_account->gender,
     '#weight' => '-239',
