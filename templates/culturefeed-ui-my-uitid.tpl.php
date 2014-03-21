@@ -59,7 +59,7 @@
 <div class="following">
   <h4><?php print t('Pages I follow:'); ?></h4>
   <?php if (!empty($following)): ?>
-    <ul>
+    <ul class="list-unstyled">
     <?php foreach ($following as $following_page) :?>
       <li><i class="fa fa-angle-right"></i> <?php print $following_page; ?></li>
     <?php endforeach; ?>
