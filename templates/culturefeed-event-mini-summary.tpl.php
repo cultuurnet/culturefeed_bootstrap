@@ -12,7 +12,7 @@
     
       <a class="pull-left" href="#">
         <?php if (!empty($thumbnail)): ?>
-        <img class="media-object img-thumbnail" src="<?php print $thumbnail; ?>?width=50&height=50&crop=auto" />
+        <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
         <?php endif; ?>
       </a>
     
