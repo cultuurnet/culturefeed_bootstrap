@@ -24,10 +24,6 @@
         <div class="profile-field nick"><?php print $nick; ?></div>
       <?php endif; ?>
 
-      <?php if ($gender): ?>
-        <div class="profile-field gender"><?php print $gender; ?></div>
-      <?php endif; ?>
-
       <?php if ($age): ?>
         <div class="profile-field dob"><?php print $age; ?></div>
       <?php endif; ?>
