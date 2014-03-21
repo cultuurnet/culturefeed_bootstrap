@@ -1588,7 +1588,7 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
       unset($data['subject']);
       break;
     case 'page-timeline':
-      $data['subject'] = '<ul class="nav nav-tabs nav-justified"><li><a href="#block-culturefeed-pages-page-agenda">' . t('Activities') . '</a></li><li class="active"><a href="#"><strong>' . t('Timeline') .'</strong></a></li></ul>';
+      $data['subject'] = '<ul class="nav nav-tabs"><li><a href="#block-culturefeed-pages-page-agenda">' . t('Activities') . '</a></li><li class="active"><a href="#"><strong>' . t('Timeline') .'</strong></a></li></ul>';
       break;
   }
 }

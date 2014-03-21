@@ -1,5 +1,5 @@
 <div id="page-agenda-ajax-wrapper-<?php print $page->getId(); ?>">
-<ul class="nav nav-tabs nav-justified">
+<ul class="nav nav-tabs">
   <li class="active"><a href="#"><strong><?php print t('Activities'); ?></strong></a></li>
   <li><a href="#block-culturefeed-pages-page-timeline"><?php print t('Timeline'); ?></a></li>
 </ul>
