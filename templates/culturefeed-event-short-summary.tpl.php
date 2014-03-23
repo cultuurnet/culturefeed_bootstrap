@@ -9,9 +9,9 @@
 
   <!-- @ start THUMBNAIL -->
   <?php if (!empty($thumbnail)): ?>
-    <img src="<?php print $thumbnail; ?>?width=370&amp;height=180&amp;crop=auto&amp;scale=both" alt="" />
+    <a href="<?php print $url ?>"><img src="<?php print $thumbnail; ?>?width=370&amp;height=180&amp;crop=auto&amp;scale=both" alt="<?php print $title; ?>" class="img-responsive" /></a>
   <?php else: ?>
-    <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-related.gif" alt="" />
+    <a href="<?php print $url ?>"><img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-related.gif" alt="<?php print $title; ?>" class="img-responsive" /></a>
   <?php endif; ?>
 
   <!-- @ end THUMBNAIL -->
