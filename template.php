@@ -1730,3 +1730,36 @@ function culturefeed_bootstrap_culturefeed_pages_membership_delete_not_possible(
   return $output;
 }
 
+/**
+ * Preprocess the culturefeed authenticated page.
+ * @see culturefeed-authenticated-page.tpl.php
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_authenticated_page(&$variables) {
+
+  unset($title);
+  $message = '<p class="lead">' . t('You should be logged in to proceed.') . '</p>';
+
+  $variables['login_message'] = $message;
+
+  $cf_query = drupal_get_query_parameters($_GET, array('q'));
+  $cf_query['via'] = 'facebook';
+
+  $facebook = '<div class="btn-toolbar"><div class="btn-group text-white">';
+  $facebook .= l('<i class="fa fa-facebook text-white"></i>', 'culturefeed/oauth/connect', array('html' => TRUE, 'attributes' => array('class' => array('culturefeedconnect connect-facebook btn btn-primary btn-large'), 'rel' => 'nofollow'), 'query' => $cf_query));
+  $facebook .= l(t('Login with Facebook'), 'culturefeed/oauth/connect', array('html' => TRUE, 'attributes' => array('class' => array('culturefeedconnect connect-facebook btn btn-primary btn-large'), 'rel' => 'nofollow'), 'query' => $cf_query));
+  $facebook .= '</div></div>';
+  $variables['login_facebook'] = $facebook;
+
+  $cf_query['via'] = 'twitter';
+  $variables['login_twitter'] = l('Twitter', 'culturefeed/oauth/connect', array('attributes' => array('class' => array('culturefeedconnect connect-twitter'), 'rel' => 'nofollow'), 'query' => $cf_query));
+
+  $cf_query['via'] = 'google';
+  $variables['login_google'] = l('Google', 'culturefeed/oauth/connect', array('attributes' => array('class' => array('culturefeedconnect connect-google'), 'rel' => 'nofollow'), 'query' => $cf_query));
+
+  unset($cf_query['via']);
+  $variables['login_email'] = l(t('e-mail'), 'culturefeed/oauth/connect', array('attributes' => array('class' => array('culturefeedconnect connect-email'), 'rel' => 'nofollow'), 'query' => $cf_query));
+  $variables['register'] = l(t('new account'), 'culturefeed/oauth/connect/register', array('attributes' => array('class' => array('culturefeedconnect'), 'rel' => 'nofollow'), 'query' => $cf_query));
+
+}
+
+
