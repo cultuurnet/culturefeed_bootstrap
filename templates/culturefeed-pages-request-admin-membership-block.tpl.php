@@ -6,6 +6,7 @@
  *   - $link : ajax link
  */
 ?>
-<div class="alert alert-info">
-  <p><strong><?php print t('Just noticed a mistake?'); ?></strong> <?php print t('This page currently has no administrator. As an administrator, you can update page details, layout and manage members.'); ?> <a href="<?php print $url ?>" class="alert-link"><?php print t('Send a request to become administrator'); ?></a></p>
+<div class="well">
+  <p><strong><?php print t('Request to become an administrator'); ?></strong></p><p> <?php print t('This page currently has no administrator. As an administrator, you can update page details, layout and manage members.'); ?></p>
+<a href="<?php print $url ?>" class="btn btn-warning btn-block"><?php print t('Send request'); ?></a>
 </div>
