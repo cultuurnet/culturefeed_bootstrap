@@ -12,6 +12,7 @@
     color: #FFF;
     margin-bottom: 5px;
     margin-top: 75px;
+    text-shadow: black 2px 2px 1px;
   }
   .breadcrumb {
     margin-bottom: 10px;
@@ -19,12 +20,21 @@
   }
   .text-white {
     color: #EDEDED;
+    text-shadow: black 1px 1px 1px;
   }
   .col-sm-4 .img-thumbnail {
     margin-top: -30px;
   }
+  .page-cover a {
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    box-shadow: black 0px 2px 0px;
+  }
   </style>
-  <div class="row page-cover" style="background: url('<?php print $cover . '?width=960&height=160&crop=auto' ?>');"></div>
+  <div class="row page-cover" style="background: url('<?php print $cover . '?width=960&height=160&crop=auto' ?>');">
+    <a class="btn btn-warning" href="#">Pagina Volgen</a>
+  </div>
 <?php endif; ?>
 
   <?php if ($baseline): ?>
@@ -33,7 +43,6 @@
   </div>
   <br />
   <?php endif; ?>
-
   <div class="row">
   
     <div class="col-sm-8">
@@ -79,17 +88,24 @@
         </div> 
         
         <div class="col-xs-11">
+                  
+          <?php if ($canononlyadmin): ?>
+            <p class="text-muted"><small>Deze pagina heeft nog geen medewerkers</small></p>
+          <?php endif; ?>    
+        
           <p>
-            <?php print t('Members'); ?> <?php print t('of'); ?> <?php print $title ?>
+            <span class="badge"><?php print count($members) ?></span> <?php print t('Members'); ?> <?php print t('of'); ?> <?php print $title ?> <a href="#" class="btn btn-link" data-toggle="collapse" data-target="#members" title="<?php print t('Show Members'); ?>"><span class="caret"></span><span class="sr-only"><?php print t('Show Members'); ?></span></a>
             <span class="pull-right">
               <?php if (!empty($become_member_link)): ?>
               <?php print $become_member_link ?>
               <?php endif; ?>
             </span>
           </p>
+      
           
           <?php if ($members): ?>
-            <table class="table table-hover">
+          <div class="table-responsive collapse" id="members">         
+            <table class="table">
             <?php foreach ($members as $member): ?>
               <tr>
                 <td>
@@ -101,7 +117,9 @@
               </tr>
             <?php endforeach; ?>
             </table>
-            <?php endif; ?>
+          </div>
+          <?php endif; ?>
+            
        </div>   
     </div>        
       <?php 
