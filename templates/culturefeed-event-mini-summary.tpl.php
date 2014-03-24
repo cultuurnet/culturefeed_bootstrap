@@ -9,12 +9,20 @@
   <div class="col-md-10">
   
     <div class="media">
-    
-      <a class="pull-left" href="#">
-        <?php if (!empty($thumbnail)): ?>
-        <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
-        <?php endif; ?>
-      </a>
+      
+        <?php if ($thumbnail): ?>
+          <a class="pull-left" href="#">
+            <?php if (!empty($thumbnail)): ?>
+            <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
+            <?php endif; ?>
+          </a>
+        <?php else: ?>
+          <a class="pull-left" href="#">
+            <?php if (!empty($thumbnail)): ?>
+            <img class="media-object" src="/sites/all/themes/culturefeed_bootstrap/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
+            <?php endif; ?>
+          </a>
+        <?php endif; ?>      
     
       <div class="media-body">
         <h4 class="media-heading"><a href="<?php print $url ?>"><?php print $title; ?></a></h4>
@@ -23,12 +31,7 @@
           <span class="text-muted"><?php print $themes[0] ?></span>
           <?php endif; ?>
           <br />
-          <?php if (isset($location['city'])): ?>
-          <?php print $location['city']; ?>
-          <?php endif;?>
-          <?php if (isset($when)): ?>
-          , <?php print $when; ?>
-          <?php endif;?>
+          <?php if (isset($location['city'])): ?><?php print $location['city']; ?><?php endif;?><?php if (isset($when)): ?>, <?php print $when; ?><?php endif;?>
         </p>
     
       </div>
