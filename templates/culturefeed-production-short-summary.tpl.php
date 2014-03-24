@@ -9,9 +9,9 @@
 
   <!-- @ start THUMBNAIL -->
   <?php if (!empty($thumbnail)): ?>
-    <img src="<?php print $thumbnail; ?>?width=370&amp;height=180&amp;crop=auto&amp;scale=both" alt="" />
+    <a href="<?php print $url ?>"><img src="<?php print $thumbnail; ?>?width=370&amp;height=180&amp;crop=auto&amp;scale=both" alt="<?php print $title; ?>" class="img-responsive" /></a>
   <?php else: ?>
-    <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-related.gif" alt="" />
+    <a href="<?php print $url ?>"><img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-related.gif" alt="<?php print $title; ?>" class="img-responsive" /></a>
   <?php endif; ?>
 
   <!-- @ end THUMBNAIL -->
@@ -36,7 +36,7 @@
     </p>
 
 
-    <p class="hidden-xs hidden-sm"><span class="more-info"> <?php print culturefeed_search_detail_l('event', $cdbid, $title, 'Meer informatie &rarr;', array('attributes' => array('class' => 'btn btn-default'), 'html' => TRUE)); ?> </span></p>
+    <p class="hidden-xs hidden-sm"><span class="more-info"> <?php print culturefeed_search_detail_l('production', $cdbid, $title, 'Meer informatie &rarr;', array('attributes' => array('class' => 'btn btn-default'), 'html' => TRUE)); ?> </span></p>
 
   <!-- @ end CONTENT -->
   </div>
