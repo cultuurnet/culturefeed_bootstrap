@@ -942,7 +942,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_page(&$variables) {
   // Add join link if user is logged in and not a member yet.
   if (!culturefeed_pages_is_user_member_of_page($page->getId()) && $page->getPermissions()->allowMembers && $logged_in) {
     $query = array('destination' => culturefeed_search_detail_path('page', $page->getId(), $page->getName()), '/');
-    $variables['become_member_link'] = l(t('Become a member'), 'culturefeed/pages/join/nojs/' . $page->getId(), array('query' => $query, 'attributes' => array( 'class' => 'btn btn-primary btn-xs')));
+    $variables['become_member_link'] = l(t('Become a member'), 'culturefeed/pages/join/nojs/' . $page->getId(), array('query' => $query, 'attributes' => array( 'class' => 'btn btn-default btn-xs')));
   }
 
   // Address information
