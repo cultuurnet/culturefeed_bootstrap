@@ -33,7 +33,7 @@
         <i title="<?php print t('Contact'); ?>" class="fa fa-info fa-lg fa-fw"></i>
       </div> 
       <div class="col-xs-11">
-          <?php print implode(' ' . t('or') . ' ', $contact)?>
+          <?php print implode('<br />', $contact)?>
       </div>   
     </div>   
     <?php endif; ?>      
@@ -53,7 +53,7 @@
         <?php endif; ?>    
       
         <p>
-          <span class="badge"><?php print count($members) ?></span> <?php print t('Members'); ?> <?php print t('of'); ?> <?php print $title ?> <a href="#" class="btn btn-link" data-toggle="collapse" data-target="#members" title="<?php print t('Show Members'); ?>"><span class="caret"></span><span class="sr-only"><?php print t('Show Members'); ?></span></a>
+          <a href="#" data-toggle="collapse" data-target="#members" title="<?php print t('Show members'); ?>"><?php print t('Show members'); ?> <span class="caret"></span><span class="sr-only"><?php print t('Show members'); ?></span></a>
           <span class="pull-right">
             <?php if (!empty($become_member_link)): ?>
             <?php print $become_member_link ?>
