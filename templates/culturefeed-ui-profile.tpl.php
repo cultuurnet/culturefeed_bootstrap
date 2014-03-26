@@ -43,28 +43,31 @@
             <?php print $bio;?>
           </p>
         <?php endif; ?>
-        <?php if (isset($has_profile) && $has_profile) : ?>
-          <?php if (!empty($memberships)): ?>
-          <dl>
-            <dt><?php print t('Member of'); ?></dt>
-            <dd>
-              <ul class="list-unstyled">
-              <?php foreach ($memberships as $membership): ?>
-                <li>&rsaquo; 
-                <?php print culturefeed_search_detail_l('page', $membership->page->getId(), $membership->page->getName()); ?>
-                <?php if (!empty($membership->relation)): ?>
-                  <span class="member-role muted"><small>(<?php print $membership->relation; ?>)</small></span>
-                 <?php endif; ?>
-                 </li>
-              <?php endforeach; ?>
-              </ul>
-            </dd>
-          </dl>
-          <?php endif; ?>
-        <?php endif; ?>
+
       </div>
       
     </div>
+
+      <?php if (isset($has_profile) && $has_profile) : ?>
+        <?php if (!empty($memberships)): ?>
+        <hr />
+        <dl>
+          <dt><h4><?php print t('Member of'); ?></h4></dt>
+          <dd>
+            <ul class="list-unstyled">
+            <?php foreach ($memberships as $membership): ?>
+              <li><i class="fa fa-angle-right"></i>
+              <?php print culturefeed_search_detail_l('page', $membership->page->getId(), $membership->page->getName()); ?>
+              <?php if (!empty($membership->relation)): ?>
+                <span class="member-role muted"><small>(<?php print $membership->relation; ?>)</small></span>
+               <?php endif; ?>
+               </li>
+            <?php endforeach; ?>
+            </ul>
+          </dd>
+        </dl>
+        <?php endif; ?>
+      <?php endif; ?>
 
   </div>
     
