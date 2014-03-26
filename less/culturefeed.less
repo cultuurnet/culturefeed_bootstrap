@@ -98,11 +98,23 @@ h1, h2, h3 {
   display: block;
 }
 
-// search active filters block
+// search active filters & suggestions block
 
-#block-culturefeed-search-ui-culturefeed-search-activefilters .block-title {
-  font-size: @font-size-base;
-  font-weight: bold;
+#block-culturefeed-search-ui-culturefeed-search-activefilters {
+  font-size: 90%;
+  .block-title {
+    font-size: 100%;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  span.filter,
+  span.suggestion {
+    display: inline-block;
+    padding-right: 15px;
+  }
+  a.filter-remove {
+    font-size: 125%;
+  }
 }
 
 // search sortorder form
