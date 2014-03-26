@@ -1295,6 +1295,10 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     else {
       $city = '';
     }
+  } else {
+    $street = '';
+    $zip = '';
+    $city = '';
   }
   
   $links = $page->getLinks();
