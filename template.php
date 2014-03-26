@@ -1199,7 +1199,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 23,
-    '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
+    //'#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
     ),
@@ -1273,6 +1273,30 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   $form['description']['#weight'] = 2;
 
   $address = $page->getAddress();
+  
+  if (!empty($address)) {
+    if ($address->getStreet()) {
+      $street = $address->getStreet();
+    }
+    else {
+      $street = '';
+    }
+    
+    if ($address->getZip()) {
+      $zip = $address->getZip();
+    }
+    else {
+      $zip = '';
+    }
+    
+    if ($address->getCity()) {
+      $city = $address->getCity();
+    }
+    else {
+      $city = '';
+    }
+  }
+  
   $links = $page->getLinks();
   
   $form['contact'] = array(
@@ -1291,7 +1315,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('Street and number'),
-    '#default_value' => $address->getStreet(),
+    '#default_value' => $street,
     '#weight' => 11,
   );
 
@@ -1300,7 +1324,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('Zipcode'),
-    '#default_value' => $address->getZip(),
+    '#default_value' => $zip,
     '#weight' => 12,
   );
 
@@ -1309,7 +1333,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#suffix' => '</div></div><hr />',
     '#type' => 'textfield',
     '#title' => t('City'),
-    '#default_value' => $address->getCity(),
+    '#default_value' => $city,
     '#weight' => 13,
   );
 
