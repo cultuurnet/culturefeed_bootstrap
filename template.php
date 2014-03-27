@@ -1814,3 +1814,15 @@ function culturefeed_bootstrap_culturefeed_pages_following_pages_block($variable
   return theme('item_list', array('items' => $items, 'attributes' => array('class' => array('list-unstyled'))));
 
 }
+
+
+/**
+ * Preprocess the variables for the page administration options.
+ * @see culturefeed-pages-block-admin-options.tpl.php
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_pages_block_admin_options(&$variables) {
+
+  $page = $variables['page'];
+  $variables['switch_link'] = l(t('Login as') . ' ' . $page->getName(), 'pages/switch/' . $page->getId(), array('attributes' => array('class' => array('btn btn-block btn-primary'))));
+  
+}
