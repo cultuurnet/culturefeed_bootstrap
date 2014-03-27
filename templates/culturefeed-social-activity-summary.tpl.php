@@ -27,10 +27,10 @@
  * - pages_total_14
  */
 ?>
-
-<ul class="list-group">
-  <li class="list-group-item"><span class="pull-right"><i class="fa fa-fw fa-lg fa-thumbs-up"></i> <?php print $activities_total_15 ?></span> <?php print t('Recommended activities'); ?></li>
-  <li class="list-group-item"><span class="pull-right"><i class="fa fa-fw fa-lg fa-thumbs-up"></i> <?php print $books_total_15 ?></span> <?php print t('Recommended books'); ?></li>
-  <li class="list-group-item"><span class="pull-right"><i class="fa fa-fw fa-lg fa-rss"></i> <?php print $pages_total_18 ?></span> <?php print t('Pages I follow'); ?></li>
-  <li class="list-group-item"><span class="pull-right"><i class="fa fa-fw fa-lg fa-comments"></i> <?php print $total_14 ?></span> <?php print t('Comments'); ?></li>
+<hr class="small">
+<ul class="list-unstyled">
+  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-thumbs-up"></i> <?php print $activities_total_15 ?></span> <?php print t('Recommended activities'); ?><hr class="small"></li>
+  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-thumbs-up"></i> <?php print $books_total_15 ?></span> <?php print t('Recommended books'); ?><hr class="small"></li>
+  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-rss"></i> <?php print $pages_total_18 ?></span> <?php print t('Pages I follow'); ?><hr class="small"></li>
+  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-comments"></i> <?php print $total_14 ?></span> <?php print t('Comments'); ?></li>
 </ul>
