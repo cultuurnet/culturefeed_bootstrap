@@ -218,10 +218,17 @@ hr.small {
   margin-bottom: 0;
 }
 
-// admin
+// profile box
 
-#block-culturefeed-ui-profile-box.contextual-links-region {
-  position: inherit;
+#block-culturefeed-ui-profile-box {
+  &.contextual-links-region {
+    position: inherit;
+  }
+  @media @wide {
+    .current-user {
+      display: inline !important;
+    }
+  }
 }
 
 // messages inbox
