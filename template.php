@@ -1615,7 +1615,7 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
   switch ($block->delta) {
     case 'pages-admin-menu':
       $page = menu_get_object('culturefeed_pages_page', 1);
-      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . ' ' . '<span class="caret"></span></button>'.  $data['content'] . '</div><div class="clearfix"></div><hr />'; 
+      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . ' ' . '<span class="caret"></span></button>'.  $data['content'] . '</div><div class="clearfix"></div><hr />'; 
       break;
     case 'page-agenda':
       unset($data['subject']);
@@ -1623,8 +1623,14 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
     case 'page-timeline':
       $data['subject'] = '<ul class="nav nav-tabs"><li><a href="#block-culturefeed-pages-page-agenda"><h4>' . t('Activities') . '</h4></a></li><li class="active"><a href="#"><h4>' . t('Timeline') .'</h4></a></li></ul>';
       break;
-  }
+    case 'profile_menu':
+      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage profile') . ' ' . '<span class="caret"></span></button>';
+      //TO DO: add $data['content']
+    break;
+    }
+    
 }
+
 
 /**
  * Show the manage members page for 1 culturefeed page.
@@ -1794,5 +1800,3 @@ function culturefeed_bootstrap_preprocess_culturefeed_authenticated_page(&$varia
   $variables['register'] = l(t('new account'), 'culturefeed/oauth/connect/register', array('attributes' => array('class' => array('culturefeedconnect'), 'rel' => 'nofollow'), 'query' => $cf_query));
 
 }
-
-
