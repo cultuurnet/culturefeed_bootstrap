@@ -1800,3 +1800,17 @@ function culturefeed_bootstrap_preprocess_culturefeed_authenticated_page(&$varia
   $variables['register'] = l(t('new account'), 'culturefeed/oauth/connect/register', array('attributes' => array('class' => array('culturefeedconnect'), 'rel' => 'nofollow'), 'query' => $cf_query));
 
 }
+
+/**
+ * Theme the overview of pages that a user follows in a block.
+ */
+function culturefeed_bootstrap_culturefeed_pages_following_pages_block($variables) {
+
+  $items = array();
+  foreach ($variables['following'] as $following) {
+    $items[] = culturefeed_search_detail_l('page', $following->page->getId(), $following->page->getName()) . '<hr class="small" />';
+  }
+
+  return theme('item_list', array('items' => $items, 'attributes' => array('class' => array('list-unstyled'))));
+
+}
