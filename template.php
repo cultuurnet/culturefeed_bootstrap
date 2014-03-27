@@ -1823,6 +1823,6 @@ function culturefeed_bootstrap_culturefeed_pages_following_pages_block($variable
 function culturefeed_bootstrap_preprocess_culturefeed_pages_block_admin_options(&$variables) {
 
   $page = $variables['page'];
-  $variables['switch_link'] = l(t('Login as') . ' ' . $page->getName(), 'pages/switch/' . $page->getId(), array('attributes' => array('class' => array('btn btn-block btn-primary'))));
+  $variables['switch_link'] = l(t('Login as') . '<br /><strong>' . $page->getName() . '</strong>', 'pages/switch/' . $page->getId(), array('attributes' => array('class' => array('btn btn-block btn-primary')), 'html' => TRUE));
   
 }
