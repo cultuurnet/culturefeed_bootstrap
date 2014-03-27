@@ -33,9 +33,8 @@
       </div>
     <?php endif; ?>
 
-    <hr />
-
     <?php if (!$has_activities): ?>
+      <hr />
       <div class="alert alert-warning"><?php print t('Your page currently has no published activities.'); ?> <a href="http://www.uitdatabank.be"><?php print t('Add an activity via UiTdatabank.be'); ?></a></div>
     <?php endif; ?>
   </div>
