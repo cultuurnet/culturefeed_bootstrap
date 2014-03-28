@@ -1004,14 +1004,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
 
   $query = drupal_get_query_parameters();
   $page_name = !empty($query['search']) ? $query['search'] : '';
-
-  $form['categoryId'] = array(
-    '#type' => 'select',
-    '#title' => t('Type'),
-    '#options' => culturefeed_search_get_actortype_categories(),
-    '#default_value' => CULTUREFEED_ACTORTYPE_ORGANISATION,
-    '#weight' => -5,
-  );
    
   $form['name'] = array(
     '#type' => 'textfield',
@@ -1254,8 +1246,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#markup' => culturefeed_search_detail_l("page", $page->getId(), $page->getName(), t('View page'), array('attributes' => array('class' => array('view-link')))),
     '#weight' => -999,
   );  
-  
-  unset($form['categoryId']);
+
   unset($form['image']);
   unset($form['cover']);
   unset($form['tagline']);
