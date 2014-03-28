@@ -1209,15 +1209,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#weight' => 999,
   );
 
-  $form['#validate'] = array(
-    'culturefeed_pages_add_arguments_prepare',
-    'culturefeed_pages_add_request_send'
-  );
-
-  $form['#submit'] = array(
-    'culturefeed_pages_add_form_submit'
-  );
-
   return $form;
 
 }
@@ -1510,15 +1501,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   if (!empty($tagline)) {
     $form['customizeLayout']['tagline']['#default_value'] = isset($tagline) ? $tagline : '';
   }
-
-  $form['#validate'] = array(
-    'culturefeed_pages_add_arguments_prepare',
-    'culturefeed_pages_edit_request_send',
-  );
-
-  $form['#submit'] = array(
-    'culturefeed_pages_add_form_submit'
-  );
 
   $form['submit']['#value'] = t('Update Page');
 
