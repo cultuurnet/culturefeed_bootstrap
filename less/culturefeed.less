@@ -218,10 +218,17 @@ hr.small {
   margin-bottom: 0;
 }
 
-// admin
+// profile box
 
-#block-culturefeed-ui-profile-box.contextual-links-region {
-  position: inherit;
+#block-culturefeed-ui-profile-box {
+  &.contextual-links-region {
+    position: inherit;
+  }
+  @media @wide {
+    .current-user {
+      display: inline !important;
+    }
+  }
 }
 
 // messages inbox
@@ -236,4 +243,41 @@ hr.small {
 
 .messages a.list-group-item.active {
   background-color: #00A3E0;
+}
+
+// page header 
+
+.bg-invert {
+  color: #fff;
+  background-color: #434343;
+}
+
+.page-cover {
+  height: 174px;
+  margin-bottom: 15px;
+  padding-top: 110px;
+
+  .page-title {
+    color: #FFF;
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-size: 24px;
+    font-weight: 500;
+    text-shadow: black 2px 2px 1px;
+  }
+  
+  .baseline {
+    color: #ABABAB;
+    text-shadow: black 1px 1px 1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+  
+  .page-actions {
+    margin-top: 15px;
+  }
+  
+  .page-actions a {
+    box-shadow: black 0px 1px 1px;
+  }
 }

@@ -1606,16 +1606,22 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
   switch ($block->delta) {
     case 'pages-admin-menu':
       $page = menu_get_object('culturefeed_pages_page', 1);
-      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . ' ' . '<span class="caret"></span></button>'.  $data['content'] . '</div><div class="clearfix"></div><hr />'; 
+      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . ' ' . '<span class="caret"></span></button>'.  $data['content'] . '</div><div class="clearfix"></div><hr />'; 
       break;
     case 'page-agenda':
       unset($data['subject']);
       break;
     case 'page-timeline':
-      $data['subject'] = '<ul class="nav nav-tabs"><li><a href="#block-culturefeed-pages-page-agenda"><h4>' . t('Activities') . '</h4></a></li><li class="active"><a href="#"><h4>' . t('Timeline') .'</h4></a></li></ul>';
+      $data['subject'] = '<ul class="nav nav-tabs"><li><a href="#block-culturefeed-pages-page-agenda" class="text-muted"><h4><i class="fa fa-calendar fa-fw fa-lg"></i>' . t('Activities') . '</h4></a></li><li class="active"><a href="#"><h4><i class="fa fa-th-list fa-fw fa-lg"></i>' . t('Timeline') .'</h4></a></li></ul>';
       break;
-  }
+    case 'profile_menu':
+      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage profile') . ' ' . '<span class="caret"></span></button>';
+      //TO DO: add $data['content']
+    break;
+    }
+    
 }
+
 
 /**
  * Show the manage members page for 1 culturefeed page.
@@ -1786,4 +1792,28 @@ function culturefeed_bootstrap_preprocess_culturefeed_authenticated_page(&$varia
 
 }
 
+/**
+ * Theme the overview of pages that a user follows in a block.
+ */
+function culturefeed_bootstrap_culturefeed_pages_following_pages_block($variables) {
 
+  $items = array();
+  foreach ($variables['following'] as $following) {
+    $items[] = culturefeed_search_detail_l('page', $following->page->getId(), $following->page->getName()) . '<hr class="small" />';
+  }
+
+  return theme('item_list', array('items' => $items, 'attributes' => array('class' => array('list-unstyled'))));
+
+}
+
+
+/**
+ * Preprocess the variables for the page administration options.
+ * @see culturefeed-pages-block-admin-options.tpl.php
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_pages_block_admin_options(&$variables) {
+
+  $page = $variables['page'];
+  $variables['switch_link'] = l(t('Login as') . '<br /><strong>' . $page->getName() . '</strong>', 'pages/switch/' . $page->getId(), array('attributes' => array('class' => array('btn btn-block btn-primary')), 'html' => TRUE));
+  
+}

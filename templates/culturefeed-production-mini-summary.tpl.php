@@ -18,9 +18,7 @@
         </a>
       <?php else: ?>
         <a class="pull-left" href="#">
-          <?php if (!empty($thumbnail)): ?>
-          <img class="media-object" src="/sites/all/themes/culturefeed_bootstrap/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
-          <?php endif; ?>
+          <img class="media-object" src="/sites/all/themes/custom/culturefeed_bootstrap/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
         </a>
       <?php endif; ?>  
     

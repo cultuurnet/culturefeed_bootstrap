@@ -1,8 +1,8 @@
 <div id="page-agenda-ajax-wrapper-<?php print $page->getId(); ?>">
 
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#"><h4><?php print t('Activities'); ?></h4></a></li>
-    <li><a href="#block-culturefeed-pages-page-timeline"><h4><?php print t('Timeline'); ?></h4></a></li>
+    <li class="active"><a href="#"><h4><i class="fa fa-calendar fa-fw fa-lg"></i> <?php print t('Activities'); ?></h4></a></li>
+    <li><a href="#block-culturefeed-pages-page-timeline" class="text-muted"><h4><i class="fa fa-th-list fa-fw fa-lg"></i> <?php print t('Timeline'); ?></h4></a></li>
   </ul>
   
   <br />
