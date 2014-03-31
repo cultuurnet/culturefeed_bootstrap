@@ -1209,15 +1209,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#weight' => 999,
   );
 
-  $form['#validate'] = array(
-    'culturefeed_pages_add_arguments_prepare',
-    'culturefeed_pages_add_request_send'
-  );
-
-  $form['#submit'] = array(
-    'culturefeed_pages_add_form_submit'
-  );
-
   return $form;
 
 }
@@ -1510,15 +1501,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   if (!empty($tagline)) {
     $form['customizeLayout']['tagline']['#default_value'] = isset($tagline) ? $tagline : '';
   }
-
-  $form['#validate'] = array(
-    'culturefeed_pages_add_arguments_prepare',
-    'culturefeed_pages_edit_request_send',
-  );
-
-  $form['#submit'] = array(
-    'culturefeed_pages_add_form_submit'
-  );
 
   $form['submit']['#value'] = t('Update Page');
 
@@ -1816,4 +1798,36 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_block_admin_options(
   $page = $variables['page'];
   $variables['switch_link'] = l(t('Login as') . '<br /><strong>' . $page->getName() . '</strong>', 'pages/switch/' . $page->getId(), array('attributes' => array('class' => array('btn btn-block btn-primary')), 'html' => TRUE));
   
+}
+
+/**
+ * Show the additional form for the where facet.
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_alter(&$form, &$form_state) {
+
+  $form = array();
+
+  $form['#attributes']['class'][] = '';
+
+  $form['location'] = array(
+    '#type' => 'textfield',
+    '#size' => 28,
+    '#title' => t('Where'),
+    '#title_display' => 'invisible',
+    '#autocomplete_path' => 'autocomplete/culturefeed/city-suggestion',
+    '#attributes' => array('placeholder' => t('Zipcode or city')),
+    '#prefix' => '<div class="row"><div class="col-xs-9 no-gutter">',
+    '#suffix' => '</div>',
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Ok'),
+    '#prefix' => '<div class="col-xs-3">',
+    '#suffix' => '</div></div>',
+    '#attributes' => array('class' => array('btn-block')),
+  );
+
+  return $form;
+
 }
