@@ -9,7 +9,6 @@ $button_printed = render($form['submit']);
 ?>
 
 <div class="panel panel-default collapse in" id="comment-form">
-  <div class="panel-heading"><h3 class="panel-title"><?php print t('Post a comment'); ?></h3></div>
   <div class="panel-body">
     <?php print render($form['message'])?>
     <?php print render($form['update_optin'])?>

@@ -8,7 +8,7 @@
 ?>
 <div class="row">
   <?php if (!empty($list) && count($list) >= 1): ?>
-  <p><a href="#comment" class="btn btn-link" data-toggle="collapse" data-target="#comment-form"><?php print t('Post a comment'); ?></a></p>
+  <p><a href="#comment" class="btn btn-default"><i class="fa fa-comment"></i> <?php print t('Post a comment'); ?></a></p>
   <?php endif; ?>
   
   <?php if (!empty($list)): ?>
