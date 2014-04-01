@@ -1942,6 +1942,23 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
     }
   }
 
+  else {
+  
+    $comment_url = 'culturefeed/activity/comment/' . $activity->id;
+    $hover = theme('culturefeed_ui_connect_hover', array('url' => $_GET['q']));
+    $popover_options = array(
+      'class' => '',
+      'data-toggle' => 'popover',
+      'data-content' => $hover,
+      'data-placement' => 'top',
+      'data-title' => '<strong>' . t('Connect with UiTiD') . '</strong>',
+      'data-html' => 'true'
+    );
+
+    $variables['comment_link'] = l(t('Post a comment'), $comment_url, array('attributes' => $popover_options, 'html' => TRUE));
+    
+  }
+
   if (module_exists('culturefeed_messages')) {
 
     $abuse_url = 'culturefeed/activity/report-abuse/' . $activity->id;
