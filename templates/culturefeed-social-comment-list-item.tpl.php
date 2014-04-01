@@ -11,12 +11,14 @@
  */
 ?>
 
-<div class="col-xs-12 clearfix">
+<div class="col-xs-12">
 
+<div class="clearfix"></div>
+  
   <?php if ($level == 1): ?>
   <hr />
   <?php endif; ?>
-
+  
 <div class="row" id="activity-<?php print $activity_id ?>">
 
   <div class="col-xs-2 text-center">
