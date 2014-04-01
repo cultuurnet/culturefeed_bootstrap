@@ -1831,3 +1831,136 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_a
   return $form;
 
 }
+
+/**
+ * Preprocess function for the comment list item.
+ * @see culturefeed-social-comment-list-item.tpl.php
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&$variables) {
+
+  $object = $variables['object'];
+  $activity = $variables['activity'];
+  $accounts = $variables['accounts'];
+  $destination = drupal_get_destination();
+  $cf_user = NULL;
+
+  if (culturefeed_is_culturefeed_user()) {
+    try {
+      $cf_user = DrupalCultureFeed::getLoggedInUser();
+    }
+    catch (Exception $e) {
+      watchdog_exception('culturefeed_social', $e);
+    }
+  }
+
+  // Variables for one list item.
+  $picture = theme('image', array('path' => $activity->depiction . '?maxwidth=75&maxheight=75&crop=auto'));
+  $author_url = 'user/' . $variables['uid'];
+
+  $variables['picture'] = l($picture, $author_url, array('html' => TRUE));
+  $variables['date'] = format_date($activity->creationDate, 'small');
+
+  $variables['author'] = l($activity->nick, $author_url);
+  if (!empty($activity->onBehalfOf) && !empty($activity->onBehalfOfName) && module_exists('culturefeed_pages')) {
+    $variables['author'] .= ' ' . t('from') . ' ' . culturefeed_search_detail_l('page', $activity->onBehalfOf, $activity->onBehalfOfName);
+  }
+
+  $variables['content'] = check_plain(strip_tags($activity->value)); // CultuurNet doesn't want to see html tags converted to plain.
+  $variables['content'] = str_replace("\n", "<br />", $variables['content']);
+  $variables['activity_id'] = $activity->id;
+
+  // The list of child activities if available.
+  $variables['list'] = array();
+  if (!empty($variables['child_activities'])) {
+    // The subitems.
+    $list = array();
+    foreach ($variables['child_activities'] as $child_activity) {
+     $list[] = theme('culturefeed_social_comment_list_item', array(
+       'activity' => $child_activity,
+       'object' => $object,
+       'uid' => $accounts[$child_activity->userId],
+       'child_activities' => array(),
+       'accounts' => array(),
+       'level' => 1,
+     ));
+    }
+    $variables['list'] = $list;
+  }
+
+  $variables['comment_link'] = '';
+  $variables['comment_url'] = '';
+  $variables['delete_link'] = '';
+  $variables['abuse_link'] = '';
+
+  if ($cf_user) {
+
+    $remove_path = 'culturefeed/activity/delete/' . $activity->id;
+    $attributes = array(
+      /*'class' => array('remove-link', 'use-ajax'),
+      'role' => 'button',
+      'data-toggle' => 'modal',
+      'data-target' => '#delete-wrapper-' . $activity->id,
+      'data-remote' => url($remove_path . "/ajax", array('query' => $destination)),*/
+    );
+
+    if ($variables['level'] == 0) {
+
+      if ($cf_user->id == $activity->userId || culturefeed_pages_is_user_admin_of_page($object->getId())) {
+        $variables['delete_link'] = l(t('Delete'), $remove_path . '/nojs', array(
+          'attributes' => $attributes,
+          'query' => $destination,
+        ));
+      }
+
+      $comment_url = 'culturefeed/activity/comment/' . $activity->id;
+      $attributes = array(
+        /*'class' => array('comment-link link-icon'),
+        'role' => 'button',
+        'data-toggle' => 'modal',
+        'data-target' => '#comment-wrapper-' . $activity->id,
+        'data-remote' => url($comment_url . "/ajax", array('query' => $destination)),*/
+      );
+
+      $variables['comment_link'] = l(t('Reply'), $comment_url . '/nojs', array(
+        'attributes' => $attributes,
+        'query' => $destination,
+      ));
+      
+     $variables['comment_url'] = url($comment_url . '/nojs', array('attributes' => $attributes, 'query' => $destination));      
+            
+    }
+    else {
+
+      if ($cf_user->id == $activity->userId || culturefeed_pages_is_user_admin_of_page($object->getId())) {
+        $variables['delete_link'] = l(t('Delete'), $remove_path . '/nojs', array(
+          'attributes' => $attributes,
+          'query' => $destination,
+          'html' => TRUE,
+        ));
+      }
+
+    }
+  }
+
+  if (module_exists('culturefeed_messages')) {
+
+    $abuse_url = 'culturefeed/activity/report-abuse/' . $activity->id;
+    $attributes = array(
+      /*'class' => array('comment-abuse-link'),
+      'role' => 'button',
+      'data-toggle' => 'modal',
+      'data-target' => '#abuse-wrapper-' . $activity->id,
+      'href' => url($abuse_url . "/ajax", array('query' => $destination)),*/
+    );
+
+    $variables['abuse_link'] = l(t('Report as inappropriate'), $abuse_url . '/nojs', array(
+      'attributes' => $attributes,
+      'query' => $destination,
+    ));
+
+  }
+}
+
+
+
+
