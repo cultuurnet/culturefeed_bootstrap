@@ -26,8 +26,8 @@
       </a>
     </h2>
   
-    <?php if (!empty($themes)): ?>
-    <div class="text-muted hidden-xs hidden-sm"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes); ?></div>
+    <?php if (!empty($types)): ?>
+    <div class="text-muted hidden-xs hidden-sm"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></div>
     <?php endif; ?>
 
     <?php if (!empty($shortdescription)): ?>
