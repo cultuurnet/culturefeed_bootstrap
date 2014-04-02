@@ -31,7 +31,7 @@
    */
    ?>
   <div class="follow-<?php print $page->getId() ?>">
-    <?php print $follow_link ?>
+    <span class="set-btn default xs"><?php print $follow_link ?></span>
   </div>
 
 </div>

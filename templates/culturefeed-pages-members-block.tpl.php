@@ -31,7 +31,7 @@
    */
    ?>
   <div class="member-<?php print $page->getId() ?>">
-    <?php print $member_link ?>
+    <span class="set-btn default xs"><?php print $member_link ?></span>
   </div>
 
 </div>
