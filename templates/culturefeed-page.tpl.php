@@ -46,11 +46,7 @@
         <i title="<?php print t('Members'); ?>" class="fa fa-group fa-lg fa-fw"></i>
       </div> 
       
-      <div class="col-xs-11">
-                
-        <?php if ($canononlyadmin): ?>
-          <p class="text-muted"><small>Deze pagina heeft nog geen medewerkers</small></p>
-        <?php endif; ?>    
+      <div class="col-xs-11">   
       
         <p>
           <a href="#" data-toggle="collapse" data-target="#members" title="<?php print t('Show members'); ?>"><?php print t('Show members'); ?> <span class="caret"></span><span class="sr-only"><?php print t('Show members'); ?></span></a>
@@ -59,8 +55,7 @@
             <?php print $become_member_link ?>
             <?php endif; ?>
           </span>
-        </p>
-    
+        </p> 
         
         <?php if ($members): ?>
         <div class="table-responsive collapse" id="members">         
