@@ -35,7 +35,7 @@
 
     <?php if (!$has_activities): ?>
       <hr />
-      <div class="alert alert-warning"><?php print t('Your page currently has no published activities.'); ?> <a href="http://www.uitdatabank.be"><?php print t('Add an activity via UiTdatabank.be'); ?></a></div>
+      <div class="alert alert-warning"><small><?php print t('Your page currently has no published activities.'); ?><br /><a class="alert-link" href="http://www.uitdatabank.be"><?php print t('Add an activity via UiTdatabank.be'); ?></a></small></div>
     <?php endif; ?>
   </div>
 
