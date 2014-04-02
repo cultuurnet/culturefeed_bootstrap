@@ -66,6 +66,7 @@
 
   
       <!-- Nested media object -->
+      <div class="clearfix"></div>
       <?php if (!empty($list)): ?>
         <?php foreach ($list as $list_item): ?>
           <?php print $list_item ?>
