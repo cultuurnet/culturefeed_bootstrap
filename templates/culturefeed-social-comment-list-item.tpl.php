@@ -21,19 +21,19 @@
   
 <div class="row" id="activity-<?php print $activity_id ?>">
 
-  <div class="col-xs-2 text-center">
-    <?php print $picture ?>
-    <br />
-    <p class="text-muted "><small><?php print $author ?> <br /> <?php print $date ?></small></p>
+  <div class="col-sm-2 text-center hidden-xs">
+    <?php print $picture ?>  
   </div>
 
 
-  <div class="col-xs-10">
+  <div class="col-sm-10">
    
     <div class="row">
     
       <div class="col-xs-9">
-         <p><?php print $content ?></p>
+         <p><?php print $content ?>
+         <br />
+         <small class="text-muted"><?php print $author ?> - <?php print $date ?></small></p>      
       </div>
       
       <div class="col-xs-3">
