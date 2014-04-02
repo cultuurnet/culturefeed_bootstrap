@@ -1863,7 +1863,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
   }
 
   // Variables for one list item.
-  $picture = theme('image', array('path' => $activity->depiction, 'attributes' => array('class' => 'img-responsive')));
+  $picture = theme('image', array('path' => $activity->depiction . '?width=120&height=120&crop=auto&scale=both', 'attributes' => array('class' => 'img-responsive')));
   $author_url = 'user/' . $variables['uid'];
 
   $variables['picture'] = l($picture, $author_url, array('html' => TRUE));

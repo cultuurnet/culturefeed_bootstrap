@@ -32,8 +32,8 @@
     
       <div class="col-xs-9">
          <p><?php print $content ?>
-         <br />
-         <small class="text-muted"><?php print $author ?> - <?php print $date ?></small></p>      
+         <hr class="small" />
+         <small class="text-muted"><?php print t('Posted by'); ?> <?php print $author ?> - <?php print $date ?></small></p>      
       </div>
       
       <div class="col-xs-3">

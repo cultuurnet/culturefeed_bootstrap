@@ -11,7 +11,7 @@ $button_printed = render($form['submit']);
 <div class="panel panel-default collapse in" id="comment-form">
   <div class="panel-body">
     <?php print render($form['message'])?>
-    <?php print render($form['update_optin'])?>
+    <small class="text-muted"><?php print render($form['update_optin'])?></small>
     <?php print drupal_render_children($form); ?>
   </div>
   <div class="panel-footer">
