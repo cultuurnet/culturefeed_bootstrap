@@ -20,5 +20,5 @@
       <?php endforeach;?>
   <?php endif; ?>
 </div>
-<a id="comment" class="anchor"></a>
+<a id="comment-form" class="anchor"></a>
 
