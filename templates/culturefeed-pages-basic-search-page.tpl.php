@@ -12,6 +12,8 @@
   </ul>
   <?php endif;?>
 
+<hr />
+
 <?php print $create_message; ?>
 
 <?php endif; ?>

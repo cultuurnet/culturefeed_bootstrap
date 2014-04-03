@@ -701,7 +701,7 @@ function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_i
 function culturefeed_bootstrap_form_culturefeed_pages_basic_search_form_alter(&$form, &$form_state) {
 
   $form['page'] = array(
-    '#prefix' => '<div class="row"><div class="col-xs-10">',
+    '#prefix' => '<div class="row"><div class="col-sm-9">',
     '#suffix' => '</div>',
     '#type' => 'textfield',
     '#attributes' => array('placeholder' => array(t('Keyword'))),
@@ -710,11 +710,11 @@ function culturefeed_bootstrap_form_culturefeed_pages_basic_search_form_alter(&$
   );
 
   $form['submit'] = array(
-    '#prefix' => '<div class="col-xs-2 form-group">',
+    '#prefix' => '<div class="col-sm-3 form-group">',
     '#suffix' => '</div></div>',
-    '#attributes' => array('class' => array('btn btn-primary')),
+    '#attributes' => array('class' => array('btn-block')),
     '#type' => 'submit',
-    '#value' => t('Search Page'),
+    '#value' => t('Search'),
   );
 
   return $form;
