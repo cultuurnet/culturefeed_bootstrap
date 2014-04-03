@@ -1537,7 +1537,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
   // General information.
   $form['basic'] = array(
     '#type' => 'markup',
-    '#markup' => '<h2>' . t('Features') . '</h2>',
+    '#markup' => '<h2>' . t('Allow users to') . '</h2>',
     '#weight' => -20,
   );
 
@@ -1551,22 +1551,22 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
 
   $form['allow_followers'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Allow users to follow my page'),
+    '#title' => t('follow my page'),
     '#description' => '<span class="text-muted">' . t('Followers receive a notification when your page is updated, so that they stay informed of new activities, threads, ...') . '</span>',
     '#default_value' => !empty($permissions->allowFollowers),
   );
 
   $form['allow_members'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Allow users to request membership'),
+    '#title' => t('become member of my page'),
     '#description' => '<span class="text-muted">' . t('Members can, depending on the roles or rights, collaborate to maintain and update your page. Furthermore, page memberships are added to user profiles and can be used as an alias to add comments.') . '</span>',
     '#default_value' => !empty($permissions->allowMembers),
   );
 
   $form['allow_comments'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Allow users to add comments to my activities'),
-    '#description' => '<span class="text-muted">' . t('Only available for organizations who added their activities via <a href="http://www.uitdatabank.be" target="_blank">www.uitdatabank.be</a>.') . '</span>',
+    '#title' => t('add comments to my activities'),
+    '#description' => '<span class="text-muted">' . t('Only available for organisations who added their activities via <a href="http://www.uitdatabank.be" target="_blank">www.uitdatabank.be</a>.') . '</span>',
     '#default_value' => !empty($permissions->allowComments),
   );
 
