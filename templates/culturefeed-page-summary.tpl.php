@@ -28,18 +28,6 @@
         <?php print format_plural($follower_count, '<span class="btn btn-success"><strong>' . '@count' . '</strong></span><span class="btn btn-default">' .   t('follower') . '</span>' , '<span class="btn btn-success">' . '@count' . '</span><span class="btn btn-default">' .   t('followers') . '</span>'); ?>
         </div>
         <?php endif; ?>
-        
-        <?php if ($logged_in): ?>
-    
-          <?php if (!$following): ?>
-            <a href="<?php print $follow_url; ?>"><small><?php print $follow_text; ?></small></a>
-          <?php else: ?>
-            <small class="text-muted"><?php print t('You follow this page'); ?></small>
-          <?php endif; ?>
-          </p>
-        <?php else: ?>
-          <p><small class="text-muted"><?php print $follow_text; ?></small></p>
-        <?php endif; ?>
       </div>
     </div>
   
