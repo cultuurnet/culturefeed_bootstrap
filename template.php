@@ -1,17 +1,6 @@
 <?php
 
 /**
- * Implements hook_js_alter().
-*/
-
-function culturefeed_bootstrap_js_alter(&$javascript) {
-  // Replace with current version.
-  $jQuery_version = '1.8.3';
-  $javascript['misc/jquery.js']['data'] = drupal_get_path('theme', 'culturefeed_bootstrap').'/js/lib/jquery.1.8.3.min.js';
-  $javascript['misc/jquery.js']['version'] = $jQuery_version;
-}
-
-/**
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
@@ -987,12 +976,13 @@ function culturefeed_bootstrap_preprocess_culturefeed_page(&$variables) {
 
 /**
  * Upload button for managed_file types not working in bootstrap theme (WKS-222)
- */
-function culturefeed_bootstrap_image_file_process($element, &$form_state, $form) {
+
+function culturefeed_image_file_process($element, &$form_state, $form) {
   $element = file_managed_file_process($element, $form_state, $form);
   $element['upload_button']['#access'] = FALSE;
   return $element;
 }
+ */
 
 /**
  * Creates form elements to add a page.
@@ -1179,7 +1169,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 21,
-    '#process' => array('file_managed_file_process', 'culturefeed_bootstrap_image_file_process'),
+    '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
     ),
@@ -1200,7 +1190,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 23,
-    '#process' => array('file_managed_file_process', 'culturefeed_bootstrap_image_file_process'),
+    '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
     ),
@@ -1448,7 +1438,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#weight' => 21,
-    '#process' => array('file_managed_file_process', 'culturefeed_bootstrap_image_file_process'),
+    '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
     ),
@@ -1478,7 +1468,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#weight' => 23,
-    '#process' => array('file_managed_file_process', 'culturefeed_bootstrap_image_file_process'),
+    '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
     ),
