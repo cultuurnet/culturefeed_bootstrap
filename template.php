@@ -975,16 +975,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_page(&$variables) {
 }
 
 /**
- * Upload button for managed_file types not working in bootstrap theme (WKS-222)
-
-function culturefeed_image_file_process($element, &$form_state, $form) {
-  $element = file_managed_file_process($element, $form_state, $form);
-  $element['upload_button']['#access'] = FALSE;
-  return $element;
-}
- */
-
-/**
  * Creates form elements to add a page.
  */
 function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$form_state) {
