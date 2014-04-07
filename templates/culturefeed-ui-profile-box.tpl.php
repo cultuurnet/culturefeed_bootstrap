@@ -3,7 +3,9 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
       <?php print $picture ?> 
-      <span class="current-user visible-lg"><?php print $nick ?></span> 
+      <span class="current-user visible-lg">
+        <?php (strlen($nick) > 50) ? print substr($nick, 0, 50) . '...' : print $nick; ?>
+      </span> 
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
