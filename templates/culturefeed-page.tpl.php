@@ -85,7 +85,7 @@
   <div class="col-sm-4">
   
     <?php if (!empty($image)): ?>
-    <img class="img-thumbnail hidden-xs" src="<?php print $image; ?>" alt="Logo <?php print $title; ?>" />
+    <img class="img-thumbnail hidden-xs" src="<?php print $image . '?width=262&scale=both'; ?>" alt="Logo <?php print $title; ?>" />
     <br />
     <?php endif; ?>
     
