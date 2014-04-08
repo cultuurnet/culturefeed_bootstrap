@@ -13,7 +13,7 @@
 
   <?php if (!empty($image)): ?>
   <a class="pull-right" href="<?php print $url ?>">
-    <img class="media-object img-thumbnail" src="<?php print $image; ?>?width=150&height=150&crop=auto" alt="<?php print $title; ?>">
+    <img class="media-object img-thumbnail" src="<?php print $image; ?>?width=150&scale=both" alt="<?php print $title; ?>">
   </a>
   <?php endif; ?>
   
