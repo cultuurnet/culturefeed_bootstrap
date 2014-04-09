@@ -82,5 +82,9 @@ jQuery(function($) {
    	})
   });
   
+  // Remove agenda tab from page timeline block if agenda block is not available
+  if ($("#block-culturefeed-pages-page-agenda").length == 0) {
+    $(".tab-agenda").remove();
+  } 
   
 });
