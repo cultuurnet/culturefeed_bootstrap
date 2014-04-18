@@ -1,0 +1,38 @@
+name = 'CultureFeed Bootstrap Virgin'
+description = 'Subtheme based on culturefeed_bootstrap. Please copy to sites/*/themes'
+core = '7.x'
+engine = 'phptemplate'
+base theme = 'culturefeed_bootstrap'
+
+
+; Regions
+regions[navigation]     = 'Navigation'
+regions[header]         = 'Top Bar'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
+regions[content_bottom] = 'Content Bottom'
+regions[footer]         = 'Footer'
+
+
+; Scripts
+scripts[] = js/custom.js
+; scripts[] = js/events.js
+
+; Stylesheets
+stylesheets[all][] =  less/style.less
+; stylesheets[all][] = css/custom.css
+
+
+less[vars][@brand-primary]      = #428bca
+less[vars][@brand-success]      = #5cb85c
+less[vars][@brand-warning]      = #f0ad4e
+less[vars][@brand-danger]       = #d9534f
+less[vars][@brand-info]         = #5bc0de
+less[vars][@border-radius-base]       = 4px
+less[vars][@border-radius-large]      = 6px
+less[vars][@border-radius-small]      = 3px
+less[vars][@font-family-sans-serif]   = "Helvetica Neue", Helvetica, Arial, sans-serif
+less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
