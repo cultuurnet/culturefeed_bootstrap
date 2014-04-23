@@ -1,3 +1,11 @@
+<?php if ($cover): ?>
+  <div class="row">
+    <div class="col-sm-12 hidden-xs">
+      <img src="<?php print $cover ?>?width=1000&height=200&crop=auto" class="img-responsive" />
+    </div>
+  </div>
+<?php endif; ?>
+
 <div class="row">
 
   <div class="col-sm-8">
