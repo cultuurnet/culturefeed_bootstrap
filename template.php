@@ -1470,7 +1470,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     // Creat temp file to preview the external cover.
     $file_cover = culturefeed_create_temporary_image($cover, file_default_scheme() . '://pages');
     if ($file_cover) {
-      $form_state['customizeLayout']['#old_cover'] = $file_cover->fid;
+      $form_state['#old_cover'] = $file_cover->fid;
       $form['customizeLayout']['cover']['#default_value'] = $file_cover->fid;
     }
 
