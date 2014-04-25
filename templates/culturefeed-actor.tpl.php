@@ -9,9 +9,11 @@
 
   <div class="col-sm-8">
   
-    <p>
-      <?php print $shortdescription; ?>
-    </p>
+    <?php if (!empty($shortdescription)) : ?>
+      <p>
+        <?php print $shortdescription; ?>
+      </p>
+    <?php endif; ?>
     
     <table class="table table-condended table-striped">
       <tbody>
