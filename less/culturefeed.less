@@ -164,6 +164,24 @@ h1, h2, h3 {
   display: block;
 }
 
+// override default glyphicon throbbers
+
+.glyphicon {
+  font-family: FontAwesome;
+}
+
+.glyphicon-refresh {
+  -webkit-transform-origin: 50% 49%;
+  -moz-transform-origin: 50% 49%;
+  -ms-transform-origin: 50% 49%;
+  -o-transform-origin: 50% 49%;
+  transform-origin: 50% 49%;
+}
+
+.glyphicon-refresh:before {
+  content: "\F021";
+}
+
 // search active filters & suggestions block
 
 #block-culturefeed-search-ui-culturefeed-search-activefilters {
