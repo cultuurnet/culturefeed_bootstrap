@@ -1,0 +1,3 @@
+#: template.php:1814
+msgid "Confirm choice"
+msgstr "Bevestig keuze"

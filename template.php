@@ -1790,34 +1790,57 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_block_admin_options(
 }
 
 /**
- * Show the additional form for the where facet.
+ * Theme the culturefeed_search_ui_city_only_facet_form
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_alter(&$form, &$form_state) {
 
-  $form = array();
+  $form['#attributes']['class'][] = '';
+  
+  // TODO: add auto-submit behavior and remove submit button
+  $form['submit']['#attributes'] = array('class' => array('btn-block'));
+  $form['submit']['#value'] = t('Confirm choice');
+
+}
+
+/**
+ * Theme the culturefeed_search_ui_city_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(&$form, &$form_state) {
+
+  $form['#attributes']['class'][] = '';
+  
+  // TODO: add auto-submit behavior and remove submit button
+  $form['submit']['#attributes'] = array('class' => array('btn-block'));
+  $form['submit']['#value'] = t('Confirm choice');
+}
+
+/**
+ * Theme the culturefeed_search_ui_proximity_distance_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_proximity_distance_form_alter(&$form, &$form_state) {
+
+  $form['distance']['#prefix'] = '<div class="row"><div class="col-xs-5 no-gutter">';
+  $form['distance']['#title'] = '';
+  $form['distance']['#suffix'] = '</div>';
+
+  $form['submit']['#prefix'] = '<div class="col-xs-7">';
+  $form['submit']['#attributes'] = array('class' => array('btn-link'));
+  $form['submit']['#suffix'] = '</div></div><hr class="small" />';
+
+}
+
+/**
+ * Theme the culturefeed_search_ui_date_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(&$form, &$form_state) {
 
   $form['#attributes']['class'][] = '';
 
-  $form['location'] = array(
-    '#type' => 'textfield',
-    '#size' => 28,
-    '#title' => t('Where'),
-    '#title_display' => 'invisible',
-    '#autocomplete_path' => 'autocomplete/culturefeed/city-suggestion',
-    '#attributes' => array('placeholder' => t('Zipcode or city')),
-    '#prefix' => '<div class="row"><div class="col-xs-9 no-gutter">',
-    '#suffix' => '</div>',
-  );
+  $form['date_range']['#prefix'] = '<div class="input-group">';
+  $form['date_range']['#title'] = '';
 
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Ok'),
-    '#prefix' => '<div class="col-xs-3">',
-    '#suffix' => '</div></div>',
-    '#attributes' => array('class' => array('btn-block')),
-  );
-
-  return $form;
+  $form['submit']['#prefix'] = '<span class="input-group-btn">';
+  $form['submit']['#suffix'] = '</span></div>';
 
 }
 
