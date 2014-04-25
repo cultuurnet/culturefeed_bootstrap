@@ -8,7 +8,7 @@
 
 <?php if (!empty($items)): ?>
   <h2><i class="fa fa-calendar 2-x"></i> <?php print t('Calendar'); ?></h2>
-  <ul class="bullets">
+  <ul class="list-unstyled">
   <?php foreach ($items as $item): ?>
   <li><?php print $item ?></li>
   <?php endforeach;?>
