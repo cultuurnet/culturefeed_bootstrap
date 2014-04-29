@@ -61,19 +61,16 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alte
  * Implements hook_{culturefeed_search_ui_search_sortorder_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="pull-right"><div class="row">';
+  $form['#prefix'] = '<div class="pull-right text-right">';
   $form['title'] = array(
-    '#prefix' => '<div class="col-sm-6">',
     '#type' => 'item',
-    '#markup' => '<p class="text-right"><strong>' . t('Sort') . '</strong>',
-    '#suffix' => '</div>',
+    '#markup' => '<a data-toggle="collapse" href="#sort-results">' . t('Sort') . ' <span class="caret"></span></a>',
   );
-  $form['sort']['#prefix'] = '<div class="col-sm-6">';
+  $form['sort']['#prefix'] = '<div id="sort-results" class="collapse collapse-in">';
   $form['sort']['#weight'] = '2';
-  $form['sort']['#attributes']['class'][] = 'input-sm';
   $form['sort']['#title'] = '';
   $form['sort']['#suffix'] = '</div>';
-  $form['#suffix'] = '</div></div>';
+  $form['#suffix'] = '</div>';
 }
 
 /**

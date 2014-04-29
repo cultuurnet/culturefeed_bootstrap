@@ -1,3 +1,7 @@
 #: template.php:1814
 msgid "Confirm choice"
 msgstr "Bevestig keuze"
+
+#: culturefeed-event.tpl.php:40
+msgid "Show map"
+msgstr "Toon kaart"
