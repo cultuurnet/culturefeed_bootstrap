@@ -6,7 +6,7 @@
 
 ?>
 
-<div class="media" data-thmr="thmr_100 thmr_101 thmr_102">
+<div class="media">
   <div class="media-body">
     <h3 class="media-heading">
      <a href="<?php print $url ?>"><?php print $title; ?></a>
