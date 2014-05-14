@@ -2,7 +2,9 @@
 <div>
   <?php foreach ($tabs as $tabId => $tab): ?>
   <div class="panel panel-default">
-    <div class="panel-heading"><?php print $tab['name']; ?></div>
+    <?php if (count($tabs) > 1): ?>
+      <div class="panel-heading"><?php print $tab['name']; ?></div>
+    <?php endif; ?>
     <div class="panel-body">
       <?php foreach ($tab['children'] as $content): ?>
       <div class="<?print $tab['class']; ?>">
