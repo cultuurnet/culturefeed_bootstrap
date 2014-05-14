@@ -43,7 +43,7 @@
       </div>
       <?php endif; ?>
     
-      <?php if ($location): ?>
+      <?php if ($location && $relations < 2): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('Where'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-map-marker text-center"></i></div>
@@ -58,7 +58,7 @@
       </div>
       <?php endif; ?>
     
-      <?php if (!empty($when)): ?>
+      <?php if (!empty($when) && $relations < 2): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar text-center"></i></div>
@@ -69,6 +69,8 @@
 
     <?php if (!empty($tickets)): ?>
       <p class="hidden-xs"><?php print culturefeed_search_detail_l('production', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-warning')))); ?></p>
+    <?php elseif ($relations > 1): ?>
+      <p class="hidden-xs"><?php print culturefeed_search_detail_l('production', $cdbid, $title, t('Show program schedule') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default')))); ?></p>
     <?php else: ?>
       <p class="hidden-xs"><?php print culturefeed_search_detail_l('production', $cdbid, $title, t('More info') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default')))); ?></p>
     <?php endif; ?>
