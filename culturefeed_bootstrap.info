@@ -79,6 +79,13 @@ settings[bootstrap_breadcrumb] = 1
 settings[bootstrap_breadcrumb_home] = 1
 settings[bootstrap_breadcrumb_title] = 0
 
+; Popovers
+settings[bootstrap_popover_placement] = 'auto top'
+
+; Tooltips
+settings[bootstrap_tooltip_descriptions] = 0
+settings[bootstrap_tooltip_placement] = 'auto top'
+
 ; Disable jquery_update dependency
 simplytest_dependencies[] = ''
 
