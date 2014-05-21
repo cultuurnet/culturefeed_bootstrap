@@ -50,7 +50,7 @@ scripts[] = 'bootstrap/js/dropdown.js'
 scripts[] = 'bootstrap/js/tooltip.js'
 scripts[] = 'bootstrap/js/popover.js'
 ; scripts[] = 'bootstrap/js/scrollspy.js'
-; scripts[] = 'bootstrap/js/tab.js'
+scripts[] = 'bootstrap/js/tab.js'
 scripts[] = 'bootstrap/js/transition.js'
 ; ; Settings inherited by base theme, uncomment to override.
 ; settings[toggle_name] = 1
