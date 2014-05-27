@@ -1800,18 +1800,6 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_a
 }
 
 /**
- * Theme the culturefeed_search_ui_city_facet_form
- */
-function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(&$form, &$form_state) {
-
-  $form['#attributes']['class'][] = '';
-  
-  // TODO: add auto-submit behavior and remove submit button
-  $form['submit']['#attributes'] = array('class' => array('btn-block'));
-  $form['submit']['#value'] = t('Confirm choice');
-}
-
-/**
  * Theme the culturefeed_search_ui_proximity_distance_form
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_proximity_distance_form_alter(&$form, &$form_state) {
