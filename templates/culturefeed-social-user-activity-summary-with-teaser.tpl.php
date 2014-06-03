@@ -48,16 +48,11 @@
       <p><strong><?php print $teaser_title ?></strong></p>
     
       <?php if($teaser_body): ?>
-        <?php if($teaser_summary): ?>
-        <p><?php print $teaser_summary ?></p>
-        <?php else: ?>
         <p><?php print $teaser_body ?></p>
       <?php endif; ?>
     </div>
   </div>
 
   <?php endif; ?>
-
-<?php endif; ?>
-    
+   
 </div>
