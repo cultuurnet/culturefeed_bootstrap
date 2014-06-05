@@ -33,7 +33,7 @@
       <td><?php print $performers; ?></td></tr>
       <?php endif; ?>
     
-      <?php if ($location): ?>
+      <?php if ($location && $relations < 2): ?>
       <tr><td class="col-lg-2 col-md-2 col-sm-1 col-xs-1"><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
         <?php if (!empty($coordinates)): ?>
@@ -59,7 +59,7 @@
       </td></tr>
       <?php endif; ?>
     
-      <?php if (!empty($when)): ?>
+      <?php if (!empty($when) && $relations < 2): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
       <td><?php print $when; ?></td></tr>
       <?php endif; ?>
@@ -128,6 +128,10 @@
       <?php if (!empty($keywords)): ?>
       <tr class="hidden-xs hidden-sm"><td><strong class="hidden-xs hidden-sm"><?php print t('Keywords'); ?></strong></td>
       <td><?php print $keywords; ?></td></tr>
+      <?php endif; ?>
+
+      <?php if ($relations > 1): ?>
+        <?php // TODO: print culturefeed_agenda_block_production_program ?>
       <?php endif; ?>
     
       </tbody>
