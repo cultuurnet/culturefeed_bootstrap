@@ -10,16 +10,16 @@
       <div class="<?print $tab['class']; ?>">
         <dl class="dl-horizontal">
           <dt><?php print $content['city']; ?></dt>
-          <dd>
-            <a href=""><strong><?php print $content['venue']; ?></strong></a>
-            <br />
-            <?php print $content['calendar']; ?>
-            <br />
-            <a href="<?php print $content['url'] ?>"><?php print t('More details'); ?></a>            
+          <dd>            
             <?php if (isset($content['all_url'])): ?>
-            | <a href="<?print $content['all_url']; ?>"><?php print t('Show full program at') . ' ' . $content['venue']; ?></a>
+              <a href="<?print $content['all_url']; ?>"><strong><?php print $content['venue']; ?></strong></a>
+            <?php else: ?>
+              <strong><?php print $content['venue']; ?></strong>
             <?php endif; ?>
-            
+            <br />          
+            <?php print culturefeed_bootstrap_cleanup_calsum($content['calendar'], 10, 'calsum-day text-muted'); //$content['calendar']; ?>
+            <br />
+            <a href="<?php print $content['url'] ?>"><?php print t('More details'); ?></a>          
           </dd>
         </dl>
       </div>
