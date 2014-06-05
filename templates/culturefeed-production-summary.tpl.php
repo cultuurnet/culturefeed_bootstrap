@@ -43,7 +43,7 @@
       </div>
       <?php endif; ?>
     
-      <?php if ($location && $relations < 2): ?>
+      <?php if (!empty($location) && $relations < 2): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('Where'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-map-marker text-center"></i></div>
