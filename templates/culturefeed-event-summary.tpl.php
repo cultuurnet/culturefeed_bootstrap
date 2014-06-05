@@ -5,17 +5,21 @@
  */
 ?>
 
-<div class="media">
+<div class="row">
 
-  <a class="pull-left" href="<?php print $url ?>">
-    <?php if (!empty($thumbnail)): ?>
-      <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=150" title="<?php print $title ?>" alt="<?php print $title ?>" />
-    <?php else: ?>
-      <img class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
-    <?php endif; ?>
-  </a>
+  <div class="col-sm-3 col-lg-2 hidden-xs">
 
-  <div class="media-body container">
+    <a href="<?php print $url ?>">
+      <?php if (!empty($thumbnail)): ?>
+        <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=152&scale=both" title="<?php print $title ?>" alt="<?php print $title ?>" />
+      <?php else: ?>
+        <img class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
+      <?php endif; ?>
+    </a>
+
+  </div>
+
+  <div class="col-sm-9 col-lg-10 col-xs-12">
 
     <h2 class="media-heading">
       <?php if (!empty($agefrom)): ?>
