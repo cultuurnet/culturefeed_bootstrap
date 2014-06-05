@@ -1173,13 +1173,14 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Max. 2 Mb.') . t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1452,12 +1453,13 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Max. 2 Mb.') . t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
