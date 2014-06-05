@@ -89,20 +89,6 @@ h1, h2, h3 {
 
 // culturefeed agenda search block
 
-@media @wide {
-  #culturefeed-agenda-search-block-form .form-group {
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-}
-
-@media @normal {
-  #culturefeed-agenda-search-block-form .form-group {
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-}
-
 #current-location {
   font-weight: bold;
 }  
@@ -237,9 +223,11 @@ h1, h2, h3 {
 .sortorder-form .form-group,
 .sortorder-form .form-submit,
 .block-culturefeed-search-ui .form-group,
-.block-culturefeed-search-ui .form-submit {
-  margin-bottom: 3px;
-  margin-top: 3px;
+.block-culturefeed-search-ui .form-submit,
+.block-culturefeed-agenda .form-group,
+.block-culturefeed-agenda .form-submit, {
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 // language block
@@ -263,6 +251,13 @@ blockquote p {
 }
 
 // new notification & message count
+
+#block-culturefeed-ui-profile-box {
+  .messages a,
+  .notifications a {
+    padding-right: 20px;
+  }
+}
 
 .notification-count {
   display: block;
