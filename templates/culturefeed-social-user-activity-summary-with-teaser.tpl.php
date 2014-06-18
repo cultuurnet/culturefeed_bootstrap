@@ -40,7 +40,7 @@
   
   <div class="media well">
     
-    <?php if($teaser_image): ?>
+    <?php if(isset($teaser_image) && file_exists($teaser_image)): ?>
       <img src="<?php print $teaser_image ?>" alt="<?php print $teaser_title ?>" class="media-object pull-left visible-desktop thumbnail img-responsive" width="150" />
     <?php endif; ?>
   
