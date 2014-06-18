@@ -1,5 +1,5 @@
 <div class="media-object pull-left visible-desktop thumbnail">
-  <?php if($picture): ?> 
+  <?php if($picture): ?>
     <?php print $picture ?>
   <?php endif; ?>
 </div>
@@ -12,5 +12,12 @@
   <?php if($suffix): ?>
     <?php print ' ' . $suffix . '.' ; ?>
   <?php endif; ?>
-  <small class="text-muted"><?php print $date ?></small>       
+  <small class="text-muted"><?php print $date ?></small>
+
+  <?php if($teaser): ?>
+    <div class="event-activity-teaser">
+    <?php print $teaser; ?>
+    </div>
+  <?php endif; ?>
+
 </div>
