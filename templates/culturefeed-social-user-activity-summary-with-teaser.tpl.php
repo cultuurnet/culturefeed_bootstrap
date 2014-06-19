@@ -38,7 +38,7 @@
     
   <?php if($has_teaser): ?>
   
-  <div class="media well">
+  <div class="media col-xs-11 well">
     
     <?php if($teaser_image): ?>
       <img src="<?php print $teaser_image ?>" alt="<?php print $teaser_title ?>" class="media-object pull-left visible-desktop thumbnail img-responsive" width="150" />
