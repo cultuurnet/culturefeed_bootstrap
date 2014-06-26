@@ -12,4 +12,6 @@
 </p>
 <?php endif; ?>
 
+<?php print render($filter_form); ?>
+
 <?php print $activities; ?>
