@@ -24,7 +24,3 @@ else :
     print $item;
   }
 endif;
-
-
-
-

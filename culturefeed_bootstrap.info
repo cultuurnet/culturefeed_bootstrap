@@ -50,7 +50,7 @@ scripts[] = 'bootstrap/js/dropdown.js'
 scripts[] = 'bootstrap/js/tooltip.js'
 scripts[] = 'bootstrap/js/popover.js'
 ; scripts[] = 'bootstrap/js/scrollspy.js'
-; scripts[] = 'bootstrap/js/tab.js'
+scripts[] = 'bootstrap/js/tab.js'
 scripts[] = 'bootstrap/js/transition.js'
 ; ; Settings inherited by base theme, uncomment to override.
 ; settings[toggle_name] = 1
@@ -78,6 +78,13 @@ settings[bootstrap_navbar_inverse] = 1
 settings[bootstrap_breadcrumb] = 1
 settings[bootstrap_breadcrumb_home] = 1
 settings[bootstrap_breadcrumb_title] = 0
+
+; Popovers
+settings[bootstrap_popover_placement] = 'auto top'
+
+; Tooltips
+settings[bootstrap_tooltip_descriptions] = 0
+settings[bootstrap_tooltip_placement] = 'auto top'
 
 ; Disable jquery_update dependency
 simplytest_dependencies[] = ''

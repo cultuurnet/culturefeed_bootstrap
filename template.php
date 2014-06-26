@@ -61,19 +61,16 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alte
  * Implements hook_{culturefeed_search_ui_search_sortorder_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="pull-right"><div class="row">';
+  $form['#prefix'] = '<div class="pull-right text-right">';
   $form['title'] = array(
-    '#prefix' => '<div class="col-sm-6">',
     '#type' => 'item',
-    '#markup' => '<p class="text-right"><strong>' . t('Sort') . '</strong>',
-    '#suffix' => '</div>',
+    '#markup' => '<a data-toggle="collapse" href="#sort-results">' . t('Sort') . ' <span class="caret"></span></a>',
   );
-  $form['sort']['#prefix'] = '<div class="col-sm-6">';
+  $form['sort']['#prefix'] = '<div id="sort-results" class="collapse collapse-in">';
   $form['sort']['#weight'] = '2';
-  $form['sort']['#attributes']['class'][] = 'input-sm';
   $form['sort']['#title'] = '';
   $form['sort']['#suffix'] = '</div>';
-  $form['#suffix'] = '</div></div>';
+  $form['#suffix'] = '</div>';
 }
 
 /**
@@ -216,7 +213,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   if (isset($variables['ticket_buttons']) && !empty($variables['ticket_buttons'])) {
     $buttons = $variables['ticket_buttons'];
     foreach ($buttons as $button) {
-      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link'), 'html' => TRUE));
+      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
   }
@@ -1176,13 +1173,14 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Max. 2 Mb.') . t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1455,12 +1453,13 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Max. 2 Mb.') . t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1803,27 +1802,15 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_a
 }
 
 /**
- * Theme the culturefeed_search_ui_city_facet_form
- */
-function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(&$form, &$form_state) {
-
-  $form['#attributes']['class'][] = '';
-  
-  // TODO: add auto-submit behavior and remove submit button
-  $form['submit']['#attributes'] = array('class' => array('btn-block'));
-  $form['submit']['#value'] = t('Confirm choice');
-}
-
-/**
  * Theme the culturefeed_search_ui_proximity_distance_form
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_proximity_distance_form_alter(&$form, &$form_state) {
 
-  $form['distance']['#prefix'] = '<div class="row"><div class="col-xs-5 no-gutter">';
+  $form['distance']['#prefix'] = '<div class="row"><div class="col-lg-6">';
   $form['distance']['#title'] = '';
   $form['distance']['#suffix'] = '</div>';
 
-  $form['submit']['#prefix'] = '<div class="col-xs-7">';
+  $form['submit']['#prefix'] = '<div class="col-lg-6">';
   $form['submit']['#attributes'] = array('class' => array('btn-link'));
   $form['submit']['#suffix'] = '</div></div><hr class="small" />';
 
