@@ -10,12 +10,12 @@
 
   <div class="row">
 
-    <div class="col-md-9 media">
+    <div class="col-md-8 media">
         <a class="pull-left" href="<?php print $url ?>">
           <?php if (!empty($thumbnail)): ?>
-            <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>" title="<?php print $title ?>" alt="<?php print $title ?>" />
+            <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=100" title="<?php print $title ?>" alt="<?php print $title ?>" />
           <?php else: ?>
-            <img class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
+            <img style="width: 100px" class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
           <?php endif; ?>
         </a>
       <h3 class="media-heading">
@@ -30,7 +30,7 @@
       <p><a class="btn btn-default btn-sm" href="<?php print $url; ?>"><?php print $more_text; ?>  &rarr;</a></p>
     </div>
 
-    <div class="col-md-3 text-right hidden-sm hidden-xs">
+    <div class="col-md-4 text-right hidden-sm hidden-xs">
 
       <?php if ($follower_count > 0): ?>
         <div class="btn-group btn-group-xs">
@@ -59,7 +59,7 @@
       <?php if (!$following): ?>
         <a class="btn btn-warning btn-xs" href="<?php print $follow_url; ?>"><span><?php print $follow_text; ?></span></a>
       <?php else: ?>
-        <p><?php print t('You follow this page'); ?></p>
+        <p class="text-muted"><small><?php print t('You follow this page'); ?></small></p>
       <?php endif; ?>
 
       <?php else: ?>
@@ -70,43 +70,3 @@
 
   </div>
 </div>
-
-
-<!--
-      
-//-->
-
-  <!--
-
-
-
-
-
-
-
-
-
-
-
-//-->
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

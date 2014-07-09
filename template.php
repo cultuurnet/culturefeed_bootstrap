@@ -1838,7 +1838,8 @@ function culturefeed_bootstrap_form_culturefeed_pages_page_suggestions_filter_fo
   $form['submit']['#attributes']['class'][] = 'btn';
   $form['submit']['#attributes']['class'][] = 'btn-primary';
 
-  $form['submit']['#value'] = t('Search');;
+  $form['submit']['#value'] = t('Search');
+
 }
 
 /**
