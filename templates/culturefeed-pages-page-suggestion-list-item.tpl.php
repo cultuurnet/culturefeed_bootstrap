@@ -15,7 +15,7 @@
           <?php if (!empty($thumbnail)): ?>
             <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=100" title="<?php print $title ?>" alt="<?php print $title ?>" />
           <?php else: ?>
-            <img style="width: 100px" class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
+            <img style="width: 58px" class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
           <?php endif; ?>
         </a>
       <h3 class="media-heading">
