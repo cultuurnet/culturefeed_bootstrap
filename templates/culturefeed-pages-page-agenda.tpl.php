@@ -14,7 +14,9 @@
     <?php endforeach; ?>
     
     <?php if (!empty($read_more)): ?>
-      <?php print $read_more; ?>
+      <div class="btn btn-default">
+        <?php print $read_more; ?> &rarr;
+      </div>
     <?php endif; ?>
     
     <?php elseif ($is_admin) :?>
