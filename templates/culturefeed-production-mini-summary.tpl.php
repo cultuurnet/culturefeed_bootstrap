@@ -26,7 +26,7 @@
         <h4 class="media-heading">
           <a href="<?php print $url ?>"><?php print $title; ?></a>
           <?php if (!empty($agefrom)): ?>
-            <span class="label label-success pull-right"><?php print $agefrom; ?></span>
+            <span class="label label-success pull-right"><?php print $agefrom; ?> +</span>
           <?php endif; ?>
         </h4>
         <p>
@@ -34,9 +34,12 @@
           <span class="text-muted"><?php print $themes[0] ?></span>
           <?php endif; ?>
           <br />
-          <?php if (isset($location['city'])): ?><?php print $location['city']; ?><?php endif;?>
-          <?php if (isset($location['city']) && isset($when) && $when != ''): ?>, <?php endif;?>
-          <?php if (isset($when)): ?><?php print $when; ?><?php endif;?>
+          <?php if (isset($location['city'])): ?>
+            <?php print $location['city']; ?><?php print (isset($when) && $when != '') ? ',' : '' ; ?>
+          <?php endif;?>
+          <?php if (isset($when)): ?>
+            <?php print $when; ?>
+          <?php endif;?>
         </p>
     
       </div>
