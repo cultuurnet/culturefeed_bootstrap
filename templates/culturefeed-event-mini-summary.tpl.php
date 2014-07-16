@@ -10,24 +10,24 @@
   
     <div class="media">
       
-        <?php if ($thumbnail): ?>
-          <a class="pull-left hidden-xs" href="<?php print $url ?>">
-            <?php if (!empty($thumbnail)): ?>
-            <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
-            <?php endif; ?>
-          </a>
-        <?php else: ?>
-          <a class="pull-left hidden-xs" href="<?php print $url ?>">
-            <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
-          </a>
-        <?php endif; ?>      
+      <?php if ($thumbnail): ?>
+        <a class="pull-left hidden-xs" href="<?php print $url ?>">
+          <?php if (!empty($thumbnail)): ?>
+          <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
+          <?php endif; ?>
+        </a>
+      <?php else: ?>
+        <a class="pull-left hidden-xs" href="<?php print $url ?>">
+          <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
+        </a>
+      <?php endif; ?>      
     
       <div class="media-body">
         <h4 class="media-heading">
-          <a href="<?php print $url ?>"><?php print $title; ?></a>
           <?php if (!empty($agefrom)): ?>
             <span class="label label-success pull-right"><?php print $agefrom; ?> +</span>
           <?php endif; ?>
+          <a href="<?php print $url ?>"><?php print $title; ?></a>
         </h4>
         <p>
           <?php if (!empty($themes)): ?>
@@ -46,7 +46,7 @@
     </div>    
   </div>
   
-  <div class="col-sm-3">
+  <div class="col-sm-3 hidden-xs">
 
     <?php if ($comment_count > 0): ?>
       <div class="btn-group btn-group-xs">

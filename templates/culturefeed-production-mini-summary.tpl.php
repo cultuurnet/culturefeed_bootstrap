@@ -24,10 +24,10 @@
     
       <div class="media-body">
         <h4 class="media-heading">
-          <a href="<?php print $url ?>"><?php print $title; ?></a>
           <?php if (!empty($agefrom)): ?>
             <span class="label label-success pull-right"><?php print $agefrom; ?> +</span>
           <?php endif; ?>
+          <a href="<?php print $url ?>"><?php print $title; ?></a>
         </h4>
         <p>
           <?php if (!empty($themes)): ?>
@@ -46,7 +46,7 @@
     </div>    
   </div>
   
-  <div class="col-sm-3">
+  <div class="col-sm-3 hidden-xs">
 
     <?php if ($comment_count > 0): ?>
       <div class="btn-group btn-group-xs">
