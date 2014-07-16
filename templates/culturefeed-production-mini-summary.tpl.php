@@ -6,19 +6,19 @@
 ?>
 
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-sm-9">
   
     <div class="media">
     
       <?php if ($thumbnail): ?>
-        <a class="pull-left" href="#">
+        <a class="pull-left hidden-xs" href="<?php print $url ?>">
           <?php if (!empty($thumbnail)): ?>
           <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
           <?php endif; ?>
         </a>
       <?php else: ?>
-        <a class="pull-left" href="#">
-          <img class="media-object" src="/sites/all/themes/custom/culturefeed_bootstrap/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
+        <a class="pull-left hidden-xs" href="<?php print $url ?>">
+          <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
         </a>
       <?php endif; ?>  
     
@@ -46,7 +46,7 @@
     </div>    
   </div>
   
-  <div class="col-md-2">
+  <div class="col-sm-3">
 
     <?php if ($comment_count > 0): ?>
       <div class="btn-group btn-group-xs">
