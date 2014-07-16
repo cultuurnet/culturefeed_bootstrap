@@ -28,13 +28,11 @@
  */
 ?>
 
-<h4><?php print $subject; ?></h4>
-
 <ul class="list-unstyled">
 
   <li>
     <span class="pull-right">
-      <i class="fa fa-fw fa-lg fa-user"></i> <?php print $activities_total_18 ?>
+      <i class="fa fa-fw fa-rss"></i> <?php print $activities_total_18 ?>
     </span>
     <?php print t('followers'); ?>
     <hr class="small">
@@ -42,7 +40,7 @@
 
   <li>
     <span class="pull-right">
-      <i class="fa fa-fw fa-lg fa-users"></i> <?php print $activities_total_16 ?>
+      <i class="fa fa-fw fa-users"></i> <?php print $activities_total_16 ?>
     </span>
     <?php print t('members'); ?>
     <hr class="small">
@@ -50,7 +48,7 @@
 
   <li>
     <span class="pull-right">
-      <i class="fa fa-fw fa-lg fa-thumbs-up"></i> <?php print $activities_total_15 ?>
+      <i class="fa fa-fw fa-thumbs-up"></i> <?php print $activities_total_15 ?>
     </span>
     <?php print t('recommends'); ?>
     <hr class="small">
@@ -58,7 +56,7 @@
 
   <li>
     <span class="pull-right">
-      <i class="fa fa-fw fa-lg fa-comments"></i> <?php print $activities_total_14 ?>
+      <i class="fa fa-fw fa-comments"></i> <?php print $activities_total_14 ?>
     </span>
     <?php print t('comments'); ?>
     <hr class="small">
