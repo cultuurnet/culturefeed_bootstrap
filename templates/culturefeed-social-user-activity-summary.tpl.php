@@ -20,4 +20,8 @@
     </div>
   <?php endif; ?>
 
+  <?php if (isset($summary)): ?>
+
+  <?php endif; ?>
+
 </div>

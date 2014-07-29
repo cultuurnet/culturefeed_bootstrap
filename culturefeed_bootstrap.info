@@ -37,7 +37,7 @@ scripts[] = 'js/custom.js'
 ;**********************************
 ; METHOD 1: Bootstrap Source Files
 ;**********************************
-; 
+;
 ; ; Scripts
 scripts[] = 'js/bootstrap-switch.js'
 ; scripts[] = 'bootstrap/js/affix.js'
@@ -63,7 +63,7 @@ settings[bootstrap_cdn] = ''
 ;*************************
 ; METHOD 2: Bootstrap CDN
 ;*************************
-; 
+;
 ; ; Settings inherited by base theme, uncomment to override.
 ; ;settings[toggle_name] = 0
 ; ;settings[toggle_search] = 1
