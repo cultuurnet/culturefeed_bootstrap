@@ -10,11 +10,11 @@
   <div class="media-body">
 
     <blockquote>
-      <p><?php print $content_teaser ?></p>
+      <p><?php print $summary ?></p>
 
-      <?php if (strlen($content_teaser) != strlen($content)): ?>
+      <?php if (strlen($summary) != strlen($body)): ?>
         <?php print l(t('Read more') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'comment-full-' . $activity_id, 'html' => TRUE)) ?>
-        <div id="comment-full-<?php print $activity_id ?>" class="collapse collapse-in"><?php print $content; ?></div>
+        <div id="comment-full-<?php print $activity_id ?>" class="collapse collapse-in"><?php print $body; ?></div>
       <?php endif; ?>
     </blockquote>
   </div>
