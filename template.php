@@ -213,7 +213,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   if (isset($variables['ticket_buttons']) && !empty($variables['ticket_buttons'])) {
     $buttons = $variables['ticket_buttons'];
     foreach ($buttons as $button) {
-      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
+      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
   }
@@ -1173,14 +1173,13 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Max. 2 Mb.') . t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
-      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1453,13 +1452,12 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Max. 2 Mb.') . t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
     '#size' => 26,
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
-      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1806,11 +1804,11 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_a
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_proximity_distance_form_alter(&$form, &$form_state) {
 
-  $form['distance']['#prefix'] = '<div class="row"><div class="col-lg-6">';
+  $form['distance']['#prefix'] = '<div class="row"><div class="col-xs-5 no-gutter">';
   $form['distance']['#title'] = '';
   $form['distance']['#suffix'] = '</div>';
 
-  $form['submit']['#prefix'] = '<div class="col-lg-6">';
+  $form['submit']['#prefix'] = '<div class="col-xs-7">';
   $form['submit']['#attributes'] = array('class' => array('btn-link'));
   $form['submit']['#suffix'] = '</div></div><hr class="small" />';
 
@@ -1828,6 +1826,19 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['submit']['#prefix'] = '<span class="input-group-btn">';
   $form['submit']['#suffix'] = '</span></div>';
+
+}
+
+
+/**
+ * Theme the culturefeed_pages_page_suggestions_filter_form
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_page_suggestions_filter_form_alter(&$form, &$form_state) {
+
+  $form['submit']['#attributes']['class'][] = 'btn';
+  $form['submit']['#attributes']['class'][] = 'btn-primary';
+
+  $form['submit']['#value'] = t('Search');
 
 }
 

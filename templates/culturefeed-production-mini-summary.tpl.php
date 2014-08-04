@@ -6,37 +6,47 @@
 ?>
 
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-sm-9">
   
     <div class="media">
     
       <?php if ($thumbnail): ?>
-        <a class="pull-left" href="#">
+        <a class="pull-left hidden-xs" href="<?php print $url ?>">
           <?php if (!empty($thumbnail)): ?>
           <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
           <?php endif; ?>
         </a>
       <?php else: ?>
-        <a class="pull-left" href="#">
-          <img class="media-object" src="/sites/all/themes/custom/culturefeed_bootstrap/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
+        <a class="pull-left hidden-xs" href="<?php print $url ?>">
+          <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
         </a>
       <?php endif; ?>  
     
       <div class="media-body">
-        <h4 class="media-heading"><a href="<?php print $url ?>"><?php print $title; ?></a></h4>
+        <h4 class="media-heading">
+          <?php if (!empty($agefrom)): ?>
+            <span class="label label-success pull-right"><?php print $agefrom; ?> +</span>
+          <?php endif; ?>
+          <a href="<?php print $url ?>"><?php print $title; ?></a>
+        </h4>
         <p>
           <?php if (!empty($themes)): ?>
           <span class="text-muted"><?php print $themes[0] ?></span>
           <?php endif; ?>
           <br />
-          <?php if (isset($location['city'])): ?><?php print $location['city']; ?><?php endif;?><?php if (isset($when)): ?>, <?php print $when; ?><?php endif;?>
+          <?php if (isset($location['city'])): ?>
+            <?php print $location['city']; ?><?php print (isset($when) && $when != '') ? ',' : '' ; ?>
+          <?php endif;?>
+          <?php if (isset($when)): ?>
+            <?php print $when; ?>
+          <?php endif;?>
         </p>
     
       </div>
     </div>    
   </div>
   
-  <div class="col-md-2">
+  <div class="col-sm-3 hidden-xs">
 
     <?php if ($comment_count > 0): ?>
       <div class="btn-group btn-group-xs">
