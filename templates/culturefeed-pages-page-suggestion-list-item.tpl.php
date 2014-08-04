@@ -19,15 +19,17 @@
           <?php endif; ?>
         </a>
       <h3 class="media-heading">
-        <a href="<?php print $url ?>"><?php print $title; ?> 
+        <a href="<?php print $url ?>"><?php print $title; ?>
           <?php if (!empty($address)): ?>
             <span class="text-muted">- <?php print $address['city']; ?></span>
           <?php endif; ?>
         </a>
       </h3>
 
-      <p><?php print $description ?></p>
-      <p><a class="btn btn-default btn-sm" href="<?php print $url; ?>"><?php print $more_text; ?>  &rarr;</a></p>
+      <p>
+        <?php print $description ?>
+        <a href="<?php print $url; ?>"><?php print $more_text; ?>  &rarr;</a>
+      </p>
     </div>
 
     <div class="col-md-4 text-right hidden-sm hidden-xs">
@@ -43,7 +45,7 @@
         </div>
       <?php endif; ?>
 
-      <?php if ($member_count > 0): ?>
+      <?php /*if ($member_count > 0): ?>
         <div class="btn-group btn-group-xs">
           <span class="btn btn-success">
             <?php print format_plural($member_count, '@count', '@count'); ?>
@@ -52,7 +54,7 @@
             <?php print format_plural($member_count, t('member'), t('members')); ?>
           </span>
         </div>
-      <?php endif; ?>
+      <?php endif;*/ ?>
 
       <?php if ($logged_in): ?>
 
