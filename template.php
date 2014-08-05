@@ -1834,9 +1834,24 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
  */
 function culturefeed_bootstrap_form_culturefeed_pages_page_suggestions_filter_form_alter(&$form, &$form_state) {
 
+  $title = $form['city']['#title'];
+
+  $form['#prefix'] = '<div class="container-fluid"><div class="row">';
+  $form['#suffix'] = '</div></div>';
+
+  $form['city']['#title'] = '';
+  $form['city']['#prefix'] = '';
+  $form['city']['#prefix'] .= '<div class="col-xs-4"><div class="form-group"><label for="edit-city">';
+  $form['city']['#prefix'] .= $title;
+  $form['city']['#prefix'] .= '</label></div></div>';
+  $form['city']['#prefix'] .= '<div class="col-xs-4">';
+  $form['city']['#suffix'] = '</div>';
+
+  $form['submit']['#prefix'] = '<div class="col-xs-4"><div class="form-group">';
+  $form['submit']['#suffix'] = '</div></div>';
+
   $form['submit']['#attributes']['class'][] = 'btn';
   $form['submit']['#attributes']['class'][] = 'btn-primary';
-
   $form['submit']['#value'] = t('Search');
 
 }
