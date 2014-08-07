@@ -1836,22 +1836,23 @@ function culturefeed_bootstrap_form_culturefeed_pages_page_suggestions_filter_fo
 
   $title = $form['city']['#title'];
 
-  $form['#prefix'] = '<div class="container-fluid"><div class="row">';
-  $form['#suffix'] = '</div></div>';
+  $form['#prefix'] = '<div class="row">';
+  $form['#suffix'] = '</div>';
 
   $form['city']['#title'] = '';
   $form['city']['#prefix'] = '';
-  $form['city']['#prefix'] .= '<div class="col-xs-4"><div class="form-group"><label for="edit-city">';
+  $form['city']['#prefix'] .= '<div class="col-md-3"><div class="form-group"><label for="edit-city">';
   $form['city']['#prefix'] .= $title;
   $form['city']['#prefix'] .= '</label></div></div>';
-  $form['city']['#prefix'] .= '<div class="col-xs-4">';
+  $form['city']['#prefix'] .= '<div class="col-md-7 col-xs-9 col-sm-10">';
   $form['city']['#suffix'] = '</div>';
 
-  $form['submit']['#prefix'] = '<div class="col-xs-4"><div class="form-group">';
+  $form['submit']['#prefix'] = '<div class="col-md-2 col-xs-3 col-sm-2"><div class="form-group">';
   $form['submit']['#suffix'] = '</div></div>';
 
   $form['submit']['#attributes']['class'][] = 'btn';
   $form['submit']['#attributes']['class'][] = 'btn-primary';
+  $form['submit']['#attributes']['class'][] = 'pull-right';
   $form['submit']['#value'] = t('Search');
 
 }
