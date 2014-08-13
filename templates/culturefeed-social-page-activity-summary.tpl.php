@@ -32,7 +32,7 @@
 
   <li>
     <span class="pull-right">
-      <i class="fa fa-fw fa-rss"></i> <?php print $activities_total_18 ?>
+      <i class="fa fa-fw fa-rss"></i> <?php print $pages_total_18 ?>
     </span>
     <?php print t('followers'); ?>
     <hr class="small">
@@ -40,7 +40,7 @@
 
   <li>
     <span class="pull-right">
-      <i class="fa fa-fw fa-users"></i> <?php print $activities_total_16 ?>
+      <i class="fa fa-fw fa-users"></i> <?php print $pages_total_16 ?>
     </span>
     <?php print t('members'); ?>
     <hr class="small">
