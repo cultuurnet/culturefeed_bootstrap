@@ -45,4 +45,6 @@ $col = empty($image) ? '12' : '8';
 
 </div>
 
+<hr />
+
 
