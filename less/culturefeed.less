@@ -456,3 +456,31 @@ hr.small {
     margin-left: 140px;
   }
 }
+
+// page suggestions block
+.block-culturefeed-pages {
+  position: relative;
+
+  .all-pages-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .follow-button .btn {
+    .btn-warning();
+    .btn-xs();
+    @media (max-width: @screen-sm) {
+      margin-top:10px;
+    }
+  }
+  label[for="edit-city"] {
+    padding-top: 7px;
+  }
+  @media (max-width: @screen-sm) {
+    .form-group {
+      margin-bottom: 5px;
+      margin-top: 0;  
+    }
+  }
+}

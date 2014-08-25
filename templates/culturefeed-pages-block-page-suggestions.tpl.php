@@ -6,10 +6,10 @@
  */
 ?>
 
-<a class="text-muted pull-right" href="<?php print url('agenda/pages') ?>"><?php print t('All pages') ?> &rarr;</a>
+<a class="text-muted all-pages-link" href="<?php print url('agenda/pages') ?>"><?php print t('Show all pages') ?> &rarr;</a>
 
 <?php print drupal_render($filter_form); ?>
 
 <div id="page-suggestions">
-  Loading
+  <p class="text-muted"><i class="fa fa-refresh fa-spin"></i> Loading</p>
 </div>

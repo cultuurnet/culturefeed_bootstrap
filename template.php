@@ -145,7 +145,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
       'item' => $item,
       'url' => 'culturefeed/do/15/' . $item->getType() . '/' . $item->getId() . '/redirect',
     ));
-    
+
     $variables['attend_link'] = theme('culturefeed_social_login_required_message', array(
       'activity_type' => CultureFeed_Activity::TYPE_IK_GA,
       'item' => $item,
@@ -248,15 +248,15 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     drupal_set_message(t('Error occurred'), 'error');
     return;
   }
-   
+
   unset($form['view-profile']);
 
   // About me
-  
+
   // Firstname.
   $form['givenName'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('About me') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a></span><div class="clearfix"></div></div><div class="panel-body"><div class="row"><div class="col-xs-6">', 
-    '#suffix' => '</div>',   
+    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('About me') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a></span><div class="clearfix"></div></div><div class="panel-body"><div class="row"><div class="col-xs-6">',
+    '#suffix' => '</div>',
     '#attributes' => array('placeholder' => array(t('First name'))),
     '#type' => 'textfield',
     '#title' => t('First name'),
@@ -266,8 +266,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
   // Name.
   $form['familyName'] = array(
-    '#prefix' => '<div class="col-xs-6">',   
-    '#suffix' => '</div></div>',   
+    '#prefix' => '<div class="col-xs-6">',
+    '#suffix' => '</div></div>',
     '#attributes' => array('placeholder' => array(t('Family name'))),
     '#type' => 'textfield',
     '#title' => t('Family name'),
@@ -285,9 +285,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
   );
 
   // Picture.
-  $form['#attributes']['enctype'] = 'multipart/form-data';
-
-  $form['current_picture'] = array(
+  $form['picture']['#weight'] = -259;
+  /*$form['current_picture'] = array(
     '#prefix' => '<div class="row"><div class="col-md-6"><div class="row"><div class="col-md-4">',
     '#theme' => 'image',
     '#path' => $cf_account->depiction . '?maxwidth=100&maxheight=100&crop=auto',
@@ -304,8 +303,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#size' => 26,
     '#title' => t('Choose picture'),
     '#weight' => '-259',
-  );
-  
+  );*/
+
   // Date of birth.
   $form['dob'] = array(
     '#title' => t('Date of birth'),
@@ -315,7 +314,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#size' => 10,
     '#weight' => '-249',
   );
-    
+
     // Gender.
   $form['gender'] = array(
     '#suffix' => '</div></div>',
@@ -325,9 +324,9 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#default_value' => $cf_account->gender,
     '#weight' => '-239',
   );
-  
+
   // Contact
-  
+
     // Address
   $form['street'] = array(
     '#prefix' => '<div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#contact">' . ' ' . t('Contact') . '</a></h4></div><div id="contact" class="panel-collapse collapse"><div class="panel-body">',
@@ -361,9 +360,9 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#default_value' => !empty($cf_account->country) ? $cf_account->country : 'BE',
     '#weight' => '-169',
   );
-  
+
   // Privacy settings
-  
+
   $form['givenNamePrivacy'] = array(
     '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#privacy">' . ' ' . t('Privacy settings') . '</a></h4></div><div id="privacy" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
     '#suffix' => '</li>',
@@ -374,7 +373,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#default_value' => $cf_account->privacyConfig->givenName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-99',
   );
-  
+
   $form['familyNamePrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
@@ -385,7 +384,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#default_value' => $cf_account->privacyConfig->familyName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-89',
   );
-  
+
   $form['genderPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
@@ -397,7 +396,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#weight' => '-79',
 
   );
-  
+
   $form['homeAddressPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
@@ -408,7 +407,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#default_value' => $cf_account->privacyConfig->homeAddress == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-69',
   );
-  
+
   $form['dobPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
@@ -419,7 +418,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#default_value' => $cf_account->privacyConfig->dob == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-59',
   );
-  
+
   $form['bioPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li></ul></div></div>',
@@ -430,9 +429,9 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#default_value' => $cf_account->privacyConfig->bio == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-49',
   );
-  
+
    // Language settings - Default language
-  
+
   $form['preferredLanguage'] = array(
     '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#language">' . ' ' . t('Language settings') . '</a></h4></div><div id="language" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
     '#type' => 'select',
@@ -446,8 +445,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     ),
     '#weight' => '-9',
     '#suffix' => '</div></div>',
-  );  
- 
+  );
+
   $form['submit'] = array(
     '#prefix' => '<hr />',
     '#type' => 'submit',
@@ -482,7 +481,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(
 
 
   $form['nick'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('My UiTiD') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a> | <i class="fa fa-trash-o"></i> <a href="/culturefeed/removeaccount" class="profile-edit-link">'. t('Delete account') . '</a></span><div class="clearfix"></div></div><div class="panel-body">', 
+    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('My UiTiD') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a> | <i class="fa fa-trash-o"></i> <a href="/culturefeed/removeaccount" class="profile-edit-link">'. t('Delete account') . '</a></span><div class="clearfix"></div></div><div class="panel-body">',
     '#type' => 'textfield',
     '#title' => t('Username'),
     '#disabled' => TRUE,
@@ -505,7 +504,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(
     '#attributes' => array('class' => array('btn-primary')),
     '#weight' => '-979',
   );
-  
+
     $form['change_password'] = array(
     '#suffix' => '</div></div></div>',
     '#markup' => l(t('Change password'), $url, $options),
@@ -626,7 +625,7 @@ function culturefeed_bootstrap_culturefeed_social_login_required_message($variab
  * @param $object
  *   Object to send this message to. Can be a page or a message.
  */
- 
+
 function culturefeed_bootstrap_form_culturefeed_messages_new_message_form_alter(&$form, &$form_state, &$variables) {
 
 
@@ -732,8 +731,8 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_basic_search_page(&$
   $query = drupal_get_query_parameters();
 
   $cf_user = DrupalCultureFeed::getLoggedInUser();
-  
-  
+
+
     $variables['create_message'] = '<hr /><div class="row"><div class="col-xs-12">' . l('<i class="fa fa-plus"></i>' . ' ' . t('Create your own page'), 'pages/add', array('query' => $query, 'html' => TRUE, 'attributes' => array('class' => array('btn btn-default')))) . '</div></div>';
 
 }
@@ -905,7 +904,7 @@ function culturefeed_bootstrap_pager($variables) {
 /**
  * Preprocess the general variables for a culturefeed page.
  */
- 
+
 function culturefeed_bootstrap_preprocess_culturefeed_page(&$variables) {
 
   $item = $variables['item'];
@@ -990,7 +989,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
 
   $query = drupal_get_query_parameters();
   $page_name = !empty($query['search']) ? $query['search'] : '';
-   
+
   $form['name'] = array(
     '#type' => 'textfield',
     '#title' => t('Name'),
@@ -1065,7 +1064,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#weight' => 11,
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Email address') . '" class="fa fa-envelope fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'jane.doe@outlook.com'),  
+    '#attributes' => array('placeholder' => 'jane.doe@outlook.com'),
   );
 
   $form['contact']['linkWebsite'] = array(
@@ -1075,9 +1074,9 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#weight' => 12,
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Website') . '" class="fa fa-globe fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.mywebsite.com'),   
+    '#attributes' => array('placeholder' => 'www.mywebsite.com'),
   );
-    
+
   $form['contact']['linkTicketing'] = array(
     '#prefix' => '<button type="button" class="btn btn-default btn-small" data-toggle="collapse" data-target="#otherwebsites">' . t('Other websites') . '</button><div id="otherwebsites" class="collapse">',
     '#type' => 'textfield',
@@ -1108,7 +1107,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),
     '#weight' => 15,
     );
-    
+
   $form['contact']['linkGooglePlus'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Google+') . '</span>',
@@ -1118,7 +1117,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#attributes' => array('placeholder' => 'www.google.com/mypage'),
     '#weight' => 16,
     );
-  
+
   $form['contact']['linkYouTube'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Youtube') . '</span>',
@@ -1162,14 +1161,14 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     ),
     '#upload_location' => 'public://pages',
   );
-  
+
   $form['customizeLayout']['tagline'] = array(
     '#type' => 'textfield',
     '#title' => t('Baseline'),
     '#default_value' => '',
     '#weight' => 22,
   );
-  
+
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
@@ -1183,7 +1182,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     ),
     '#upload_location' => 'public://pages',
   );
-  
+
   $form['visible'] = array(
     '#type' => 'hidden',
     '#value' => "true",
@@ -1222,7 +1221,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#suffix' => '</small></p>',
     '#markup' => culturefeed_search_detail_l("page", $page->getId(), $page->getName(), t('View page'), array('attributes' => array('class' => array('view-link')))),
     '#weight' => -999,
-  );  
+  );
 
   unset($form['image']);
   unset($form['cover']);
@@ -1234,14 +1233,14 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   unset($form['contactInfoEmail']);
   unset($form['linkWebsite']);
   unset($form['otherWebsites']);
-  
+
   $form['name']['#default_value'] = $page->getName();
   $form['name']['#weight'] = 1;
   $form['description']['#default_value'] = $page->getDescription();
   $form['description']['#weight'] = 2;
 
   $address = $page->getAddress();
-  
+
   if (!empty($address)) {
     if ($address->getStreet()) {
       $street = $address->getStreet();
@@ -1249,14 +1248,14 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     else {
       $street = '';
     }
-    
+
     if ($address->getZip()) {
       $zip = $address->getZip();
     }
     else {
       $zip = '';
     }
-    
+
     if ($address->getCity()) {
       $city = $address->getCity();
     }
@@ -1268,9 +1267,9 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     $zip = '';
     $city = '';
   }
-  
+
   $links = $page->getLinks();
-  
+
   $form['contact'] = array(
     '#type' => 'fieldset',
     '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
@@ -1279,7 +1278,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  
+
   // Address.
 
   $form['contact']['street'] = array(
@@ -1310,7 +1309,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   );
 
   // Contact information.
-  
+
   $form['contact']['contactInfoTel'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Phone number') . '</span>',
@@ -1328,9 +1327,9 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#weight' => 15,
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Email address') . '" class="fa fa-envelope fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'jane.doe@outlook.com'),  
+    '#attributes' => array('placeholder' => 'jane.doe@outlook.com'),
   );
-  
+
   $form['contact']['linkWebsite'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Website') . '</span>',
@@ -1338,11 +1337,11 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#weight' => 16,
     '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Website') . '" class="fa fa-globe fa-fw"></i> </span>',
     '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.mywebsite.com'),   
+    '#attributes' => array('placeholder' => 'www.mywebsite.com'),
   );
- 
+
   // Websites list.
- 
+
     $form['contact']['linkTicketing'] = array(
     '#prefix' => '<button type="button" class="btn btn-default btn-small" data-toggle="collapse" data-target="#otherwebsites">' . t('Other websites') . '</button><div id="otherwebsites" class="collapse">',
     '#type' => 'textfield',
@@ -1373,7 +1372,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),
     '#weight' => 19,
     );
-    
+
   $form['contact']['linkGooglePlus'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Google+') . '</span>',
@@ -1383,7 +1382,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#attributes' => array('placeholder' => 'www.google.com/mypage'),
     '#weight' => 20,
     );
-  
+
   $form['contact']['linkYouTube'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Youtube') . '</span>',
@@ -1404,7 +1403,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#attributes' => array('placeholder' => 'www.blogger.com/myblog'),
     '#weight' => 22,
     );
-  
+
   $form['customizeLayout'] = array(
     '#type' => 'fieldset',
     '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-customizelayout" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Page layout') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
@@ -1413,12 +1412,12 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  
+
   // The image.
   $image = $page->getImage();
   $form_state['#old_image'] = 0;
-  
-  
+
+
   $form['customizeLayout']['image'] = array(
     '#type' => 'managed_file',
     '#title' => t('Image or Logo'),
@@ -1431,7 +1430,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     ),
     '#upload_location' => 'public://pages',
   );
-  
+
   if (!empty($image)) {
 
     // Create temp file to preview the external image.
@@ -1444,11 +1443,11 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     $form['customizeLayout']['image']['#title'] = t('Select another Image or Logo');
 
   }
-    
+
   // The cover.
   $cover = $page->getCover();
   $form_state['#old_cover'] = 0;
-  
+
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
@@ -1461,9 +1460,9 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     ),
     '#upload_location' => 'public://pages',
   );
-  
+
   if (!empty($cover)) {
-    
+
     // Creat temp file to preview the external cover.
     $file_cover = culturefeed_create_temporary_image($cover, file_default_scheme() . '://pages');
     if ($file_cover) {
@@ -1473,17 +1472,17 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
 
     $form['customizeLayout']['cover']['#title'] = t('Select another Cover Photo');
   }
-  
+
   // Tagline
   $tagline = $page->getTagline();
-  
+
   $form['customizeLayout']['tagline'] = array(
     '#type' => 'textfield',
     '#title' => t('Baseline'),
     '#default_value' => '',
     '#weight' => 22,
   );
-  
+
   if (!empty($tagline)) {
     $form['customizeLayout']['tagline']['#default_value'] = isset($tagline) ? $tagline : '';
   }
@@ -1551,7 +1550,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
     '#type' => 'submit',
     '#value' => t('Update'),
   );
-  
+
   unset($form['remove-link']);
 
   $form['#suffix'] = '
@@ -1568,13 +1567,13 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
 /**
  * Show the administration menu for the current page.
  */
- 
+
 function culturefeed_bootstrap_block_view_alter(&$data, $block) {
 
   switch ($block->delta) {
     case 'pages-admin-menu':
       $page = menu_get_object('culturefeed_pages_page', 1);
-      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . ' ' . '<span class="caret"></span></button>'.  $data['content'] . '</div><div class="clearfix"></div><hr />'; 
+      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage page') . ' ' . '<span class="caret"></span></button>'.  $data['content'] . '</div><div class="clearfix"></div><hr />';
       break;
     case 'page-agenda':
       unset($data['subject']);
@@ -1587,7 +1586,7 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
       //TO DO: add $data['content']
     break;
     }
-    
+
 }
 
 
@@ -1676,7 +1675,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_user_search_result(&
     $result = array();
     $result['nick'] = check_plain($object->nick);
     $result['profile_link'] = l(t('View profile'), 'user/' . $accounts[$object->id]);
-    $result['profile_url'] =  url('user/' . $accounts[$object->id]); 
+    $result['profile_url'] =  url('user/' . $accounts[$object->id]);
     $add_options['attributes']['data-remote'] = url('pages/' . $variables['page']->getId() . '/membership/add/' . $object->id . '/ajax', array('query' => $add_options['query']));
     $result['add_link'] = in_array($object->id, $members) ? '<small class="text-muted">' . t('Member of') . ' ' . $variables['page']->getName() . '</small>' : '<a class="btn btn-default btn-xs" href="' . url('pages/' . $variables['page']->getId() . '/membership/add/' . $object->id . '/nojs', $add_options) . '"><i class="fa fa-user fa-fw"></i>' . ' ' . t('Add as member') . '</a>';
     $variables['results'][] = $result;
@@ -1694,7 +1693,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_search_user_form_alter(&$f
   $form['#suffix'] = '</div></div>';
   $form['#attributes'] = array('class' => 'well');
 
-  
+
   $form['title'] = array(
     '#markup' => '<p class="lead"><i class="fa fa-group"></i>  ' . t('Add new members') . '</p>',
     '#weight' => -999,
@@ -1783,7 +1782,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_block_admin_options(
 
   $page = $variables['page'];
   $variables['switch_link'] = l(t('Login as') . '<br /><strong>' . $page->getName() . '</strong>', 'pages/switch/' . $page->getId(), array('attributes' => array('class' => array('btn btn-block btn-primary')), 'html' => TRUE));
-  
+
 }
 
 /**
@@ -1792,7 +1791,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_block_admin_options(
 function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_alter(&$form, &$form_state) {
 
   $form['#attributes']['class'][] = '';
-  
+
   // TODO: add auto-submit behavior and remove submit button
   $form['submit']['#attributes'] = array('class' => array('btn-block'));
   $form['submit']['#value'] = t('Confirm choice');
@@ -1835,9 +1834,25 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
  */
 function culturefeed_bootstrap_form_culturefeed_pages_page_suggestions_filter_form_alter(&$form, &$form_state) {
 
+  $title = $form['city']['#title'];
+
+  $form['#prefix'] = '<div class="row">';
+  $form['#suffix'] = '</div>';
+
+  $form['city']['#title'] = '';
+  $form['city']['#prefix'] = '';
+  $form['city']['#prefix'] .= '<div class="col-sm-3"><div class="form-group"><label for="edit-city">';
+  $form['city']['#prefix'] .= $title;
+  $form['city']['#prefix'] .= '</label></div></div>';
+  $form['city']['#prefix'] .= '<div class="col-xs-9 col-sm-7 ">';
+  $form['city']['#suffix'] = '</div>';
+
+  $form['submit']['#prefix'] = '<div class="col-xs-3 col-sm-2"><div class="form-group">';
+  $form['submit']['#suffix'] = '</div></div>';
+
   $form['submit']['#attributes']['class'][] = 'btn';
   $form['submit']['#attributes']['class'][] = 'btn-primary';
-
+  $form['submit']['#attributes']['class'][] = 'btn-block';
   $form['submit']['#value'] = t('Search');
 
 }
@@ -1935,9 +1950,9 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
         'attributes' => $attributes,
         'query' => $destination,
       ));
-      
-     $variables['comment_url'] = url($comment_url . '/nojs', array('attributes' => $attributes, 'query' => $destination));      
-            
+
+     $variables['comment_url'] = url($comment_url . '/nojs', array('attributes' => $attributes, 'query' => $destination));
+
     }
     else {
 
@@ -1953,7 +1968,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
   }
 
   else {
-  
+
     $comment_url = 'culturefeed/activity/comment/' . $activity->id;
     $hover = theme('culturefeed_ui_connect_hover', array('url' => $_GET['q']));
     $popover_options = array(
@@ -1966,7 +1981,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
     );
 
     $variables['comment_link'] = l(t('Post a comment'), $comment_url, array('attributes' => $popover_options, 'html' => TRUE));
-    
+
   }
 
   if (module_exists('culturefeed_messages')) {
@@ -1988,6 +2003,51 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
   }
 }
 
+/**
+ * Overrides theme_file_managed_file().
+ */
+function culturefeed_bootstrap_file_managed_file($variables) {
 
+  $element = $variables['element'];
 
+  $attributes = array();
+  if (isset($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+  if (!empty($element['#attributes']['class'])) {
+    $attributes['class'] = (array) $element['#attributes']['class'];
+  }
 
+  if (!empty($element['filename'])) {
+    $element['filename']['#markup'] = '<div class="col-md-4">';
+    $element['filename']['#markup'] .= theme('image_style', array('style_name' => 'thumbnail', 'path' => $element['#file']->uri, 'attributes' => array('class' => array('img-thumbnail'))));
+    $element['filename']['#markup'] .= '</div>';
+  }
+  else {
+  $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
+  $element['upload_button']['#suffix'] = '</span></div>';
+    $element['upload']['#prefix'] = '<div class="col-md-6">';
+    $element['upload']['#suffix'] = '</div>';
+
+  }
+
+  $hidden_elements = array();
+  foreach (element_children($element) as $child) {
+    if ($element[$child]['#type'] === 'hidden') {
+      $hidden_elements[$child] = $element[$child];
+      unset($element[$child]);
+    }
+  }
+
+  // This wrapper is required to apply JS behaviors and CSS styling.
+  $attributes['class'] = array('row', 'form-managed-file');
+
+  $output = '<div class="row"><div class="col-md-6">';
+  $output .= '<div' . drupal_attributes($attributes) . '>';
+  $output .= drupal_render_children($element);
+  $output .= '</div>';
+  $output .= render($hidden_elements);
+  $output .= '</div></div>';
+
+  return $output;
+}
