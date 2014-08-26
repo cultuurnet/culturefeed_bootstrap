@@ -13,7 +13,7 @@
 
   <div class="col-sm-3 col-lg-2 hidden-xs">
 
-    <a href="<?php print $url ?>" id="cf-image-<?php print $cdbid ?>">
+    <a href="<?php print $url ?>" id="cf-image_<?php print $cdbid ?>">
       <?php if (!empty($thumbnail)): ?>
         <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=152&scale=both" title="<?php print $title ?>" alt="<?php print $title ?>" />
       <?php else: ?>
@@ -29,7 +29,7 @@
       <?php if (!empty($agefrom)): ?>
         <small><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></small>
       <?php endif; ?>
-      <a href="<?php print $url ?>" id="cf-title-<?php print $cdbid ?>">      
+      <a href="<?php print $url ?>" id="cf-title_<?php print $cdbid ?>">      
         <?php print $title; ?>
       </a>
     </h2>
@@ -76,9 +76,9 @@
     </p>
 
     <?php if (!empty($tickets)): ?>
-      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-warning'), 'id' => 'cf-readmore-' . $cdbid))); ?></p>
+      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-warning'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
     <?php else: ?>
-      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, t('More info') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default'), 'id' => 'cf-readmore-' . $cdbid))); ?></p>
+      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, t('More info') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
     <?php endif; ?>
 
   </div>
