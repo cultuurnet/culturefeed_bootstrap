@@ -26,7 +26,7 @@
   <div class="col-sm-9 col-lg-10 col-xs-12">
 
     <h2 class="media-heading">
-      <?php if (!empty($agefrom)): ?>
+      <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
         <small><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></small>
       <?php endif; ?>
       <a href="<?php print $url ?>" id="cf-title-<?php print $cdbid ?>">      
