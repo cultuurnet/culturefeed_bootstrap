@@ -14,4 +14,6 @@
 
 <?php print render($filter_form); ?>
 
-<?php print $activities; ?>
+<div id="timeline">
+  <?php print $activities; ?>
+</div>

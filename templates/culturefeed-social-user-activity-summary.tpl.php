@@ -14,14 +14,4 @@
   <?php endif; ?>
   <small class="text-muted"><?php print $date ?></small>
 
-  <?php if(isset($teaser)): ?>
-    <div class="event-activity-teaser">
-    <?php print $teaser; ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if (isset($summary)): ?>
-
-  <?php endif; ?>
-
 </div>
