@@ -40,9 +40,17 @@
 
   <li>
     <span class="pull-right">
-      <i class="fa fa-fw fa-users"></i> <?php print ($pages_total_16 + $pages_total_17) ?>
+      <i class="fa fa-fw fa-users"></i> <?php print $pages_total_16 ?>
     </span>
     <?php print t('members'); ?>
+    <hr class="small">
+  </li>
+
+  <li>
+    <span class="pull-right">
+      <i class="fa fa-fw fa-users"></i> <?php print $pages_total_17 ?>
+    </span>
+    <?php print t('admins'); ?>
     <hr class="small">
   </li>
 
