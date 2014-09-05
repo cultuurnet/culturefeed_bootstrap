@@ -112,6 +112,19 @@ h1, h2, h3 {
   }
 }
 
+.block-culturefeed-search-ui ul {
+  .list-unstyled();
+  ul {
+    margin-left: 10px;
+    display: none;
+  }
+  .facet-label.active ~ ul,
+  ul.active-parent,
+  li.active-parent > ul {
+    display: block;
+  }
+}
+
 .region-sidebar-second {
   .block {
     margin-bottom: 40px;
@@ -137,17 +150,6 @@ h1, h2, h3 {
       }
     }
   }
-}
-
-.facet-level-2 {
-  display: none;
-  .facet-label {
-    margin-left: 10px;
-  }
-}
-
-.active-parent .facet-level-2, .active + .facet-level-2 {
-  display: block;
 }
 
 // override default glyphicon throbbers
