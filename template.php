@@ -25,7 +25,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
   $form['nearby']['#weight'] = '3';
-  $form['nearby']['#prefix'] = '<div class="visible-xs visible-sm"><div class="col-sm-10 col-sm-offset-2">';
+  $form['nearby']['#prefix'] = '<div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
   $form['nearby']['#suffix'] = '</div></div>';
   $form['#suffix'] = '</div></div>';
 }
