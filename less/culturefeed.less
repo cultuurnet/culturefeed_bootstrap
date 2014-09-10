@@ -104,6 +104,15 @@ h1, h2, h3 {
   }
 }
 
+// culturefeed search page title
+
+.page-agenda-search {
+  h1.page-header {
+    position: absolute;
+    left: -9999em;
+  }
+}
+
 // culturefeed search ui blocks
 
 .region-sidebar-first {
@@ -149,6 +158,22 @@ h1, h2, h3 {
         text-decoration: none;
       }
     }
+  }
+}
+
+// responsive facets
+
+.toggle-facet {
+  cursor: hand;
+}
+
+.facet-container {
+  .collapse();
+}
+
+@media @tablet {
+  .facet-container {
+    .show();
   }
 }
 

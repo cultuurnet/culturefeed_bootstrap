@@ -6,21 +6,21 @@
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
   $form['#prefix'] = '<div class="well"><div class="row">';
   $form['title'] = array(
-    '#prefix' => '<div class="col-sm-2">',
+    '#prefix' => '<div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
     '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
     '#suffix' => '</div>',
   );
-  $form['category']['#prefix'] = '<div class="col-sm-3">';
+  $form['category']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
   $form['category']['#weight'] = '1';
   $form['category']['#title'] = '';
   $form['category']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-5">';
+  $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
   $form['search']['#weight'] = '2';
   $form['search']['#title'] = '';
   $form['search']['#autocomplete_path'] = '';
   $form['search']['#suffix'] = '</div>';
-  $form['submit']['#prefix'] = '<div class="col-sm-2">';
+  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
   $form['submit']['#attributes']['class'][] = 'btn-block';
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
@@ -61,7 +61,7 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alte
  * Implements hook_{culturefeed_search_ui_search_sortorder_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="pull-right text-right">';
+  $form['#prefix'] = '<div class="pull-right text-right hidden-xs">';
   $form['title'] = array(
     '#type' => 'item',
     '#markup' => '<a data-toggle="collapse" href="#sort-results">' . t('Sort') . ' <span class="caret"></span></a>',
@@ -2050,4 +2050,14 @@ function culturefeed_bootstrap_file_managed_file($variables) {
   $output .= '</div></div>';
 
   return $output;
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function culturefeed_bootstrap_preprocess_region(&$variables) {
+  $variables['pagetype'] = '';
+  if (arg(1) == 'search') {
+    $variables['pagetype'] = 'agenda-search';
+  }
 }
