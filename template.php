@@ -4,9 +4,9 @@
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="well"><div class="row">';
+  $form['#prefix'] = '<div class="well">';
   $form['title'] = array(
-    '#prefix' => '<div class="col-sm-2 hidden-xs">',
+    '#prefix' => '<div class="row"><div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
     '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
     '#suffix' => '</div>',
@@ -20,14 +20,14 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['search']['#title'] = '';
   $form['search']['#autocomplete_path'] = '';
   $form['search']['#suffix'] = '</div>';
-  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
   $form['submit']['#attributes']['class'][] = 'btn-block';
+  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
   $form['nearby']['#weight'] = '3';
-  $form['nearby']['#prefix'] = '<div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
-  $form['nearby']['#suffix'] = '</div></div>';
-  $form['#suffix'] = '</div></div>';
+  $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
+  $form['nearby']['#suffix'] = '</div></div></div>';
+  $form['#suffix'] = '</div>';
 }
 
 /**
@@ -36,21 +36,21 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alter(&$form, &$form_state) {
   $form['#prefix'] = '<div class="well"><div class="row">';
   $form['title'] = array(
-    '#prefix' => '<div class="col-sm-2">',
+    '#prefix' => '<div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
     '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
     '#suffix' => '</div>',
   );
-  $form['type']['#prefix'] = '<div class="col-sm-3">';
+  $form['type']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
   $form['type']['#weight'] = '1';
   $form['type']['#title'] = '';
   $form['type']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-5">';
+  $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
   $form['search']['#weight'] = '2';
   $form['search']['#title'] = '';
   $form['search']['#autocomplete_path'] = '';
   $form['search']['#suffix'] = '</div>';
-  $form['submit']['#prefix'] = '<div class="col-sm-2">';
+  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
   $form['submit']['#attributes']['class'][] = 'btn-block';
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
