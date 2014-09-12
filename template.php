@@ -4,7 +4,6 @@
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="well">';
   $form['title'] = array(
     '#prefix' => '<div class="row"><div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
@@ -27,14 +26,13 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['nearby']['#weight'] = '3';
   $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
   $form['nearby']['#suffix'] = '</div></div></div>';
-  $form['#suffix'] = '</div>';
 }
 
 /**
  * Implements hook_{culturefeed_search_ui_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="well"><div class="row">';
+  $form['#prefix'] = '<div class="row">';
   $form['title'] = array(
     '#prefix' => '<div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
@@ -54,7 +52,7 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alte
   $form['submit']['#attributes']['class'][] = 'btn-block';
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
-  $form['#suffix'] = '</div></div>';
+  $form['#suffix'] = '</div>';
 }
 
 /**
