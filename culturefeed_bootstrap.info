@@ -12,6 +12,7 @@ regions[help]           = 'Help'
 regions[content]        = 'Content'
 regions[sidebar_first]  = 'Primary'
 regions[sidebar_second] = 'Secondary'
+regions[content_bottom] = 'Content Bottom'
 regions[footer]         = 'Footer'
 
 ; Stylesheets

@@ -165,6 +165,17 @@
 
   </div>
 </div>
-<footer class="footer container">
-  <?php print render($page['footer']); ?>
-</footer>
+
+<?php if (!empty($page['content_bottom'])): ?>
+  <div class="container">
+    <?php print render($page['content_bottom']); ?>
+  </div>
+<?php endif; ?>
+
+<?php if (!empty($page['footer'])): ?>
+  <footer class="footer">
+    <div class="container">
+      <?php print render($page['footer']); ?>
+    </div>
+  </footer>
+<?php endif; ?>
