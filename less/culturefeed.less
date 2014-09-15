@@ -182,12 +182,24 @@ h1, h2, h3 {
 
 // responsive facets
 
-.facet-container {
+#facet-container {
   .collapse();
 }
 
+.toggle-facet {
+  i:after {
+    content: '\f0d7';
+    font-family: "FontAwesome";
+  }
+  .collapsed {
+    i:after {
+      content: '\f0da';
+    }
+  }
+}
+
 @media @tablet {
-  .facet-container {
+  #facet-container {
     .show();
   }
 }
