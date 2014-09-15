@@ -9,7 +9,7 @@
 
   <!-- @ start THUMBNAIL -->
   <?php if (!empty($thumbnail)): ?>
-    <a href="<?php print $url ?>"><img src="<?php print $thumbnail; ?>?width=370&amp;height=180&amp;crop=auto&amp;scale=both" alt="<?php print $title; ?>" class="img-responsive" /></a>
+    <a href="<?php print $url ?>"><img src="<?php print $thumbnail; ?>?width=253&amp;height=123&amp;crop=auto&amp;scale=both" alt="<?php print $title; ?>" class="img-responsive" /></a>
   <?php else: ?>
     <a href="<?php print $url ?>"><img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-related.gif" alt="<?php print $title; ?>" class="img-responsive" /></a>
   <?php endif; ?>
