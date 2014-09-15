@@ -33,13 +33,17 @@
         <?php print $title; ?>
       </a>
     </h2>
-  
-    <?php if (!empty($types)): ?>
-    <div class="text-muted hidden-xs hidden-sm"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></div>
-    <?php endif; ?>
 
-    <?php if (!empty($shortdescription)): ?>
-    <p class="hidden-xs hidden-sm"><?php print $shortdescription; ?></p>
+    <?php if ((!empty($types)) || (!empty($shortdescription))): ?>
+    <p>
+      <?php if (!empty($types)): ?>
+        <span class="label label-default"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></span>
+      <?php endif; ?>
+
+      <?php if (!empty($shortdescription)): ?>
+        <span class="cf-short-description hidden-xs hidden-sm"><?php print $shortdescription; ?></span>
+      <?php endif; ?>
+    </p>
     <?php endif; ?>
 
     <p>
@@ -70,7 +74,13 @@
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar text-center"></i></div>
-        <div class="col-xs-10"><?php print $when; ?></div>
+        <div class="col-xs-10">
+          <?php if (strlen($when) < 120) : ?> 
+            <?php print $when; ?>
+          <?php else : ?> 
+            <?php print substr($when, 0, 120) . '... ' . culturefeed_search_detail_l('event', $cdbid, $title, t('more dates'), array('html' => TRUE, 'attributes' => array('class' => array('cf-moredates'), 'id' => 'cf-moredates_' . $cdbid))); ?>
+          <?php endif; ?>
+        </div>
       </div>
       <?php endif; ?>
     </p>

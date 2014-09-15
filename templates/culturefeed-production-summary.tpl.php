@@ -33,13 +33,17 @@
         <?php print $title; ?>
       </a>
     </h2>
-  
-    <?php if (!empty($types)): ?>
-    <div class="text-muted hidden-xs hidden-sm"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></div>
-    <?php endif; ?>
 
-    <?php if (!empty($shortdescription)): ?>
-    <p class="hidden-xs hidden-sm"><?php print $shortdescription; ?></p>
+    <?php if ((!empty($types)) || (!empty($shortdescription))): ?>
+    <p>
+      <?php if (!empty($types)): ?>
+        <span class="label label-default"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></span>
+      <?php endif; ?>
+
+      <?php if (!empty($shortdescription)): ?>
+        <span class="cf-short-description hidden-xs hidden-sm"><?php print $shortdescription; ?></span>
+      <?php endif; ?>
+    </p>
     <?php endif; ?>
 
     <p>
