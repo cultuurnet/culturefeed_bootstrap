@@ -5,3 +5,12 @@ msgstr "Bevestig keuze"
 #: culturefeed-event.tpl.php:40
 msgid "Show map"
 msgstr "Toon kaart"
+
+#: culturefeed-agenda-actor-program.tpl.php:18
+msgid "Calendar"
+msgstr "Agenda"
+
+#: culturefeed-agenda-actor-program.tpl.php:16
+msgid "More activities"
+msgstr "Alle activiteiten"
+
