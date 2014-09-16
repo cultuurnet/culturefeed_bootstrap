@@ -575,3 +575,15 @@ footer {
   background-color: @gray-dark;
   color: @gray-lighter;
 }
+
+footer li a,
+footer li a.btn-link {
+  color: @gray-light;
+  &:hover,
+  &:active {
+    color: white;
+  }
+  &:disabled {
+    color: #444;
+  }
+}
