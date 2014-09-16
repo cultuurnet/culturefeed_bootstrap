@@ -5,6 +5,8 @@
  */
 ?>
 
+<hr />
+
 <div class="row">
 
   <div class="col-xs-3 col-lg-2">
@@ -43,7 +45,11 @@
           <i class="fa fa-calendar text-center"></i>
         </div>
         <div class="col-xs-10">
-          <?php print $when; ?>
+          <?php if (strlen($when) < 120) : ?> 
+            <?php print $when; ?>
+          <?php else : ?> 
+            <?php print substr($when, 0, 120) . '... ' . culturefeed_search_detail_l('event', $cdbid, $title, t('more dates'), array('html' => TRUE, 'attributes' => array('class' => array('cf-moredates'), 'id' => 'cf-moredates_' . $cdbid))); ?>
+          <?php endif; ?>
         </div>
       </div>
     <?php endif; ?>
@@ -68,5 +74,3 @@
     <?php endif; ?>        
   </div>
 </div>
-
-<hr />

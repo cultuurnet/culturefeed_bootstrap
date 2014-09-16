@@ -13,3 +13,7 @@ msgstr "Agenda"
 #: culturefeed-agenda-actor-program.tpl.php:9
 msgid "Full calendar"
 msgstr "Volledige agenda"
+
+#: culturefeed-agenda-actor-program-item.tpl.php:49
+msgid "more dates"
+msgstr "meer data"
