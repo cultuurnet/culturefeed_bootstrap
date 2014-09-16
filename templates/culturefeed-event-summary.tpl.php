@@ -15,9 +15,9 @@
 
     <a href="<?php print $url ?>" id="cf-image_<?php print $cdbid ?>">
       <?php if (!empty($thumbnail)): ?>
-        <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=152&scale=both" title="<?php print $title ?>" alt="<?php print $title ?>" />
+        <img class="img-responsive" src="<?php print $thumbnail; ?>?width=152&scale=both" title="<?php print $title ?>" alt="<?php print $title ?>" />
       <?php else: ?>
-        <img class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
+        <img class="img-responsive" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
       <?php endif; ?>
     </a>
 
