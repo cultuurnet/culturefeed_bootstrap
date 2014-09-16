@@ -53,15 +53,15 @@
         <?php if (!empty($location['city'])): ?>
           <?php print $location['city']; ?>
         <?php endif; ?>
-        <?php if (!empty($coordinates)): ?>
-        <div id="cf-map" class="collapse collapse-in"><img src="http://placehold.it/440x300" class="img-rectangle img-responsive" /><small class="text-muted">TODO: implement Google Map (coordinates = <?php print $coordinates['lat'] ?> - <?php print $coordinates['lng'] ?>)</small></div>
+        <?php if (!empty($map)): ?>
+        <div id="cf-map" class="collapse collapse-in"><?php print $map; ?></div>
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
     
       <?php if (!empty($when) && $relations < 2): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
-      <td><?php print $when; ?></td></tr>
+      <td class="cf-when scroll scroll-150"><?php print $when; ?></td></tr>
       <?php endif; ?>
     
       <?php if ($organiser): ?>
