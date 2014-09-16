@@ -19,9 +19,12 @@
   <!-- @ start CONTENT -->
   <div class="caption">
 
-    <h3 class="media-heading">
+    <h4 class="media-heading">
+      <?php if (!empty($agefrom)): ?>
+        <span class="label label-success pull-right"><?php print $agefrom; ?> +</span>
+      <?php endif; ?>
       <a href="<?php print $url ?>"><?php print $title; ?></a>
-    </h3>
+    </h4>
 
     <p>  
       
