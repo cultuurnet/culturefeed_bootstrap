@@ -50,7 +50,7 @@
       <?php if (!empty($performers)): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('By'); ?></strong></div>
-        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-users text-center"></i></div>
+        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-users fa-fw"></i></div>
         <div class="col-xs-10"><?php print $performers; ?></div>
       </div>
       <?php endif; ?>
@@ -58,7 +58,7 @@
       <?php if (!empty($location) && $relations < 2): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('Where'); ?></strong></div>
-        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-map-marker text-center"></i></div>
+        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-map-marker fa-fw"></i></div>
         <div class="col-xs-10">
           <?php if (!empty($location['city'])): ?>
             <?php print $location['city'] . ', '; ?>
@@ -73,7 +73,7 @@
       <?php if (!empty($when) && $relations < 2): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
-        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar text-center"></i></div>
+        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar fa-fw"></i></div>
         <div class="col-xs-10"><?php print $when; ?></div>
       </div>
       <?php endif; ?>
