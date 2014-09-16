@@ -9,3 +9,7 @@ msgstr "Toon kaart"
 #: culturefeed-agenda-actor-program.tpl.php:18
 msgid "Calendar"
 msgstr "Agenda"
+
+#: culturefeed-agenda-actor-program.tpl.php:9
+msgid "Full calendar"
+msgstr "Volledige agenda"
