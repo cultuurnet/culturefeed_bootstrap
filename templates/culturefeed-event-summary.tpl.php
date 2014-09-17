@@ -34,9 +34,8 @@
       </a>
     </h2>
 
-    <?php if ((!empty($types)) || (!empty($shortdescription))): ?>
     <p>
-      <?php if (!empty($types)): ?>
+      <?php if (isset($types) && !empty($types)): ?>
         <span class="label label-default"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></span>
       <?php endif; ?>
 
@@ -44,7 +43,6 @@
         <span class="cf-short-description hidden-xs hidden-sm"><?php print $shortdescription; ?></span>
       <?php endif; ?>
     </p>
-    <?php endif; ?>
 
     <p>
       <?php if (!empty($performers)): ?>
