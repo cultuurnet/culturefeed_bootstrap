@@ -15,9 +15,9 @@
 
     <a href="<?php print $url ?>" id="cf-image_<?php print $cdbid ?>">
       <?php if (!empty($thumbnail)): ?>
-        <img class="media-object thumbnail hidden-xs" src="<?php print $thumbnail; ?>?width=152&scale=both" title="<?php print $title ?>" alt="<?php print $title ?>" />
+        <img class="img-responsive" src="<?php print $thumbnail; ?>?width=152&height=152&crop=auto&scale=both" title="<?php print $title ?>" alt="<?php print $title ?>" />
       <?php else: ?>
-        <img class="media-object thumbnail hidden-xs" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
+        <img class="img-responsive" src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" title="<?php print $title ?>" alt="<?php print $title ?>" />
       <?php endif; ?>
     </a>
 
@@ -34,9 +34,8 @@
       </a>
     </h2>
 
-    <?php if ((!empty($types)) || (!empty($shortdescription))): ?>
     <p>
-      <?php if (!empty($types)): ?>
+      <?php if (isset($types) && !empty($types)): ?>
         <span class="label label-default"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></span>
       <?php endif; ?>
 
@@ -44,13 +43,12 @@
         <span class="cf-short-description hidden-xs hidden-sm"><?php print $shortdescription; ?></span>
       <?php endif; ?>
     </p>
-    <?php endif; ?>
 
     <p>
       <?php if (!empty($performers)): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('With'); ?></strong></div>
-        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-users text-center"></i></div>
+        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-users fa-fw"></i></div>
         <div class="col-xs-10"><?php print $performers; ?></div>
       </div>
       <?php endif; ?>
@@ -58,7 +56,7 @@
       <?php if ($location): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('Where'); ?></strong></div>
-        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-map-marker text-center"></i></div>
+        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-map-marker fa-fw"></i></div>
         <div class="col-xs-10">
           <?php if (!empty($location['city'])): ?>
             <?php print $location['city'] . ', '; ?>
@@ -73,7 +71,7 @@
       <?php if (!empty($when)): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
-        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar text-center"></i></div>
+        <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar fa-fw"></i></div>
         <div class="col-xs-10">
           <?php if (strlen($when) < 120) : ?> 
             <?php print $when; ?>

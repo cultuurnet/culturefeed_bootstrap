@@ -61,7 +61,7 @@
     
       <?php if (!empty($when)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
-      <td><?php print $when; ?></td></tr>
+      <td class="cf-when scroll scroll-150"><?php print $when; ?></td></tr>
       <?php endif; ?>
     
       <?php if ($organiser): ?>
@@ -143,18 +143,18 @@
   <div class="col-sm-4 hidden-xs">
 
     <?php if (!empty($main_picture)): ?>
-    <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-thumbnail" />
-    
-    <?php foreach ($pictures as $picture): ?>
-      <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-    <?php endforeach; ?>
-    
+      <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
+      <?php foreach ($pictures as $picture): ?>
+        <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
+      <?php endforeach; ?> 
+      <hr class="small" />  
     <?php endif; ?>
     
     <?php if (!empty($videos)): ?>
-    <?php foreach ($videos as $video): ?>
-      <?php print $video; ?>
-    <?php endforeach; ?>
+      <?php foreach ($videos as $video): ?>
+        <?php print $video; ?>
+      <?php endforeach; ?>    
+      <hr class="small" />
     <?php endif; ?>
 
   </div>
