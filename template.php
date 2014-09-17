@@ -2059,3 +2059,16 @@ function culturefeed_bootstrap_preprocess_region(&$variables) {
     $variables['pagetype'] = 'agenda-search';
   }
 }
+
+/**
+ * Implements template_preprocess_page().
+ */
+function culturefeed_bootstrap_preprocess_page(&$variables) {
+  if (module_exists('culturefeed_ui')) {
+    if (variable_get('culturefeed_ui_cookie_bool')) {
+      drupal_add_js(drupal_get_path('module', 'culturefeed_ui') . '/js/jquery.cookie.js');
+      drupal_add_js(drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/cookie_message.js');
+      drupal_add_js(array('culturefeed_ui' => array('path' => variable_get('culturefeed_ui_cookie_path'))), 'setting');
+    }
+  }
+}
