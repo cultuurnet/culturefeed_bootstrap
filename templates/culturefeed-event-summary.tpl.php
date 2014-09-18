@@ -11,7 +11,7 @@
 
 <div class="row">
 
-  <div class="col-sm-3 col-lg-2 hidden-xs">
+  <div class="col-xs-3 col-lg-2">
 
     <a href="<?php print $url ?>" id="cf-image_<?php print $cdbid ?>">
       <?php if (!empty($thumbnail)): ?>
@@ -23,7 +23,7 @@
 
   </div>
 
-  <div class="col-sm-9 col-lg-10 col-xs-12">
+  <div class="col-xs-9 col-lg-10">
 
     <h2 class="media-heading">
       <?php if (!empty($agefrom)): ?>
@@ -34,19 +34,19 @@
       </a>
     </h2>
 
-    <p>
-      <?php if (isset($types) && !empty($types)): ?>
+    <?php if (isset($types) && !empty($types)): ?>
+      <p class="hidden-xs">
         <span class="label label-default"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></span>
       <?php endif; ?>
 
       <?php if (!empty($shortdescription)): ?>
         <span class="cf-short-description hidden-xs hidden-sm"><?php print $shortdescription; ?></span>
-      <?php endif; ?>
-    </p>
+      </p>
+    <?php endif; ?>
 
     <p>
       <?php if (!empty($performers)): ?>
-      <div class="row">
+      <div class="row hidden-xs">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('With'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-users fa-fw"></i></div>
         <div class="col-xs-10"><?php print $performers; ?></div>
