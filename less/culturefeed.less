@@ -372,20 +372,22 @@ hr.small {
   margin-top: 10px;
 }
 
-.scroll  {
-  display: block;
-  position: relative;
-  max-height: 500px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.scroll-150  {
-  max-height: 150px;
-}
-
-.scroll-300  {
-  max-height: 300px;
+@media @tablet {
+  .scroll  {
+    display: block;
+    position: relative;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .scroll-150  {
+    max-height: 150px;
+  }
+  
+  .scroll-300  {
+    max-height: 300px;
+  }
 }
 
 .top {
@@ -579,6 +581,14 @@ hr.small {
 
 .manage-activities-link {
   display: none;
+}
+
+#facebook-privacy-toggle {
+  .alert();
+  .alert-warning();
+  list-style: none;
+  padding-top: 5px;
+  margin-bottom: 0;
 }
 
 #culturefeed-social-user-activity-filter-form {
