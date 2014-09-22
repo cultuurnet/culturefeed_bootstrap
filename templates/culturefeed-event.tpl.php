@@ -36,7 +36,7 @@
       <?php if ($location): ?>
       <tr><td class="col-lg-2 col-md-2 col-sm-1 col-xs-1"><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
-        <?php if (!empty($map)): ?>
+        <?php if (!empty($coordinates)): ?>
         <?php
           $iPod = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
           $iPhone = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");

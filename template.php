@@ -232,6 +232,13 @@ function culturefeed_bootstrap_preprocess_culturefeed_production(&$variables) {
   _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
 }
 
+/**
+ * Implements hook_preprocess_culturefeed_actor().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_actor(&$variables) {
+  _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
+}
+
 
 /**
  * Implements hook_form_{culturefeed_ui_page_profile_edit_form}_alter().
