@@ -1833,6 +1833,21 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
 }
 
+/**
+ * Theme the culturefeed_search_ui_city_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(&$form, &$form_state) {
+
+  $form['#attributes']['class'][] = '';
+
+  $form['location']['#prefix'] = '<div class="input-group">';
+  $form['location']['#title'] = '';
+
+  $form['submit']['#prefix'] = '<span class="input-group-btn">';
+  $form['submit']['#suffix'] = '</span></div>';
+
+}
+
 
 /**
  * Theme the culturefeed_pages_page_suggestions_filter_form
