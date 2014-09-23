@@ -2071,4 +2071,15 @@ function culturefeed_bootstrap_preprocess_page(&$variables) {
       drupal_add_js(array('culturefeed_ui' => array('path' => variable_get('culturefeed_ui_cookie_path'))), 'setting');
     }
   }
+
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['content_column_class'] = ' class="col-md-6"';
+  }
+  elseif (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
+    $variables['content_column_class'] = ' class="col-md-9"';
+  }
+  else {
+    $variables['content_column_class'] = ' class="col-md-12"';
+  }
 }
