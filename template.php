@@ -232,6 +232,13 @@ function culturefeed_bootstrap_preprocess_culturefeed_production(&$variables) {
   _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
 }
 
+/**
+ * Implements hook_preprocess_culturefeed_actor().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_actor(&$variables) {
+  _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
+}
+
 
 /**
  * Implements hook_form_{culturefeed_ui_page_profile_edit_form}_alter().
@@ -327,7 +334,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
     // Address
   $form['street'] = array(
-    '#prefix' => '<div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#contact">' . ' ' . t('Contact') . '</a></h4></div><div id="contact" class="panel-collapse collapse"><div class="panel-body">',
+    '#prefix' => '<div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#contact">' . ' ' . t('Address') . '</a></h4></div><div id="contact" class="panel-collapse collapse in"><div class="panel-body">',
     '#suffix' => '</li>',
     '#type' => 'textfield',
     '#title' => t('Street and number'),
@@ -1820,6 +1827,21 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['date_range']['#prefix'] = '<div class="input-group">';
   $form['date_range']['#title'] = '';
+
+  $form['submit']['#prefix'] = '<span class="input-group-btn">';
+  $form['submit']['#suffix'] = '</span></div>';
+
+}
+
+/**
+ * Theme the culturefeed_search_ui_city_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(&$form, &$form_state) {
+
+  $form['#attributes']['class'][] = '';
+
+  $form['location']['#prefix'] = '<div class="input-group">';
+  $form['location']['#title'] = '';
 
   $form['submit']['#prefix'] = '<span class="input-group-btn">';
   $form['submit']['#suffix'] = '</span></div>';

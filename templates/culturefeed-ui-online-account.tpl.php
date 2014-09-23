@@ -33,7 +33,7 @@
  
 <!-- @start PUBLISH -->
 <?php if ($publish_link) : ?>
-<p class="hidden">
+<p>
 <?php print $publish_link ?>
 </p>
 <?php endif; ?>
