@@ -626,3 +626,20 @@ footer li a.btn-link {
     color: #444;
   }
 }
+
+// collapsible panels
+
+#accordion {
+  [data-toggle="collapse"] {
+    display: block;
+    i:after {
+      content: '\f0d7';
+      font-family: "FontAwesome";
+    }
+    &.collapsed {
+      i:after {
+        content: '\f0da';
+      }
+    }
+  }
+}
