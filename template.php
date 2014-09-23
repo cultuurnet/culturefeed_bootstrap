@@ -81,6 +81,8 @@ function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
     $search = array('ma', 'di', 'woe', 'do', 'vrij', 'za', 'zo');
     $replace = array('<br /><span class="' . $classname . '">ma</span>', '<br /><span class="' . $classname . '">di</span>', '<br /><span class="' . $classname . '">wo</span>', '<br /><span class="' . $classname . '">do</span>', '<br /><span class="' . $classname . '">vr</span>', '<br /><span class="' . $classname . '">za</span>', '<br /><span class="' . $classname . '">zo</span>', );
     $calsum = str_replace($search, $replace, $calsum);
+    $calsum = str_replace('om', '<span class="text-muted">|</span>', $calsum);
+    $calsum = str_replace(',', '', $calsum);
     // Remove first break
     if (strpos($calsum, '<br />') == 0) {
       $calsum = substr($calsum, 6);;
