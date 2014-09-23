@@ -46,7 +46,7 @@
 
     <p>
       <?php if (!empty($performers)): ?>
-      <div class="row hidden-xs">
+      <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('By'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-users fa-fw"></i></div>
         <div class="col-xs-10"><?php print $performers; ?></div>
@@ -73,6 +73,13 @@
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar fa-fw"></i></div>
         <div class="col-xs-10"><?php print $when; ?></div>
+      </div>
+      <?php endif; ?>
+    
+      <?php if ($relations > 1): ?>
+      <div class="row visible-xs">
+        <div class="col-xs-1 text-center"><i class="fa fa-calendar fa-fw"></i></div>
+        <div class="col-xs-10"><?php print culturefeed_search_detail_l('production', $cdbid, $title, t('Show program schedule'), array('html' => TRUE, 'attributes' => array('class' => array('visible-xs'), 'id' => 'cf-readmore_' . $cdbid))); ?></div>
       </div>
       <?php endif; ?>
     </p>
