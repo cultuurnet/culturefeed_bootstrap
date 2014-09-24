@@ -5,8 +5,6 @@
  */
 ?>
 
-<hr />
-
 <div class="row">
 
   <div class="col-xs-3 col-lg-2">
@@ -20,21 +18,18 @@
   </div>
   
   <div class="col-xs-9 col-lg-10">
-    <h3 class="media-heading">
+    <h2 class="media-heading">
       <?php if (!empty($agefrom)): ?>
         <small><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></small>
       <?php endif; ?>
      <a href="<?php print $url ?>"><?php print $title; ?></a>
-    </h3>
-    
-    <?php if (!empty($types)): ?>      
-      <div class="text-muted">
-        <i class="fa fa-tags"></i> 
-        <?php foreach ($types as $type): ?>
-          <?php print $type; ?>
-          <?php endforeach; ?>
-      </div>
-    <?php endif; ?>  
+    </h2>
+
+    <?php if (isset($types) && !empty($types)): ?>
+      <p class="hidden-xs">
+        <span class="label label-default"><i class="fa fa-tags"></i> <?php print implode(', ' , $types); ?></span>
+      </p>
+    <?php endif; ?>
     
     <?php if (!empty($when)): ?>
       <div class="row">
@@ -74,3 +69,5 @@
     <?php endif; ?>        
   </div>
 </div>
+
+<hr />
