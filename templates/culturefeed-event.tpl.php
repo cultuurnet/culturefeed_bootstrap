@@ -25,7 +25,7 @@
       <?php endif; ?>
     </p>
     
-    <table class="table table-condended table-striped">
+    <table class="table table-condended">
       <tbody>
 
       <?php if (!empty($performers)): ?>     
