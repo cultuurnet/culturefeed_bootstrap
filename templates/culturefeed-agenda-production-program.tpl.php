@@ -23,8 +23,17 @@
                 <strong><?php print $content['venue']; ?></strong>
               <?php endif; ?>
               <br />          
-              <?php print culturefeed_bootstrap_cleanup_calsum($content['calendar'], 10, 'calsum-day text-muted'); //$content['calendar']; ?>
-              <br />
+              <?php if ($content['calendar']['type'] == 'timestamps'): ?>
+                <?php if (count($content['calendar']['timestamps']) > 0): ?>
+                  <?php foreach ($content['calendar']['timestamps'] as $timestamp): ?>
+                    <div><?php print $timestamp['date'] . '<span class="text-muted"> | </span>' . $timestamp['begintime']; ?></div>
+                  <?php endforeach; ?>
+                <?php else: ?>
+                  <p class="alert alert-warning"><?php print t('This event is finished.'); ?></p>
+                <?php endif; ?>
+              <?php else: ?>
+                <?php print $content['when']; ?>
+              <?php endif; ?>
               <a href="<?php print $content['url'] ?>"><?php print t('More details'); ?></a>          
             </div>
           </div>
