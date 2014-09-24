@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="thumbnail">
+<div class="thumbnail cf-search-summary">
 
   <!-- @ start THUMBNAIL -->
   <?php if (!empty($thumbnail)): ?>
@@ -38,5 +38,10 @@
 
   <!-- @ end CONTENT -->
   </div>
+
+  <p class="visible-xs">
+    <?php print culturefeed_search_detail_l('production', $cdbid, $title, '<span class="hyperspan"></span>', array('html' => TRUE, 'attributes' => array('id' => 'cf-readmore_' . $cdbid))); ?>
+  </p>
+
 </div>
 

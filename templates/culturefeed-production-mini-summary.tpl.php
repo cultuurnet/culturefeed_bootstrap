@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="row">
+<div class="row cf-search-summary">
   <div class="col-sm-9">
   
     <div class="media">
@@ -58,6 +58,10 @@
     <?php endif; ?>
 
   </div>
+
+  <p class="visible-xs">
+    <?php print culturefeed_search_detail_l('production', $cdbid, $title, '<span class="hyperspan"></span>', array('html' => TRUE, 'attributes' => array('id' => 'cf-readmore_' . $cdbid))); ?>
+  </p>
 
 </div>
 
