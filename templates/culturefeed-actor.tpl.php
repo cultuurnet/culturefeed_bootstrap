@@ -82,20 +82,15 @@
   </div>
 
   <div class="col-sm-4 hidden-xs">
-
+    
     <?php if (!empty($main_picture)): ?>
-    <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-thumbnail" />
-    
-    <?php foreach ($pictures as $picture): ?>
-      <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-    <?php endforeach; ?>
-    
-    <?php endif; ?>
-    
-    <?php if (!empty($videos)): ?>
-    <?php foreach ($videos as $video): ?>
-      <?php print $video; ?>
-    <?php endforeach; ?>
+    <div class="hidden-xs">
+      <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
+      <?php foreach ($pictures as $picture): ?>
+        <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
+      <?php endforeach; ?> 
+      <hr class="small" />
+    </div>  
     <?php endif; ?>
 
   </div>
