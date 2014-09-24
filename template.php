@@ -1818,6 +1818,8 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_proximity_distance_for
   $form['submit']['#attributes'] = array('class' => array('btn-link'));
   $form['submit']['#suffix'] = '</div></div><hr class="small" />';
 
+  $form['new_search']['#markup'] = '<a data-toggle="collapse" href="#culturefeed-search-ui-city-facet-form" class="collapsed">' . t('Choose another location') . ' <i class="fa"></i></a>';
+
 }
 
 /**
