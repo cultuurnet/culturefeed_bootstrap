@@ -14,7 +14,7 @@
       $(".alert button.cookie_close").click( function(event) {
       //$(".alert a.cookie_close").click( function(event) {
         event.preventDefault();
-        $.cookie('culturefeed_ui_cookies', 'hidden', { expires: 1095 });
+        $.cookie('culturefeed_ui_cookies', 'hidden', { path : '/', expires: 1095 });
         $(this).parent().fadeOut("slow", function() {
           $(this).remove();
         });
