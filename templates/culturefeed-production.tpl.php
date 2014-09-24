@@ -143,7 +143,13 @@
       <?php endif; ?>
 
       <?php if ($relations > 1): ?>
-        <?php // TODO: print culturefeed_agenda_block_production_program ?>
+      <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Program schedule'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
+      <td>
+      <?php 
+      $block = module_invoke('culturefeed_agenda', 'block_view', 'production-program'); 
+      print render($block['content']);
+      ?>
+      </td></tr>
       <?php endif; ?>
     
       </tbody>
