@@ -5,7 +5,7 @@
       // Prepend a close button to each message.
       $('.alert:not(.cookie_close-processed):contains("' + Drupal.settings.culturefeed_ui.path + '")').each( function() {
         $(this).addClass('cookie_close-processed');
-        $(this).prepend('<button class="btn btn-small btn-default cookie_close" id="button-0" style="margin-left: 0px; float: right; padding: 4px; margin-top:-5px;">' + Drupal.t('OK, I understand') + '</button>');
+        $(this).append('<button class="btn btn-sm btn-default cookie_close" id="button-0">' + Drupal.t('OK, I understand') + '</button>');
         //$(this).prepend('<a href="#" class="cookie_close" title="' + Drupal.t('close') + '">' + Drupal.t('OK, I understand') + '</a>');
         $(this).find('.close').remove();
       });
