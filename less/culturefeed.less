@@ -130,6 +130,12 @@ body.admin-menu {
   }
 }
 
+#culturefeed-search-ui-proximity-distance-form {
+  ~#culturefeed-search-ui-city-facet-form {
+    .collapse();
+  }
+}
+
 // culturefeed search page title
 
 .page-agenda-search {
@@ -143,7 +149,10 @@ body.admin-menu {
 
 .region-sidebar-first {
   .block-culturefeed-search-ui {
-    margin-bottom: 20px;
+    margin-bottom: 20px;   
+    .input-group-btn button {
+      border-left: none;
+    }
   }
 }
 
@@ -284,6 +293,9 @@ body.admin-menu {
   }
   a.filter-remove {
     font-size: 125%;
+  }
+  a.remove-all {
+    display: inline-block;    
   }
 }
 
@@ -617,7 +629,7 @@ footer li a.btn-link {
 
 // production program
 
-.production-program {
+//.production-program {
   [data-toggle="collapse"] {
     display: block;
     i:after {
@@ -638,7 +650,7 @@ footer li a.btn-link {
       margin-top: 0;
     }
   }
-}
+//}
 
 // actor program block
 
