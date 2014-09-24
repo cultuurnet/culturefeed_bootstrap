@@ -1,21 +1,22 @@
-<div class="panel-group" id="accordion">
+<div class="panel-group production-program" id="accordion">
   <?php foreach ($tabs as $tabId => $tab): ?>
-  <div class="panel panel-default">
+  <div class="panel">
     <?php if (count($tabs) > 1): ?>
-      <div class="panel-heading">
+      <div class="">
         <a data-toggle="collapse" data-parent="#accordion" href="#<?php print str_replace(' ', '',$tab['name']); ?>">
           <i class="fa pull-right"></i>
           <?php print $tab['name']; ?>
         </a>
       </div>
+      <hr class="small" />
     <?php endif; ?>
     <div id="<?php print str_replace(' ', '',$tab['name']); ?>" class="panel-collapse collapse">
-      <div class="panel-body">
+      <div class="">
         <?php foreach ($tab['children'] as $content): ?>
         <div class="<?print $tab['class']; ?>">
           <div class="row">
-            <div class="col-sm-2 col-md-3"><strong><?php print $content['city']; ?></strong></div>
-            <div class="col-sm-10 col-md-9">            
+            <div class="col-sm-3 col-md-4"><strong><?php print $content['city']; ?></strong></div>
+            <div class="col-sm-9 col-md-8">            
               <?php if (isset($content['all_url'])): ?>
                 <a href="<?print $content['all_url']; ?>"><strong><?php print $content['venue']; ?></strong></a>
               <?php else: ?>
@@ -35,5 +36,3 @@
   </div>
   <?php endforeach; ?>
 </div>
-
-<hr />

@@ -627,9 +627,9 @@ footer li a.btn-link {
   }
 }
 
-// collapsible panels
+// production program
 
-#accordion {
+.production-program {
   [data-toggle="collapse"] {
     display: block;
     i:after {
@@ -640,6 +640,14 @@ footer li a.btn-link {
       i:after {
         content: '\f0da';
       }
+    }
+  }
+  &.panel-group .panel {
+    border: none;
+    margin-top: 0;
+    box-shadow: none;
+    +.panel {
+      margin-top: 0;
     }
   }
 }
