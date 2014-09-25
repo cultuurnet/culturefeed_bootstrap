@@ -10,10 +10,10 @@
       </div>
       <hr class="small" />
     <?php endif; ?>
-    <div id="<?php print str_replace(' ', '',$tab['name']); ?>" class="panel-collapse collapse">
+    <div id="<?php print str_replace(' ', '',$tab['name']); ?>" class="panel-collapse collapse <?php print (count($tabs) > 1) ? '' : 'in' ; ?>">
       <div class="">
         <?php foreach ($tab['children'] as $content): ?>
-        <div class="<?print $tab['class']; ?>">
+        <div class="<?php print $tab['class']; ?>">
           <div class="row">
             <div class="col-sm-3 col-md-4"><strong><?php print $content['city']; ?></strong></div>
             <div class="col-sm-9 col-md-8">            
