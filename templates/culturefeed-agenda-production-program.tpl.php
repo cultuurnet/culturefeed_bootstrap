@@ -3,7 +3,7 @@
   <div class="panel">
     <?php if (count($tabs) > 1): ?>
       <div class="">
-        <a data-toggle="collapse" data-parent="#accordion" href="#<?php print str_replace(' ', '',$tab['name']); ?>">
+        <a data-toggle="collapse" data-parent="#accordion" data-target="#<?php print str_replace(' ', '',$tab['name']); ?>" class="btn-link">
           <i class="fa pull-right"></i>
           <?php print $tab['name']; ?>
         </a>
