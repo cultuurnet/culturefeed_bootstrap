@@ -144,7 +144,7 @@
 
       <?php if ($relations > 1): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Program schedule'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
-      <td>
+      <td class="production-program-cell">
       <?php 
       $block = module_invoke('culturefeed_agenda', 'block_view', 'production-program'); 
       print render($block['content']);
