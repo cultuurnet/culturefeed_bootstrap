@@ -7,7 +7,7 @@
           <div class="row visible-xs visible-sm toggle-facet">
             <div class="col-xs-12">              
               <a data-toggle="collapse" data-target="#facet-container" data-parent="#facet-wrapper" class="btn btn-link btn-block collapsed">
-                <p class="lead text-left">
+                <p class="text-left">
                   <i class="pull-right fa"></i> Verfijn of wijzig resultaten
                 </p>
               </a>
