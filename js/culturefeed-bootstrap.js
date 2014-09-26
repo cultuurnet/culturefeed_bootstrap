@@ -110,6 +110,8 @@ jQuery(function($) {
     }
   };
 
+  Drupal.file = Drupal.file || {};
+
   /**
    * Client-side file input validation of file extensions.
    */
