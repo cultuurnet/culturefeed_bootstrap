@@ -33,7 +33,7 @@ less[vars][@font-family-sans-serif]   = "Helvetica Neue", Helvetica, Arial, sans
 less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
 
 ; Scripts
-scripts[] = 'js/custom.js'
+scripts[] = 'js/culturefeed-bootstrap.js'
 
 ;**********************************
 ; METHOD 1: Bootstrap Source Files
