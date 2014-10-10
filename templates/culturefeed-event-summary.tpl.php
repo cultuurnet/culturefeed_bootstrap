@@ -73,10 +73,10 @@
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar fa-fw"></i></div>
         <div class="col-xs-10">
-          <?php if (strlen($when) < 120) : ?> 
+          <?php if (strlen($when) < 75) : ?> 
             <?php print $when; ?>
           <?php else : ?> 
-            <?php print substr($when, 0, 120) . '... ' . culturefeed_search_detail_l('event', $cdbid, $title, t('more dates'), array('html' => TRUE, 'attributes' => array('class' => array('cf-moredates'), 'id' => 'cf-moredates_' . $cdbid))); ?>
+            <?php print substr($when, 0, 75) . '... '; ?>
           <?php endif; ?>
         </div>
       </div>
