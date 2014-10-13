@@ -2141,3 +2141,19 @@ function culturefeed_bootstrap_culturefeed_search_sort_links(&$variables) {
   return $output;
 
 }
+
+/*
+ * Implements hook_js_alter().
+ */
+function culturefeed_bootstrap_js_alter(&$javascript) {
+
+  $vertical_tabs_file = drupal_get_path('theme', 'bootstrap') . '/js/misc/_vertical-tabs.js';
+
+  // Add our own verstion of tabs.
+  if (isset($javascript[$vertical_tabs_file])) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_vertical-tabs.js';
+    $javascript[$file] = $javascript[$vertical_tabs_file];
+    $javascript[$file]['data'] = $file;
+  }
+
+}
