@@ -2255,3 +2255,20 @@ function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
   return l($text, $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-block')));
 
 }
+
+/*
+ * Implements hook_js_alter().
+ */
+function culturefeed_bootstrap_js_alter(&$javascript) {
+
+  $vertical_tabs_file = drupal_get_path('theme', 'bootstrap') . '/js/misc/_vertical-tabs.js';
+
+  // Add our own verstion of tabs.
+  if (isset($javascript[$vertical_tabs_file])) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_vertical-tabs.js';
+    $javascript[$file] = $javascript[$vertical_tabs_file];
+    $javascript[$file]['data'] = $file;
+  }
+
+}
+
