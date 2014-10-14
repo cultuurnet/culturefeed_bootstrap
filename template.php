@@ -2153,6 +2153,7 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
   if (isset($javascript[$vertical_tabs_file])) {
     $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_vertical-tabs.js';
     $javascript[$file] = $javascript[$vertical_tabs_file];
+    $javascript[$file]['weight']++;
     $javascript[$file]['data'] = $file;
   }
 
@@ -2161,6 +2162,7 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
   if (isset($javascript[$field_group_file])) {
     $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_field_group.js';
     $javascript[$file] = $javascript[$field_group_file];
+    $javascript[$file]['weight']++;
     $javascript[$file]['data'] = $file;
   }
 
