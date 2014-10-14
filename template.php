@@ -2270,5 +2270,13 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
     $javascript[$file]['data'] = $file;
   }
 
+  // Add our own verstion of fieldgroup.
+  $field_group_file = drupal_get_path('module', 'field_group') . '/field_group.js';
+  if (isset($javascript[$field_group_file])) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_field_group.js';
+    $javascript[$file] = $javascript[$field_group_file];
+    $javascript[$file]['data'] = $file;
+  }
+
 }
 
