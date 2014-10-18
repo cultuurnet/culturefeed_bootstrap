@@ -30,7 +30,8 @@
 
 <ul class="list-unstyled">
   <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-thumbs-up"></i> <?php print $activities_total_15 ?></span> <?php print t('Recommended activities'); ?><hr class="small"></li>
-  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-book"></i> <?php print $books_total_15 ?></span> <?php print t('Recommended books'); ?><hr class="small"></li>
-  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-rss"></i> <?php print $pages_total_18 ?></span> <?php print t('Pages I follow'); ?><hr class="small"></li>
-  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-comments"></i> <?php print $total_14 ?></span> <?php print t('Comments'); ?></li>
+  <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-comments"></i> <?php print $total_14 ?></span> <?php print t('Comments'); ?></li>  
+  <?php if (module_exists('culturefeed_pages')): ?>
+    <li><span class="pull-right"><i class="fa fa-fw fa-lg fa-rss"></i> <?php print $pages_total_18 ?></span> <?php print t('Pages I follow'); ?><hr class="small"></li>'
+  <?php endif; ?>
 </ul>
