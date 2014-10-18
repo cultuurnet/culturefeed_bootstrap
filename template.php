@@ -759,7 +759,7 @@ function culturefeed_bootstrap_culturefeed_search_pager_summary($variables) {
 
   $pager_summary = format_plural($result->getTotalCount(), '@range from @count result', '@range from @count results', $args);
 
-  return '<hr /><p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
+  return '<p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
 
 }
 
@@ -2084,9 +2084,14 @@ function culturefeed_bootstrap_file_managed_file($variables) {
  * Implements hook_preprocess_region().
  */
 function culturefeed_bootstrap_preprocess_region(&$variables) {
-  $variables['pagetype'] = '';
-  if (arg(1) == 'search') {
-    $variables['pagetype'] = 'agenda-search';
+  $variables['pagetype'] = ''; 
+  if (arg(0) == 'agenda') {
+    if (arg(1) == 'search') {
+      $variables['pagetype'] = 'agenda-search';
+    }
+    elseif (arg(1) == 'pages') {
+      $variables['pagetype'] = 'agenda-pages';
+    }
   }
 }
 
