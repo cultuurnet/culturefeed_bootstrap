@@ -759,7 +759,7 @@ function culturefeed_bootstrap_culturefeed_search_pager_summary($variables) {
 
   $pager_summary = format_plural($result->getTotalCount(), '@range from @count result', '@range from @count results', $args);
 
-  return '<hr /><p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
+  return '<p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
 
 }
 
