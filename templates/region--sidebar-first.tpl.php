@@ -1,7 +1,7 @@
 <?php if ($content): ?>
   <div class="region region-sidebar-first" id="facet-wrapper">
 
-    <?php if ($pagetype == 'agenda-search') : ?>
+    <?php if ($pagetype == 'agenda-search' || $pagetype == 'agenda-pages') : ?>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row visible-xs visible-sm toggle-facet">

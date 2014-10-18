@@ -2084,9 +2084,14 @@ function culturefeed_bootstrap_file_managed_file($variables) {
  * Implements hook_preprocess_region().
  */
 function culturefeed_bootstrap_preprocess_region(&$variables) {
-  $variables['pagetype'] = '';
-  if (arg(1) == 'search') {
-    $variables['pagetype'] = 'agenda-search';
+  $variables['pagetype'] = ''; 
+  if (arg(0) == 'agenda') {
+    if (arg(1) == 'search') {
+      $variables['pagetype'] = 'agenda-search';
+    }
+    elseif (arg(1) == 'pages') {
+      $variables['pagetype'] = 'agenda-pages';
+    }
   }
 }
 
