@@ -2096,6 +2096,21 @@ function culturefeed_bootstrap_preprocess_region(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_culturefeed_search_page().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_search_page(&$variables) {
+  $variables['sort_links'] = ''; 
+  if (arg(0) == 'agenda') {
+    if (arg(1) == 'search') {
+      $variables['sort_links'] = theme('culturefeed_search_sort_links', array('type' => 'activiteiten'));
+    }
+    elseif (arg(1) == 'pages') {
+      $variables['sort_links'] = theme('culturefeed_search_sort_links', array('type' => 'pages'));
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_page().
  */
 function culturefeed_bootstrap_preprocess_page(&$variables) {

@@ -17,12 +17,7 @@
   </div>
   <div class="col-sm-6 hidden-xs text-right">
     <?php print '<span class="cf-sort-label">' . t('Sort') . '</span>'; ?>
-    <?php if ($pagetype == 'agenda-search'): ?>
-      <?php print theme('culturefeed_search_sort_links', array('type' => 'activiteiten')); ?>
-    <?php endif; ?>
-    <?php if ($pagetype == 'agenda-pages') : ?>
-      <?php print theme('culturefeed_search_sort_links', array('type' => 'pages')); ?>
-    <?php endif; ?>
+    <?php print $variables['sort_links']; ?>
   </div>
 </div>
 
