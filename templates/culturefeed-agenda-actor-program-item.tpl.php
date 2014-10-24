@@ -40,10 +40,10 @@
           <i class="fa fa-calendar text-center"></i>
         </div>
         <div class="col-xs-10">
-          <?php if (strlen($when) < 120) : ?> 
+          <?php if (strlen($when) < 75) : ?> 
             <?php print $when; ?>
           <?php else : ?> 
-            <?php print substr($when, 0, 120) . '... ' . culturefeed_search_detail_l('event', $cdbid, $title, t('more dates'), array('html' => TRUE, 'attributes' => array('class' => array('cf-moredates'), 'id' => 'cf-moredates_' . $cdbid))); ?>
+            <?php print substr($when, 0, 75) . '... '; ?>
           <?php endif; ?>
         </div>
       </div>
