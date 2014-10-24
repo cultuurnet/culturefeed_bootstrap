@@ -26,11 +26,12 @@
               <?php if ($content['calendar']['type'] == 'timestamps'): ?>
                 <?php if (count($content['calendar']['timestamps']) > 0): ?>
                   <?php foreach ($content['calendar']['timestamps'] as $timestamp): ?>
+                    <?php $day = substr($timestamp['day'], 0, -1); ?>
                     <?php if (!is_array($timestamp['begintime'])): ?>
-                      <div><small><?php print '<span class="cf-day">' . substr($timestamp['day'], 0, -1) . '</span><strong>' . $timestamp['date'] . '</strong><small class="text-muted"> | </small>' . $timestamp['begintime']; ?></small></div>
+                      <div><small><?php print '<span class="cf-day">' . t($day) . '</span><strong>' . $timestamp['date'] . '</strong><small class="text-muted"> | </small>' . $timestamp['begintime']; ?></small></div>
                     <?php else: ?>
                       <?php $i=0; ?>
-                      <div><small><?php print '<span class="cf-day">' . substr($timestamp['day'], 0, -1) . '</span><strong>' . $timestamp['date'] . '</strong><small class="text-muted"> | </small>'; ?>
+                      <div><small><?php print '<span class="cf-day">' . t($day) . '</span><strong>' . $timestamp['date'] . '</strong><small class="text-muted"> | </small>'; ?>
                         <?php foreach ($timestamp['begintime'] as $begintime): ?>
                           <?php print $begintime; ?>
                           <?php if (++$i !== count($timestamp['begintime'])): ?>
