@@ -17,3 +17,7 @@ msgstr "Volledige agenda"
 #: culturefeed-agenda-actor-program-item.tpl.php:49
 msgid "more dates"
 msgstr "meer data"
+
+#: culturefeed-uitpas-promotion.tpl.php:32
+msgid "This promotion is out of stock"
+msgstr "Dit voordeel is niet meer in voorraad"
