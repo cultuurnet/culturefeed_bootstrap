@@ -2200,3 +2200,24 @@ function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter
   
   return $form;
 }
+
+/**
+ * Implements hook_culturefeed_ui_profile_box_dropdown_items_alter().
+ */
+
+function culturefeed_bootstrap_culturefeed_ui_profile_box_dropdown_items_alter(&$items, CultureFeed_User $cf_user) {
+
+  if (module_exists('culturefeed_uitpas')) {
+    unset($items['settings']);
+  
+    $items['my-uitpas'] = array(
+      'data' => 'UiTPAS',
+      'class' => 'my-uitpas',
+      'children' => array(
+        array('data' => l('Mijn voordelen', 'culturefeed/profile/uitpas/promotions'),),
+      ),
+      'weight' => 10,
+    );
+  }
+
+}
