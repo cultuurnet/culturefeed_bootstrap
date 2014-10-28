@@ -22,6 +22,9 @@
     if (strstr($link,'advantages')) {
       print '<i class="fa fa-gift fa-fw fa-lg"></i> <strong>' . $title . '</strong>';
       }  
+    elseif (strstr($link,'promotions')) {
+      print '<i class="fa fa-gift fa-fw fa-lg"></i> <strong>' . $title . '</strong>';
+      }
     elseif (strstr($link,'actions')) {
       print '<i class="fa fa-list fa-fw fa-lg"></i> <strong>' . $title . '</strong>';
       }   
