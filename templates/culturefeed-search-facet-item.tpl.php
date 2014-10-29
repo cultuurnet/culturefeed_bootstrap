@@ -23,7 +23,7 @@
   <div class="facet-label">
     <div class="row">
       <div class="col-md-8 col-sm-12 col-xs-9"><a href="<?php print $url; ?>"><?php print check_plain($label); ?></a></div>
-      <div class="col-md-4 hidden-sm col-xs-3 text-right text-muted"><small>(<?php print $count; ?>)</small></div>
+      <div class="col-md-4 hidden-sm col-xs-3 text-right text-muted"><small>(<?php print number_format($count, 0, ',', '.'); ?>)</small></div>
     </div>
   </div>
 <?php endif; ?>

@@ -1,5 +1,7 @@
 <div class="colleague-block user-list">
 
+  <p class="lead"><small><?php print $title; ?></small></p>
+
   <?php if (!empty($colleagues)): ?>
   <ul class="list-unstyled list-inline">
   <?php foreach ($colleagues as $colleague): ?>
@@ -17,14 +19,14 @@
   <?php endforeach; ?>
   </ul>
 
-  <?php else: ?>
-    <p class="text-muted"><small><?php print $nick; ?> <?php print t('is at the moment the only member of the page') . ' ' . $title ?>.</small></p>
-  <?php endif; ?>
+  <?php elseif ($is_member) : ?>
+    <p class="text-muted"><small><?php print t('You are the only member of') . ' ' . $title ?>.</small></p>
 
-  <?php if ($is_member): ?>
-  <p><small><?php print t('You are a member of') . ' ' . $title ?></small></p>
-  <?php else: ?>
-  <p><small><?php print t('Are you a colleague of') . ' ' . $nick . ' ' . t('at') . ' ' . $title ?>? <strong><a href="<?php print $become_member_url; ?>"><?php print t('Become a member'); ?></a></strong></small></p>
+  <?php elseif (!$is_member) : ?>
+    <p class="text-muted"><small><?php print $nick; ?> <?php print t('is at the moment the only member of the page') ?></small></p>
+    <p><small><?php print t('Are you a colleague of') . ' ' . $nick . ' ' . t('at') . ' ' . $title ?>? <strong><a href="<?php print $become_member_url; ?>"><?php print t('Become a member'); ?></a></strong></small></p>
   <?php endif; ?>
 
 </div>
+
+<hr class="small" />

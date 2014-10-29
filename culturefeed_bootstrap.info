@@ -1,6 +1,7 @@
 name = Culturefeed Bootstrap
 description = Bootstrap subtheme to use with the culturefeed module suite (https://github.com/cultuurnet/culturefeed)
-version = 0.1
+version = 3.0
+dependencies[] = culturefeed (3.3)
 core = 7.x
 base theme = bootstrap
 
@@ -12,6 +13,7 @@ regions[help]           = 'Help'
 regions[content]        = 'Content'
 regions[sidebar_first]  = 'Primary'
 regions[sidebar_second] = 'Secondary'
+regions[content_bottom] = 'Content Bottom'
 regions[footer]         = 'Footer'
 
 ; Stylesheets
@@ -32,7 +34,7 @@ less[vars][@font-family-sans-serif]   = "Helvetica Neue", Helvetica, Arial, sans
 less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
 
 ; Scripts
-scripts[] = 'js/custom.js'
+scripts[] = 'js/culturefeed-bootstrap.js'
 
 ;**********************************
 ; METHOD 1: Bootstrap Source Files

@@ -4,64 +4,62 @@
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="well"><div class="row">';
   $form['title'] = array(
-    '#prefix' => '<div class="col-sm-2">',
+    '#prefix' => '<div class="row"><div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
     '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
     '#suffix' => '</div>',
   );
-  $form['category']['#prefix'] = '<div class="col-sm-3">';
+  $form['category']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
   $form['category']['#weight'] = '1';
   $form['category']['#title'] = '';
   $form['category']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-5">';
+  $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
   $form['search']['#weight'] = '2';
   $form['search']['#title'] = '';
   $form['search']['#autocomplete_path'] = '';
   $form['search']['#suffix'] = '</div>';
-  $form['submit']['#prefix'] = '<div class="col-sm-2">';
   $form['submit']['#attributes']['class'][] = 'btn-block';
+  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
   $form['nearby']['#weight'] = '3';
-  $form['nearby']['#prefix'] = '<div class="visible-xs visible-sm"><div class="col-sm-10 col-sm-offset-2">';
-  $form['nearby']['#suffix'] = '</div></div>';
-  $form['#suffix'] = '</div></div>';
+  $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
+  $form['nearby']['#suffix'] = '</div></div></div>';
 }
 
 /**
  * Implements hook_{culturefeed_search_ui_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_block_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="well"><div class="row">';
+  $form['#prefix'] = '<div class="row">';
   $form['title'] = array(
-    '#prefix' => '<div class="col-sm-2">',
+    '#prefix' => '<div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
     '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
     '#suffix' => '</div>',
   );
-  $form['type']['#prefix'] = '<div class="col-sm-3">';
+  $form['type']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
   $form['type']['#weight'] = '1';
   $form['type']['#title'] = '';
   $form['type']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-5">';
+  $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
   $form['search']['#weight'] = '2';
   $form['search']['#title'] = '';
   $form['search']['#autocomplete_path'] = '';
   $form['search']['#suffix'] = '</div>';
-  $form['submit']['#prefix'] = '<div class="col-sm-2">';
+  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
   $form['submit']['#attributes']['class'][] = 'btn-block';
   $form['submit']['#weight'] = '3';
   $form['submit']['#suffix'] = '</div>';
-  $form['#suffix'] = '</div></div>';
+  $form['#suffix'] = '</div>';
 }
 
 /**
  * Implements hook_{culturefeed_search_ui_search_sortorder_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_alter(&$form, &$form_state) {
-  $form['#prefix'] = '<div class="pull-right text-right">';
+  $form['#prefix'] = '<div class="pull-right text-right hidden-xs">';
   $form['title'] = array(
     '#type' => 'item',
     '#markup' => '<a data-toggle="collapse" href="#sort-results">' . t('Sort') . ' <span class="caret"></span></a>',
@@ -83,6 +81,8 @@ function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
     $search = array('ma', 'di', 'woe', 'do', 'vrij', 'za', 'zo');
     $replace = array('<br /><span class="' . $classname . '">ma</span>', '<br /><span class="' . $classname . '">di</span>', '<br /><span class="' . $classname . '">wo</span>', '<br /><span class="' . $classname . '">do</span>', '<br /><span class="' . $classname . '">vr</span>', '<br /><span class="' . $classname . '">za</span>', '<br /><span class="' . $classname . '">zo</span>', );
     $calsum = str_replace($search, $replace, $calsum);
+    $calsum = str_replace('om', '<span class="text-muted">|</span>', $calsum);
+    $calsum = str_replace(',', '', $calsum);
     // Remove first break
     if (strpos($calsum, '<br />') == 0) {
       $calsum = substr($calsum, 6);;
@@ -213,7 +213,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   if (isset($variables['ticket_buttons']) && !empty($variables['ticket_buttons'])) {
     $buttons = $variables['ticket_buttons'];
     foreach ($buttons as $button) {
-      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link'), 'html' => TRUE));
+      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
   }
@@ -231,6 +231,13 @@ function culturefeed_bootstrap_preprocess_culturefeed_event(&$variables) {
  * Implements hook_preprocess_culturefeed_production().
  */
 function culturefeed_bootstrap_preprocess_culturefeed_production(&$variables) {
+  _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
+}
+
+/**
+ * Implements hook_preprocess_culturefeed_actor().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_actor(&$variables) {
   _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
 }
 
@@ -329,7 +336,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
     // Address
   $form['street'] = array(
-    '#prefix' => '<div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#contact">' . ' ' . t('Contact') . '</a></h4></div><div id="contact" class="panel-collapse collapse"><div class="panel-body">',
+    '#prefix' => '<div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#contact">' . ' ' . t('Address') . '</a></h4></div><div id="contact" class="panel-collapse collapse in"><div class="panel-body">',
     '#suffix' => '</li>',
     '#type' => 'textfield',
     '#title' => t('Street and number'),
@@ -752,7 +759,7 @@ function culturefeed_bootstrap_culturefeed_search_pager_summary($variables) {
 
   $pager_summary = format_plural($result->getTotalCount(), '@range from @count result', '@range from @count results', $args);
 
-  return '<hr /><p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
+  return '<p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
 
 }
 
@@ -1151,13 +1158,14 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
   $form['customizeLayout']['image'] = array(
     '#type' => 'managed_file',
     '#title' => t('Image or Logo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png') . ' (max. ' . format_size(CULTUREFEED_IMAGES_MAX_SIZE) . ')',
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 21,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1172,13 +1180,14 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png') . ' (max. ' . format_size(CULTUREFEED_IMAGES_MAX_SIZE) . ')',
     '#size' => 26,
     '#default_value' => '',
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1421,12 +1430,13 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   $form['customizeLayout']['image'] = array(
     '#type' => 'managed_file',
     '#title' => t('Image or Logo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png') . ' (max. ' . format_size(CULTUREFEED_IMAGES_MAX_SIZE) . ')',
     '#size' => 26,
     '#weight' => 21,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1451,12 +1461,13 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
   $form['customizeLayout']['cover'] = array(
     '#type' => 'managed_file',
     '#title' => t('Cover Photo'),
-    '#description' => t('Allowed extensions: jpg, jpeg, gif or png'),
+    '#description' => t('Allowed extensions: jpg, jpeg, gif or png') . ' (max. ' . format_size(CULTUREFEED_IMAGES_MAX_SIZE) . ')',
     '#size' => 26,
     '#weight' => 23,
     '#process' => array('file_managed_file_process', 'culturefeed_image_file_process'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_size' => array(CULTUREFEED_IMAGES_MAX_SIZE),
     ),
     '#upload_location' => 'public://pages',
   );
@@ -1803,13 +1814,15 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_only_facet_form_a
  */
 function culturefeed_bootstrap_form_culturefeed_search_ui_proximity_distance_form_alter(&$form, &$form_state) {
 
-  $form['distance']['#prefix'] = '<div class="row"><div class="col-xs-5 no-gutter">';
+  $form['distance']['#prefix'] = '<div class="row"><div class="col-lg-6">';
   $form['distance']['#title'] = '';
   $form['distance']['#suffix'] = '</div>';
 
-  $form['submit']['#prefix'] = '<div class="col-xs-7">';
+  $form['submit']['#prefix'] = '<div class="col-lg-6">';
   $form['submit']['#attributes'] = array('class' => array('btn-link'));
   $form['submit']['#suffix'] = '</div></div><hr class="small" />';
+
+  $form['new_search']['#markup'] = '<a data-toggle="collapse" href="#culturefeed-search-ui-city-facet-form" class="collapsed">' . t('Choose another location') . ' <i class="fa"></i></a>';
 
 }
 
@@ -1822,6 +1835,21 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['date_range']['#prefix'] = '<div class="input-group">';
   $form['date_range']['#title'] = '';
+
+  $form['submit']['#prefix'] = '<span class="input-group-btn">';
+  $form['submit']['#suffix'] = '</span></div>';
+
+}
+
+/**
+ * Theme the culturefeed_search_ui_city_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(&$form, &$form_state) {
+
+  $form['#attributes']['class'][] = '';
+
+  $form['location']['#prefix'] = '<div class="input-group">';
+  $form['location']['#title'] = '';
 
   $form['submit']['#prefix'] = '<span class="input-group-btn">';
   $form['submit']['#suffix'] = '</span></div>';
@@ -2050,4 +2078,170 @@ function culturefeed_bootstrap_file_managed_file($variables) {
   $output .= '</div></div>';
 
   return $output;
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function culturefeed_bootstrap_preprocess_region(&$variables) {
+  $variables['pagetype'] = '';
+  if (arg(0) == 'agenda') {
+    if (arg(1) == 'search') {
+      $variables['pagetype'] = 'agenda-search';
+    }
+    elseif (arg(1) == 'pages') {
+      $variables['pagetype'] = 'agenda-pages';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_culturefeed_search_page().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_search_page(&$variables) {
+  $variables['sort_links'] = '';
+  if (arg(0) == 'agenda') {
+    if (arg(1) == 'search') {
+      $variables['sort_links'] = theme('culturefeed_search_sort_links', array('type' => 'activiteiten'));
+    }
+    elseif (arg(1) == 'pages') {
+      $variables['sort_links'] = theme('culturefeed_search_sort_links', array('type' => 'pages'));
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_page().
+ */
+function culturefeed_bootstrap_preprocess_page(&$variables) {
+  if (module_exists('culturefeed_ui')) {
+    if (variable_get('culturefeed_ui_cookie_bool')) {
+      drupal_add_js(drupal_get_path('module', 'culturefeed_ui') . '/js/jquery.cookie.js');
+      drupal_add_js(drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/cookie_message.js');
+      drupal_add_js(array('culturefeed_ui' => array('path' => variable_get('culturefeed_ui_cookie_path'))), 'setting');
+    }
+  }
+
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['content_column_class'] = ' class="col-md-6"';
+  }
+  elseif (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
+    $variables['content_column_class'] = ' class="col-md-9"';
+  }
+  else {
+    $variables['content_column_class'] = ' class="col-md-12"';
+  }
+}
+
+/**
+ * Overrides theme_culturefeed_search_sort_links().
+ */
+function culturefeed_bootstrap_culturefeed_search_sort_links(&$variables) {
+
+  if (empty($variables['links'])) {
+    return '';
+  }
+
+  $output = '<div class="btn-group pull-right">';
+  $output .= '<a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#">';
+  foreach ($variables['links'] as $link) {
+    if (isset($link['options']['attributes']['class'][0])) {
+      $output .= $link['text'] . ' ';
+    }
+  }
+  $output .= ' <span class="caret"></span></a>';
+  $output .= '<ul class="cf-sort-links dropdown-menu text-left">';
+  foreach ($variables['links'] as $link) {
+    $output .= '<li>' . theme('link', $link) . '</li>';
+  }
+  $output .= '</ul>';
+  $output .= '</div>';
+
+  return $output;
+
+}
+
+function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
+  // Promotions.
+  $form['promotions_link'] = array(
+    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
+    '#suffix' => '</ul></div>',
+  );
+
+  $form['promotions_link']['promotions'] = array(
+    '#markup' => '<li class="active lead"><a href="/promotions">' . t('Promotions') . '</a></li>',
+  );
+
+  $form['promotions_link']['advantages'] = array(
+    '#markup' => '<li class="lead"><a href="/advantages">' . t('Welcome Advantages') . '</a></li>',
+  );
+
+  $form['profile_promotions_link'] = array(
+    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
+    '#suffix' => '</ul></div>',
+  );
+}
+
+function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
+  // Profile promotions.
+  $form['profile_promotions_link'] = array(
+    '#prefix' => '<div id="profile_promotions_link"><ul class="nav nav-tabs">',
+    '#suffix' => '</ul></div>',
+  );
+
+  $form['profile_promotions_link']['promotions'] = array(
+    '#markup' => '<li class="active lead"><a href="/culturefeed/profile/uitpas/promotions">' . t('Promotions') . '</a></li>',
+  );
+
+  $form['profile_promotions_link']['advantages'] = array(
+    '#markup' => '<li class="lead"><a href="/culturefeed/profile/uitpas/advantages">' . t('Welcome Advantages') . '</a></li>',
+  );
+
+  return $form;
+}
+
+/**
+ * Implements hook_culturefeed_ui_profile_box_dropdown_items_alter().
+ */
+
+function culturefeed_bootstrap_culturefeed_ui_profile_box_dropdown_items_alter(&$items, CultureFeed_User $cf_user) {
+
+  if (module_exists('culturefeed_uitpas')) {
+    unset($items['settings']);
+
+    $items['my-uitpas'] = array(
+      'data' => 'UiTPAS',
+      'class' => 'my-uitpas',
+      'children' => array(
+        array('data' => l('Mijn voordelen', 'culturefeed/profile/uitpas/promotions'),),
+      ),
+      'weight' => 10,
+    );
+  }
+
+}
+
+function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
+  if ($item['page_callback'] == 'culturefeed_uitpas_promotion_details_get') {
+    $promotion_placeholder[] = array(
+      'title' => t('Promotions'),
+      'href' => $GLOBALS['base_url'] . '/promotions',
+      'link_path' => '',
+      'localized_options' => array(),
+      'type' => 0,
+    );
+    array_splice($active_trail, 1, 0, $promotion_placeholder);
+  }
+
+  if ($item['page_callback'] == 'culturefeed_uitpas_advantage_details_get') {
+    $advantage_placeholder[] = array(
+      'title' => t('Welcome advantages'),
+      'href' => $GLOBALS['base_url'] . '/advantages',
+      'link_path' => '',
+      'localized_options' => array(),
+      'type' => 0,
+    );
+    array_splice($active_trail, 1, 0, $advantage_placeholder);
+  }
 }

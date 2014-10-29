@@ -113,22 +113,23 @@
   </div>
 </header>
 
-<div class="main-container container">
-
-  <header role="banner" id="page-header">
+<header role="banner" id="page-header">
+  <div class="container">
     <?php if (!empty($site_slogan)): ?>
       <p class="lead"><?php print $site_slogan; ?></p>
     <?php endif; ?>
-
     <?php print render($page['header']); ?>
-  </header> <!-- /#page-header -->
+  </div>
+</header> <!-- /#page-header -->
+
+<div class="main-container container">
 
   <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
 
   <div class="row">
 
     <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="col-sm-3" role="complementary">
+      <aside class="col-md-3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
@@ -157,13 +158,24 @@
     </section>
 
     <?php if (!empty($page['sidebar_second'])): ?>
-      <aside class="col-sm-3" role="complementary">
+      <aside class="col-md-3" role="complementary">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
 
   </div>
 </div>
-<footer class="footer container">
-  <?php print render($page['footer']); ?>
-</footer>
+
+<?php if (!empty($page['content_bottom'])): ?>
+  <div class="container">
+    <?php print render($page['content_bottom']); ?>
+  </div>
+<?php endif; ?>
+
+<?php if (!empty($page['footer'])): ?>
+  <footer class="footer">
+    <div class="container">
+      <?php print render($page['footer']); ?>
+    </div>
+  </footer>
+<?php endif; ?>

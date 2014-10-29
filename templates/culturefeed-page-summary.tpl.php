@@ -5,10 +5,6 @@
  */
 ?>
 
-<div class="clearfix"></div>
-
-<hr />  
-
 <div class="media">
 
   <?php if (!empty($image)): ?>
@@ -38,3 +34,5 @@
   </div>
 
 </div>
+
+<hr />
