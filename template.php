@@ -2084,7 +2084,7 @@ function culturefeed_bootstrap_file_managed_file($variables) {
  * Implements hook_preprocess_region().
  */
 function culturefeed_bootstrap_preprocess_region(&$variables) {
-  $variables['pagetype'] = ''; 
+  $variables['pagetype'] = '';
   if (arg(0) == 'agenda') {
     if (arg(1) == 'search') {
       $variables['pagetype'] = 'agenda-search';
@@ -2099,7 +2099,7 @@ function culturefeed_bootstrap_preprocess_region(&$variables) {
  * Implements hook_preprocess_culturefeed_search_page().
  */
 function culturefeed_bootstrap_preprocess_culturefeed_search_page(&$variables) {
-  $variables['sort_links'] = ''; 
+  $variables['sort_links'] = '';
   if (arg(0) == 'agenda') {
     if (arg(1) == 'search') {
       $variables['sort_links'] = theme('culturefeed_search_sort_links', array('type' => 'activiteiten'));
@@ -2168,36 +2168,36 @@ function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_al
     '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
     '#suffix' => '</ul></div>',
   );
-  
+
   $form['promotions_link']['promotions'] = array(
     '#markup' => '<li class="active lead"><a href="/promotions">' . t('Promotions') . '</a></li>',
   );
-  
+
   $form['promotions_link']['advantages'] = array(
     '#markup' => '<li class="lead"><a href="/advantages">' . t('Welcome Advantages') . '</a></li>',
   );
-  
+
   $form['profile_promotions_link'] = array(
     '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
     '#suffix' => '</ul></div>',
   );
 }
- 
-function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) { 
+
+function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
   // Profile promotions.
   $form['profile_promotions_link'] = array(
     '#prefix' => '<div id="profile_promotions_link"><ul class="nav nav-tabs">',
     '#suffix' => '</ul></div>',
   );
-  
+
   $form['profile_promotions_link']['promotions'] = array(
     '#markup' => '<li class="active lead"><a href="/culturefeed/profile/uitpas/promotions">' . t('Promotions') . '</a></li>',
   );
-  
+
   $form['profile_promotions_link']['advantages'] = array(
     '#markup' => '<li class="lead"><a href="/culturefeed/profile/uitpas/advantages">' . t('Welcome Advantages') . '</a></li>',
   );
-  
+
   return $form;
 }
 
@@ -2209,7 +2209,7 @@ function culturefeed_bootstrap_culturefeed_ui_profile_box_dropdown_items_alter(&
 
   if (module_exists('culturefeed_uitpas')) {
     unset($items['settings']);
-  
+
     $items['my-uitpas'] = array(
       'data' => 'UiTPAS',
       'class' => 'my-uitpas',
@@ -2220,4 +2220,28 @@ function culturefeed_bootstrap_culturefeed_ui_profile_box_dropdown_items_alter(&
     );
   }
 
+}
+
+function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
+  if ($item['page_callback'] == 'culturefeed_uitpas_promotion_details_get') {
+    $promotion_placeholder[] = array(
+      'title' => t('Promotions'),
+      'href' => $GLOBALS['base_url'] . '/promotions',
+      'link_path' => '',
+      'localized_options' => array(),
+      'type' => 0,
+    );
+    array_splice($active_trail, 1, 0, $promotion_placeholder);
+  }
+
+  if ($item['page_callback'] == 'culturefeed_uitpas_advantage_details_get') {
+    $advantage_placeholder[] = array(
+      'title' => t('Welcome advantages'),
+      'href' => $GLOBALS['base_url'] . '/advantages',
+      'link_path' => '',
+      'localized_options' => array(),
+      'type' => 0,
+    );
+    array_splice($active_trail, 1, 0, $advantage_placeholder);
+  }
 }
