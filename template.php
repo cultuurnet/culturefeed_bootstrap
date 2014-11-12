@@ -4,28 +4,76 @@
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
+
+  // Calculate width for input elements.
+  $space_free = 8;
+  if (isset($form['when'])) {
+
+    $when_width = 2;
+    $space_free -= 2;
+    if (isset($form['category'])) {
+      $category_width = 2;
+      $space_free -= 2;
+    }
+
+  }
+  elseif (isset($form['category'])) {
+    $category_width = 3;
+    $space_free -= 3;
+  }
+
+  if (isset($form['where']) && isset($form['search'])) {
+    $where_width = $search_width = $space_free / 2;
+  }
+  elseif (isset($form['where'])) {
+    $where_width = $space_free;
+  }
+  elseif (isset($form['search'])) {
+    $search_width = $space_free;
+  }
+
   $form['title'] = array(
     '#prefix' => '<div class="row"><div class="col-sm-2 hidden-xs">',
     '#type' => 'item',
     '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
     '#suffix' => '</div>',
+    '#weight' => -20,
   );
-  $form['category']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
-  $form['category']['#weight'] = '1';
-  $form['category']['#title'] = '';
-  $form['category']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
-  $form['search']['#weight'] = '2';
-  $form['search']['#title'] = '';
-  $form['search']['#autocomplete_path'] = '';
-  $form['search']['#suffix'] = '</div>';
-  $form['submit']['#attributes']['class'][] = 'btn-block';
-  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
-  $form['submit']['#weight'] = '3';
-  $form['submit']['#suffix'] = '</div>';
-  $form['nearby']['#weight'] = '3';
+
+  // Delete all titles
+  foreach (element_children($form) as $key) {
+    unset($form[$key]['#title']);
+  }
+
+  if (isset($form['when'])) {
+    $form['when']['#prefix'] = '<div class="col-sm-' . $when_width . ' hidden-xs">';
+    $form['when']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['category'])) {
+    $form['category']['#prefix'] = '<div class="col-sm-' . $category_width .' hidden-xs">';
+    $form['category']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['search'])) {
+    $form['search']['#prefix'] = '<div class="col-sm-' . $search_width .' col-xs-8">';
+    $form['search']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['where'])) {
+    $form['where']['#prefix'] = '<div class="col-sm-' . $where_width .' col-xs-8">';
+    $form['where']['#suffix'] = '</div>';
+  }
+
   $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
   $form['nearby']['#suffix'] = '</div></div></div>';
+  $form['nearby']['#weight'] = 40;
+
+  // Style button.
+  $form['submit']['#attributes']['class'][] = 'btn-block';
+  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
+  $form['submit']['#suffix'] = '</div>';
+
 }
 
 /**
