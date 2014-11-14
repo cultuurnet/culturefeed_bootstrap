@@ -181,6 +181,7 @@
     <?php if (!empty($videos)): ?>
       <?php foreach ($videos as $video): ?>
         <?php print $video; ?>
+        <br />
       <?php endforeach; ?>    
       <hr class="small" />
     <?php endif; ?>
