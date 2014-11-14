@@ -9,8 +9,14 @@
 
   <div class="col-sm-8">
 
+    <?php if (isset($forkids)): ?>
+      <span class="forkids pull-right"></span>
+    <?php endif; ?>
+
     <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
-      <p class="lead pull-right"><span class="label label-success"> <?php print $agefrom; ?> +</span></p>
+      <?php if ($agefrom > 0): ?>
+        <span class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></span>
+      <?php endif; ?>
     <?php endif; ?>
 
     <?php if (!empty($themes)): ?>
