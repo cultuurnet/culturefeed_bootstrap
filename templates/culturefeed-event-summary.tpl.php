@@ -25,10 +25,16 @@
 
   <div class="col-xs-9 col-lg-10">
 
-    <h2 class="media-heading">
+    <?php if (isset($forkids)): ?>
+      <span class="forkids pull-right"></span>
       <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
-        <small><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></small>
+        <?php if ($agefrom > 0): ?>
+          <small class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></small>
+        <?php endif; ?>      
       <?php endif; ?>
+    <?php endif; ?>
+
+    <h2 class="media-heading">
       <a href="<?php print $url ?>" id="cf-title_<?php print $cdbid ?>">      
         <?php print $title; ?>
       </a>
