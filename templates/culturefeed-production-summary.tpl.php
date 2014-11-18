@@ -91,7 +91,7 @@
     </p>
 
     <?php if (!empty($tickets)): ?>
-      <p class="hidden-xs"><?php print culturefeed_search_detail_l('production', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-warning'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
+      <p class="hidden-xs"><?php print culturefeed_search_detail_l('production', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
     <?php elseif ($relations > 1): ?>
       <p class="hidden-xs"><?php print culturefeed_search_detail_l('production', $cdbid, $title, t('Show program schedule') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
     <?php else: ?>
