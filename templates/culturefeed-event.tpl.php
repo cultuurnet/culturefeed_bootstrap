@@ -162,14 +162,13 @@
 
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
-      <img src="<?php print $main_picture; ?>?width=360&crop=auto" class="img-responsive" />
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
       <?php if(!empty($pictures)): ?>
-      <?php $size = 360 / count($pictures); ?>
         <br />
         <div class="row">
           <?php foreach ($pictures as $picture): ?>
             <div class="col-xs-6">
-              <?php print '<img src="' . $picture . '?width=' . $size . '&height=' . $size . '&crop=auto" class="img-responsive"'; ?> />
+              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive"'; ?> />
             </div>
           <?php endforeach; ?>
         </div>
