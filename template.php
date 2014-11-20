@@ -24,6 +24,11 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
 
   if (isset($form['where']) && isset($form['search'])) {
     $where_width = $search_width = $space_free / 2;
+    // If width was a double, correct it.
+    if ($space_free % 2) {
+      $where_width -= 0.5;
+      $search_width += 0.5;
+    }
   }
   elseif (isset($form['where'])) {
     $where_width = $space_free;
