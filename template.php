@@ -6,7 +6,7 @@
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
 
   // Calculate width for input elements.
-  $space_free = 8;
+  $space_free = 10;
   if (isset($form['when'])) {
 
     $when_width = 2;
@@ -38,45 +38,40 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   }
 
   $form['title'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-2 hidden-xs">',
+    '#prefix' => '<div class="row">',
     '#type' => 'item',
-    '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
-    '#suffix' => '</div>',
+    '#markup' => '',
+    '#suffix' => '',
     '#weight' => -20,
   );
 
-  // Delete all titles
-  foreach (element_children($form) as $key) {
-    unset($form[$key]['#title']);
-  }
-
   if (isset($form['when'])) {
-    $form['when']['#prefix'] = '<div class="col-sm-' . $when_width . ' hidden-xs">';
+    $form['when']['#prefix'] = '<div class="col-sm-' . $when_width . '">';
     $form['when']['#suffix'] = '</div>';
   }
 
   if (isset($form['category'])) {
-    $form['category']['#prefix'] = '<div class="col-sm-' . $category_width .' hidden-xs">';
+    $form['category']['#prefix'] = '<div class="col-sm-' . $category_width .'">';
     $form['category']['#suffix'] = '</div>';
   }
 
   if (isset($form['search'])) {
-    $form['search']['#prefix'] = '<div class="col-sm-' . $search_width .' col-xs-8">';
+    $form['search']['#prefix'] = '<div class="col-sm-' . $search_width .'">';
     $form['search']['#suffix'] = '</div>';
   }
 
   if (isset($form['where'])) {
-    $form['where']['#prefix'] = '<div class="col-sm-' . $where_width .' col-xs-8">';
+    $form['where']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
     $form['where']['#suffix'] = '</div>';
   }
 
-  $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
+  $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-12">';
   $form['nearby']['#suffix'] = '</div></div></div>';
   $form['nearby']['#weight'] = 40;
 
   // Style button.
-  $form['submit']['#attributes']['class'][] = 'btn-block';
-  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
+  $form['submit']['#attributes']['class'][] = 'btn-primary btn-block';
+  $form['submit']['#prefix'] = '<div class="col-sm-2">';
   $form['submit']['#suffix'] = '</div>';
 
 }
