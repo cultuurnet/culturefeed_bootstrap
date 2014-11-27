@@ -5,26 +5,28 @@
  */
 ?>
 
-<div class="accordion" id="accordion-saved-searches">
-  <div class="accordion-group">
-    <div class="accordion-heading block-title">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-saved-searches" href="#saved-searches">
-        <?php print t('@count saved searches', array('@count' => count($items))); ?>
-      </a>
-    </div>
-   <div id="saved-searches" class="accordion-body collapse in">
-     <div class="accordion-inner">
+<div class="panel-group" role="tablist">
+  <div class="panel panel-default">
 
-       <ul class="list-unstyled">
+    <div class="panel-heading" role="tab" id="savedSearchesHeading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSavedSearches" aria-expanded="true" aria-controls="collapseSavedSearches">
+          <?php print t('@count saved searches', array('@count' => count($items))); ?>
+        </a>
+      </h4>
+    </div>
+
+
+    <div id="collapseSavedSearches" class="panel-collapse collapse" role="tabpanel" aria-labelledby="savedSearchesHeading">
+      <ul class="list-group">
         <?php foreach ($items as $item): ?>
-        <li>
+        <li class="list-group-item">
           <a href="<?php print $item['search_url']; ?>"><?php print $item['title']; ?></a>
-          <span class="edit"><?php print l(t('Manage'), 'culturefeed/searches'); ?></span>
+          <a href="<?php print url('culturefeed/searches'); ?>" title="<?php print t('Edit'); ?>"><i class="fa fa-pencil-square-o"></i></a>
         </li>
         <?php endforeach; ?>
-       </ul>
-
-      </div>
-   </div>
+      </ul>
+    </div>
   </div>
+
 </div>
