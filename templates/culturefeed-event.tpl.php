@@ -8,7 +8,7 @@
 <div class="row">
 
   <div class="col-sm-8">
-  
+
     <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
       <p class="lead pull-right"><span class="label label-success"> <?php print $agefrom; ?> +</span></p>
     <?php endif; ?>
@@ -16,7 +16,7 @@
     <?php if (!empty($themes)): ?>
       <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes); ?></p>
     <?php endif; ?>
-    
+
     <p>
       <?php print $shortdescription; ?>
       <?php if (!empty($longdescription)): ?>
@@ -24,11 +24,11 @@
         <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
       <?php endif; ?>
     </p>
-    
+
     <table class="table table-condended">
       <tbody>
 
-      <?php if (!empty($performers)): ?>     
+      <?php if (!empty($performers)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('With'); ?></strong><i class="fa fa-users hidden-md hidden-lg"></i></td>
       <td><?php print $performers; ?></td></tr>
       <?php endif; ?>
@@ -70,12 +70,12 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($when)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
-      <td class="cf-when scroll scroll-150"><?php print $when; ?></td></tr>
+      <td class="cf-when scroll scroll-150"><?php print $when; ?><?php print $personal_calendar['button_content']; ?></td></tr>
       <?php endif; ?>
-    
+
       <?php if ($organiser): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Organization'); ?></strong><i class="fa fa-building-o hidden-md hidden-lg"></i></td>
       <td>
@@ -86,7 +86,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($price)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Price'); ?></strong><i class="fa fa-eur hidden-md hidden-lg"></i></td>
       <td>
@@ -96,7 +96,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($reservation) || !empty($tickets)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Reservations'); ?></strong><i class="fa fa-ticket hidden-md hidden-lg"></i></td>
       <td>
@@ -114,7 +114,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($contact['mail']) || !empty($contact['phone']) || !empty($contact['fax'])) : ?>
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
         <td>
@@ -129,7 +129,7 @@
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($links)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Links'); ?></strong><i class="fa fa-external-link hidden-md hidden-lg"></i></td>
       <td><?php print implode('<br />', $links); ?></td></tr>
@@ -145,7 +145,7 @@
       <tr class="hidden-xs hidden-sm"><td><strong class="hidden-xs hidden-sm"><?php print t('Keywords'); ?></strong></td>
       <td><?php print $keywords; ?></td></tr>
       <?php endif; ?>
-    
+
       </tbody>
 
     </table>
@@ -158,14 +158,14 @@
       <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
       <?php foreach ($pictures as $picture): ?>
         <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-      <?php endforeach; ?> 
-      <hr class="small" />  
+      <?php endforeach; ?>
+      <hr class="small" />
     <?php endif; ?>
-    
+
     <?php if (!empty($videos)): ?>
       <?php foreach ($videos as $video): ?>
         <?php print $video; ?>
-      <?php endforeach; ?>    
+      <?php endforeach; ?>
       <hr class="small" />
     <?php endif; ?>
 
@@ -176,7 +176,7 @@
 <hr />
 
 <div class="row">
-  
+
   <div class="col-sm-12">
 
     <div class="col-xs-3">
@@ -188,7 +188,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $recommend_link; ?>       
+          <?php print $recommend_link; ?>
         </div>
       </div>
     </div>
@@ -202,7 +202,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $attend_link; ?>       
+          <?php print $attend_link; ?>
         </div>
       </div>
     </div>
@@ -216,7 +216,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $share_link; ?>       
+          <?php print $share_link; ?>
         </div>
       </div>
     </div>
@@ -230,10 +230,11 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $print_link; ?>       
+          <?php print $print_link; ?>
         </div>
       </div>
     </div>
+    <?php print $personal_calendar['button_footer']; ?>
 
   </div>
 
