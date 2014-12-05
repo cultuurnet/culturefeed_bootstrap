@@ -20,6 +20,8 @@ regions[footer]         = 'Footer'
 stylesheets[all][] =  less/style.less
 ; TEMP
 stylesheets[all][] =  css/bootstrap-switch.css
+stylesheets[all][] =  css/bootstrap-gallery.css
+stylesheets[all][] =  css/blueimp-gallery.min.css
 
 
 less[vars][@brand-primary]      = #428bca
@@ -35,6 +37,9 @@ less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
 
 ; Scripts
 scripts[] = 'js/culturefeed-bootstrap.js'
+scripts[] = 'js/jquery.blueimp-gallery.js'
+scripts[] = 'js/bootstrap-gallery.js'
+
 
 ;**********************************
 ; METHOD 1: Bootstrap Source Files
