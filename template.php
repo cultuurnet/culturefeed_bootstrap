@@ -687,6 +687,25 @@ function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_i
 }
 
 /**
+ * Theme the total activities profile box item.
+ */
+function culturefeed_bootstrap_culturefeed_calendar_total_activities_profile_box_item($variables) {
+
+  $icon = '<i class="fa fa-lg fa-calendar-o"></i>';
+  $icon_new = '<i class="fa fa-lg fa-calendar"></i>';
+  $total = $variables['total'];
+  $url = 'culturefeed/calendar';
+
+  if ($total > 0) {
+    return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">' . $total . '</span></small>', $url, array('html' => TRUE));
+  }
+  else {
+    return l($icon, $url, array('html' => TRUE));
+  }
+
+}
+
+/**
  * Form callback for the basic search form.
  */
 
