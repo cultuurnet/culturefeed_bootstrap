@@ -2247,6 +2247,26 @@ function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
 }
 
 /**
+ * Implements hook_form_{culturefeed_calendar_add_to_calendar_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_add_to_calendar_form_alter(&$form, $form_state) {
+
+  if (arg(4) != 'ajax') {
+    return;
+  }
+
+  if (!isset($form['#prefix'])) {
+    $form['#prefix'] = '';
+  }
+
+  // Add header, don't loose existing prefix.
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . t('Add to calendar') . '</h3></div><div class="modal-body">';
+  $form['#suffix'] = '</div>';
+
+
+}
+
+/**
  * Theme the saved searches CTA.
  */
 function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
