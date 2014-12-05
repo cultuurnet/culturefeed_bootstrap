@@ -9,8 +9,14 @@
 
   <div class="col-sm-8">
 
+    <?php if (isset($forkids)): ?>
+      <span class="forkids pull-right"></span>
+    <?php endif; ?>
+
     <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
-      <p class="lead pull-right"><span class="label label-success"> <?php print $agefrom; ?> +</span></p>
+      <?php if ($agefrom > 0): ?>
+        <span class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></span>
+      <?php endif; ?>
     <?php endif; ?>
 
     <?php if (!empty($themes)): ?>
@@ -155,16 +161,26 @@
   <div class="col-sm-4 hidden-xs">
 
     <?php if (!empty($main_picture)): ?>
-      <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
-      <?php foreach ($pictures as $picture): ?>
-        <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-      <?php endforeach; ?>
-      <hr class="small" />
+    <div class="hidden-xs">
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <?php if(!empty($pictures)): ?>
+        <br />
+        <div class="row">
+          <?php foreach ($pictures as $picture): ?>
+            <div class="col-xs-6">
+              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive"'; ?> />
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <br />
+    </div>
     <?php endif; ?>
 
     <?php if (!empty($videos)): ?>
       <?php foreach ($videos as $video): ?>
         <?php print $video; ?>
+        <br />
       <?php endforeach; ?>
       <hr class="small" />
     <?php endif; ?>
