@@ -1,4 +1,4 @@
-jQuery(function($) {
+(function ($) {
 
   // Init popovers
   $("a[data-toggle=popover]")
@@ -234,14 +234,14 @@ jQuery(function($) {
 
   }
 
-    /**
-     * Prevents the form from submitting if the suggestions popup is open
-     * and closes the suggestions popup when doing so.
-     */
+  /**
+   * Prevents the form from submitting if the suggestions popup is open
+   * and closes the suggestions popup when doing so.
+   */
    Drupal.autocompleteSubmit = function () {
      return $('.form-autocomplete > .dropdown').each(function () {
        this.owner.hidePopup();
      }).length == 0;
    };
 
-});
+})(jQuery);
