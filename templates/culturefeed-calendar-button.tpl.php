@@ -37,7 +37,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <a href="<?php print url($button['url']); ?>"class="use-ajax"><?php print $button['text']; ?></a>
+          <a href="<?php print url($button['path']); ?>"class="use-ajax"><?php print $button['text']; ?></a>
         </div>
       </div>
       <div>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-sm-9">
           <div>
-            <a href="<?php print url($button['url']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
+            <a href="<?php print url($button['path']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <a href="<?php print url($button['url']); ?>" data-toggle="modal" data-target="#modal-calendar" data-remote="<?php print url($button['url']); ?>/ajax"><?php print $button['text']; ?></a>
+          <a href="<?php print url($button['path']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
         </div>
       </div>
     </div>
