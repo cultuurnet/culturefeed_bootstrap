@@ -20,7 +20,7 @@
             <strong><?php print t('This activity is added to your OuTcalendar.'); ?></strong>
           </div>
           <div>
-            <a href="<?php print url($button['url']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
+            <a href="<?php print url($button['path']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
           </div>
         </div>
       </div>

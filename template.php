@@ -695,14 +695,29 @@ function culturefeed_bootstrap_culturefeed_calendar_total_activities_profile_box
   $icon_new = '<i class="fa fa-lg fa-calendar"></i>';
   $total = $variables['total'];
   $url = 'culturefeed/calendar';
+  $authenticated = DrupalCultureFeed::isCultureFeedUser();
 
-  if ($total > 0) {
-    return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">' . $total . '</span></small>', $url, array('html' => TRUE));
-  }
-  else {
+
+
+  if ($authenticated) {
     return l($icon, $url, array('html' => TRUE));
   }
-
+  else {
+    if ($total > 0) {
+        $hover = theme('culturefeed_calendar_button_hover');
+    $popover_options = array(
+      'class' => '',
+      'data-toggle' => 'popover',
+      'data-content' => $hover,
+      'data-placement' => 'bottom',
+      'data-html' => 'true'
+    );
+      return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">' . $total . '</span></small>', $url, array('attributes' => $popover_options, 'html' => TRUE));
+    }
+    else {
+      return;
+    }
+  }
 }
 
 /**
