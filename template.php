@@ -2279,8 +2279,15 @@ function culturefeed_bootstrap_form_culturefeed_calendar_add_to_calendar_form_al
   }
 
   // Add header, don't loose existing prefix.
-  $form['#prefix'] .= '<div class="modal-header"><h3>' . t('Add to calendar') . '</h3></div><div class="modal-body">';
-  $form['#suffix'] = '</div>';
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+
+  $form['info']['#prefix'] = '<div class="modal-body">';
+  $form['date']['#suffix'] = '</div>';
+
+  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#suffix'] = '</div>';
+
+  $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
 
 
 }

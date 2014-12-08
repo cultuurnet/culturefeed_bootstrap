@@ -176,6 +176,14 @@ jQuery(function($) {
       }
     };
 
+    /**
+     * Command to provide a bootstrap modal with drupal ajax support.
+     */
+    Drupal.ajax.prototype.commands.bootstrapModal = function (ajax, response, status) {
+      $('#bootstrap-modal-container').find('.modal-content').html($('<div></div>').html(response.data));
+      $('#bootstrap-modal-container').modal({show : true});
+    };
+
   }
 
   if (Drupal.ACDB) {

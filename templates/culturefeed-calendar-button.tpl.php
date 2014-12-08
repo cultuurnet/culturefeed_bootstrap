@@ -20,10 +20,7 @@
             <strong><?php print t('This activity is added to your OuTcalendar.'); ?></strong>
           </div>
           <div>
-            <a href="<?php print url($button['url']); ?>" data-toggle="modal" data-target="#modal-calendar" data-remote="<?php print url($button['url']); ?>/ajax"><?php print $button['text']; ?></a>
-          </div>
-          <div id="modal-calendar" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-body outer"></div>
+            <a href="<?php print url($button['url']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
           </div>
         </div>
       </div>
@@ -40,10 +37,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <a href="<?php print url($button['url']); ?>" data-toggle="modal" data-target="#modal-calendar" data-remote="<?php print url($button['url']); ?>/ajax"><?php print $button['text']; ?></a>
-        </div>
-        <div id="modal-calendar" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-body outer"></div>
+          <a href="<?php print url($button['url']); ?>"class="use-ajax"><?php print $button['text']; ?></a>
         </div>
       </div>
       <div>
@@ -62,10 +56,7 @@
         </div>
         <div class="col-sm-9">
           <div>
-            <a href="<?php print url($button['url']); ?>" data-toggle="modal" data-target="#modal-calendar" data-remote="<?php print url($button['url']); ?>/ajax"><?php print $button['text']; ?></a>
-          </div>
-          <div id="modal-calendar" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-body outer"></div>
+            <a href="<?php print url($button['url']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
           </div>
         </div>
       </div>
@@ -80,9 +71,6 @@
         </div>
         <div class="col-sm-9">
           <a href="<?php print url($button['url']); ?>" data-toggle="modal" data-target="#modal-calendar" data-remote="<?php print url($button['url']); ?>/ajax"><?php print $button['text']; ?></a>
-        </div>
-        <div id="modal-calendar" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-body outer"></div>
         </div>
       </div>
     </div>
