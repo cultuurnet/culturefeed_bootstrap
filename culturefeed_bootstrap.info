@@ -35,6 +35,7 @@ less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
 
 ; Scripts
 scripts[] = 'js/culturefeed-bootstrap.js'
+scripts[] = 'bootstrap/js/modal.js'
 
 ;**********************************
 ; METHOD 1: Bootstrap Source Files
