@@ -2281,9 +2281,9 @@ function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
 }
 
 /**
- * Implements hook_form_{culturefeed_calendar_add_to_calendar_form}_alter().
+ * Implements hook_form_{culturefeed_calendar_form}_alter().
  */
-function culturefeed_bootstrap_form_culturefeed_calendar_add_to_calendar_form_alter(&$form, $form_state) {
+function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $form_state) {
 
   if (arg(4) != 'ajax') {
     return;
@@ -2303,7 +2303,6 @@ function culturefeed_bootstrap_form_culturefeed_calendar_add_to_calendar_form_al
   $form['actions']['#suffix'] = '</div>';
 
   $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
-
 
 }
 
