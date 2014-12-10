@@ -7,7 +7,7 @@
 
 <?php if ($button['action'] == 'view') : ?>
   <?php if ($button['location'] == 'content') : ?>
-    <div class="col">
+    <div class="col <?php print $button['class']; ?>">
       <div class="row">
         <div class="col-sm-1">
           <span class="fa-stack fa-lg">
@@ -20,16 +20,16 @@
             <strong><?php print t('This activity is added to your OuTcalendar.'); ?></strong>
           </div>
           <div>
-            <a href="<?php print url($button['path']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
+            <a href="<?php print url($button['path']); ?>"><?php print $button['text']; ?></a>
           </div>
         </div>
       </div>
     </div>
   <?php elseif ($button['location'] == 'footer') : ?>
-    <div>
-      <?php print t('This activity has been saved'); ?>
-    </div>
-    <div class="col-xs-3">
+    <div class="col-xs-3 <?php print $button['class']; ?>">
+      <div>
+        <?php print t('This activity has been saved'); ?>
+      </div>
       <div class="row">
         <div class="col-sm-3">
           <span class="fa-stack fa-lg">
@@ -37,7 +37,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <a href="<?php print url($button['path']); ?>"class="use-ajax"><?php print $button['text']; ?></a>
+          <a href="<?php print url($button['path']); ?>"><?php print $button['text']; ?></a>
         </div>
       </div>
       <div>
@@ -47,7 +47,7 @@
   <?php endif; ?>
 <?php elseif ($button['action'] == 'add') : ?>
   <?php if ($button['location'] == 'content') : ?>
-    <div class="col">
+    <div class="col <?php print $button['class']; ?>">
       <div class="row">
         <div class="col-sm-1">
           <span class="fa-stack fa-lg">
@@ -62,7 +62,7 @@
       </div>
     </div>
   <?php elseif ($button['location'] == 'footer') : ?>
-    <div class="col-xs-3">
+    <div class="col-xs-3 <?php print $button['class']; ?>">
       <div class="row">
         <div class="col-sm-3">
           <span class="fa-stack fa-lg">

@@ -79,7 +79,13 @@
 
       <?php if (!empty($when)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
-      <td class="cf-when scroll scroll-150"><?php print $when; ?><?php print $personal_calendar['button_content']; ?></td></tr>
+        <td class="cf-when scroll scroll-150">
+          <?php print $when; ?>
+          <?php foreach ($personal_calendar_buttons['content'] as $button) : ?>
+            <?php print $button; ?>
+          <?php endforeach; ?>
+        </td>
+      </tr>
       <?php endif; ?>
 
       <?php if ($organiser): ?>
@@ -250,8 +256,9 @@
         </div>
       </div>
     </div>
-    <?php print $personal_calendar['button_footer']; ?>
-
+    <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
+      <?php print $button; ?>
+    <?php endforeach; ?>
   </div>
 
 </div>
