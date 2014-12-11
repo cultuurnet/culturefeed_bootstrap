@@ -79,10 +79,6 @@
       <span class="calendar-view-event">
         <a href="<?php print $url; ?>"><?php print t('More info'); ?></a>
       </span>
-      <span class="calendar-invite-friends pull-right">
-        <a href="#"><?php print t('Invite friends'); ?></a>
-        <i class="fa fa-user"></i>
-      </span>
     </li>
   </ul>
 </div>
