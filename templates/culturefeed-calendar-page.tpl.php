@@ -1,3 +1,19 @@
+<?php
+/**
+ * @file
+ * Template for the calendar page.
+ */
+?>
+
+<?php if (!empty($add_button)) : ?>
+  <row>
+    <section  class="col-md-12">
+      <?php print $add_button ?>
+      <hr />
+    </section>
+  </row>
+<?php endif; ?>
+
 <row>
   <section  class="col-md-12">
     <?php if (!empty($nav_months)) : ?>
@@ -22,10 +38,6 @@
       <?php print $content ?><br />
     <?php else: ?>
       <h3><?php print t('No activities added to your calendar yet.') ?></h3>
-    <?php endif; ?>
-
-    <?php if (empty($content)): ?>
-      <?php print $content; ?>
     <?php endif; ?>
   </section>
 </row>
