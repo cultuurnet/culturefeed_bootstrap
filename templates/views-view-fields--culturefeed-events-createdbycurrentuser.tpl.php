@@ -56,7 +56,9 @@
         <div class="col-xs-10"><?php print $fields['lastupdated']->content; ?></div>
       </div>
       <div class="row operations">
-        <?php print $fields['operations']->content; ?>
+        <div class="col-xs-12">
+          <?php print $fields['operations']->content; ?>
+        </div>
       </div>
       <!--
       <p></p>
