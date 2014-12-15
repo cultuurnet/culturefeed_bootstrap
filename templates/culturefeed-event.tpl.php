@@ -18,8 +18,8 @@
       <?php endif; ?>      
     <?php endif; ?>
 
-    <?php if (!empty($themes)): ?>
-      <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes); ?></p>
+    <?php if (!empty($themes_links)): ?>
+      <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes_links); ?></p>
     <?php endif; ?>
     
     <p>
