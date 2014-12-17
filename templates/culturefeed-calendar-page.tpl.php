@@ -34,8 +34,9 @@
     </div>
   </aside>
   <section class="col-md-9">
-    <?php if (!empty($content)): ?>
-      <?php print $content ?><br />
+    <?php if (!empty($planned) || !empty($not_yet_planned)): ?>
+      <?php print $not_yet_planned ?>
+      <?php print $planned ?>
     <?php else: ?>
       <h3><?php print t('No activities added to your calendar yet.') ?></h3>
     <?php endif; ?>

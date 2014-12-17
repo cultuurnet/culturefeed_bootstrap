@@ -697,21 +697,19 @@ function culturefeed_bootstrap_culturefeed_calendar_total_activities_profile_box
   $url = 'culturefeed/calendar';
   $authenticated = DrupalCultureFeed::isCultureFeedUser();
 
-
-
   if ($authenticated) {
     return l($icon, $url, array('html' => TRUE));
   }
   else {
     if ($total > 0) {
-        $hover = theme('culturefeed_calendar_button_hover');
-    $popover_options = array(
-      'class' => '',
-      'data-toggle' => 'popover',
-      'data-content' => $hover,
-      'data-placement' => 'bottom',
-      'data-html' => 'true'
-    );
+      $hover = theme('culturefeed_calendar_button_hover');
+      $popover_options = array(
+        'class' => '',
+        'data-toggle' => 'popover',
+        'data-content' => $hover,
+        'data-placement' => 'bottom',
+        'data-html' => 'true'
+      );
       return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">' . $total . '</span></small>', $url, array('attributes' => $popover_options, 'html' => TRUE));
     }
     else {
@@ -2302,7 +2300,9 @@ function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $for
   $form['actions']['#prefix'] = '<div class="modal-footer">';
   $form['actions']['#suffix'] = '</div>';
 
+  unset($form['actions']['cancel']['#ajax']);
   $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
 
 }
 
