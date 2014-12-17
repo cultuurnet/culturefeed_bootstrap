@@ -1856,6 +1856,21 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(
 
 }
 
+/**
+ * Theme the culturefeed_search_ui_city_actor_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_block_city_actor_facet_form_alter(&$form, &$form_state) {
+
+  $form['#attributes']['class'][] = '';
+
+  $form['city_actor']['#prefix'] = '<div class="input-group">';
+  $form['city_actor']['#title'] = '';
+
+  $form['submit']['#prefix'] = '<span class="input-group-btn">';
+  $form['submit']['#suffix'] = '</span></div>';
+
+}
+
 
 /**
  * Theme the culturefeed_pages_page_suggestions_filter_form
