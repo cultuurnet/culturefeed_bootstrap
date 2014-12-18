@@ -2368,3 +2368,21 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 
 }
 
+/**
+ * Implements hook_form_culturefeed_calendar_share_calendar_button_form_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_share_calendar_button_form_alter($form, $form_state) {
+
+  $public = variable_get('culturefeed_calendar_share_calendar_setting', FALSE);
+
+  if ($public) {
+    $form['share_calendar']['#disabled'] = FALSE;
+  }
+  else {
+    $form['share_calendar']['#disabled'] = TRUE;
+  }
+
+  dsm($form);
+  dsm($public);
+}
+

@@ -5,14 +5,21 @@
  */
 ?>
 
-<?php if (!empty($add_button)) : ?>
+
   <row>
+    <?php if (!empty($save_cookie_button)) : ?>
     <section  class="col-md-12">
-      <?php print $add_button ?>
-      <hr />
+      <?php print $save_cookie_button ?>
     </section>
+    <?php endif; ?>
+    <?php if (!empty($share_calendar_button)) : ?>
+    <section  class="col-md-12">
+      <?php print $share_calendar_button ?>
+    </section>
+    <?php endif; ?>
   </row>
-<?php endif; ?>
+
+
 
 <row>
   <section  class="col-md-12">
