@@ -85,11 +85,18 @@
     
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
-      <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
-      <?php foreach ($pictures as $picture): ?>
-        <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-      <?php endforeach; ?> 
-      <hr class="small" />
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <?php if(!empty($pictures)): ?>
+        <br />
+        <div class="row">
+          <?php foreach ($pictures as $picture): ?>
+            <div class="col-xs-6">
+              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive"'; ?> />
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <br />
     </div>  
     <?php endif; ?>
 
