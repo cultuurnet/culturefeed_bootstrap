@@ -48,8 +48,7 @@ jQuery(function($) {
   }
 
   // Init tooltips
-  $("a[data-toggle=tooltip]").tooltip();
-  $("span[data-toggle=tooltip]").tooltip();
+  $("a[data-toggle=tooltip], span[data-toggle=tooltip]").tooltip();
 
   // Init the map if this toggles a map.
   $(".map-toggle").click(function() {

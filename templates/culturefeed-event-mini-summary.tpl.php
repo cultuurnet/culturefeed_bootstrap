@@ -11,13 +11,13 @@
     <div class="media">
       
       <?php if ($thumbnail): ?>
-        <a class="pull-left hidden-xs" href="<?php print $url ?>">
+        <a href="<?php print $url ?>" class="pull-left hidden-xs">
           <?php if (!empty($thumbnail)): ?>
           <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
           <?php endif; ?>
         </a>
       <?php else: ?>
-        <a class="pull-left hidden-xs" href="<?php print $url ?>">
+        <a href="<?php print $url ?>" class="pull-left hidden-xs">
           <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
         </a>
       <?php endif; ?>      

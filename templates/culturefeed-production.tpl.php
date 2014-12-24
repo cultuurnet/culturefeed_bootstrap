@@ -97,7 +97,7 @@
       <td>
         <?php print $price; ?>
         <?php if (!empty($price_description)): ?>
-          <a data-toggle="tooltip" data-original-title="boe" title="<?php print $price_description; ?>"><i class="fa fa-info-circle text-muted"></i></a>
+          <a href="javascript:void(0);" data-toggle="tooltip" data-original-title="boe" title="<?php print $price_description; ?>"><i class="fa fa-info-circle text-muted"></i></a>
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>

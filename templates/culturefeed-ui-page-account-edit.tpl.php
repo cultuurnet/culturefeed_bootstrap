@@ -13,7 +13,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <span class="caret"></span>
-        <a data-toggle="collapse" data-parent="#accordion" href="#online_accounts">
+        <a href="#online_accounts" data-toggle="collapse" data-parent="#accordion">
           <?php print t('Connected accounts'); ?>
         </a>
       </h4>
@@ -28,7 +28,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <span class="caret"></span>
-        <a data-toggle="collapse" data-parent="#accordion" href="#manage-consumers">
+        <a href="#manage-consumers" data-toggle="collapse" data-parent="#accordion">
           <?php print t('Connected applications'); ?>
         </a>
       </h4>

@@ -59,7 +59,7 @@
         <?php if ($logged_in): ?>
   
           <?php if (!$following): ?>
-            <a class="btn btn-warning btn-xs" href="<?php print $follow_url; ?>"><span><?php print $follow_text; ?></span></a>
+            <a href="<?php print $follow_url; ?>" class="btn btn-warning btn-xs"><span><?php print $follow_text; ?></span></a>
           <?php else: ?>
             <p class="text-muted"><small><?php print t('You follow this page'); ?></small></p>
           <?php endif; ?>

@@ -36,7 +36,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#uitpas">
+        <a href="#uitpas" data-toggle="collapse" data-parent="#accordion">
           <i class="fa fa-caret-down"></i> <?php print $uitpas_title; ?>  
         </a>
       </h3>
@@ -51,7 +51,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#personalData">
+        <a href="#personalData" data-toggle="collapse" data-parent="#accordion">
           <i class="fa fa-caret-down"></i> <?php print(t('My personal data')) ?>  
         </a>
       </h3>
@@ -90,7 +90,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#opportunitiesTariff">
+        <a href="#opportunitiesTariff" data-toggle="collapse" data-parent="#accordion">
           <i class="fa fa-caret-down"></i> <?php print(t('My opportunities tariff')) ?>  
         </a>
       </h3>

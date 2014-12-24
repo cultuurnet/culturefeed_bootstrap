@@ -15,7 +15,7 @@
 <?php endif; ?>
 
 <p>
-  <a class="btn btn-default" href="http://www.uitdatabank.be" target="_blank"><i class="fa fa-plus-circle"></i> <?php print t('Add new event'); ?></a> 
+  <a href="http://www.uitdatabank.be" class="btn btn-default" target="_blank"><i class="fa fa-plus-circle"></i> <?php print t('Add new event'); ?></a> 
 </p>
 
 <p>

@@ -8,7 +8,7 @@
 <div class="media">
 
   <?php if (!empty($image)): ?>
-  <a class="pull-right" href="<?php print $url ?>">
+  <a href="<?php print $url ?>" class="pull-right">
     <img class="media-object img-thumbnail" src="<?php print $image; ?>?width=150&scale=both" alt="<?php print $title; ?>">
   </a>
   <?php endif; ?>
@@ -29,7 +29,7 @@
   
     <p><?php print $description ?></p>
 
-    <p><a class="btn btn-default btn-sm" href="<?php print $url; ?>"><?php print $more_text; ?> &rarr;</a></p>
+    <p><a href="<?php print $url; ?>" class="btn btn-default btn-sm"><?php print $more_text; ?> &rarr;</a></p>
   
   </div>
 

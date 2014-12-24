@@ -14,11 +14,11 @@
   <?php endif; ?>
   
   <?php if (!empty($list)): ?>
-    <p><a id="comment-list" class="anchor"></a></p>
+    <p><a href="javascript:void(0);" id="comment-list" class="anchor"></a></p>
       <?php foreach ($list as $list_item): ?>
       <?php print $list_item ?>
       <?php endforeach;?>
   <?php endif; ?>
 </div>
-<a id="comment-form" class="anchor"></a>
+<a href="javascript:void(0);" id="comment-form" class="anchor"></a>
 
