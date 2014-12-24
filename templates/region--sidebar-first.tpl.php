@@ -1,4 +1,4 @@
-<?php if ($content): ?>
+<? if ($content): ?>
   <div class="region region-sidebar-first" id="facet-wrapper">
 
     <?php if ($pagetype == 'agenda-search' || $pagetype == 'agenda-pages') : ?>
