@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="CultureFeed Bootstrap theme" description="" default="lint">
     <target name="lint">
-        <phplint haltonfailure="true" level="debug" interpreter="php -d short_open_tag=Off">
+        <phplint haltonfailure="true" level="debug">
             <fileset dir=".">
                 <include name="*.php"/>
                 <include name="**/*.php"/>

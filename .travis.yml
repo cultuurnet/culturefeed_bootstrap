@@ -6,4 +6,5 @@ install:
   - pear channel-discover pear.phing.info
   - pear install phing/phing
   - phpenv rehash
+before_script: phpenv config-add .travis/php.ini
 script: phing
