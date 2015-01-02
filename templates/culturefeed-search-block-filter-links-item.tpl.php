@@ -1,11 +1,7 @@
 <?php
 /**
  * @file
- * Template file for one culturefeed search filter block.
- */
-
-/**
- * @var array $items
+ * Template file for one culturefeed search filter link as facet.
  */
 ?>
 
