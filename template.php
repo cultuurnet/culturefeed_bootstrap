@@ -13,10 +13,12 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   $form['category']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
   $form['category']['#weight'] = '1';
   $form['category']['#title'] = '';
+  $form['category']['#attributes']['title'] = t('Category');
   $form['category']['#suffix'] = '</div>';
   $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
   $form['search']['#weight'] = '2';
   $form['search']['#title'] = '';
+  $form['search']['#attributes']['title'] = t('Search term');
   $form['search']['#autocomplete_path'] = '';
   $form['search']['#suffix'] = '</div>';
   $form['submit']['#attributes']['class'][] = 'btn-block';
@@ -374,33 +376,39 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#privacy">' . ' ' . t('Privacy settings') . '</a></h4></div><div id="privacy" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
     '#suffix' => '</li>',
     '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'first name\' in public profile'),
+    '#field_suffix' => '<span>' .  t('Hide \'first name\' in public profile') . '</span>',
     //'#title' => t('Hide \'first name\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->givenName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-99',
+    '#attributes' => array(
+      'class' => array('bootstrap-switch')
+    ),
   );
 
   $form['familyNamePrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
     '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'family name\' in public profile'),
+    '#field_suffix' => '<span>' .  t('Hide \'family name\' in public profile') . '</span>',
     //'#title' => t('Hide \'family name\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->familyName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-89',
+    '#attributes' => array(
+      'class' => array('bootstrap-switch')
+    ),
   );
 
   $form['genderPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
     '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'gender\' in public profile'),
+    '#field_suffix' => '<span>' .  t('Hide \'gender\' in public profile') . '</span>',
      //'#title' => t('Hide \'gender\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->gender == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-79',
+    '#attributes' => array(
+      'class' => array('bootstrap-switch')
+    ),
 
   );
 
@@ -408,33 +416,39 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
     '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'address\' in public profile'),
+    '#field_suffix' => '<span>' .  t('Hide \'address\' in public profile') . '</span>',
      //'#title' => t('Hide \'address\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->homeAddress == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-69',
+    '#attributes' => array(
+      'class' => array('bootstrap-switch')
+    ),
   );
 
   $form['dobPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li>',
     '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'date of birth\' in public profile'),
+    '#field_suffix' => '<span>' .  t('Hide \'date of birth\' in public profile') . '</span>',
      //'#title' => t('Hide \'date of birth\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->dob == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-59',
+    '#attributes' => array(
+      'class' => array('bootstrap-switch')
+    ),
   );
 
   $form['bioPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
     '#suffix' => '</li></ul></div></div>',
     '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'biography\' in public profile'),
+    '#field_suffix' => '<span>' .  t('Hide \'biography\' in public profile') . '</span>',
     //'#title' => t('Hide \'biography\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->bio == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-49',
+    '#attributes' => array(
+      'class' => array('bootstrap-switch')
+    ),
   );
 
    // Language settings - Default language
@@ -1835,10 +1849,10 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['date_range']['#prefix'] = '<div class="input-group">';
   $form['date_range']['#title'] = '';
+  $form['date_range']['#attributes']['title'] = t('Or choose a custom date');
 
   $form['submit']['#prefix'] = '<span class="input-group-btn">';
   $form['submit']['#suffix'] = '</span></div>';
-
 }
 
 /**
@@ -1850,6 +1864,7 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(
 
   $form['location']['#prefix'] = '<div class="input-group">';
   $form['location']['#title'] = '';
+  $form['location']['#attributes']['title'] = t('Zipcode or city');
 
   $form['submit']['#prefix'] = '<span class="input-group-btn">';
   $form['submit']['#suffix'] = '</span></div>';

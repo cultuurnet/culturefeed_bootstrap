@@ -10,7 +10,7 @@ $col = empty($image) ? '12' : '8';
 <?php if (!empty($page_cover)): ?>
   <div class="row">
     <div class="col-sm-12 hidden-xs">
-      <img src="<?php print $page_cover ?>?width=1000&height=200&crop=auto" class="img-responsive" />
+      <img src="<?php print $page_cover ?>?width=1000&height=200&crop=auto" class="img-responsive" alt="<?php print $title; ?>" />
     </div>
   </div>
 <?php endif; ?>

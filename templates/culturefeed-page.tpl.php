@@ -1,7 +1,7 @@
 <?php if ($cover): ?>
   <div class="row">
     <div class="col-sm-12 hidden-xs">
-      <img src="<?php print $cover ?>?width=1000&height=200&crop=auto" class="img-responsive" />
+      <img src="<?php print $cover ?>?width=1000&height=200&crop=auto" class="img-responsive" alt="<?php print $title; ?>" />
     </div>
   </div>
 <?php endif; ?>
@@ -66,22 +66,21 @@
         </p> 
         
         <?php if ($members): ?>
-        <div class="table-responsive collapse" id="members">         
-          <table class="table">
-          <?php foreach ($members as $member): ?>
-            <tr>
-              <td>
-                <a href="<?php print $member['url']; ?>"><?php print $member['name']?></a>
-              </td>
-              <td class="text-muted">
-                <?php if (!empty($member['relation'])): ?><?php print $member['relation'] ?><?php endif; ?>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-          </table>
-        </div>
+          <div class="table-responsive collapse" id="members">         
+            <table class="table">
+            <?php foreach ($members as $member): ?>
+              <tr>
+                <td>
+                  <a href="<?php print $member['url']; ?>"><?php print $member['name']?></a>
+                </td>
+                <td class="text-muted">
+                  <?php if (!empty($member['relation'])): ?><?php print $member['relation'] ?><?php endif; ?>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+            </table>
+          </div>
         <?php endif; ?>
-          
      </div>   
   </div>        
     <?php 

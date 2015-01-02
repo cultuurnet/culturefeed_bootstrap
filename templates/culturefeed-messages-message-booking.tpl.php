@@ -5,7 +5,7 @@
         <?php print $picture; ?>
       </div>
     <?php else: ?>
-      <img src="http://media.uitid.be/fis/rest/download/ce126667652776f0e9e55160f12f5478/uiv/default.png?maxwidth=70&maxheight=70&crop=auto" class="hidden-xs" />
+      <img src="http://media.uitid.be/fis/rest/download/ce126667652776f0e9e55160f12f5478/uiv/default.png?maxwidth=70&maxheight=70&crop=auto" class="hidden-xs" alt="<?php print t('Default user image'); ?>" />
     <?php endif; ?>
   </div>
   <div class="col-sm-10">

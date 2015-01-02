@@ -13,12 +13,12 @@
       <?php if ($thumbnail): ?>
         <a href="<?php print $url ?>" class="pull-left hidden-xs">
           <?php if (!empty($thumbnail)): ?>
-          <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" />
+          <img class="media-object" src="<?php print $thumbnail; ?>?width=75&height=75&crop=auto" alt="<?php print $title; ?>" />
           <?php endif; ?>
         </a>
       <?php else: ?>
         <a href="<?php print $url ?>" class="pull-left hidden-xs">
-          <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
+          <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" alt="<?php print 'Uit in vlaanderen'; ?>" />
         </a>
       <?php endif; ?>  
     

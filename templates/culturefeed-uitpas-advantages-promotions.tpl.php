@@ -35,9 +35,9 @@
         <tr>
           <td class="hidden-xs hidden-sm">
             <?php if (!empty($promotion->pictures[0])): ?>
-              <?php print '<img src="' . $promotion->pictures[0] . '?maxwidth=100&maxheight=100" class="img-responsive"/>' ?>
+              <?php print '<img src="' . $promotion->pictures[0] . '?maxwidth=100&maxheight=100" class="img-responsive" alt="' . $promotion->title . '" />' ?>
             <?php else: ?>
-              <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-2.gif" width="110" class="img-responsive" />
+              <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-2.gif" width="110" class="img-responsive" alt="<?php print 'Uit in vlaanderen'; ?>" />
             <?php endif; ?>
           </td>
           <td class="hidden-md hidden-lg">
@@ -91,9 +91,9 @@
         <tr>
           <td class="hidden-xs hidden-sm">
             <?php if (!empty($promotion->pictures[0])): ?>
-              <?php print '<img src="' . $promotion->pictures[0] . '?maxwidth=100&maxheight=100" class="img-responsive"/>' ?>
+              <?php print '<img src="' . $promotion->pictures[0] . '?maxwidth=100&maxheight=100" class="img-responsive"alt="' . $promotion->title . '" />' ?>
             <?php else: ?>
-              <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-2.gif" width="110" class="img-responsive" />
+              <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail-2.gif" width="110" class="img-responsive" alt="<?php print 'Uit in vlaanderen'; ?>" />
             <?php endif; ?>
           </td>
           <td class="hidden-md hidden-lg">

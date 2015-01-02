@@ -2,13 +2,12 @@
   <div><?php print $tooltip_text; ?></div>
 <?php endif; ?>
 
-
 <?php foreach ($items as $item): ?>
   <div class="media">
         <?php if ($item['image']): ?>
-          <img src="<?php print $item['image'] ?>?width=75&height=75&crop=auto" class="img-responsive pull-left" />
+          <img src="<?php print $item['image'] ?>?width=75&height=75&crop=auto" class="img-responsive pull-left" alt="<?php print $title; ?>" />
         <?php else: ?>
-          <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" width="75" heigth="75" class="img-responsive pull-left" />      
+          <img src="<?php print base_path() . drupal_get_path('theme', 'culturefeed_bootstrap'); ?>/img/no-thumbnail.gif" width="75" heigth="75" class="img-responsive pull-left" alt="<?php print 'Uit in vlaanderen'; ?>" />      
         <?php endif; ?>    
     <div class="media-body">
       <?php print $item['link']; ?><br />

@@ -2,7 +2,10 @@
 
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
-    <h3 class="block-title"><img src="/sites/all/themes/uitpas_bootstrap/img/logo/uitpas.png"> - voordelen</h3>
+    <h3 class="block-title">
+    	<img src="/sites/all/themes/uitpas_bootstrap/img/logo/uitpas.png" alt="<?php print t('Uitpas'); ?>"> 
+    	- voordelen
+    </h3>
   <?php endif;?>
   <?php print render($title_suffix); ?>
 

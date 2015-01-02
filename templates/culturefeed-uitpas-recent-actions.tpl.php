@@ -20,7 +20,7 @@
   <li class="media">
     <div class="media-object pull-left visible-desktop thumbnail">
     <?php if($action->depiction): ?>
-      <img src="<?php print $action->depiction ?>?maxwidth=50&amp;maxheight=50&amp;crop=auto" />
+      <img src="<?php print $action->depiction ?>?maxwidth=50&amp;maxheight=50&amp;crop=auto" alt="<?php print $action->nick ?>" />
     <?php endif; ?>
     </div>
     <div class="media-body">

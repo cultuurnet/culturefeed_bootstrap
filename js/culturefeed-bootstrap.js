@@ -1,11 +1,11 @@
 jQuery(function($) {
 
   // Init popovers
-  $("a[data-toggle=popover]")
-    .popover()
-    .click(function(e) {
-      e.preventDefault()
-    })
+  $("a[data-toggle=popover]").popover().click(function(e) {
+    e.preventDefault()
+  });
+
+  $("input.bootstrap-switch").bootstrapSwitch();
 
   // popover - authentication required
   if (!Drupal.settings.culturefeed || !Drupal.settings.culturefeed.isCultureFeedUser) {

@@ -13,7 +13,7 @@
           </a>
         <?php else: ?>
           <a href="<?php print $member['url'] ?>" title="<?php print $member['name'] ?>">
-            <img src="http://media.uitid.be/fis/rest/download/ce126667652776f0e9e55160f12f5478/uiv/default.png?maxwidth=40&maxheight=40&crop=auto" />    
+            <img src="http://media.uitid.be/fis/rest/download/ce126667652776f0e9e55160f12f5478/uiv/default.png?maxwidth=40&maxheight=40&crop=auto" alt="<?php print t('Default user image'); ?>" />    
           </a>
         <?php endif; ?>
       </li>
