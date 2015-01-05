@@ -1,6 +1,6 @@
-<ul class="menu nav navbar-nav navbar-right">
+<div class="menu nav navbar-nav navbar-right">
   <?php if ($dropdown_items): ?>
-  <li class="dropdown">
+  <div class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
       <?php print $picture ?> 
       <span class="current-user visible-lg">
@@ -24,11 +24,11 @@
       <?php endif; ?>
       <?php endforeach;?>
     </ul>
-  </li>
+  </div>
   <?php endif; ?>
 
   <?php // Render main items ?>
   <?php foreach ($main_items as $item): ?>
-  <li<?php if (isset($item['class'])): print ' class="' . $item['class'] . '"' ?> <?php endif;?>><?php print $item['data']; ?></li>
+  <div<?php if (isset($item['class'])): print ' class="' . $item['class'] . '"' ?> <?php endif;?>><?php print $item['data']; ?></div>
   <?php endforeach; ?>
-</ul>
+</div>

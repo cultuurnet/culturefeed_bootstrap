@@ -103,6 +103,41 @@ body {
 }
 
 // Navigation.
+.region-navigation {
+  .dropdown {
+    @media @tablet {
+      float: left;
+    }
+    > a {
+      color: #999;
+    }
+    > a:hover,
+    > a:focus {
+      color: #FFF;
+      text-decoration: none;
+    }
+  }
+  .dropdown-toggle {
+    display: block;
+    padding: 15px;
+    @media @tablet {
+      float: left;
+    }
+  }
+}
+.navbar-nav.anonymous {
+  float: left;
+  a {
+    color: #999;
+    float: left;
+    padding: 15px;
+  }
+  a:hover,
+  a:focus {
+    color: #FFF;
+    text-decoration: none;
+  }
+}
 ul.secondary {
   float: left;
   @media @tablet {
