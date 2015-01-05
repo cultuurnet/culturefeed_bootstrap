@@ -234,4 +234,61 @@ jQuery(function($) {
 
   }
 
+  // Create a custom autocomplete widget that supports categorisation of data with bootstrap html.
+  if ($.custom.categorisedAutocomplete) {
+
+    // Take over the search function.
+    $.custom.categorisedAutocomplete.prototype.search = function(value, event) {
+
+      var $throbber = $('.glyphicon-refresh', $(this.element).parent());
+      $throbber.addClass('glyphicon-spin');
+
+      value = value != null ? value : this._value();
+
+      // always save the actual value, not the one passed as an argument
+      this.term = this._value();
+
+      if ( value.length < this.options.minLength ) {
+        return this.close( event );
+      }
+
+      if ( this._trigger( "search", event ) === false ) {
+        return;
+      }
+
+      return this._search(value);
+
+    }
+
+    // Take over the render menu function.
+    $.custom.categorisedAutocomplete.prototype._renderMenu = function(ul, items) {
+
+      var $throbber = $('.glyphicon-refresh', $(this.element).parent());
+      $throbber.removeClass('glyphicon-spin');
+
+      var that = this,
+      currentCategory = "";
+      $.each(items, function(index, item) {
+        var li;
+        if (!item.label) {
+          if (item.category != currentCategory) {
+            ul.append("<li class='ui-autocomplete-category " + item.type+ "'>" + item.category + "</li>");
+            currentCategory = item.category;
+          }
+        } else {
+          if (item.category != currentCategory) {
+            ul.append("<li class='ui-autocomplete-category " + item.type+ "'>" + item.category + "</li>");
+            currentCategory = item.category;
+          }
+          li = that._renderItemData(ul, item);
+          if (item.category) {
+            li.attr("aria-label", item.category + " : " + item.label);
+          }
+        }
+      });
+
+    }
+
+  }
+
 });
