@@ -42,7 +42,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
     '#type' => 'item',
     '#markup' => '',
     '#suffix' => '',
-    '#weight' => -20,
+    '#weight' => -200,
   );
 
   if (isset($form['when'])) {
@@ -62,12 +62,9 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
 
   if (isset($form['where'])) {
     $form['where']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
-    $form['where']['#suffix'] = '</div>';
+    $form['nearby']['#prefix'] = '<div class="clearfix">';
+    $form['nearby']['#suffix'] = '</div></div>';
   }
-
-  $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-12">';
-  $form['nearby']['#suffix'] = '</div></div></div>';
-  $form['nearby']['#weight'] = 40;
 
   // Style button.
   $form['submit']['#attributes']['class'][] = 'btn-primary btn-block';
