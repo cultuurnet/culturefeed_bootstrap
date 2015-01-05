@@ -24,7 +24,7 @@ stylesheets[all][] =  css/bootstrap-gallery.css
 stylesheets[all][] =  css/blueimp-gallery.min.css
 
 
-less[vars][@brand-primary]      = #DDDDDD
+less[vars][@brand-primary]      = #428bca
 less[vars][@brand-success]      = #5cb85c
 less[vars][@brand-warning]      = #f0ad4e
 less[vars][@brand-danger]       = #d9534f
