@@ -316,7 +316,7 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
   // Date of birth.
   $form['dob'] = array(
-    '#title' => t('Date of birth'),
+    '#title' => t('Date of birth') . ' (dd/mm/jjjj)',
     '#type' => 'textfield',
     '#default_value' => $cf_account->dob ? date('d/m/Y', $cf_account->dob) : '',
     '#attributes' => array('placeholder' => array('01/01/1970')),
@@ -373,10 +373,9 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
   // Privacy settings
 
   $form['givenNamePrivacy'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#privacy">' . ' ' . t('Privacy settings') . '</a></h4></div><div id="privacy" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
-    '#suffix' => '</li>',
+    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#privacy">' . ' ' . t('Privacy settings') . '</a></h4></div><div id="privacy" class="panel-collapse collapse"><ul class="list-group bootstrap-switches"> <li class="list-group-item">',
+    '#suffix' => '<span class="inline-label">' .  t('Hide \'first name\' in public profile') . '</span></li>',
     '#type' => 'checkbox',
-    '#field_suffix' => '<span>' .  t('Hide \'first name\' in public profile') . '</span>',
     //'#title' => t('Hide \'first name\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->givenName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-99',
@@ -387,9 +386,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
   $form['familyNamePrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
+    '#suffix' => '<span class="inline-label">' .  t('Hide \'family name\' in public profile') . '</span></li>',
     '#type' => 'checkbox',
-    '#field_suffix' => '<span>' .  t('Hide \'family name\' in public profile') . '</span>',
     //'#title' => t('Hide \'family name\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->familyName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-89',
@@ -400,9 +398,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
   $form['genderPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
+    '#suffix' => '<span class="inline-label">' .  t('Hide \'gender\' in public profile') . '</span></li>',
     '#type' => 'checkbox',
-    '#field_suffix' => '<span>' .  t('Hide \'gender\' in public profile') . '</span>',
      //'#title' => t('Hide \'gender\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->gender == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-79',
@@ -414,9 +411,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
   $form['homeAddressPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
+    '#suffix' => '<span class="inline-label">' .  t('Hide \'address\' in public profile') . '</span></li>',
     '#type' => 'checkbox',
-    '#field_suffix' => '<span>' .  t('Hide \'address\' in public profile') . '</span>',
      //'#title' => t('Hide \'address\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->homeAddress == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-69',
@@ -427,9 +423,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
   $form['dobPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
+    '#suffix' => '<span class="inline-label">' .  t('Hide \'date of birth\' in public profile') . '</span></li>',
     '#type' => 'checkbox',
-    '#field_suffix' => '<span>' .  t('Hide \'date of birth\' in public profile') . '</span>',
      //'#title' => t('Hide \'date of birth\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->dob == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-59',
@@ -440,9 +435,8 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(
 
   $form['bioPrivacy'] = array(
     '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li></ul></div></div>',
+    '#suffix' => '<span class="inline-label">' .  t('Hide \'biography\' in public profile') . '</span></li></ul></div></div>',
     '#type' => 'checkbox',
-    '#field_suffix' => '<span>' .  t('Hide \'biography\' in public profile') . '</span>',
     //'#title' => t('Hide \'biography\' in public profile'),
     '#default_value' => $cf_account->privacyConfig->bio == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
     '#weight' => '-49',
@@ -710,7 +704,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_basic_search_form_alter(&$
     '#prefix' => '<div class="row"><div class="col-sm-9">',
     '#suffix' => '</div>',
     '#type' => 'textfield',
-    '#attributes' => array('placeholder' => array(t('Keyword'))),
+    '#attributes' => array('placeholder' => array(t('Keyword')), 'title' => t('Keyword')),
     '#autocomplete_path' => 'ajax/culturefeed/pages/page-suggestion',
     '#default_value' => isset($_GET['search']) ? $_GET['search'] : '',
   );
@@ -1713,7 +1707,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_user_search_result(&
  * Form callback for the search user form.
  */
 function culturefeed_bootstrap_form_culturefeed_pages_search_user_form_alter(&$form, &$form_state) {
-
   $form['#prefix'] = '<hr /><div class="row"><div class="col-xs-12">';
   $form['#suffix'] = '</div></div>';
   $form['#attributes'] = array('class' => 'well');
@@ -1735,7 +1728,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_search_user_form_alter(&$f
     '#type' => 'submit',
     '#value' => t('Search User'),
   );
-
 }
 
 /**

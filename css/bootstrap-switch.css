@@ -18,7 +18,14 @@
  * limitations under the License.
  * ========================================================================
  */
+.bootstrap-switches .form-type-checkbox {
+  padding: 0 10px 0 0;
+  float: left;
+}
 
+.bootstrap-switches .inline-label {
+  line-height: 34px;
+}
 .bootstrap-switch {
   display: inline-block;
   direction: ltr;
