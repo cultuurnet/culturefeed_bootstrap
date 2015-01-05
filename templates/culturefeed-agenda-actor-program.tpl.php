@@ -7,7 +7,7 @@
 
 <?php if (!empty($items)): ?>
   <a href="<?php print $search_url ?>" class="btn btn-link pull-right hidden-xs"><?php print t('Full calendar'); ?> →</a>
-  <p class="block-title"><?php print t('Calendar'); ?></p>
+  <h3 class="block-title"><?php print t('Calendar'); ?></h3>
   <ul class="list-unstyled">
     <?php foreach ($items as $item): ?>
       <li><?php print $item ?></li>
