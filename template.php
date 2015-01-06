@@ -22,7 +22,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
     $space_free -= 3;
   }
 
-  if (isset($form['where']) && isset($form['search'])) {
+  if (isset($form['location']) && isset($form['search'])) {
     $where_width = $search_width = $space_free / 2;
     // If width was a double, correct it.
     if ($space_free % 2) {
@@ -30,7 +30,7 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
       $search_width += 0.5;
     }
   }
-  elseif (isset($form['where'])) {
+  elseif (isset($form['location'])) {
     $where_width = $space_free;
   }
   elseif (isset($form['search'])) {
@@ -60,10 +60,10 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
     $form['search']['#suffix'] = '</div>';
   }
 
-  if (isset($form['where'])) {
-    $form['where']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
-    $form['nearby']['#prefix'] = '<div class="clearfix">';
-    $form['nearby']['#suffix'] = '</div></div>';
+  if (isset($form['location'])) {
+    $form['location']['where']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
+    $form['location']['nearby']['#prefix'] = '<div class="clearfix">';
+    $form['location']['nearby']['#suffix'] = '</div></div>';
   }
 
   // Style button.
