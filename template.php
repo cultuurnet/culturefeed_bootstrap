@@ -61,9 +61,10 @@ function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&
   }
 
   if (isset($form['location'])) {
-    $form['location']['where']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
+    $form['location']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
+    $form['location']['#suffix'] = '</div>';
     $form['location']['nearby']['#prefix'] = '<div class="clearfix">';
-    $form['location']['nearby']['#suffix'] = '</div></div>';
+    $form['location']['nearby']['#suffix'] = '</div>';
   }
 
   // Style button.
