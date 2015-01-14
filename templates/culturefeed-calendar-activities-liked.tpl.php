@@ -6,8 +6,8 @@
 ?>
 
 <div class="calendar-activities-liked-wrapper row">
-<h4><?php print t('Nog niet ingepland'); ?></h4>
 <div class="col-xs-12">
+  <h4 class="calendar-activities-label"><?php print t('Unscheduled events'); ?></h4>
   <table class="table table-consended">
     <tbody>
       <?php foreach ($activities as $activity): ?>
