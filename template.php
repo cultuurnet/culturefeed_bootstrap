@@ -2369,3 +2369,13 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 }
 
 
+/**
+ * Theme add to calendar button tooltip.
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_calendar_button_hover(&$variables) {
+
+  $variables['options']['attributes'] = array(
+    'class' => array('btn', 'btn-primary', 'btn-block'),
+  );
+}
