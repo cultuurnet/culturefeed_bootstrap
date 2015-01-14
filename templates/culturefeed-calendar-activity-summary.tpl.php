@@ -4,7 +4,7 @@
  * Template for the calendar summary of an activity.
  */
 ?>
-<div class="col-sm-6">
+<div class="calendar-activity-group col-sm-6">
   <ul class="list-group">
     <li class="list-group-item">
       <div class="activity-header">
@@ -22,7 +22,7 @@
           <?php endif; ?>
         </div>
         <?php if (!empty($date)): ?>
-          <strong><?php print $date; ?></strong>
+          <span class="text-muted"><?php print $date; ?></span>
         <?php endif; ?>
         <h4 class="media-heading"><?php print $title; ?></h4>
       </div>
