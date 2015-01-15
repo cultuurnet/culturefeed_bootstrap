@@ -2368,4 +2368,29 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 
 }
 
+/**
+ * Preprocess for share calendar page.
+ *
+ * @param type $variables
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_calendar_share_page(&$variables) {
 
+  if ($variables['shared'] != '') {
+    global $base_url;
+
+    $fb_app_id = variable_get('culturefeed_calendar_fbAppId', '');
+    if (isset($fb_app_id) && !empty($fb_app_id)) {
+      drupal_add_js(drupal_get_path('module', 'culturefeed_calendar') . '/js/facebook_share.js');
+      drupal_add_js(array('culturefeed' => array('fbAppId' => $fb_app_id)), 'setting');
+    }
+    
+    $variables['facebook_url'] = 'https://www.facebook.com/sharer/sharer.php?u=' . $base_url . '/' . $variables['calendar_share_url'];
+
+    $variables['googleplus_url'] = 'https://plus.google.com/share?url=' . $base_url . '/' .  $variables['calendar_share_url'];
+
+    $variables['twitter_url'] = 'https://twitter.com/intent/tweet?text=' . $base_url . '/' .  $variables['calendar_share_url'];
+
+    $variables['mail_url'] = $base_url . '/forward?path=' . $variables['calendar_share_url'];
+
+  }
+}

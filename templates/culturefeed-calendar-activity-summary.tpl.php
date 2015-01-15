@@ -9,16 +9,18 @@
     <li class="list-group-item">
       <div class="activity-header">
         <div class="pull-right">
-          <span class="calendar-delete-event">
-            <i class="fa fa-trash"></i>
-            <a class="use-ajax" href="<?php print $delete_link['url'] ?>"><?php print $delete_link['text']; ?></a>
-          </span>
-          <?php if ($edit_link['show']): ?>
-            <br />
-            <span class="calendar-move-event">
-              <i class="fa fa-arrows-alt"></i>
-              <a class="use-ajax" href="<?php print $edit_link['url'] ?>"><?php print $edit_link['text']; ?></a>
+          <?php if ($my_calendar): ?>
+            <span class="calendar-delete-event">
+              <i class="fa fa-trash"></i>
+              <a class="use-ajax" href="<?php print $delete_link['url'] ?>"><?php print $delete_link['text']; ?></a>
             </span>
+            <?php if ($edit_link['show']): ?>
+              <br />
+              <span class="calendar-move-event">
+                <i class="fa fa-arrows-alt"></i>
+                <a class="use-ajax" href="<?php print $edit_link['url'] ?>"><?php print $edit_link['text']; ?></a>
+              </span>
+            <?php endif; ?>
           <?php endif; ?>
         </div>
         <?php if (!empty($date)): ?>
