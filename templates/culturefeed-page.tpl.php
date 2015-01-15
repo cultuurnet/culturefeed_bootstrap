@@ -105,49 +105,49 @@
         <p class="text-muted">
           <i title="<?php print $title ?> <?php print t('on'); ?> Facebook" class="fa fa-facebook fa-lg fa-fw"></i>
           <a href="<?php print $link; ?>" class="text-muted">
-            <?php print $link; ?>
+            <?php print t('on'); ?> Facebook
           </a> 
         </p>   
         <?php elseif ($class == 'linkGooglePlus'): ?>
         <p class="text-muted">
           <i title="<?php print $title ?> <?php print t('on'); ?> Google+" class="fa fa-google-plus fa-lg fa-fw"></i>
           <a href="<?php print $link; ?>" class="text-muted">
-            <?php print $link; ?>
+            <?php print t('on'); ?> Google+
           </a> 
         </p>      
         <?php elseif ($class == 'linkTwitter'): ?>
         <p class="text-muted">
           <i title="<?php print $title ?> <?php print t('on'); ?> Twitter" class="fa fa-twitter fa-lg fa-fw"></i>
           <a href="<?php print $link; ?>" class="text-muted">
-            <?php print $link; ?>
+            <?php print t('on'); ?> Twitter
           </a> 
         </p>  
         <?php elseif ($class == 'linkWebsite'): ?>
         <p class="text-muted">
           <i title="<?php print $title ?> <?php print t('on'); ?> Internet" class="fa fa-globe fa-lg fa-fw"></i>
           <a href="<?php print $link; ?>" class="text-muted">
-            <?php print $link; ?>
+            <?php print t('Website'); ?>
           </a> 
         </p>       
         <?php elseif ($class == 'linkBlog'): ?>
         <p class="text-muted">
           <i title="<?php print $title ?> Blog" class="fa fa-stack-exchange fa-lg fa-fw"></i>
           <a href="<?php print $link; ?>" class="text-muted">
-            <?php print $link; ?>
+            <?php print t('Blog'); ?>
           </a> 
         </p>       
         <?php elseif ($class == 'linkTicketing'): ?>
         <p class="text-muted">
           <i title="<?php print $title ?> <?php print t('Buy'); ?> tickets" class="fa fa-ticket fa-lg fa-fw"></i>
           <a href="<?php print $link; ?>" class="text-muted">
-            <?php print $link; ?>
+            <?php print t('Buy'); ?> tickets
           </a> 
         </p>       
         <?php elseif ($class == 'linkYouTube'): ?>
         <p class="text-muted">
           <i title="<?php print $title ?> <?php print t('on'); ?> Youtube" class="fa fa-youtube fa-lg fa-fw"></i>
           <a href="<?php print $link; ?>" class="text-muted">
-            <?php print $link; ?>
+            <?php print t('on'); ?> Youtube
           </a> 
         </p>       
         <?php endif; ?>        
