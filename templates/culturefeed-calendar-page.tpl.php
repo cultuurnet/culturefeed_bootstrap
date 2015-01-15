@@ -5,42 +5,40 @@
  */
 ?>
 
-
-  <row>
-    <div class="page-header">
-      <h1>
-        <?php print t('OuTcalendar') ?>
-        <small>
-          <?php print ' ' . t('of') . ' ' . $user_name ?>
-        </small>
-    </h1>
-    </div>
-    <ul class="nav nav-pills">
-      <?php if (!empty($share_calendar_url)) : ?>
-        <li>
-          <a class="text-center"
-             href="<?php print $share_calendar_url ?>"
-            <?php if (!$shared) :?>
-              data-toggle="popover"
-              data-trigger="focus"
-              data-placement="bottom"
-              data-html="true"
-              data-content='<?php print $data_content ?>'
-            <?php endif; ?>
-            >
-            <i class="fa fa-share-square-o"></i>
-            <div><?php print t('Share') ?></div>
-          </a>
-        </li>
-      <?php endif; ?>
-    </ul>
-    <?php if (!empty($save_cookie_button)) : ?>
-      <div class='pull-right'>
-        <?php print $save_cookie_button ?>
-      </div>
+<row>
+  <div class="page-header">
+    <h1>
+      <?php print t('OuTcalendar') ?>
+      <small>
+        <?php print ' ' . t('of') . ' ' . $user_name ?>
+      </small>
+  </h1>
+  </div>
+  <ul class="nav nav-pills">
+    <?php if (!empty($share_calendar_url)) : ?>
+      <li>
+        <a class="text-center"
+           href="<?php print $share_calendar_url ?>"
+          <?php if (!$shared) :?>
+            data-toggle="popover"
+            data-trigger="focus"
+            data-placement="bottom"
+            data-html="true"
+            data-content='<?php print $data_content ?>'
+          <?php endif; ?>
+          >
+          <i class="fa fa-share-square-o"></i>
+          <div><?php print t('Share') ?></div>
+        </a>
+      </li>
     <?php endif; ?>
-
-  </row>
+  </ul>
+  <?php if (!empty($save_cookie_button)) : ?>
+    <div class='pull-right'>
+      <?php print $save_cookie_button ?>
+    </div>
+  <?php endif; ?>
+</row>
 
 
 <?php if ($deny_access) : ?>

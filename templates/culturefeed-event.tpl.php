@@ -195,6 +195,11 @@
 
 </div>
 
+<div class="text-right">
+  <i class="fa fa-print"></i>
+  <?php print $print_link; ?>
+</div>
+          
 <hr />
 
 <div class="row">
@@ -248,17 +253,17 @@
         <div class="col-sm-3">
           <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-print fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $print_link; ?>
+          <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
+            <?php print $button; ?>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
-    <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
-      <?php print $button; ?>
-    <?php endforeach; ?>
+
   </div>
 
 </div>
