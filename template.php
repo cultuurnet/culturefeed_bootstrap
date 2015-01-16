@@ -1652,6 +1652,29 @@ function culturefeed_bootstrap_culturefeed_pages_page_manage_members(&$variables
 
 }
 
+/**
+ * Form confirmation callback to show a form to confirm the removal of a page.
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&$form, &$form_state, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $form['#prefix'] = '<div class="modal-dialog"><div class="modal-content">';
+    $form['#prefix'] .= '<div class="modal-header">';
+    $form['#prefix'] .= '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+    $form['#prefix'] .= '<h4 class="modal-title">' . t('Remove member') . '</h4>';
+    $form['#prefix'] .= '</div>';
+    $form['#prefix'] .= '<div class="modal-body">';
+    $form['#suffix'] = '</div></div></div>';
+  }
+
+  $form['decline']['#attributes']['class'] = array('button-decline', 'btn', 'btn-default');
+  $form['decline']['#attributes']['data-dismiss'] = 'modal';
+  $form['decline']['#href'] = '';
+
+  return $form;
+
+}
+
 
 /**
  * Preprocess the search results on a user.
