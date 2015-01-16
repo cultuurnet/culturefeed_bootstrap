@@ -17,9 +17,11 @@
         <?php print t('This event has been saved'); ?>
       </span>
       <a href="<?php print url($button['path']); ?>"><?php print $button['text']; ?></a>
-      <span>
-        <?php print t("Don't forget to login to save your events to your calendar"); ?>
-      </span>
+      <?php if (!$authenticated) : ?>
+        <span>
+          <?php print t("Don't forget to login to save your events to your calendar"); ?>
+        </span>
+      <?php endif; ?>
     </div>
   <?php endif; ?>
 <?php elseif ($button['action'] == 'add') : ?>
