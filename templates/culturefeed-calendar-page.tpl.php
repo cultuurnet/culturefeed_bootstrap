@@ -10,15 +10,29 @@
     <h1>
       <?php print t('OuTcalendar') ?>
       <small>
-        <?php print ' ' . t('of') . ' ' . $user_name ?>
+        <?php if (!empty($user_name)) : ?>
+          <?php print ' ' . t('of') . ' ' . $user_name ?>
+        <?php endif; ?>
       </small>
   </h1>
   </div>
+  <?php if (!empty($save_cookie_button)) : ?>
+    <div class='pull-right'>
+      <?php print $save_cookie_button ?>
+    </div>
+  <?php endif; ?>
   <ul class="nav nav-pills">
+    <?php if (!empty($calendar_settings_url)) : ?>
+      <li>
+        <a class="text-center" href="<?php print $calendar_settings_url ?>">
+          <i class="fa fa fa-cog"></i>
+          <div><?php print t('Settings') ?></div>
+        </a>
+      </li>
+    <?php endif; ?>
     <?php if (!empty($share_calendar_url)) : ?>
       <li>
-        <a class="text-center"
-           href="<?php print $share_calendar_url ?>"
+        <a class="text-center" href="<?php print $share_calendar_url ?>"
           <?php if (!$shared) :?>
             data-toggle="popover"
             data-trigger="focus"
@@ -33,11 +47,6 @@
       </li>
     <?php endif; ?>
   </ul>
-  <?php if (!empty($save_cookie_button)) : ?>
-    <div class='pull-right'>
-      <?php print $save_cookie_button ?>
-    </div>
-  <?php endif; ?>
 </row>
 
 

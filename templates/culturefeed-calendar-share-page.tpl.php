@@ -10,7 +10,7 @@
 
   <h3><?php print t('Share your OuTcalendar with your friends'); ?></h3>
   <p><?php print t('You can share this link with your friends'); ?></p>
-  <p class="well"><?php print $calendar_share_url; ?></p>
+  <p class="well"><?php print $calendar_full_share_url; ?></p>
   <p>
     <a type="button" class="btn btn-default facebook-share" href="<?php print $facebook_url; ?>">
       <i class="fa fa-facebook"></i>
@@ -38,7 +38,7 @@
 
   <p><?php print t('You have chosen earlier to not share your Outcalendar. You can change this in your settings.'); ?></p>
   <p>
-    <?php print l(t('Adjust settings'), ''); ?>
+    <?php print l(t('Adjust settings'), 'culturefeed/calendar/settings'); ?>
   </p>
 
 <?php endif; ?>
