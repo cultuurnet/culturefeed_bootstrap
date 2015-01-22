@@ -7,14 +7,12 @@
 
 .page-agenda-search {
   .breadcrumb {
-    .sr-only();
-    @media @tablet {
-      display: block;
+    @media (max-width: @screen-sm) {
+      .sr-only();
     }
   }
   h1.page-header {
-    position: absolute;
-    left: -9999em;
+    .sr-only();
   }
 }
 
@@ -47,7 +45,7 @@
 
 /* culturefeed agenda/search result */
 
-@media @tablet {
+@media (min-width: @screen-sm) {
   .cf-short-description {
     display: inline !important;
   }

@@ -66,6 +66,14 @@ body {
   }
 }
 
+// Branding.
+.navbar .logo {
+  @media (min-width: @screen-sm) {
+    margin-right: 0;
+    padding-left: 0;
+  }
+}
+
 // block titles
 
 .block-title {
@@ -206,7 +214,7 @@ hr.small {
   margin-top: 10px;
 }
 
-@media @tablet {
+@media (min-width: @screen-sm) {
   .scroll  {
     display: block;
     position: relative;
@@ -248,11 +256,9 @@ hr.small {
   bottom: auto;
 }
 
-
 .thumbnail .top {
   top: 2px;
 }
-
 
 .thumbnail .right {
   right: 25px;
