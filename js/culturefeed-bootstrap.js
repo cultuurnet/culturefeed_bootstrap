@@ -238,7 +238,7 @@
   }
 
   // Create a custom autocomplete widget that supports categorisation of data with bootstrap html.
-  if ($.custom.categorisedAutocomplete) {
+  if ($.custom && $.custom.categorisedAutocomplete) {
 
     // Take over the search function.
     $.custom.categorisedAutocomplete.prototype.search = function(value, event) {
