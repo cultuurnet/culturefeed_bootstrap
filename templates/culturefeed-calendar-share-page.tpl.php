@@ -10,7 +10,7 @@
 
   <h3><?php print t('Share your OuTcalendar with your friends'); ?></h3>
   <p><?php print t('You can share this link with your friends'); ?></p>
-  <p class="well"><?php print $calendar_full_share_url; ?></p>
+  <p class="well"><?php print $calendar_share_url; ?></p>
   <p>
     <a type="button" class="btn btn-default facebook-share" href="<?php print $facebook_url; ?>">
       <i class="fa fa-facebook"></i>
@@ -26,7 +26,7 @@
       <i class="fa fa-twitter"></i>
       Twitter
     </a>
-    <?php if ($mail['enabled']) : ?>
+    <?php if (!empty($mail_url)) : ?>
       <a type="button" class="btn btn-default" href="<?php print $mail_url; ?>">
       <i class="fa fa-inbox"></i>
       Mail
