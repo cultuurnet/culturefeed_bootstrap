@@ -22,17 +22,17 @@
     </div>
   <?php endif; ?>
   <ul class="nav nav-pills">
-    <?php if (!empty($calendar_settings_url)) : ?>
+    <?php if (!empty($calendar_settings_path)) : ?>
       <li>
-        <a class="text-center" href="<?php print $calendar_settings_url ?>">
+        <a class="text-center" href="<?php print url($calendar_settings_path); ?>">
           <i class="fa fa fa-cog"></i>
           <div><?php print t('Settings') ?></div>
         </a>
       </li>
     <?php endif; ?>
-    <?php if (!empty($share_calendar_url)) : ?>
+    <?php if (!empty($share_calendar_path)) : ?>
       <li>
-        <a class="text-center" href="<?php print $share_calendar_url ?>"
+        <a class="text-center" href="<?php print url($share_calendar_path); ?>"
           <?php if (!$shared) :?>
             data-toggle="popover"
             data-trigger="focus"
