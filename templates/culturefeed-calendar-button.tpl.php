@@ -7,12 +7,12 @@
 
 <?php if ($button['action'] == 'view') : ?>
   <?php if ($button['location'] == 'content') : ?>
-    <div class="<?php print $button['options']['attributes']['class']; ?>">
+    <div class="calendar-button calendar-button-content">
       <span><?php print t('This event is added to your calendar.'); ?></span>
       <a href="<?php print url($button['path']); ?>"><?php print $button['text']; ?></a>
     </div>
   <?php elseif ($button['location'] == 'footer') : ?>
-    <div class="<?php print $button['options']['attributes']['class']; ?>">
+    <div class="calendar-button calendar-button-footer">
       <span>
         <?php print t('This event has been saved'); ?>
       </span>
@@ -25,7 +25,7 @@
     </div>
   <?php endif; ?>
 <?php elseif ($button['action'] == 'add') : ?>
-  <div class="<?php print $button['options']['attributes']['class'] . ' ' . $button['options']['attributes']['class'] . '-' . $button['location']; ?>">
+  <div class="calendar-button calendar-button-<?php print $button['location']; ?>">
     <a href="<?php print url($button['path'], $button['options']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
   </div>
 <?php endif; ?>
