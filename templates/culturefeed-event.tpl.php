@@ -81,9 +81,11 @@
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
         <td class="cf-when scroll scroll-150">
           <?php print $when; ?>
+          <?php if (!empty($personal_calendar_buttons)): ?>
           <?php foreach ($personal_calendar_buttons['content'] as $button) : ?>
             <?php print $button; ?>
           <?php endforeach; ?>
+          <?php endif; ?>
         </td>
       </tr>
       <?php endif; ?>
@@ -199,7 +201,7 @@
   <i class="fa fa-print"></i>
   <?php print $print_link; ?>
 </div>
-          
+
 <hr />
 
 <div class="row">
@@ -257,9 +259,11 @@
           </span>
         </div>
         <div class="col-sm-9">
+          <?php if (!empty($personal_calendar_buttons)): ?>
           <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
             <?php print $button; ?>
           <?php endforeach; ?>
+          <?php endif; ?>
         </div>
       </div>
     </div>

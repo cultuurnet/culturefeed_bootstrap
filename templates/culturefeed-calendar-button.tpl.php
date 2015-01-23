@@ -25,7 +25,7 @@
     </div>
   <?php endif; ?>
 <?php elseif ($button['action'] == 'add') : ?>
-  <div class="<?php print $button['class'] . ' ' . $button['class'] . '-' . $button['location']; ?>">
-    <a href="<?php print url($button['path']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
+  <div class="<?php print $button['options']['attributes']['class'] . ' ' . $button['options']['attributes']['class'] . '-' . $button['location']; ?>">
+    <a href="<?php print url($button['path'], $button['options']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
   </div>
 <?php endif; ?>
