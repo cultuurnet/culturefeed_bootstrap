@@ -7,12 +7,12 @@
 
 <?php if ($button['action'] == 'view') : ?>
   <?php if ($button['location'] == 'content') : ?>
-    <div class="<?php print $button['class']; ?>">
+    <div class="<?php print $button['options']['attributes']['class']; ?>">
       <span><?php print t('This event is added to your calendar.'); ?></span>
       <a href="<?php print url($button['path']); ?>"><?php print $button['text']; ?></a>
     </div>
   <?php elseif ($button['location'] == 'footer') : ?>
-    <div class="<?php print $button['class']; ?>">
+    <div class="<?php print $button['options']['attributes']['class']; ?>">
       <span>
         <?php print t('This event has been saved'); ?>
       </span>
