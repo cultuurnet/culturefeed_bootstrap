@@ -8,7 +8,7 @@
 <row>
   <div class="page-header">
     <h1>
-      <?php print t('OuTcalendar') ?>
+      <?php print t('Calendar') ?>
       <small>
         <?php if (!empty($user_name)) : ?>
           <?php print ' ' . t('of') . ' ' . $user_name ?>
