@@ -2,9 +2,12 @@
 /**
  * @file
  * Template for the calendar add or view buttons.
+ * Leave the wrapper div class + data-eventid, as it is used for javascript.
  */
 $classes = implode(' ', $button['options']['attributes']['class']);
 ?>
+
+<div class="calendar-button" data-eventid="<?php print $event_id; ?>">
 
 <?php if ($button['action'] == 'view') : ?>
   <?php if ($button['location'] == 'content') : ?>
@@ -30,3 +33,5 @@ $classes = implode(' ', $button['options']['attributes']['class']);
     <a href="<?php print url($button['path'], $button['options']); ?>" class="use-ajax"><?php print $button['text']; ?></a>
   </div>
 <?php endif; ?>
+
+</div>
