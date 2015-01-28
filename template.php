@@ -687,34 +687,29 @@ function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_i
 }
 
 /**
- * Theme the total activities profile box item.
+ * Theme the profile box item for calendar..
  */
-function culturefeed_bootstrap_culturefeed_calendar_total_activities_profile_box_item($variables) {
+function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables) {
 
   $icon = '<i class="fa fa-lg fa-calendar"></i>';
   $icon_new = '<i class="fa fa-lg fa-calendar-o"></i>';
-  $total = $variables['total'];
   $url = 'culturefeed/calendar';
   $authenticated = DrupalCultureFeed::isCultureFeedUser();
 
   if ($authenticated) {
     return l($icon, $url, array('html' => TRUE));
   }
+  // Show default with 0 for anonymous. JS sets the correct value.
   else {
-    if ($total > 0) {
-      $hover = theme('culturefeed_calendar_button_hover');
-      $popover_options = array(
-        'class' => '',
-        'data-toggle' => 'popover',
-        'data-content' => $hover,
-        'data-placement' => 'bottom',
-        'data-html' => 'true'
-      );
-      return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">' . $total . '</span></small>', $url, array('attributes' => $popover_options, 'html' => TRUE));
-    }
-    else {
-      return;
-    }
+    $hover = theme('culturefeed_calendar_button_hover');
+    $popover_options = array(
+      'class' => '',
+      'data-toggle' => 'popover',
+      'data-content' => $hover,
+      'data-placement' => 'bottom',
+      'data-html' => 'true'
+    );
+    return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">0</span></small>', $url, array('attributes' => $popover_options, 'html' => TRUE));
   }
 }
 
