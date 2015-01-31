@@ -2282,3 +2282,13 @@ function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
   }
 
 }
+
+/**
+ * Theme the saved searches CTA.
+ */
+function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
+
+  $text = '<h5>' . t('Save this search') . '</h5>' . check_plain($vars['text']);
+  return l($text, $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-block')));
+
+}
