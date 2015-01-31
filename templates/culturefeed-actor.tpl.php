@@ -33,7 +33,7 @@
           <?php elseif ($Android): ?>
             <a href="geo:<?php print (!empty($coordinates['lat']) ? $coordinates['lat'] : '0') . ',' . (!empty($coordinates['lng']) ? $coordinates['lng'] : '0'); ?>?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : '') ?>&zoom=14" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
           <?php else: ?>
-            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE)) ?>
+            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE, 'external' => 'TRUE')) ?>
           <?php endif; ?>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
@@ -85,11 +85,18 @@
     
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
-      <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
-      <?php foreach ($pictures as $picture): ?>
-        <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-      <?php endforeach; ?> 
-      <hr class="small" />
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <?php if(!empty($pictures)): ?>
+        <br />
+        <div class="row">
+          <?php foreach ($pictures as $picture): ?>
+            <div class="col-xs-6">
+              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive"'; ?> />
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <br />
     </div>  
     <?php endif; ?>
 

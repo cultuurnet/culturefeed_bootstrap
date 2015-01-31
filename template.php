@@ -1593,8 +1593,18 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
       $data['subject'] = '<ul class="nav nav-tabs"><li class="tab-agenda"><a href="#block-culturefeed-pages-page-agenda" class="text-muted"><h4><i class="fa fa-calendar fa-fw fa-lg"></i>' . t('Activities') . '</h4></a></li><li class="active"><a href="#"><h4><i class="fa fa-th-list fa-fw fa-lg"></i>' . t('Timeline') .'</h4></a></li></ul>';
       break;
     case 'profile_menu':
-      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage profile') . ' ' . '<span class="caret"></span></button>';
-      //TO DO: add $data['content']
+      $items = $data['content']['#items'];
+
+      foreach ($items as $key => $item) {
+        $items[$key]['class'][] = 'list-group-item';
+      }
+
+      $data['content'] = array(
+        '#theme' => 'item_list',
+        '#items' => $items,
+        '#attributes' => array('class' => 'list-group'),
+      );
+
     break;
     }
 
@@ -2046,22 +2056,22 @@ function culturefeed_bootstrap_file_managed_file($variables) {
     $attributes['class'] = (array) $element['#attributes']['class'];
   }
 
-  if (!empty($element['filename'])) {
+  if (!empty($element['filename']) && !empty($element['#file']->uri)) {
     $element['filename']['#markup'] = '<div class="col-md-4">';
     $element['filename']['#markup'] .= theme('image_style', array('style_name' => 'thumbnail', 'path' => $element['#file']->uri, 'attributes' => array('class' => array('img-thumbnail'))));
     $element['filename']['#markup'] .= '</div>';
   }
   else {
-  $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
-  $element['upload_button']['#suffix'] = '</span></div>';
+    $element['filename']['#markup'] = '';
+    $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
+    $element['upload_button']['#suffix'] = '</span></div>';
     $element['upload']['#prefix'] = '<div class="col-md-6">';
     $element['upload']['#suffix'] = '</div>';
-
   }
 
   $hidden_elements = array();
   foreach (element_children($element) as $child) {
-    if ($element[$child]['#type'] === 'hidden') {
+    if (isset($element[$child]['#type']) && $element[$child]['#type'] === 'hidden') {
       $hidden_elements[$child] = $element[$child];
       unset($element[$child]);
     }
@@ -2162,6 +2172,32 @@ function culturefeed_bootstrap_culturefeed_search_sort_links(&$variables) {
 
 }
 
+/*
+ * Implements hook_js_alter().
+ */
+function culturefeed_bootstrap_js_alter(&$javascript) {
+
+  $vertical_tabs_file = drupal_get_path('theme', 'bootstrap') . '/js/misc/_vertical-tabs.js';
+
+  // Add our own verstion of tabs.
+  if (isset($javascript[$vertical_tabs_file])) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_vertical-tabs.js';
+    $javascript[$file] = $javascript[$vertical_tabs_file];
+    $javascript[$file]['weight']++;
+    $javascript[$file]['data'] = $file;
+  }
+
+  // Add our own verstion of fieldgroup.
+  $field_group_file = drupal_get_path('module', 'field_group') . '/field_group.js';
+  if (isset($javascript[$field_group_file])) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_field_group.js';
+    $javascript[$file] = $javascript[$field_group_file];
+    $javascript[$file]['weight']++;
+    $javascript[$file]['data'] = $file;
+  }
+
+}
+
 function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
   // Promotions.
   $form['promotions_link'] = array(
@@ -2244,6 +2280,7 @@ function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
     );
     array_splice($active_trail, 1, 0, $advantage_placeholder);
   }
+
 }
 
 /**

@@ -2,7 +2,7 @@
 /**
  * @file
  * Template for the summary of an event.
- * Please don't remove the cf- prefixed id's. This is used by GTM for user behavior tracking. 
+ * Please don't remove the cf- prefixed id's. This is used by GTM for user behavior tracking.
  * Some day your client will benefit from our aggregated insights & benchmarks too.
  * See https://github.com/cultuurnet/culturefeed/wiki/Culturefeed-tracking
  * Thanks!
@@ -25,11 +25,17 @@
 
   <div class="col-xs-9 col-lg-10">
 
-    <h2 class="media-heading">
+    <?php if (isset($forkids)): ?>
+      <span class="forkids pull-right"></span>
       <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
-        <small><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></small>
+        <?php if ($agefrom > 0): ?>
+          <small class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></small>
+        <?php endif; ?>
       <?php endif; ?>
-      <a href="<?php print $url ?>" id="cf-title_<?php print $cdbid ?>">      
+    <?php endif; ?>
+
+    <h2 class="media-heading">
+      <a href="<?php print $url ?>" id="cf-title_<?php print $cdbid ?>">
         <?php print $title; ?>
       </a>
     </h2>
@@ -52,7 +58,7 @@
         <div class="col-xs-10"><?php print $performers; ?></div>
       </div>
       <?php endif; ?>
-    
+
       <?php if ($location): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('Where'); ?></strong></div>
@@ -67,15 +73,15 @@
         </div>
       </div>
       <?php endif; ?>
-    
+
       <?php if (!empty($when)): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar fa-fw"></i></div>
         <div class="col-xs-10">
-          <?php if (strlen($when) < 75) : ?> 
+          <?php if (strlen($when) < 75) : ?>
             <?php print $when; ?>
-          <?php else : ?> 
+          <?php else : ?>
             <?php print substr($when, 0, 75) . '... '; ?>
           <?php endif; ?>
         </div>
@@ -84,7 +90,7 @@
     </p>
 
     <?php if (!empty($tickets)): ?>
-      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-warning'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
+      <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, '<i class="fa fa-ticket"></i> ' . t('Info & tickets') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
     <?php else: ?>
       <p class="hidden-xs"><?php print culturefeed_search_detail_l('event', $cdbid, $title, t('More info') . ' &rarr;', array('html' => TRUE, 'attributes' => array('class' => array('btn', 'btn-default'), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
     <?php endif; ?>

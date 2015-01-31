@@ -8,19 +8,24 @@
 <div class="row">
 
   <div class="col-sm-8">
-  
+
+    <?php if (isset($forkids)): ?>
+      <span class="forkids pull-right"></span>        
+    <?php endif; ?> 
     <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
-      <p class="lead pull-right"><span class="label label-success"> <?php print $agefrom; ?> +</span></p>
+      <?php if ($agefrom > 0): ?>
+        <span class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></span>
+      <?php endif; ?>      
     <?php endif; ?>
 
-    <?php if (!empty($themes)): ?>
-      <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes); ?></p>
+    <?php if (!empty($themes_links)): ?>
+      <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes_links); ?></p>
     <?php endif; ?>
     
     <p>
       <?php print $shortdescription; ?>
       <?php if (!empty($longdescription)): ?>
-        <?php print l(t('Read more'), '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'cf-longdescription')) ?>
+        <?php print l(t('Read more'), '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'cf-longdescription', 'external' => 'TRUE')) ?>
         <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
       <?php endif; ?>
     </p>
@@ -48,7 +53,7 @@
           <?php elseif ($Android): ?>
             <a href="geo:<?php print (!empty($coordinates['lat']) ? $coordinates['lat'] : '0') . ',' . (!empty($coordinates['lng']) ? $coordinates['lng'] : '0'); ?>?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : '') ?>&zoom=14" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
           <?php else: ?>
-            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE)) ?>
+            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE, 'external' => 'TRUE')) ?>
           <?php endif; ?>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
@@ -155,16 +160,26 @@
   <div class="col-sm-4 hidden-xs">
 
     <?php if (!empty($main_picture)): ?>
-      <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
-      <?php foreach ($pictures as $picture): ?>
-        <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-      <?php endforeach; ?> 
-      <hr class="small" />  
+    <div class="hidden-xs">
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <?php if(!empty($pictures)): ?>
+        <br />
+        <div class="row">
+          <?php foreach ($pictures as $picture): ?>
+            <div class="col-xs-6">
+              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive"'; ?> />
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <br />
+    </div>  
     <?php endif; ?>
     
     <?php if (!empty($videos)): ?>
       <?php foreach ($videos as $video): ?>
         <?php print $video; ?>
+        <br />
       <?php endforeach; ?>    
       <hr class="small" />
     <?php endif; ?>

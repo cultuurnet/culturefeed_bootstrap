@@ -8,31 +8,36 @@
 <div class="row">
 
   <div class="col-sm-8">
-  
-    <?php if (!empty($agefrom)): ?>
-      <p class="lead pull-right"><span class="label label-success"> <?php print $agefrom; ?> +</span></p>
+
+    <?php if (isset($forkids)): ?>
+      <span class="forkids pull-right"></span>
+    <?php endif; ?>
+    <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
+      <?php if ($agefrom > 0): ?>
+        <span class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></span>
+      <?php endif; ?>
     <?php endif; ?>
 
-    <?php if (!empty($themes)): ?>
-      <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes); ?></p>
+    <?php if (!empty($themes_links)): ?>
+      <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes_links); ?></p>
     <?php endif; ?>
-    
+
     <p>
       <?php print $shortdescription; ?>
       <?php if (!empty($longdescription)): ?>
-        <?php print l(t('Read more'), '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'cf-longdescription')) ?>
+        <?php print l(t('Read more'), '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'cf-longdescription', 'external' => 'TRUE')) ?>
         <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
       <?php endif; ?>
     </p>
-    
+
     <table class="table table-condended">
       <tbody>
 
-      <?php if (!empty($performers)): ?>     
+      <?php if (!empty($performers)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('With'); ?></strong><i class="fa fa-users hidden-md hidden-lg"></i></td>
       <td><?php print $performers; ?></td></tr>
       <?php endif; ?>
-    
+
       <?php if ($location && $relations < 2): ?>
       <tr><td class="col-lg-2 col-md-2 col-sm-1 col-xs-1"><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
@@ -48,7 +53,7 @@
           <?php elseif ($Android): ?>
             <a href="geo:<?php print (!empty($coordinates['lat']) ? $coordinates['lat'] : '0') . ',' . (!empty($coordinates['lng']) ? $coordinates['lng'] : '0'); ?>?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : '') ?>&zoom=14" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
           <?php else: ?>
-            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE)) ?>
+            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE, 'external' => 'TRUE')) ?>
           <?php endif; ?>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
@@ -70,12 +75,12 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($when) && $relations < 2): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
       <td class="cf-when scroll scroll-150"><?php print $when; ?></td></tr>
       <?php endif; ?>
-    
+
       <?php if ($organiser): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Organization'); ?></strong><i class="fa fa-building-o hidden-md hidden-lg"></i></td>
       <td>
@@ -86,7 +91,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($price)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Price'); ?></strong><i class="fa fa-eur hidden-md hidden-lg"></i></td>
       <td>
@@ -96,7 +101,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($reservation)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Reservations'); ?></strong><i class="fa fa-ticket hidden-md hidden-lg"></i></td>
       <td>
@@ -108,7 +113,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($contact['mail']) || !empty($contact['phone']) || !empty($contact['fax'])) : ?>
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
         <td>
@@ -125,7 +130,7 @@
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($links)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Links'); ?></strong><i class="fa fa-external-link hidden-md hidden-lg"></i></td>
       <td><?php print implode('<br />', $links); ?></td></tr>
@@ -145,13 +150,13 @@
       <?php if ($relations > 1): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Program schedule'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
       <td class="production-program-cell">
-      <?php 
-      $block = module_invoke('culturefeed_agenda', 'block_view', 'production-program'); 
+      <?php
+      $block = module_invoke('culturefeed_agenda', 'block_view', 'production-program');
       print render($block['content']);
       ?>
       </td></tr>
       <?php endif; ?>
-    
+
       </tbody>
 
     </table>
@@ -161,17 +166,27 @@
   <div class="col-sm-4 hidden-xs">
 
     <?php if (!empty($main_picture)): ?>
-      <img src="<?php print $main_picture; ?>?width=260&crop=auto" class="img-responsive" />
-      <?php foreach ($pictures as $picture): ?>
-        <img src="<?php print $picture; ?>?width=60&height=60&crop=auto" />
-      <?php endforeach; ?> 
-      <hr class="small" />  
+    <div class="hidden-xs">
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <?php if(!empty($pictures)): ?>
+        <br />
+        <div class="row">
+          <?php foreach ($pictures as $picture): ?>
+            <div class="col-xs-6">
+              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive"'; ?> />
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <br />
+    </div>
     <?php endif; ?>
-    
+
     <?php if (!empty($videos)): ?>
       <?php foreach ($videos as $video): ?>
         <?php print $video; ?>
-      <?php endforeach; ?>    
+        <br />
+      <?php endforeach; ?>
       <hr class="small" />
     <?php endif; ?>
 
@@ -183,7 +198,7 @@
 <hr />
 
 <div class="row">
-  
+
   <div class="col-sm-12">
 
     <div class="col-xs-3">
@@ -195,7 +210,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $recommend_link; ?>       
+          <?php print $recommend_link; ?>
         </div>
       </div>
     </div>
@@ -209,7 +224,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $attend_link; ?>       
+          <?php print $attend_link; ?>
         </div>
       </div>
     </div>
@@ -223,7 +238,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $share_link; ?>       
+          <?php print $share_link; ?>
         </div>
       </div>
     </div>
@@ -237,7 +252,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $print_link; ?>       
+          <?php print $print_link; ?>
         </div>
       </div>
     </div>
