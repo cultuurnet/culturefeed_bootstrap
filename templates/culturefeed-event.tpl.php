@@ -10,18 +10,19 @@
   <div class="col-sm-8">
 
     <?php if (isset($forkids)): ?>
-      <span class="forkids pull-right"></span>        
-    <?php endif; ?> 
+      <span class="forkids pull-right"></span>
+    <?php endif; ?>
+
     <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
       <?php if ($agefrom > 0): ?>
         <span class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></span>
-      <?php endif; ?>      
+      <?php endif; ?>
     <?php endif; ?>
 
     <?php if (!empty($themes_links)): ?>
       <p class="text-muted"><i class="fa fa-tags"></i> <?php print implode(', ' , $themes_links); ?></p>
     <?php endif; ?>
-    
+
     <p>
       <?php print $shortdescription; ?>
       <?php if (!empty($longdescription)): ?>
@@ -29,11 +30,11 @@
         <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
       <?php endif; ?>
     </p>
-    
+
     <table class="table table-condended">
       <tbody>
 
-      <?php if (!empty($performers)): ?>     
+      <?php if (!empty($performers)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('With'); ?></strong><i class="fa fa-users hidden-md hidden-lg"></i></td>
       <td><?php print $performers; ?></td></tr>
       <?php endif; ?>
@@ -75,12 +76,20 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($when)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
-      <td class="cf-when scroll scroll-150"><?php print $when; ?></td></tr>
+        <td class="cf-when scroll scroll-150">
+          <?php print $when; ?>
+          <?php if (!empty($personal_calendar_buttons)): ?>
+          <?php foreach ($personal_calendar_buttons['content'] as $button) : ?>
+            <?php print $button; ?>
+          <?php endforeach; ?>
+          <?php endif; ?>
+        </td>
+      </tr>
       <?php endif; ?>
-    
+
       <?php if ($organiser): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Organization'); ?></strong><i class="fa fa-building-o hidden-md hidden-lg"></i></td>
       <td>
@@ -91,7 +100,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($price)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Price'); ?></strong><i class="fa fa-eur hidden-md hidden-lg"></i></td>
       <td>
@@ -101,7 +110,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($reservation) || !empty($tickets)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Reservations'); ?></strong><i class="fa fa-ticket hidden-md hidden-lg"></i></td>
       <td>
@@ -119,7 +128,7 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($contact['mail']) || !empty($contact['phone']) || !empty($contact['fax'])) : ?>
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
         <td>
@@ -134,7 +143,7 @@
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($links)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Links'); ?></strong><i class="fa fa-external-link hidden-md hidden-lg"></i></td>
       <td><?php print implode('<br />', $links); ?></td></tr>
@@ -150,7 +159,7 @@
       <tr class="hidden-xs hidden-sm"><td><strong class="hidden-xs hidden-sm"><?php print t('Keywords'); ?></strong></td>
       <td><?php print $keywords; ?></td></tr>
       <?php endif; ?>
-    
+
       </tbody>
 
     </table>
@@ -173,14 +182,14 @@
         </div>
       <?php endif; ?>
       <br />
-    </div>  
+    </div>
     <?php endif; ?>
-    
+
     <?php if (!empty($videos)): ?>
       <?php foreach ($videos as $video): ?>
         <?php print $video; ?>
         <br />
-      <?php endforeach; ?>    
+      <?php endforeach; ?>
       <hr class="small" />
     <?php endif; ?>
 
@@ -188,10 +197,15 @@
 
 </div>
 
+<div class="text-right">
+  <i class="fa fa-print"></i>
+  <?php print $print_link; ?>
+</div>
+
 <hr />
 
 <div class="row">
-  
+
   <div class="col-sm-12">
 
     <div class="col-xs-3">
@@ -203,7 +217,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $recommend_link; ?>       
+          <?php print $recommend_link; ?>
         </div>
       </div>
     </div>
@@ -217,7 +231,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $attend_link; ?>       
+          <?php print $attend_link; ?>
         </div>
       </div>
     </div>
@@ -231,7 +245,7 @@
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $share_link; ?>       
+          <?php print $share_link; ?>
         </div>
       </div>
     </div>
@@ -241,11 +255,15 @@
         <div class="col-sm-3">
           <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-print fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
           </span>
         </div>
         <div class="col-sm-9">
-          <?php print $print_link; ?>       
+          <?php if (!empty($personal_calendar_buttons)): ?>
+          <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
+            <?php print $button; ?>
+          <?php endforeach; ?>
+          <?php endif; ?>
         </div>
       </div>
     </div>

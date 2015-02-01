@@ -687,6 +687,33 @@ function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_i
 }
 
 /**
+ * Theme the profile box item for calendar..
+ */
+function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables) {
+
+  $icon = '<i class="fa fa-lg fa-calendar"></i>';
+  $icon_new = '<i class="fa fa-lg fa-calendar-o"></i>';
+  $url = 'culturefeed/calendar';
+  $authenticated = DrupalCultureFeed::isCultureFeedUser();
+
+  if ($authenticated) {
+    return l($icon, $url, array('html' => TRUE));
+  }
+  // Show default with 0 for anonymous. JS sets the correct value.
+  else {
+    $hover = theme('culturefeed_calendar_button_hover');
+    $popover_options = array(
+      'class' => '',
+      'data-toggle' => 'popover',
+      'data-content' => $hover,
+      'data-placement' => 'bottom',
+      'data-html' => 'true'
+    );
+    return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">0</span></small>', $url, array('attributes' => $popover_options, 'html' => TRUE));
+  }
+}
+
+/**
  * Form callback for the basic search form.
  */
 
@@ -2284,6 +2311,60 @@ function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
 }
 
 /**
+ * Implements hook_form_{culturefeed_calendar_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $form_state) {
+
+  if (arg(4) != 'ajax') {
+    return;
+  }
+
+  if (!isset($form['#prefix'])) {
+    $form['#prefix'] = '';
+  }
+
+  // Add header, don't loose existing prefix.
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+
+  $form['info']['#prefix'] = '<div class="modal-body">';
+  $form['date']['#suffix'] = '</div>';
+
+  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#suffix'] = '</div>';
+
+  unset($form['actions']['cancel']['#ajax']);
+  $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+
+}
+
+/**
+ * Implements hook_form_{culturefeed_calendar_delete_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$form, $form_state) {
+
+  if (arg(4) != 'ajax') {
+    return;
+  }
+
+  if (!isset($form['#prefix'])) {
+    $form['#prefix'] = '';
+  }
+
+  // Add header, don't loose existing prefix.
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+
+  $form['info']['#prefix'] = '<div class="modal-body">';
+  $form['date']['#suffix'] = '</div>';
+
+  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#suffix'] = '</div>';
+
+  $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
+
+}
+
+/**
  * Theme the saved searches CTA.
  */
 function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
@@ -2292,3 +2373,40 @@ function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
   return l($text, $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-block')));
 
 }
+
+/*
+ * Implements hook_js_alter().
+ */
+function culturefeed_bootstrap_js_alter(&$javascript) {
+
+  $vertical_tabs_file = drupal_get_path('theme', 'bootstrap') . '/js/misc/_vertical-tabs.js';
+
+  // Add our own verstion of tabs.
+  if (isset($javascript[$vertical_tabs_file])) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_vertical-tabs.js';
+    $javascript[$file] = $javascript[$vertical_tabs_file];
+    $javascript[$file]['weight']++;
+    $javascript[$file]['data'] = $file;
+  }
+
+  // Add our own verstion of fieldgroup.
+  $field_group_file = drupal_get_path('module', 'field_group') . '/field_group.js';
+  if (isset($javascript[$field_group_file])) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/_field_group.js';
+    $javascript[$file] = $javascript[$field_group_file];
+    $javascript[$file]['weight']++;
+    $javascript[$file]['data'] = $file;
+  }
+
+}
+/**
+ * Theme add to calendar button tooltip.
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_calendar_button_hover(&$variables) {
+
+  $variables['options']['attributes'] = array(
+    'class' => array('btn', 'btn-primary', 'btn-block'),
+  );
+}
+
