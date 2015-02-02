@@ -8,7 +8,7 @@
 <div class="row">
   <div class="col-md-4 col-sm-4">
     <?php if (!empty($thumbnail)): ?>
-      <img src="<?php print $thumbnail; ?>?width=80&height=80&crop=auto" />
+      <img src="<?php print $thumbnail; ?>?width=80&height=80&crop=auto">
     <?php endif; ?>
   </div>
 

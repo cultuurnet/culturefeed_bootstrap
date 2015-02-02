@@ -9,7 +9,7 @@
 <div class="container">
 
   <div class="row">
-    <p class="block-title pull-left">In jouw buurt <span id="nearby-activities-title-location" class="text-muted" /></p>
+    <p class="block-title pull-left">In jouw buurt <span id="nearby-activities-title-location" class="text-muted"></span></p>
 
     <span class="pull-left">
       <?php if (!empty($change_location_link)): ?>
@@ -23,7 +23,7 @@
       <?php endif; ?>
     </span>
 
-    <div class="hidden" id="nearby-activities-filter-form-wrapper">
+    <div id="nearby-activities-filter-form-wrapper">
       <?php print drupal_render($filter_form); ?>
     </div>
   </div>
