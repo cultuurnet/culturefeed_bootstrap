@@ -250,23 +250,23 @@
       </div>
     </div>
 
-    <div class="col-xs-3">
-      <div class="row">
-        <div class="col-sm-3">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
-          </span>
-        </div>
-        <div class="col-sm-9">
-          <?php if (!empty($personal_calendar_buttons)): ?>
-          <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
-            <?php print $button; ?>
-          <?php endforeach; ?>
-          <?php endif; ?>
+    <?php if (!empty($personal_calendar_buttons)): ?>
+      <div class="col-xs-3">
+        <div class="row">
+          <div class="col-sm-3">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
+            </span>
+          </div>
+          <div class="col-sm-9">
+            <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
+              <?php print $button; ?>
+            <?php endforeach; ?>
+          </div>
         </div>
       </div>
-    </div>
+    <?php endif; ?>
 
   </div>
 
