@@ -733,6 +733,33 @@ function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_i
 }
 
 /**
+ * Theme the profile box item for calendar..
+ */
+function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables) {
+
+  $icon = '<i class="fa fa-lg fa-calendar"></i>';
+  $icon_new = '<i class="fa fa-lg fa-calendar-o"></i>';
+  $url = 'culturefeed/calendar';
+  $authenticated = DrupalCultureFeed::isCultureFeedUser();
+
+  if ($authenticated) {
+    return l($icon, $url, array('html' => TRUE));
+  }
+  // Show default with 0 for anonymous. JS sets the correct value.
+  else {
+    $hover = theme('culturefeed_calendar_button_hover');
+    $popover_options = array(
+      'class' => '',
+      'data-toggle' => 'popover',
+      'data-content' => $hover,
+      'data-placement' => 'bottom',
+      'data-html' => 'true'
+    );
+    return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">0</span></small>', $url, array('attributes' => $popover_options, 'html' => TRUE));
+  }
+}
+
+/**
  * Form callback for the basic search form.
  */
 
@@ -1639,8 +1666,18 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
       $data['subject'] = '<ul class="nav nav-tabs"><li class="tab-agenda"><a href="#block-culturefeed-pages-page-agenda" class="text-muted"><h4><i class="fa fa-calendar fa-fw fa-lg"></i>' . t('Activities') . '</h4></a></li><li class="active"><a href="#"><h4><i class="fa fa-th-list fa-fw fa-lg"></i>' . t('Timeline') .'</h4></a></li></ul>';
       break;
     case 'profile_menu':
-      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage profile') . ' ' . '<span class="caret"></span></button>';
-      //TO DO: add $data['content']
+      $items = $data['content']['#items'];
+
+      foreach ($items as $key => $item) {
+        $items[$key]['class'][] = 'list-group-item';
+      }
+
+      $data['content'] = array(
+        '#theme' => 'item_list',
+        '#items' => $items,
+        '#attributes' => array('class' => 'list-group'),
+      );
+
     break;
     }
 
@@ -2107,22 +2144,22 @@ function culturefeed_bootstrap_file_managed_file($variables) {
     $attributes['class'] = (array) $element['#attributes']['class'];
   }
 
-  if (!empty($element['filename'])) {
+  if (!empty($element['filename']) && !empty($element['#file']->uri)) {
     $element['filename']['#markup'] = '<div class="col-md-4">';
     $element['filename']['#markup'] .= theme('image_style', array('style_name' => 'thumbnail', 'path' => $element['#file']->uri, 'attributes' => array('class' => array('img-thumbnail'))));
     $element['filename']['#markup'] .= '</div>';
   }
   else {
-  $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
-  $element['upload_button']['#suffix'] = '</span></div>';
+    $element['filename']['#markup'] = '';
+    $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
+    $element['upload_button']['#suffix'] = '</span></div>';
     $element['upload']['#prefix'] = '<div class="col-md-6">';
     $element['upload']['#suffix'] = '</div>';
-
   }
 
   $hidden_elements = array();
   foreach (element_children($element) as $child) {
-    if ($element[$child]['#type'] === 'hidden') {
+    if (isset($element[$child]['#type']) && $element[$child]['#type'] === 'hidden') {
       $hidden_elements[$child] = $element[$child];
       unset($element[$child]);
     }
@@ -2504,4 +2541,79 @@ function culturefeed_bootstrap_form_element(&$variables) {
   $output .= "</div>\n";
 
   return $output;
+}
+
+/*
+ * Implements hook_form_{culturefeed_calendar_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $form_state) {
+
+  if (arg(4) != 'ajax') {
+    return;
+  }
+
+  if (!isset($form['#prefix'])) {
+    $form['#prefix'] = '';
+  }
+
+  // Add header, don't loose existing prefix.
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+
+  $form['info']['#prefix'] = '<div class="modal-body">';
+  $form['date']['#suffix'] = '</div>';
+
+  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#suffix'] = '</div>';
+
+  unset($form['actions']['cancel']['#ajax']);
+  $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+
+}
+
+/*
+ * Implements hook_form_{culturefeed_calendar_delete_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$form, $form_state) {
+
+  if (arg(4) != 'ajax') {
+    return;
+  }
+
+  if (!isset($form['#prefix'])) {
+    $form['#prefix'] = '';
+  }
+
+  // Add header, don't loose existing prefix.
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+
+  $form['info']['#prefix'] = '<div class="modal-body">';
+  $form['date']['#suffix'] = '</div>';
+
+  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#suffix'] = '</div>';
+
+  $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
+
+}
+
+/**
+ * Theme the saved searches CTA.
+ */
+function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
+
+  $text = '<h5>' . t('Save this search') . '</h5>' . check_plain($vars['text']);
+  return l($text, $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-block')));
+
+}
+
+/**
+ * Theme add to calendar button tooltip.
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_calendar_button_hover(&$variables) {
+
+  $variables['options']['attributes'] = array(
+    'class' => array('btn', 'btn-primary', 'btn-block'),
+  );
 }

@@ -16,13 +16,13 @@
         <div class="<?php print $tab['class']; ?>">
           <div class="row">
             <div class="col-sm-3 col-md-4 col-lg-3"><strong><?php print $content['city']; ?></strong></div>
-            <div class="col-sm-9 col-md-8 col-lg-9">            
+            <div class="col-sm-9 col-md-8 col-lg-9">
               <?php if (isset($content['all_url'])): ?>
                 <a href="<?print $content['all_url']; ?>"><strong><?php print $content['venue']; ?></strong></a>
               <?php else: ?>
                 <strong><?php print $content['venue']; ?></strong>
               <?php endif; ?>
-              <br />          
+              <br />
               <?php if ($content['calendar']['type'] == 'timestamps'): ?>
                 <?php if (count($content['calendar']['timestamps']) > 0): ?>
                   <?php foreach ($content['calendar']['timestamps'] as $timestamp): ?>
@@ -46,9 +46,16 @@
                   <p class="alert alert-warning"><?php print t('This event is finished.'); ?></p>
                 <?php endif; ?>
               <?php else: ?>
-                <?php print $when; ?>
+                <?php print $content['when']; ?>
               <?php endif; ?>
-              <a href="<?php print $content['url'] ?>"><?php print t('More details'); ?></a>          
+              <a href="<?php print $content['url'] ?>"><?php print t('More details'); ?></a>
+
+              <?php if (!empty($content['personal_calendar_buttons'])): ?>
+              <?php foreach ($content['personal_calendar_buttons']['content'] as $button) : ?>
+                <?php print $button; ?>
+               <?php endforeach; ?>
+              <?php endif; ?>
+
             </div>
           </div>
         </div>
