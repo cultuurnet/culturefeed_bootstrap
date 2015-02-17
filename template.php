@@ -4,28 +4,74 @@
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
+
+  // Calculate width for input elements.
+  $space_free = 10;
+  if (isset($form['when'])) {
+
+    $when_width = 2;
+    $space_free -= 2;
+    if (isset($form['category'])) {
+      $category_width = 2;
+      $space_free -= 2;
+    }
+
+  }
+  elseif (isset($form['category'])) {
+    $category_width = 3;
+    $space_free -= 3;
+  }
+
+  if (isset($form['location']) && isset($form['search'])) {
+    $where_width = $search_width = $space_free / 2;
+    // If width was a double, correct it.
+    if ($space_free % 2) {
+      $where_width -= 0.5;
+      $search_width += 0.5;
+    }
+  }
+  elseif (isset($form['location'])) {
+    $where_width = $space_free;
+  }
+  elseif (isset($form['search'])) {
+    $search_width = $space_free;
+  }
+
   $form['title'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-2 hidden-xs">',
+    '#prefix' => '<div class="row">',
     '#type' => 'item',
-    '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
-    '#suffix' => '</div>',
+    '#markup' => '',
+    '#suffix' => '',
+    '#weight' => -200,
   );
-  $form['category']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
-  $form['category']['#weight'] = '1';
-  $form['category']['#title'] = '';
-  $form['category']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
-  $form['search']['#weight'] = '2';
-  $form['search']['#title'] = '';
-  $form['search']['#autocomplete_path'] = '';
-  $form['search']['#suffix'] = '</div>';
-  $form['submit']['#attributes']['class'][] = 'btn-block';
-  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
-  $form['submit']['#weight'] = '3';
+
+  if (isset($form['when'])) {
+    $form['when']['#prefix'] = '<div class="col-sm-' . $when_width . '">';
+    $form['when']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['category'])) {
+    $form['category']['#prefix'] = '<div class="col-sm-' . $category_width .'">';
+    $form['category']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['search'])) {
+    $form['search']['#prefix'] = '<div class="col-sm-' . $search_width .'">';
+    $form['search']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['location'])) {
+    $form['location']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
+    $form['location']['#suffix'] = '</div>';
+    $form['location']['nearby']['#prefix'] = '<div class="clearfix">';
+    $form['location']['nearby']['#suffix'] = '</div>';
+  }
+
+  // Style button.
+  $form['submit']['#attributes']['class'][] = 'btn-primary btn-block';
+  $form['submit']['#prefix'] = '<div class="col-sm-2">';
   $form['submit']['#suffix'] = '</div>';
-  $form['nearby']['#weight'] = '3';
-  $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
-  $form['nearby']['#suffix'] = '</div></div></div>';
+
 }
 
 /**
@@ -1893,6 +1939,21 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(
 
 }
 
+/**
+ * Theme the culturefeed_search_ui_city_actor_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_block_city_actor_facet_form_alter(&$form, &$form_state) {
+
+  $form['#attributes']['class'][] = '';
+
+  $form['city_actor']['#prefix'] = '<div class="input-group">';
+  $form['city_actor']['#title'] = '';
+
+  $form['submit']['#prefix'] = '<span class="input-group-btn">';
+  $form['submit']['#suffix'] = '</span></div>';
+
+}
+
 
 /**
  * Theme the culturefeed_pages_page_suggestions_filter_form
@@ -2267,7 +2328,6 @@ function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter
 /**
  * Implements hook_culturefeed_ui_profile_box_dropdown_items_alter().
  */
-
 function culturefeed_bootstrap_culturefeed_ui_profile_box_dropdown_items_alter(&$items, CultureFeed_User $cf_user) {
 
   if (module_exists('culturefeed_uitpas')) {
@@ -2311,6 +2371,179 @@ function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
 }
 
 /**
+ * Overrides theme_textfield().
+ */
+function culturefeed_bootstrap_textfield(&$variables) {
+
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'text';
+  element_set_attributes($element, array(
+    'id',
+    'name',
+    'value',
+    'size',
+    'maxlength',
+  ));
+  _form_set_class($element, array('form-text'));
+
+  $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
+  $extra = '';
+
+  // If this is a jquery ui autocomplete, also change to group-addon.
+  if (isset($element['#attributes']['class']) && in_array('jquery-ui-autocomplete', $element['#attributes']['class'])) {
+    $output = '<div class="input-group">' . $output . '<span class="input-group-addon">' . _bootstrap_icon('refresh') . '</span></div>';
+  }
+  // Normal autocomplete
+  elseif ($element['#autocomplete_path'] && drupal_valid_path($element['#autocomplete_path'])) {
+    drupal_add_library('system', 'drupal.autocomplete');
+    $element['#attributes']['class'][] = 'form-autocomplete';
+
+    $attributes = array();
+    $attributes['type'] = 'hidden';
+    $attributes['id'] = $element['#attributes']['id'] . '-autocomplete';
+    $attributes['value'] = url($element['#autocomplete_path'], array('absolute' => TRUE));
+    $attributes['disabled'] = 'disabled';
+    $attributes['class'][] = 'autocomplete';
+    $output = '<div class="input-group">' . $output . '<span class="input-group-addon">' . _bootstrap_icon('refresh') . '</span></div>';
+    $extra = '<input' . drupal_attributes($attributes) . ' />';
+  }
+
+  return $output . $extra;
+
+}
+
+/**
+ * Overrides theme_form_element().
+ */
+function culturefeed_bootstrap_form_element(&$variables) {
+  $element = &$variables['element'];
+  $is_checkbox = FALSE;
+  $is_radio = FALSE;
+
+  // This function is invoked as theme wrapper, but the rendered form element
+  // may not necessarily have been processed by form_builder().
+  $element += array(
+    '#title_display' => 'before',
+  );
+
+  // Add element #id for #type 'item'.
+  if (isset($element['#markup']) && !empty($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+
+  // Check for errors and set correct error class.
+  if (isset($element['#parents']) && form_get_error($element)) {
+    $attributes['class'][] = 'error';
+  }
+
+  if (!empty($element['#type'])) {
+    $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
+  }
+  if (!empty($element['#name'])) {
+    $attributes['class'][] = 'form-item-' . strtr($element['#name'], array(
+        ' ' => '-',
+        '_' => '-',
+        '[' => '-',
+        ']' => '',
+      ));
+  }
+  // Add a class for disabled elements to facilitate cross-browser styling.
+  if (!empty($element['#attributes']['disabled'])) {
+    $attributes['class'][] = 'form-disabled';
+  }
+  if (!empty($element['#autocomplete_path']) && drupal_valid_path($element['#autocomplete_path'])) {
+    $attributes['class'][] = 'form-autocomplete';
+  }
+  elseif (isset($element['#attributes']['class']) && in_array('jquery-ui-autocomplete', $element['#attributes']['class'])) {
+    $attributes['class'][] = 'form-autocomplete';
+  }
+  $attributes['class'][] = 'form-item';
+
+  // See http://getbootstrap.com/css/#forms-controls.
+  if (isset($element['#type'])) {
+    if ($element['#type'] == "radio") {
+      $attributes['class'][] = 'radio';
+      $is_radio = TRUE;
+    }
+    elseif ($element['#type'] == "checkbox") {
+      $attributes['class'][] = 'checkbox';
+      $is_checkbox = TRUE;
+    }
+    else {
+      $attributes['class'][] = 'form-group';
+    }
+  }
+
+  $description = FALSE;
+  $tooltip = FALSE;
+  // Convert some descriptions to tooltips.
+  // @see bootstrap_tooltip_descriptions setting in _bootstrap_settings_form()
+  if (!empty($element['#description'])) {
+    $description = $element['#description'];
+    if (theme_get_setting('bootstrap_tooltip_enabled') && theme_get_setting('bootstrap_tooltip_descriptions') && $description === strip_tags($description) && strlen($description) <= 200) {
+      $tooltip = TRUE;
+      $attributes['data-toggle'] = 'tooltip';
+      $attributes['title'] = $description;
+    }
+  }
+
+  $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
+
+  // If #title is not set, we don't display any label or required marker.
+  if (!isset($element['#title'])) {
+    $element['#title_display'] = 'none';
+  }
+
+  $prefix = '';
+  $suffix = '';
+  if (isset($element['#field_prefix']) || isset($element['#field_suffix'])) {
+    // Determine if "#input_group" was specified.
+    if (!empty($element['#input_group'])) {
+      $prefix .= '<div class="input-group">';
+      $prefix .= isset($element['#field_prefix']) ? '<span class="input-group-addon">' . $element['#field_prefix'] . '</span>' : '';
+      $suffix .= isset($element['#field_suffix']) ? '<span class="input-group-addon">' . $element['#field_suffix'] . '</span>' : '';
+      $suffix .= '</div>';
+    }
+    else {
+      $prefix .= isset($element['#field_prefix']) ? $element['#field_prefix'] : '';
+      $suffix .= isset($element['#field_suffix']) ? $element['#field_suffix'] : '';
+    }
+  }
+
+  switch ($element['#title_display']) {
+    case 'before':
+    case 'invisible':
+      $output .= ' ' . theme('form_element_label', $variables);
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+
+    case 'after':
+      if ($is_radio || $is_checkbox) {
+        $output .= ' ' . $prefix . $element['#children'] . $suffix;
+      }
+      else {
+        $variables['#children'] = ' ' . $prefix . $element['#children'] . $suffix;
+      }
+      $output .= ' ' . theme('form_element_label', $variables) . "\n";
+      break;
+
+    case 'none':
+    case 'attribute':
+      // Output no label and no required marker, only the children.
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+  }
+
+  if ($description && !$tooltip) {
+    $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
+  }
+
+  $output .= "</div>\n";
+
+  return $output;
+}
+
+/*
  * Implements hook_form_{culturefeed_calendar_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $form_state) {
@@ -2338,7 +2571,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $for
 
 }
 
-/**
+/*
  * Implements hook_form_{culturefeed_calendar_delete_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$form, $form_state) {
@@ -2384,4 +2617,3 @@ function culturefeed_bootstrap_preprocess_culturefeed_calendar_button_hover(&$va
     'class' => array('btn', 'btn-primary', 'btn-block'),
   );
 }
-
