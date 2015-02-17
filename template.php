@@ -2543,7 +2543,7 @@ function culturefeed_bootstrap_form_element(&$variables) {
   return $output;
 }
 
-/*
+/**
  * Implements hook_form_{culturefeed_calendar_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $form_state) {
@@ -2571,7 +2571,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $for
 
 }
 
-/*
+/**
  * Implements hook_form_{culturefeed_calendar_delete_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$form, $form_state) {
