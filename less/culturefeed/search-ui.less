@@ -116,14 +116,16 @@
 
 /* theme search_ui forms */
 
-.sortorder-form .form-group,
-.sortorder-form .form-submit,
 .block-culturefeed-search-ui .form-group,
 .block-culturefeed-search-ui .form-submit,
 .block-culturefeed-agenda .form-group,
 .block-culturefeed-agenda .form-submit, {
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 0;
+  margin-top: 0;
+  @media (max-width: @screen-sm) {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 }
 
 /* result header (count + sort) */
