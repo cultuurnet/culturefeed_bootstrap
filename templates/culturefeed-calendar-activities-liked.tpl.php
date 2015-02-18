@@ -8,7 +8,7 @@
 <div class="calendar-activities-liked-wrapper row">
 <div class="col-xs-12">
   <h4 class="calendar-activities-label"><?php print t('Unscheduled events'); ?></h4>
-  <table class="table table-consended">
+  <table class="table table-condensed">
     <tbody>
       <?php foreach ($activities as $activity): ?>
         <?php print theme('culturefeed_calendar_activity_mini', array('activity' => $activity)); ?>
