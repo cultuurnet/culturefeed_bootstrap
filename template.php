@@ -1656,18 +1656,46 @@ function culturefeed_bootstrap_culturefeed_pages_page_manage_members(&$variables
 }
 
 /**
+ * Helper function to render prefix markup for modals
+ */
+
+function culturefeed_bootstrap_modal_prefix($modal_title) {
+
+  $output = '<div class="modal-dialog">';
+  $output .= '<div class="modal-content">';
+  $output .= '<div class="modal-header">';
+  $output .= '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+  $output .= '<span aria-hidden="true">&times;</span>';
+  $output .= '</button>';
+  $output .= '<h4 class="modal-title">' . $modal_title . '</h4>';
+  $output .= '</div>';
+  $output .= '<div class="modal-body">';
+
+  return $output;
+
+}
+
+/**
+ * Helper function to render suffix markup for modals
+ */
+
+function culturefeed_bootstrap_modal_suffix() {
+
+  $output = '</div></div></div>';
+
+  return $output;
+
+}
+
+/**
  * Form confirmation callback to show a form to confirm the removal of a page.
  */
 function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&$form, &$form_state, &$request_type) {
 
   if ($request_type != 'ajax') {
-    $form['#prefix'] = '<div class="modal-dialog"><div class="modal-content">';
-    $form['#prefix'] .= '<div class="modal-header">';
-    $form['#prefix'] .= '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-    $form['#prefix'] .= '<h4 class="modal-title">' . t('Remove member') . '</h4>';
-    $form['#prefix'] .= '</div>';
-    $form['#prefix'] .= '<div class="modal-body">';
-    $form['#suffix'] = '</div></div></div>';
+    $modal_title = t('Remove member');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
   }
 
   $form['decline']['#attributes']['class'] = array('button-decline', 'btn', 'btn-default');
