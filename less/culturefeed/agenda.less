@@ -1,0 +1,156 @@
+/**
+ * @file
+ * Culturefeed Bootstrap theme for the Agenda module.
+ */
+ 
+/* hide page title & breadcrumb on agenda/search */
+
+.page-agenda-search {
+  .breadcrumb {
+    @media (max-width: @screen-sm) {
+      .sr-only();
+    }
+  }
+  h1.page-header {
+    .sr-only();
+  }
+}
+
+/* nearby location in culturefeed_agenda_search_block_form */
+
+#culturefeed-agenda-search-block-form {
+  label:not([for="edit-nearby"]) {
+    .sr-only();
+  }
+}
+
+.form-item-nearby label {
+  font-size: @font-size-small;
+}
+
+#current-location {
+  font-weight: bold;
+  font-size: @font-size-small;
+}
+
+.form-item-nearby {
+  margin-top: 10px;
+  .searching-location:before {
+    color: @gray-light;
+    content: "\f110";
+    font-family: FontAwesome;
+  }
+  .searching-location:after {
+    color: @gray-light;
+    content: 'locatie wordt gezocht';
+    font-family: @icon-font-name;
+    font-size: @font-size-small;
+    font-weight: normal;
+  }
+}
+
+/* culturefeed agenda/search result */
+
+@media (min-width: @screen-sm) {
+  .cf-short-description {
+    display: inline !important;
+  }
+}
+
+.page-agenda-search .media .thumbnail {
+  max-width: 150px;
+}
+
+
+/* theme calendar summary */
+
+.calsum-day {
+  display: inline-block;
+  font-size: 80%;
+  font-weight: 200;
+  width: 23px;
+  text-transform: uppercase;
+  .text-muted()
+}
+
+.cf-day {
+  display: inline-block;
+  font-weight: 200;
+  width: 23px;
+  text-transform: uppercase;
+  .text-muted()
+}
+
+
+/* production program */
+
+.production-program-cell {
+  width: 100%;
+}
+
+.production-program,
+.block-culturefeed-search-ui {
+  a[data-toggle="collapse"] {
+    display: block;
+    i:after {
+      content: '\f0d7';
+      font-family: "FontAwesome";
+    }
+    &.collapsed {
+      i:after {
+        content: '\f0da';
+      }
+    }
+  }
+  &.panel-group .panel {
+    border: none;
+    margin-top: 0;
+    box-shadow: none;
+    +.panel {
+      margin-top: 0;
+    }
+  }
+}
+
+/* actor program block */
+
+#block-culturefeed-agenda-actor-program {
+  .block-title {
+    padding: 7px 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+  }
+}
+
+/* event & production summary */
+
+.cf-search-summary {
+  position: relative;
+  .hyperspan {
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+  }
+  .agefrom ~ .media-heading {
+    padding-right: 50px;
+  }
+}
+
+.forkids {
+  background: url('/profiles/culturefeed_kickstart/themes/culturefeed_bootstrap/img/vlieg.png') top right no-repeat;
+  height: 50px;
+  width: 50px;
+  top: -10px;
+  position: absolute;
+  right: 5px;
+  z-index: -1;
+}
+
+.agefrom {
+  right: 12px;
+  top: 8px;
+  display: block;
+  position: relative;
+}

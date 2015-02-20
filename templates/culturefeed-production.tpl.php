@@ -10,8 +10,8 @@
   <div class="col-sm-8">
 
     <?php if (isset($forkids)): ?>
-      <span class="forkids pull-right"></span>
-    <?php endif; ?>
+      <span class="forkids pull-right"></span>        
+    <?php endif; ?> 
     <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
       <?php if ($agefrom > 0): ?>
         <span class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></span>
@@ -25,7 +25,7 @@
     <p>
       <?php print $shortdescription; ?>
       <?php if (!empty($longdescription)): ?>
-        <?php print l(t('Read more'), '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'cf-longdescription')) ?>
+        <?php print l(t('Read more'), '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'cf-longdescription', 'external' => 'TRUE')) ?>
         <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
       <?php endif; ?>
     </p>
@@ -53,7 +53,7 @@
           <?php elseif ($Android): ?>
             <a href="geo:<?php print (!empty($coordinates['lat']) ? $coordinates['lat'] : '0') . ',' . (!empty($coordinates['lng']) ? $coordinates['lng'] : '0'); ?>?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : '') ?>&zoom=14" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
           <?php else: ?>
-            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE)) ?>
+            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE, 'external' => 'TRUE')) ?>
           <?php endif; ?>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
