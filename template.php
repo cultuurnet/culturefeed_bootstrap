@@ -1637,14 +1637,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
 
   unset($form['remove-link']);
 
-  $form['#suffix'] = '
-    <div id="page_confirm" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
-      </div>
-    </div>';
-
   culturefeed_pages_set_page_breadcrumb($page);
 
   return $form;
