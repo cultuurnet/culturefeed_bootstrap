@@ -6,10 +6,10 @@
  */
 ?>
 
-<div class="media">
+<div class="row">
   <?php if (!empty($activities)): ?>
     <?php foreach ($activities as $activity): ?>
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-4 col-sm-6">
         <?php print theme('culturefeed_agenda_nearby_activities_list_item', array('item' => $activity)); ?>
       </div>
     <?php endforeach; ?>
