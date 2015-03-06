@@ -185,3 +185,7 @@
     <div class="modal-content"></div>
   </div>
 </div>
+
+<div id="page_confirm" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-body outer"></div>
+</div>
