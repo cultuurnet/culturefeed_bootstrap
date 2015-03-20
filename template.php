@@ -739,7 +739,7 @@ function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_i
 function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables) {
 
   $icon = '<i class="fa fa-lg fa-calendar"></i>';
-  $icon_new = '<i class="fa fa-lg fa-calendar"></i>';
+  $icon_new = '<i class="fa fa-lg fa-calendar-o"></i>';
   $url = 'culturefeed/calendar';
   $authenticated = DrupalCultureFeed::isCultureFeedUser();
 
@@ -1636,8 +1636,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
     '#value' => t('Update'),
   );
 
-  unset($form['remove-link']);
-
   culturefeed_pages_set_page_breadcrumb($page);
 
   return $form;
@@ -1764,7 +1762,7 @@ function culturefeed_bootstrap_modal_suffix() {
 }
 
 /**
- * Form confirmation callback to show a form to confirm the removal of a page.
+ * Form confirmation callback to show a form to confirm the removal of member of a page.
  */
 function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&$form, &$form_state, &$request_type) {
 
@@ -1777,6 +1775,21 @@ function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&
   $form['decline']['#attributes']['class'] = array('button-decline', 'btn', 'btn-default');
   $form['decline']['#attributes']['data-dismiss'] = 'modal';
   $form['decline']['#href'] = '';
+
+  return $form;
+
+}
+
+/**
+ * Form confirmation callback to show a form to confirm the removal of a page.
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_remove_page_confirm_form_alter(&$form, &$form_state, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove member');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
 
   return $form;
 
