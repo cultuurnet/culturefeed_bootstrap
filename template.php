@@ -259,7 +259,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   if (isset($variables['ticket_buttons']) && !empty($variables['ticket_buttons'])) {
     $buttons = $variables['ticket_buttons'];
     foreach ($buttons as $button) {
-      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
+      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-primary reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
   }
