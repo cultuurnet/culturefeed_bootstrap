@@ -1976,11 +1976,9 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['#attributes']['class'][] = '';
 
-  $form['date_range']['#prefix'] = '<div class="input-group">';
-  $form['date_range']['#title'] = '';
-
-  $form['submit']['#prefix'] = '<span class="input-group-btn">';
-  $form['submit']['#suffix'] = '</span></div>';
+  $form['date_range']['#prefix'] = '<div class="facet-label"><div class="row"><div class="col-xs-12">'
+    . '<div class="input-group specific-date"><i class="fa fa-calendar"></i>&nbsp;';
+  $form['date_range']['#suffix'] = '</div></div></div></div>';
 
 }
 
