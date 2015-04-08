@@ -81,7 +81,7 @@
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
         <td class="cf-when scroll scroll-150">
           <?php print $when; ?>
-          <?php if (!empty($personal_calendar_buttons)): ?>
+          <?php if (!empty($personal_calendar_buttons) && !empty($personal_calendar_buttons['content'])): ?>
           <?php foreach ($personal_calendar_buttons['content'] as $button) : ?>
             <?php print $button; ?>
           <?php endforeach; ?>
