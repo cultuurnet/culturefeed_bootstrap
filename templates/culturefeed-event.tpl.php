@@ -80,15 +80,15 @@
       <?php if (!empty($when)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
         <td class="cf-when">
-          <?php print $when; ?>          
-          <?php print $when_lg; ?>          
-          <?php print $when_md; ?>          
-          <?php print $when_sm; ?>         
-          <?php print $when_xs; ?>          
-          <?php print $when_lg_txt; ?>
-          <?php print $when_md_txt; ?>
-          <?php print $when_sm_txt; ?>
-          <?php print $when_xs_txt; ?>
+          calsum: <?php print $when; ?>         
+          <br>lg: <?php print $when_lg; ?>          
+          <br>md: <?php print $when_md; ?>          
+          <br>sm: <?php print $when_sm; ?>         
+          <br>xs: <?php print $when_xs; ?>          
+          <br>lg_txt: <?php print $when_lg_txt; ?>
+          <br>md_txt: <?php print $when_md_txt; ?>
+          <br>sm_txt: <?php print $when_sm_txt; ?>
+          <br>xs_txt: <?php print $when_xs_txt; ?>
           <?php if (!empty($personal_calendar_buttons) && !empty($personal_calendar_buttons['content'])): ?>
           <?php foreach ($personal_calendar_buttons['content'] as $button) : ?>
             <?php print $button; ?>
