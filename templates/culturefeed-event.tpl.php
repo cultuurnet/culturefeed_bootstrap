@@ -79,8 +79,16 @@
 
       <?php if (!empty($when)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
-        <td class="cf-when scroll scroll-150">
-          <?php print $when; ?>
+        <td class="cf-when">
+          <?php print $when; ?>          
+          <?php print $when_lg; ?>          
+          <?php print $when_md; ?>          
+          <?php print $when_sm; ?>         
+          <?php print $when_xs; ?>          
+          <?php print $when_lg_txt; ?>
+          <?php print $when_md_txt; ?>
+          <?php print $when_sm_txt; ?>
+          <?php print $when_xs_txt; ?>
           <?php if (!empty($personal_calendar_buttons) && !empty($personal_calendar_buttons['content'])): ?>
           <?php foreach ($personal_calendar_buttons['content'] as $button) : ?>
             <?php print $button; ?>
