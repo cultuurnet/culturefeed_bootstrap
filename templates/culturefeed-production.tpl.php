@@ -79,8 +79,8 @@
       <?php if (!empty($when) && $relations < 2): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
       <td class="cf-when">
-        <?php print $when; ?>         
-        <?php print $when_lg; ?>
+          calsum: <?php print $when; ?>         
+          <br>lg: <?php print $when_lg; ?>
       </td></tr>
       <?php endif; ?>
 
