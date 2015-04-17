@@ -118,27 +118,6 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_search_sortorder_form_
 }
 
 /**
- * Helper function to make long (dutch) calendar summary more readable for events and productions.
- */
-function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
-
-  if (strlen($calsum) > $minlength) {
-    // Search for weekdays to set break
-    $search = array('ma', 'di', 'woe', 'do', 'vrij', 'za', 'zo');
-    $replace = array('<br /><span class="' . $classname . '">ma</span>', '<br /><span class="' . $classname . '">di</span>', '<br /><span class="' . $classname . '">wo</span>', '<br /><span class="' . $classname . '">do</span>', '<br /><span class="' . $classname . '">vr</span>', '<br /><span class="' . $classname . '">za</span>', '<br /><span class="' . $classname . '">zo</span>', );
-    $calsum = str_replace($search, $replace, $calsum);
-    $calsum = str_replace('om', '<span class="text-muted">|</span>', $calsum);
-    $calsum = str_replace(',', '', $calsum);
-    // Remove first break
-    if (strpos($calsum, '<br />') == 0) {
-      $calsum = substr($calsum, 6);;
-    }
-  }
-  return $calsum;
-
-}
-
-/**
  * Show a share link to facebook.
  */
 function culturefeed_bootstrap_share_link($item) {
@@ -231,11 +210,6 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
     unset($map['#attached']['js'][3]); // Remove the init on load.
     //$map['#attached']['js'][] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/map-toggle.js';
     $variables['map'] = render($map);
-  }
-
-  // Calendar Summary.
-  if (isset($variables['when'])) {
-    $variables['when'] = culturefeed_bootstrap_cleanup_calsum($variables['when'], 150, 'calsum-day text-muted');
   }
 
   // Remove duplicate contact and reservation data
