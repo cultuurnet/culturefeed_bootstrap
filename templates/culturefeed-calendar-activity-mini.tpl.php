@@ -8,7 +8,7 @@
 <tr>
   <td class="col-xs-8">
     <h4 class="media-heading"><?php print $title; ?></h4>
-    <span class="text-muted"><?php print $when; ?></span>
+    <span class="text-muted"><?php print $when_md; ?></span>
   </td>
   <td class="col-xs-2">
     <a class="use-ajax btn btn-primary" href="<?php print $edit_link['url'] ?>"><?php print $edit_link['text']; ?></a>

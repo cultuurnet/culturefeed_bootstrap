@@ -31,7 +31,7 @@
       </p>
     <?php endif; ?>
     
-    <?php if (!empty($when)): ?>
+    <?php if (!empty($when_md)): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm">
           <strong><?php print t('When'); ?></strong>
@@ -39,12 +39,8 @@
         <div class="col-xs-1 hidden-md hidden-lg text-center">
           <i class="fa fa-calendar text-center"></i>
         </div>
-        <div class="col-xs-10">
-          <?php if (strlen($when) < 75) : ?> 
-            <?php print $when; ?>
-          <?php else : ?> 
-            <?php print substr($when, 0, 75) . '... '; ?>
-          <?php endif; ?>
+        <div class="col-xs-10"> 
+          <?php print $when_md; ?>
         </div>
       </div>
     <?php endif; ?>

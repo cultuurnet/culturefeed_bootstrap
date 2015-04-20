@@ -23,8 +23,8 @@
     <div class="text-muted"><?php print $location['city']; ?></div>
     <?php endif;?>
 
-    <?php if (isset($when)): ?>
-      <div><?php print $when; ?></div>
+    <?php if (isset($when_md)): ?>
+      <div><?php print $when_md; ?></div>
     <?php endif;?>
   </div>
 </div>

@@ -35,10 +35,10 @@
           <?php endif; ?>
           <br />
           <?php if (isset($location['city'])): ?>
-            <?php print $location['city']; ?><?php print (isset($when) && $when != '') ? ',' : '' ; ?>
+            <?php print $location['city']; ?><?php print (isset($when_sm) && $when_sm != '') ? ',' : '' ; ?>
           <?php endif;?>
-          <?php if (isset($when)): ?>
-            <?php print $when; ?>
+          <?php if (isset($when_sm)): ?>
+            <?php print $when_sm; ?>
           <?php endif;?>
         </p>
     

@@ -74,11 +74,11 @@
       </div>
       <?php endif; ?>
     
-      <?php if (!empty($when) && $relations < 2): ?>
+      <?php if (!empty($when_md) && $relations < 2): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('When'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-calendar fa-fw"></i></div>
-        <div class="col-xs-10"><?php print $when; ?></div>
+        <div class="col-xs-10"><?php print $when_md; ?></div>
       </div>
       <?php endif; ?>
     

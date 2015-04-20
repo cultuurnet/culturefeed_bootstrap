@@ -76,7 +76,7 @@
       </td></tr>
       <?php endif; ?>
 
-      <?php if (!empty($when) && $relations < 2): ?>
+      <?php if (!empty($when_lg) && $relations < 2): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('When'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
       <td class="cf-when">
           calsum: <?php print $when; ?>         
