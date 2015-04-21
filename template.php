@@ -2344,6 +2344,21 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
     $javascript[$file]['data'] = $file;
   }
 
+  // Adding our own version of autocomplete for entry_ui because bootstrap
+  // is messing up default autocomplete.
+  $match_cp = false;
+  if (current_path() == 'agenda/e/add') {
+    $match_cp = true;
+  }
+  elseif (drupal_match_path(current_path(), 'agenda/e/*/*/edit')) {
+    $match_cp = true;
+  }
+
+  if (module_exists('culturefeed_entry_ui') && $match_cp) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/bootstrap_autocomplete_override.js';
+    drupal_add_js($file);
+  }
+
 }
 
 function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
