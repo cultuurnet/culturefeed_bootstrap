@@ -82,7 +82,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2015-04-23 12:13+0200\n"
-"PO-Revision-Date: 2015-04-23 12:45+0100\n"
+"PO-Revision-Date: 2015-04-23 12:57+0100\n"
 "Last-Translator: Luk Dens <luk.dens@cultuurnet.be>\n"
 "Language-Team: Dutch <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -518,7 +518,7 @@ msgstr "Om verder te gaan moet je aangemeld zijn."
 
 #: template.php:1911
 msgid "e-mail"
-msgstr "e-mailadres"
+msgstr "je e-mailadres"
 
 #: template.php:1912
 msgid "new account"
