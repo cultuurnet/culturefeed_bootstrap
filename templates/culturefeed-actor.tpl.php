@@ -97,3 +97,9 @@
   </div>
 
 </div>
+
+<div class="cf-social-share-bar">
+  <?php include('social-share-bar.inc'); ?>
+</div>
+
+<hr />

@@ -191,79 +191,8 @@
 
 </div>
 
-<div class="text-right">
-  <i class="fa fa-print"></i>
-  <?php print $print_link; ?>
-</div>
-
-<hr />
-
-<div class="row">
-
-  <div class="col-sm-12">
-
-    <div class="col-xs-3">
-      <div class="row">
-        <div class="col-sm-3">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-          </span>
-        </div>
-        <div class="col-sm-9">
-          <?php print $recommend_link; ?>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xs-3">
-      <div class="row">
-        <div class="col-sm-3">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-          </span>
-        </div>
-        <div class="col-sm-9">
-          <?php print $attend_link; ?>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xs-3">
-      <div class="row">
-        <div class="col-sm-3">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-          </span>
-        </div>
-        <div class="col-sm-9">
-          <?php print $share_link; ?>
-        </div>
-      </div>
-    </div>
-
-    <?php if (!empty($personal_calendar_buttons)): ?>
-      <div class="col-xs-3">
-        <div class="row">
-          <div class="col-sm-3">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
-            </span>
-          </div>
-          <div class="col-sm-9">
-            <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
-              <?php print $button; ?>
-            <?php endforeach; ?>
-          </div>
-        </div>
-      </div>
-    <?php endif; ?>
-
-  </div>
-
+<div class="cf-social-share-bar">
+  <?php include('social-share-bar.inc'); ?>
 </div>
 
 <hr />
