@@ -21,12 +21,12 @@
       border-left: none;
     }
   }
-  
+
   // reset margin for related facets when directly adjacent
   #block-culturefeed-search-ui-facet-flandersregion + #block-culturefeed-search-ui-facet-city,
   #block-culturefeed-search-ui-facet-eventtype + #block-culturefeed-search-ui-facet-theme {
     margin-top: -20px;
-  } 
+  }
 }
 
 .block-culturefeed-search-ui ul {
@@ -152,4 +152,27 @@
   background: url('/profiles/culturefeed_kickstart/themes/culturefeed_bootstrap/img/vlieg.png') top right no-repeat;
   background-position-y: -3px;
   background-size: 30px 30px;
+}
+
+/*
+ * Correct styling for Date Range Picker.
+ */
+
+.daterangepicker .calendar.left,
+.daterangepicker .calendar.right {
+  position: inherit;
+  width: auto;
+}
+
+.daterangepicker .form-group {
+  margin-top: 0;
+}
+
+.specific-date {
+	width: 100%;
+}
+
+.specific-date .fa-calendar {
+	float: right;
+  margin-left: 3px;
 }
