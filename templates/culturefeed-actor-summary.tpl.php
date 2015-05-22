@@ -31,18 +31,27 @@
       </a>
     </h2>
 
+    <?php if (!empty($shortdescription)): ?>
+      <p class="hidden-xs">
+        <span class="cf-short-description hidden-xs hidden-sm"><?php print $shortdescription; ?></span>
+      </p>
+    <?php endif; ?>
+    
     <p>    
       <?php if ($location): ?>
       <div class="row">
         <div class="col-xs-2 hidden-xs hidden-sm"><strong><?php print t('Where'); ?></strong></div>
         <div class="col-xs-1 hidden-md hidden-lg text-center"><i class="fa fa-map-marker fa-fw"></i></div>
         <div class="col-xs-10">
+          <?php if (!empty($location['zip'])): ?>
+            <?php print $location['zip']; ?>
+          <?php endif; ?>
           <?php if (!empty($location['city'])): ?>
             <?php print $location['city']; ?>
           <?php endif; ?>
           <?php if (!empty($location['street'])): ?>
             <?php if ($location['street'] !== ' '): ?>
-              <?php print  '(' . $location['street'] . ')' ; ?>
+              <?php print '- ' . $location['street'] ; ?>
             <?php endif; ?>
           <?php endif; ?>
         </div>

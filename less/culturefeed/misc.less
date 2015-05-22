@@ -1,0 +1,378 @@
+/**
+ * @file
+ * Culturefeed Bootstrap theme - Global Styles.
+ */
+
+// fix padding on body with fixed navbar and admin_menu_toolbar
+
+body {
+  // Fix horizontal scrolling on iOS devices.
+  // http://drupal.org/node/1870076
+  position: relative;
+  &.admin-expanded.admin-vertical.admin-nw .navbar,
+  &.admin-expanded.admin-vertical.admin-sw .navbar {
+    margin-left: 260px;
+  }
+  // Add padding to body if various toolbar or navbars are fixed on top.
+  &.navbar-is-fixed-top {
+    padding-top: 64px !important;
+  }
+  &.navbar-is-fixed-bottom {
+    padding-bottom: 64px !important;
+  }
+  &.toolbar {
+    padding-top: 30px !important;
+    .navbar-fixed-top {
+      top: 30px;
+    }
+    &.navbar-is-fixed-top {
+      padding-top: 94px !important;
+    }
+  }
+  &.toolbar-drawer {
+    padding-top: 64px !important;
+    .navbar-fixed-top {
+      top: 64px;
+    }
+    &.navbar-is-fixed-top {
+      padding-top: 128px !important;
+    }
+  }
+  // Admin_menu toolbar.
+  &.admin-menu {
+    .navbar-fixed-top {
+      top: 29px;
+    }
+    &.navbar-is-fixed-top {
+      padding-top: 93px !important;
+    }
+  }
+  div#admin-toolbar {
+    z-index: 1600;
+  }
+  // Override box-shadow styles on all "admin" menus.
+  #toolbar, #admin-menu, #admin-toolbar {
+    .box-shadow(none);
+  }
+  // Override #admin-menu style.
+  #admin-menu {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    z-index: 1600;
+    .dropdown li {
+      line-height: normal;
+    }
+  }
+}
+
+// Branding.
+.navbar .logo {
+  @media (min-width: @screen-sm) {
+    margin-right: 0;
+    padding-left: 0;
+  }
+}
+
+// block titles
+
+.block-title {
+  font-family: @headings-font-family;
+  font-weight: @headings-font-weight;
+  font-size: 21px;
+  line-height: @headings-line-height;
+  margin-bottom: 20px;
+}
+
+// headings
+
+h1, h2, h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+// breadcrumb
+
+.breadcrumb {
+  padding: 0;
+  background-color: inherit;
+  border-radius: inherit;
+  font-size: 85%;
+}
+
+// page-header
+
+#page-header {
+  background-color: @gray-lighter;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+// fix for use with admin toolbar
+body.admin-menu {
+  #page-header {
+    margin-top: -40px;
+  }
+}
+
+// override default glyphicon throbbers
+
+.glyphicon {
+  font-family: FontAwesome;
+}
+
+.glyphicon-refresh {
+  -webkit-transform-origin: 50% 49%;
+  -moz-transform-origin: 50% 49%;
+  -ms-transform-origin: 50% 49%;
+  -o-transform-origin: 50% 49%;
+  transform-origin: 50% 49%;
+}
+
+.glyphicon-refresh:before {
+  content: "\F021";
+}
+
+// datepicker
+
+.ui-widget {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 90%;
+}
+
+.ui-daterangepicker li.preset_0 {
+  margin-top: 0 !important;
+}
+
+
+.ui-daterangepickercontain {
+  .ui-daterangepicker {
+    width: 470px;
+    .ranges {
+      width: 226px;
+      .range-end {
+        clear: left;
+        margin-top: 15px;
+      }
+      a.ui-state-active {
+        background-color: #428bca;
+        background-image: none;
+        border: 1px solid #428bca;
+        color: #FFF;
+      }
+    }
+  }
+}
+
+// language block
+
+.block-locale .nav > li > a {
+  margin-bottom: 10px;
+  padding: 3px 6px;
+  text-transform: uppercase;
+}
+
+// blockquotes
+
+blockquote p {
+  font-size: 14px;
+}
+
+// notification, message & calendar count
+
+#block-culturefeed-ui-profile-box {
+  .messages a,
+  .notifications a,
+  .activities a {
+    padding-right: 20px;
+  }
+}
+
+.notification-count,
+.activity-count {
+  display: block;
+  position: relative;
+  span {
+    position: absolute;
+    top: -22px;
+    left: 12px;
+  }
+}
+// profile menu
+
+#block-culturefeed-ui-my-uitid .profile-menu {
+  margin-top: -47px;
+}
+
+#block-culturefeed-ui-profile-menu ul li.active a {
+  color: #ffffff;
+}
+
+// related items
+
+hr.small {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+@media (min-width: @screen-sm) {
+  .scroll  {
+    display: block;
+    position: relative;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .scroll-150  {
+    max-height: 150px;
+  }
+
+  .scroll-300  {
+    max-height: 300px;
+  }
+}
+
+.top {
+  position: absolute;
+  top: 0px;
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+}
+
+.left {
+  position: absolute;
+  left: 0px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0px;
+}
+
+.popover.bottom {
+  bottom: auto;
+}
+
+.thumbnail .top {
+  top: 2px;
+}
+
+.thumbnail .right {
+  right: 25px;
+}
+
+.no-gutter {
+  padding-right: 0;
+}
+
+.no-border {
+  border: none;
+}
+
+// profile box
+
+#block-culturefeed-ui-profile-box {
+  &.contextual-links-region {
+    position: inherit;
+  }
+  @media @wide {
+    .current-user {
+      display: inline !important;
+    }
+  }
+  .dropdown-menu {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+// user activities
+
+.manage-activities-link {
+  display: none;
+}
+
+#facebook-privacy-toggle {
+  .alert();
+  .alert-warning();
+  list-style: none;
+  padding-top: 5px;
+  margin-bottom: 0;
+}
+
+// footer
+
+footer {
+  background-color: @gray-dark;
+  color: @gray-lighter;
+}
+
+footer li a,
+footer li a.btn-link {
+  color: @gray-light;
+  &:hover,
+  &:active {
+    color: white;
+  }
+  &:disabled {
+    color: #444;
+  }
+}
+
+// cookie message
+
+.alert {
+  &.cookie_close-processed {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    border-radius: 0;
+    padding: 4px 10px;
+    text-align: center;
+    font-size: 85%;
+    .btn {
+      margin-left: 10px;
+    }
+  }
+}
+
+// responsive embed videos
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// reset list-groups in panels
+
+.panel > .list-group,
+.panel > .panel-collapse > .list-group {
+  margin-bottom: 0;
+}
+
+.panel > .list-group .list-group-item,
+.panel > .panel-collapse > .list-group .list-group-item {
+  border-width: 1px 0;
+}

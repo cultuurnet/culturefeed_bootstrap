@@ -39,7 +39,7 @@ less[vars][@font-family-serif]        = Georgia, "Times New Roman", Times, serif
 scripts[] = 'js/culturefeed-bootstrap.js'
 scripts[] = 'js/jquery.blueimp-gallery.js'
 scripts[] = 'js/bootstrap-gallery.js'
-
+scripts[] = 'bootstrap/js/modal.js'
 
 ;**********************************
 ; METHOD 1: Bootstrap Source Files
@@ -48,7 +48,7 @@ scripts[] = 'js/bootstrap-gallery.js'
 ; ; Scripts
 scripts[] = 'js/bootstrap-switch.js'
 ; scripts[] = 'bootstrap/js/affix.js'
-; scripts[] = 'bootstrap/js/alert.js'
+scripts[] = 'bootstrap/js/alert.js'
 ; scripts[] = 'bootstrap/js/button.js'
 ; scripts[] = 'bootstrap/js/carousel.js'
 scripts[] = 'bootstrap/js/collapse.js'

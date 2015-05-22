@@ -1,23 +1,1291 @@
-#: template.php:1814
+# $Id$
+#
+# Dutch translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  template.php: n/a
+#  templates/culturefeed-search-page.tpl.php: n/a
+#  templates/culturefeed-page.tpl.php: n/a
+#  templates/culturefeed-ui-profile.tpl.php: n/a
+#  templates/culturefeed-authenticated-page.tpl.php: n/a
+#  templates/culturefeed-pages-basic-search-result-item.tpl.php: n/a
+#  templates/culturefeed-pages-fellow-members-block.tpl.php: n/a
+#  templates/culturefeed-actor.tpl.php: n/a
+#  templates/culturefeed-event.tpl.php: n/a
+#  templates/culturefeed-production.tpl.php: n/a
+#  templates/culturefeed-pages-block-admin-options.tpl.php: n/a
+#  templates/culturefeed-pages-page-agenda.tpl.php: n/a
+#  templates/culturefeed-pages-page-my-pages.tpl.php: n/a
+#  templates/culturefeed-ui-connect-hover.tpl.php: n/a
+#  templates/culturefeed-pages-news-admin-page.tpl.php: n/a
+#  templates/culturefeed-saved-searches-manage-list.tpl.php: n/a
+#  templates/culturefeed-social-comment-list.tpl.php: n/a
+#  templates/culturefeed-uitpas-advantages.tpl.php: n/a
+#  templates/culturefeed-uitpas-profile-advantages.tpl.php: n/a
+#  culturefeed_bootstrap.info: n/a
+#  culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info: n/a
+#  js/bootstrap_autocomplete_override.js: n/a
+#  js/cookie_message.js: n/a
+#  js/culturefeed-bootstrap.js: n/a
+#  templates/culturefeed-actor-summary.tpl.php: n/a
+#  templates/culturefeed-agenda-actor-program-item.tpl.php: n/a
+#  templates/culturefeed-calendar-activity-summary.tpl.php: n/a
+#  templates/culturefeed-event-summary.tpl.php: n/a
+#  templates/culturefeed-production-summary.tpl.php: n/a
+#  templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php: n/a
+#  templates/culturefeed-agenda-actor-program.tpl.php: n/a
+#  templates/culturefeed-calendar-page.tpl.php: n/a
+#  templates/culturefeed-agenda-block-nearby-activities.tpl.php: n/a
+#  templates/culturefeed-agenda-nearby-activities-list.tpl.php: n/a
+#  templates/culturefeed-agenda-production-program.tpl.php: n/a
+#  templates/culturefeed-calendar-activities-going.tpl.php: n/a
+#  templates/culturefeed-calendar-activities-liked.tpl.php: n/a
+#  templates/culturefeed-calendar-button-hover.tpl.php: n/a
+#  templates/culturefeed-calendar-button.tpl.php: n/a
+#  templates/culturefeed-calendar-share-page.tpl.php: n/a
+#  templates/culturefeed-event-mini-summary.tpl.php: n/a
+#  templates/culturefeed-production-mini-summary.tpl.php: n/a
+#  templates/culturefeed-social-comment-teaser.tpl.php: n/a
+#  templates/culturefeed-social-news-teaser.tpl.php: n/a
+#  templates/culturefeed-messages-message-booking.tpl.php: n/a
+#  templates/culturefeed-messages-message-list.tpl.php: n/a
+#  templates/culturefeed-messages-message-requestadmin.tpl.php: n/a
+#  templates/culturefeed-messages-thread.tpl.php: n/a
+#  templates/culturefeed-page-summary.tpl.php: n/a
+#  templates/culturefeed-pages-page-suggestion-list-item.tpl.php: n/a
+#  templates/culturefeed-social-page-activity-summary.tpl.php: n/a
+#  templates/culturefeed-pages-block-page-suggestions.tpl.php: n/a
+#  templates/culturefeed-pages-block-page-timeline.tpl.php: n/a
+#  templates/culturefeed-pages-events-admin-page.tpl.php: n/a
+#  templates/culturefeed-pages-followers-block.tpl.php: n/a
+#  templates/culturefeed-pages-members-block.tpl.php: n/a
+#  templates/culturefeed-social-activity-summary.tpl.php: n/a
+#  templates/culturefeed-pages-page-suggestion-list.tpl.php: n/a
+#  templates/culturefeed-pages-request-admin-membership-block.tpl.php: n/a
+#  templates/culturefeed-pages-user-search-result.tpl.php: n/a
+#  templates/culturefeed-saved-searches-list.tpl.php: n/a
+#  templates/culturefeed-search-block-filter-links-item.tpl.php: n/a
+#  templates/culturefeed-search-facet-item.tpl.php: n/a
+#  templates/culturefeed-search-list.tpl.php: n/a
+#  templates/culturefeed-search-suggestions.tpl.php: n/a
+#  templates/culturefeed-social-comment-list-item.tpl.php: n/a
+#  templates/culturefeed-social-event-teaser.tpl.php: n/a
+#  templates/culturefeed-social-production-teaser.tpl.php: n/a
+#  templates/culturefeed-social-news-detail.tpl.php: n/a
+#  templates/culturefeed-ui-my-uitid.tpl.php: n/a
+#  templates/culturefeed-ui-page-account-edit.tpl.php: n/a
+#  templates/culturefeed-uitpas-profile-details.tpl.php: n/a
+#  templates/culturefeed-uitpas-promotion.tpl.php: n/a
+#  templates/page.tpl.php: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-04-23 12:13+0200\n"
+"PO-Revision-Date: 2015-04-23 12:57+0100\n"
+"Last-Translator: Luk Dens <luk.dens@cultuurnet.be>\n"
+"Language-Team: Dutch <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: template.php:85;783;2042
+msgid "Search"
+msgstr "Zoeken"
+
+#: template.php:111 templates/culturefeed-search-page.tpl.php:19
+msgid "Sort"
+msgstr "Sorteer op"
+
+#: template.php:167;176
+msgid "Share on Facebook"
+msgstr "Delen via Facebook"
+
+#: template.php:204
+msgid "Print"
+msgstr "Afdrukken"
+
+#: template.php:302
+msgid "Error occurred"
+msgstr "Er is een fout opgetreden."
+
+#: template.php:312
+msgid "About me"
+msgstr "Over mij"
+
+#: template.php:312;538
+msgid "View"
+msgstr "Weergeven"
+
+#: template.php:314;316
+msgid "First name"
+msgstr "Voornaam"
+
+#: template.php:325;327
+msgid "Family name"
+msgstr "Naam"
+
+#: template.php:335
+msgid "Biography"
+msgstr "Beschrijf jezelf"
+
+#: template.php:337
+msgid "Maximum 250 characters"
+msgstr "Maximum 250 karakters"
+
+#: template.php:364
+msgid "Date of birth"
+msgstr "Geboortedatum"
+
+#: template.php:376
+msgid "Gender"
+msgstr "Geslacht"
+
+#: template.php:377
+msgid "Male"
+msgstr "Man"
+
+#: template.php:377
+msgid "Female"
+msgstr "Vrouw"
+
+#: template.php:386 templates/culturefeed-page.tpl.php:26
+msgid "Address"
+msgstr "Adres"
+
+#: template.php:389;1106;1371
+msgid "Street and number"
+msgstr "Straatnaam en nummer"
+
+#: template.php:397;1115;1380
+msgid "Zipcode"
+msgstr "Postcode"
+
+#: template.php:405;1124;1389
+msgid "City"
+msgstr "Stad of gemeente"
+
+#: template.php:413
+msgid "Country"
+msgstr "Land"
+
+#: template.php:421
+msgid "Privacy settings"
+msgstr "Privacy instellingen"
+
+#: template.php:424;435;446;458;469;480
+msgid "ON"
+msgstr "AAN"
+
+#: template.php:424;435;446;458;469;480
+msgid "OFF"
+msgstr "UIT"
+
+#: template.php:425
+msgid "Hide 'first name' in public profile"
+msgstr "Verberg 'voornaam' in openbaar profiel"
+
+#: template.php:436
+msgid "Hide 'family name' in public profile"
+msgstr "Verberg 'naam' in openbaar profiel"
+
+#: template.php:447
+msgid "Hide 'gender' in public profile"
+msgstr "Verberg 'geslacht' in openbaar profiel"
+
+#: template.php:459
+msgid "Hide 'address' in public profile"
+msgstr "Verberg 'woonplaats' in openbaar profiel"
+
+#: template.php:470
+msgid "Hide 'date of birth' in public profile"
+msgstr "Verberg 'geboortedatum' in openbaar profiel"
+
+#: template.php:481
+msgid "Hide 'biography' in public profile"
+msgstr "Verberg 'bio' in openbaar profiel"
+
+#: template.php:490
+msgid "Language settings"
+msgstr "Taalinstellingen"
+
+#: template.php:493
+msgid "Preferred language"
+msgstr "Voorkeur taal"
+
+#: template.php:495
+msgid "Dutch"
+msgstr "Nederlands"
+
+#: template.php:496
+msgid "French"
+msgstr "Frans"
+
+#: template.php:497
+msgid "English"
+msgstr "Engels"
+
+#: template.php:498
+msgid "German"
+msgstr "Duits"
+
+#: template.php:507
+msgid "Save"
+msgstr "Opslaan"
+
+#: template.php:523
+msgid "An error occurred while loading your account, please try again later."
+msgstr ""
+"Er is een fout opgetreden bij het laden van jouw account. Probeer het later "
+"opnieuw."
+
+#: template.php:538 templates/culturefeed-ui-profile.tpl.php:5
+msgid "My UiTiD"
+msgstr "Mijn UiTiD"
+
+#: template.php:538
+msgid "Delete account"
+msgstr "Account verwijderen"
+
+#: template.php:540
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: template.php:548;1143;1146;1408;1411
+msgid "Email address"
+msgstr "E-mailadres"
+
+#: template.php:557
+msgid "Edit e-mail"
+msgstr "Wijzig e-mailadres"
+
+#: template.php:564
+msgid "Change password"
+msgstr "Paswoord wijzigen"
+
+#: template.php:620;1900
+msgid "Login with Facebook"
+msgstr "Aanmelden met Facebook"
+
+#: template.php:623
+msgid "Or with"
+msgstr "Of met"
+
+#: template.php:623 templates/culturefeed-authenticated-page.tpl.php:4
+msgid "or"
+msgstr "of"
+
+#: template.php:663;2165
+msgid "Connect with UiTiD"
+msgstr "Aanmelden met UiTiD"
+
+#: template.php:688
+msgid "btn btn-primary"
+msgstr ""
+
+#: template.php:689
+msgid "Send message"
+msgstr "Bericht versturen"
+
+#: template.php:773
+msgid "Keyword"
+msgstr ""
+
+#: template.php:806
+msgid "<strong>@total pages</strong> found for '@search'"
+msgstr "<strong>@total pagina's</strong> gevonden voor '@search'"
+
+#: template.php:809
+msgid "<strong>0 pages</strong> found for '@search'"
+msgstr "<strong>0 pagina's</strong> gevonden voor '@search'"
+
+#: template.php:817
+msgid "Create your own page"
+msgstr "Maak je eigen pagina"
+
+#: template.php:886
+msgid "previous"
+msgstr "vorige"
+
+#: template.php:892
+msgid "next"
+msgstr "volgende"
+
+#: template.php:1012;1015
+#: templates/culturefeed-pages-basic-search-result-item.tpl.php:25
+#: templates/culturefeed-pages-fellow-members-block.tpl.php:27
+msgid "Become a member"
+msgstr "Word lid"
+
+#: template.php:1076
+msgid "Name"
+msgstr "Naam"
+
+#: template.php:1083
+msgid "Description"
+msgstr "Beschrijving"
+
+#: template.php:1084
+msgid "Maximum 400 characters"
+msgstr "Maximum 400 karakters"
+
+#: template.php:1095;1358 templates/culturefeed-actor.tpl.php:59
+#: templates/culturefeed-event.tpl.php:133
+#: templates/culturefeed-page.tpl.php:41
+#: templates/culturefeed-production.tpl.php:118
+msgid "Contact"
+msgstr "Contact"
+
+#: template.php:1095;1225;1358;1492
+msgid "Optional"
+msgstr "Optioneel"
+
+#: template.php:1133;1136;1398;1401
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+#: template.php:1153;1156;1418;1421
+msgid "Website"
+msgstr ""
+
+#: template.php:1162;1429
+msgid "Other websites"
+msgstr "Andere websites"
+
+#: template.php:1164;1166;1431;1433
+msgid "Ticketing"
+msgstr "Ticketlink"
+
+#: template.php:1174;1176;1441;1443
+msgid "Facebook"
+msgstr ""
+
+#: template.php:1184;1186;1451;1453
+msgid "Twitter"
+msgstr ""
+
+#: template.php:1194;1196;1461;1463
+msgid "Google+"
+msgstr ""
+
+#: template.php:1204;1206;1471;1473
+msgid "Youtube"
+msgstr ""
+
+#: template.php:1215;1217;1482;1484
+msgid "Blog"
+msgstr "Blog"
+
+#: template.php:1225;1492
+msgid "Page layout"
+msgstr "Pagina layout"
+
+#: template.php:1234;1506
+msgid "Image or Logo"
+msgstr "Afbeelding of logo"
+
+#: template.php:1235;1257;1507;1538
+msgid "Allowed extensions: jpg, jpeg, gif or png"
+msgstr "Toegelaten formaten: jpg, jpeg, gif of png"
+
+#: template.php:1249;1566
+msgid "Baseline"
+msgstr "Slagzin"
+
+#: template.php:1256;1537
+msgid "Cover Photo"
+msgstr "Omslagfoto"
+
+#: template.php:1276
+msgid "Save Page"
+msgstr "Pagina bewaren"
+
+#: template.php:1305;1594
+msgid "View page"
+msgstr "Pagina bekijken"
+
+#: template.php:1527
+msgid "Select another Image or Logo"
+msgstr "Kies andere afbeelding"
+
+#: template.php:1558
+msgid "Select another Cover Photo"
+msgstr "Kies andere omslagfoto"
+
+#: template.php:1575
+msgid "Update Page"
+msgstr "Pagina bewerken"
+
+#: template.php:1601
+msgid "Allow users to"
+msgstr "Gebruikers toestaan om"
+
+#: template.php:1615
+msgid "follow my page"
+msgstr "mijn pagina volgen"
+
+#: template.php:1616
+msgid ""
+"Followers receive a notification when your page is updated, so that they "
+"stay informed of new activities, threads, ..."
+msgstr "Volgers ontvangen een melding bij relevante update van je pagina."
+
+#: template.php:1622
+msgid "become member of my page"
+msgstr "lid worden van mij pagina"
+
+#: template.php:1623
+msgid ""
+"Members can, depending on the roles or rights, collaborate to maintain and "
+"update your page. Furthermore, page memberships are added to user profiles "
+"and can be used as an alias to add comments."
+msgstr ""
+
+#: template.php:1629
+msgid "add comments to my activities"
+msgstr "commentaar posten op mijn activiteiten"
+
+#: template.php:1630
+msgid ""
+"Only available for organisations who added their activities via <a href="
+"\"http://www.uitdatabank.be\" target=\"_blank\">www.uitdatabank.be</a>."
+msgstr ""
+
+#: template.php:1636
+msgid "Update"
+msgstr "Bijwerken"
+
+#: template.php:1654
+#: templates/culturefeed-pages-block-admin-options.tpl.php:21
+msgid "Manage page"
+msgstr ""
+
+#: template.php:1660 templates/culturefeed-pages-page-agenda.tpl.php:4
+msgid "Activities"
+msgstr "Activiteiten"
+
+#: template.php:1660 templates/culturefeed-pages-page-agenda.tpl.php:5
+msgid "Timeline"
+msgstr ""
+
+#: template.php:1712
+msgid "View page 123"
+msgstr ""
+
+#: template.php:1722
+msgid "Please enter at least 3 characters"
+msgstr ""
+
+#: template.php:1770;1789
+msgid "Remove member"
+msgstr ""
+
+#: template.php:1831 templates/culturefeed-pages-page-my-pages.tpl.php:2
+msgid "View profile"
+msgstr "Bekijk profiel"
+
+#: template.php:1834 templates/culturefeed-ui-profile.tpl.php:55
+msgid "Member of"
+msgstr "Lid van"
+
+#: template.php:1834
+msgid "Add as member"
+msgstr ""
+
+#: template.php:1852
+msgid "Add new members"
+msgstr ""
+
+#: template.php:1865
+msgid "Search User"
+msgstr ""
+
+#: template.php:1876
+msgid "Not possible to remove"
+msgstr ""
+
+#: template.php:1877
+msgid ""
+"You're the only administrator of this page. You can not remove yourself as a "
+"member"
+msgstr ""
+
+#: template.php:1891 templates/culturefeed-ui-connect-hover.tpl.php:3
+msgid "You should be logged in to proceed."
+msgstr "Om verder te gaan moet je aangemeld zijn."
+
+#: template.php:1911
+msgid "e-mail"
+msgstr "je e-mailadres"
+
+#: template.php:1912
+msgid "new account"
+msgstr "nieuwe account"
+
+#: template.php:1938
+msgid "Login as"
+msgstr "Aanmelden als"
+
+#: template.php:1951
 msgid "Confirm choice"
 msgstr "Bevestig keuze"
 
-#: culturefeed-event.tpl.php:40
+#: template.php:1968
+msgid "Choose another location"
+msgstr "Kies andere plaats"
+
+#: template.php:2076
+msgid "from"
+msgstr "van"
+
+#: template.php:2120;2146
+#: templates/culturefeed-pages-news-admin-page.tpl.php:18
+#: templates/culturefeed-saved-searches-manage-list.tpl.php:19
+msgid "Delete"
+msgstr "Verwijder"
+
+#: template.php:2135
+msgid "Reply"
+msgstr "Reageer"
+
+#: template.php:2169 templates/culturefeed-social-comment-list.tpl.php:12
+msgid "Post a comment"
+msgstr "Reageer"
+
+#: template.php:2184
+msgid "Report as inappropriate"
+msgstr "Meld als ongepast"
+
+#: template.php:2372;2393;2426
+#: templates/culturefeed-uitpas-advantages.tpl.php:17
+msgid "Promotions"
+msgstr "Voordelen"
+
+#: template.php:2376;2397 templates/culturefeed-uitpas-advantages.tpl.php:18
+#: templates/culturefeed-uitpas-profile-advantages.tpl.php:16
+msgid "Welcome Advantages"
+msgstr ""
+
+#: template.php:2437
+msgid "Welcome advantages"
+msgstr ""
+
+#: template.php:2680
+msgid "Save this search"
+msgstr "Bewaar deze zoekopdracht"
+
+#: template.php:834
+msgid "@range from @count result"
+msgid_plural "@range from @count results"
+msgstr[0] "@range van @count resultaat"
+msgstr[1] "@range van @count resultaten"
+
+#: culturefeed_bootstrap.info:0
+msgid "Culturefeed Bootstrap"
+msgstr ""
+
+#: culturefeed_bootstrap.info:0
+msgid ""
+"Bootstrap subtheme to use with the culturefeed module suite (https://github."
+"com/cultuurnet/culturefeed)"
+msgstr ""
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Navigation"
+msgstr "Navigatie"
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Top Bar"
+msgstr ""
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Highlighted"
+msgstr "Geaccentueerd"
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Help"
+msgstr "Help"
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Content"
+msgstr "Inhoud"
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Primary"
+msgstr ""
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Secondary"
+msgstr ""
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Content Bottom"
+msgstr ""
+
+#: culturefeed_bootstrap.info:0
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Footer"
+msgstr "Voet"
+
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "CultureFeed Bootstrap Virgin"
+msgstr ""
+
+#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+msgid "Subtheme based on culturefeed_bootstrap. Please copy to sites/*/themes"
+msgstr ""
+
+#: js/bootstrap_autocomplete_override.js:0
+msgid "Autocomplete popup"
+msgstr "Popup voor automatisch aanvullen"
+
+#: js/cookie_message.js:0;0
+msgid "OK, I understand"
+msgstr "OK, ik begrijp het"
+
+#: js/cookie_message.js:0
+msgid "close"
+msgstr "sluit"
+
+#: js/culturefeed-bootstrap.js:0
+msgid ""
+"The selected file %filename cannot be uploaded. Only files with the "
+"following extensions are allowed: %extensions."
+msgstr ""
+"Het bestand %filename kan niet geüpload worden. Alleen bestanden met de "
+"volgende extensies zijn toegestaan: %extensions"
+
+#: templates/culturefeed-actor-summary.tpl.php:43
+#: templates/culturefeed-actor.tpl.php:22
+#: templates/culturefeed-agenda-actor-program-item.tpl.php:55
+#: templates/culturefeed-calendar-activity-summary.tpl.php:36
+#: templates/culturefeed-event-summary.tpl.php:64
+#: templates/culturefeed-event.tpl.php:43
+#: templates/culturefeed-production-summary.tpl.php:64
+#: templates/culturefeed-production.tpl.php:42
+#: templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php:44
+msgid "Where"
+msgstr "Waar"
+
+#: templates/culturefeed-actor-summary.tpl.php:62
+#: templates/culturefeed-calendar-activity-summary.tpl.php:82
+#: templates/culturefeed-event-summary.tpl.php:95
+#: templates/culturefeed-production-summary.tpl.php:98
+msgid "More info"
+msgstr "Meer info"
+
+#: templates/culturefeed-actor.tpl.php:32;34
+#: templates/culturefeed-event.tpl.php:53;55
+#: templates/culturefeed-production.tpl.php:52;54
+msgid "Open map"
+msgstr "Toon op kaart"
+
+#: templates/culturefeed-actor.tpl.php:36
+#: templates/culturefeed-event.tpl.php:57
+#: templates/culturefeed-production.tpl.php:56
 msgid "Show map"
 msgstr "Toon kaart"
 
-#: culturefeed-agenda-actor-program.tpl.php:18
+#: templates/culturefeed-actor.tpl.php:74
+#: templates/culturefeed-event.tpl.php:148
+#: templates/culturefeed-production.tpl.php:135
+msgid "Links"
+msgstr "Links"
+
+#: templates/culturefeed-agenda-actor-program-item.tpl.php:37
+#: templates/culturefeed-event-summary.tpl.php:79
+#: templates/culturefeed-event.tpl.php:81
+#: templates/culturefeed-production-summary.tpl.php:79
+#: templates/culturefeed-production.tpl.php:80
+#: templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php:49
+msgid "When"
+msgstr "Wanneer"
+
+#: templates/culturefeed-agenda-actor-program.tpl.php:10;26
+#: templates/culturefeed-calendar-page.tpl.php:11
 msgid "Calendar"
 msgstr "Agenda"
 
-#: culturefeed-agenda-actor-program.tpl.php:9
+#: templates/culturefeed-agenda-actor-program.tpl.php:12
 msgid "Full calendar"
 msgstr "Volledige agenda"
 
-#: culturefeed-agenda-actor-program-item.tpl.php:49
-msgid "more dates"
-msgstr "meer data"
+#: templates/culturefeed-agenda-actor-program.tpl.php:23
+msgid "Show full calendar of"
+msgstr "Toon volledige agenda van"
 
-#: culturefeed-uitpas-promotion.tpl.php:32
+#: templates/culturefeed-agenda-actor-program.tpl.php:27
+msgid "There are currently no activities available."
+msgstr "Er zijn momenteel geen activiteiten beschikbaar"
+
+#: templates/culturefeed-agenda-block-nearby-activities.tpl.php:19
+msgid "Events nearby"
+msgstr "In jouw buurt"
+
+#: templates/culturefeed-agenda-nearby-activities-list.tpl.php:17
+msgid "No nearby activities found"
+msgstr "Er werden geen activiteiten in jouw buurt gevonden"
+
+#: templates/culturefeed-agenda-production-program.tpl.php:46
+msgid "This event is finished."
+msgstr "Deze activiteit is afgelopen"
+
+#: templates/culturefeed-agenda-production-program.tpl.php:51
+msgid "More details"
+msgstr "Meer details"
+
+#: templates/culturefeed-authenticated-page.tpl.php:4
+msgid "Or via"
+msgstr "Of via"
+
+#: templates/culturefeed-authenticated-page.tpl.php:8
+msgid "Don't have an UiTiD? Create a !new_account."
+msgstr "Heb je nog geen UiTiD? Maak een !new_account."
+
+#: templates/culturefeed-calendar-activities-going.tpl.php:21
+msgid "No events scheduled in this month"
+msgstr "Er werden nog geen activiteiten ingepland deze maand"
+
+#: templates/culturefeed-calendar-activities-liked.tpl.php:10
+msgid "Unscheduled events"
+msgstr "Nog niet ingepland"
+
+#: templates/culturefeed-calendar-activity-summary.tpl.php:61
+#: templates/culturefeed-event.tpl.php:105
+#: templates/culturefeed-production.tpl.php:96
+msgid "Price"
+msgstr "Prijs"
+
+#: templates/culturefeed-calendar-activity-summary.tpl.php:74
+msgid "Phone"
+msgstr "Telefoon"
+
+#: templates/culturefeed-calendar-button-hover.tpl.php:2
+msgid ""
+"You have temporarily added events to your calendar. Log in and save the "
+"events to your personal calendar."
+msgstr ""
+"Je hebt activiteiten toegevoegd aan je UiTkalender. Meld je aan om deze te "
+"bewaren."
+
+#: templates/culturefeed-calendar-button-hover.tpl.php:3
+msgid "Log in"
+msgstr "Aanmelden"
+
+#: templates/culturefeed-calendar-button-hover.tpl.php:4
+msgid "View calendar"
+msgstr "Bekijk kalender"
+
+#: templates/culturefeed-calendar-button.tpl.php:12
+msgid "This event is already finished"
+msgstr "Dit event is reeds afgelopen"
+
+#: templates/culturefeed-calendar-button.tpl.php:16
+msgid "This event is added to your calendar."
+msgstr "Deze activiteit is toegevoegd aan je UiTkalender."
+
+#: templates/culturefeed-calendar-button.tpl.php:20
+msgid "This event has been saved"
+msgstr "Dit event werd bewaard"
+
+#: templates/culturefeed-calendar-button.tpl.php:25
+msgid "Don't forget to login to save your events to your calendar"
+msgstr "Vergeet niet aan te melden om je events te bewaren in je kalender"
+
+#: templates/culturefeed-calendar-page.tpl.php:14
+msgid "of"
+msgstr "van"
+
+#: templates/culturefeed-calendar-page.tpl.php:29
+msgid "Settings"
+msgstr "Instellingen"
+
+#: templates/culturefeed-calendar-page.tpl.php:45
+msgid "Share"
+msgstr "Deel"
+
+#: templates/culturefeed-calendar-page.tpl.php:54
+msgid "This calendar has not been shared yet."
+msgstr "Je kalender is ingesteld als privé."
+
+#: templates/culturefeed-calendar-page.tpl.php:70
+msgid "No activities added to your calendar yet."
+msgstr "Je hebt nog geen activiteiten toegevoegd aan je UiTkalender."
+
+#: templates/culturefeed-calendar-share-page.tpl.php:9
+msgid "Back to my calendar"
+msgstr "Terug naar kalender"
+
+#: templates/culturefeed-calendar-share-page.tpl.php:11
+msgid "Share your calendar with your friends"
+msgstr "Deel je UiTkalender delen met je vrienden"
+
+#: templates/culturefeed-calendar-share-page.tpl.php:12
+msgid "You can share this link with your friends"
+msgstr "Gebruik deze link om je kalender te delen"
+
+#: templates/culturefeed-calendar-share-page.tpl.php:39
+msgid ""
+"You have chosen earlier to not share your calendar. You can change this in "
+"your settings."
+msgstr ""
+"Je kalender is ingesteld als privé. Wijzig de instellingen van je kalender."
+
+#: templates/culturefeed-calendar-share-page.tpl.php:41
+msgid "Edit settings"
+msgstr "Wijzig instellingen"
+
+#: templates/culturefeed-event-mini-summary.tpl.php:53
+#: templates/culturefeed-production-mini-summary.tpl.php:53
+msgid "review"
+msgstr "beoordeling"
+
+#: templates/culturefeed-event-mini-summary.tpl.php:53;56
+#: templates/culturefeed-production-mini-summary.tpl.php:53;56
+msgid "reviews"
+msgstr "beoordelingen"
+
+#: templates/culturefeed-event-summary.tpl.php:56
+#: templates/culturefeed-event.tpl.php:38
+#: templates/culturefeed-production.tpl.php:37
+msgid "With"
+msgstr "Wie"
+
+#: templates/culturefeed-event-summary.tpl.php:93
+#: templates/culturefeed-production-summary.tpl.php:94
+msgid "Info & tickets"
+msgstr ""
+
+#: templates/culturefeed-event.tpl.php:29
+#: templates/culturefeed-production.tpl.php:28
+#: templates/culturefeed-social-comment-teaser.tpl.php:16
+#: templates/culturefeed-social-news-teaser.tpl.php:23
+msgid "Read more"
+msgstr "Lees meer"
+
+#: templates/culturefeed-event.tpl.php:94
+#: templates/culturefeed-production.tpl.php:85
+msgid "Organization"
+msgstr "Organisatie"
+
+#: templates/culturefeed-event.tpl.php:115
+#: templates/culturefeed-production.tpl.php:106
+msgid "Reservations"
+msgstr "Reservaties"
+
+#: templates/culturefeed-event.tpl.php:153
+#: templates/culturefeed-production.tpl.php:140
+msgid "Facilities"
+msgstr "Voorzieningen"
+
+#: templates/culturefeed-event.tpl.php:159
+#: templates/culturefeed-production.tpl.php:146
+msgid "Keywords"
+msgstr "Trefwoorden"
+
+#: templates/culturefeed-messages-message-booking.tpl.php:13
+msgid "sent a booking request for"
+msgstr ""
+
+#: templates/culturefeed-messages-message-booking.tpl.php:13
+msgid "with the following information"
+msgstr ""
+
+#: templates/culturefeed-messages-message-booking.tpl.php:15
+msgid "Level"
+msgstr ""
+
+#: templates/culturefeed-messages-message-booking.tpl.php:16
+msgid "Number of participants"
+msgstr ""
+
+#: templates/culturefeed-messages-message-booking.tpl.php:17
+msgid "Additional information"
+msgstr ""
+
+#: templates/culturefeed-messages-message-list.tpl.php:2
+msgid "Inbox"
+msgstr ""
+
+#: templates/culturefeed-messages-message-list.tpl.php:3
+msgid "New message"
+msgstr ""
+
+#: templates/culturefeed-messages-message-requestadmin.tpl.php:15
+msgid "requested administrator rights for"
+msgstr ""
+
+#: templates/culturefeed-messages-thread.tpl.php:5
+msgid "No subject"
+msgstr ""
+
+#: templates/culturefeed-messages-thread.tpl.php:3
+msgid "@count message"
+msgid_plural "@count messages"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/culturefeed-page-summary.tpl.php:24
+#: templates/culturefeed-pages-page-suggestion-list-item.tpl.php:50
+msgid "follower"
+msgstr ""
+
+#: templates/culturefeed-page-summary.tpl.php:24
+#: templates/culturefeed-pages-page-suggestion-list-item.tpl.php:50
+#: templates/culturefeed-social-page-activity-summary.tpl.php:37
+msgid "followers"
+msgstr ""
+
+#: templates/culturefeed-page.tpl.php:54
+msgid "Members"
+msgstr ""
+
+#: templates/culturefeed-page.tpl.php:60;60;60
+msgid "Show members"
+msgstr ""
+
+#: templates/culturefeed-page.tpl.php:107;114;121;128;149
+msgid "on"
+msgstr "op"
+
+#: templates/culturefeed-page.tpl.php:142
+msgid "Buy"
+msgstr ""
+
+#: templates/culturefeed-pages-basic-search-result-item.tpl.php:27
+msgid "You are already a member"
+msgstr ""
+
+#: templates/culturefeed-pages-basic-search-result-item.tpl.php:42
+#: templates/culturefeed-pages-page-suggestion-list-item.tpl.php:64
+msgid "You follow this page"
+msgstr ""
+
+#: templates/culturefeed-pages-block-admin-options.tpl.php:30
+msgid "Latest notifications"
+msgstr ""
+
+#: templates/culturefeed-pages-block-admin-options.tpl.php:38
+msgid "Your page currently has no published activities."
+msgstr ""
+
+#: templates/culturefeed-pages-block-admin-options.tpl.php:38
+msgid "Add an activity via UiTdatabank.be"
+msgstr ""
+
+#: templates/culturefeed-pages-block-admin-options.tpl.php:45
+msgid "Switch page"
+msgstr ""
+
+#: templates/culturefeed-pages-block-admin-options.tpl.php:46
+msgid ""
+"You have <strong>administrator privileges</strong> for this page. In order "
+"to make any changes, please <strong>change your active page</strong>:"
+msgstr ""
+
+#: templates/culturefeed-pages-block-page-suggestions.tpl.php:9
+msgid "Show all pages"
+msgstr ""
+
+#: templates/culturefeed-pages-block-page-timeline.tpl.php:10
+#: templates/culturefeed-pages-news-admin-page.tpl.php:4
+msgid "Add a news item"
+msgstr ""
+
+#: templates/culturefeed-pages-events-admin-page.tpl.php:1
+msgid "My events"
+msgstr ""
+
+#: templates/culturefeed-pages-events-admin-page.tpl.php:4
+msgid ""
+"The list below shows all the <strong>events</strong> that are "
+"<strong>currently published on"
+msgstr ""
+
+#: templates/culturefeed-pages-events-admin-page.tpl.php:4
+msgid ""
+"Past or unpublished events can be consulted via <a href=\"http://www."
+"uitdatabank.be\" target=\"_blank\" class=\"alert-link\">UiTdatabank.be</a>."
+msgstr ""
+
+#: templates/culturefeed-pages-events-admin-page.tpl.php:13
+msgid "There are currently <strong>no published events</strong> for"
+msgstr ""
+
+#: templates/culturefeed-pages-events-admin-page.tpl.php:13
+msgid ""
+"Past or unpublished events can be consulted via <a href=\"http://www."
+"uitdatabank.be\" target=\"_blank\">UiTdatabank.be</a>."
+msgstr ""
+
+#: templates/culturefeed-pages-events-admin-page.tpl.php:18
+msgid "Add new event"
+msgstr ""
+
+#: templates/culturefeed-pages-events-admin-page.tpl.php:22
+msgid "You can sign in with your current username and password."
+msgstr ""
+
+#: templates/culturefeed-pages-fellow-members-block.tpl.php:23
+msgid "You are the only member of"
+msgstr ""
+
+#: templates/culturefeed-pages-fellow-members-block.tpl.php:26
+msgid "is at the moment the only member of the page"
+msgstr ""
+
+#: templates/culturefeed-pages-fellow-members-block.tpl.php:27
+msgid "Are you a colleague of"
+msgstr ""
+
+#: templates/culturefeed-pages-fellow-members-block.tpl.php:27
+msgid "at"
+msgstr ""
+
+#: templates/culturefeed-pages-followers-block.tpl.php:24
+msgid "This page has no followers yet."
+msgstr ""
+
+#: templates/culturefeed-pages-members-block.tpl.php:24
+msgid "This page has no members yet."
+msgstr ""
+
+#: templates/culturefeed-pages-news-admin-page.tpl.php:1
+msgid "News"
+msgstr ""
+
+#: templates/culturefeed-pages-news-admin-page.tpl.php:4
+msgid "for"
+msgstr ""
+
+#: templates/culturefeed-pages-news-admin-page.tpl.php:27
+msgid "There are currently no news items"
+msgstr ""
+
+#: templates/culturefeed-pages-page-agenda.tpl.php:23
+msgid "Your page has currently no published activities."
+msgstr ""
+
+#: templates/culturefeed-pages-page-agenda.tpl.php:24
+msgid ""
+"Add a new activity via <a href=\"http://www.uitdatabank.be\">www.uitdatabank."
+"be</a>."
+msgstr ""
+
+#: templates/culturefeed-pages-page-my-pages.tpl.php:5
+msgid "Pages where I am a member of"
+msgstr ""
+
+#: templates/culturefeed-pages-page-my-pages.tpl.php:9
+msgid ""
+"<strong>You are not a member of any page.</strong> <br/> Search (or create) "
+"the page of your employer and become a member. If you create a new page, you "
+"automatically become a member and administrator of the page."
+msgstr ""
+
+#: templates/culturefeed-pages-page-my-pages.tpl.php:13
+#: templates/culturefeed-social-activity-summary.tpl.php:35
+msgid "Pages I follow"
+msgstr ""
+
+#: templates/culturefeed-pages-page-my-pages.tpl.php:17
+msgid ""
+"<strong> You follow no pages. </strong> <br/> Find and follow pages that "
+"interest you and receive a notification when there are relevant updates."
+msgstr ""
+
+#: templates/culturefeed-pages-page-my-pages.tpl.php:20
+msgid "Search new pages:"
+msgstr ""
+
+#: templates/culturefeed-pages-page-suggestion-list-item.tpl.php:47
+msgid "@count"
+msgid_plural "@count"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/culturefeed-pages-page-suggestion-list.tpl.php:16
+msgid "No suggestions found"
+msgstr "Geen suggesties gevonden"
+
+#: templates/culturefeed-pages-request-admin-membership-block.tpl.php:10
+msgid "Request to become an administrator"
+msgstr "Aanvraag om beheerder te worden"
+
+#: templates/culturefeed-pages-request-admin-membership-block.tpl.php:10
+msgid ""
+"This page currently has no administrator. As an administrator, you can "
+"update page details, layout and manage members."
+msgstr ""
+"Deze pagina heeft geen beheerder. Als beheerder kan je de gegevens en layout "
+"van deze pagina aanpassen en leden beheren."
+
+#: templates/culturefeed-pages-request-admin-membership-block.tpl.php:11
+msgid "Send request"
+msgstr "Verstuur aanvraag"
+
+#: templates/culturefeed-pages-user-search-result.tpl.php:2
+msgid "No users found"
+msgstr "Geen gebruikers gevonden"
+
+#: templates/culturefeed-production-summary.tpl.php:56
+msgid "By"
+msgstr "Met"
+
+#: templates/culturefeed-production-summary.tpl.php:88;96
+msgid "Show program schedule"
+msgstr "Toon programmatie"
+
+#: templates/culturefeed-production.tpl.php:112
+msgid "or call"
+msgstr "of bel naar"
+
+#: templates/culturefeed-production.tpl.php:151
+msgid "Program schedule"
+msgstr "Programmatie"
+
+#: templates/culturefeed-saved-searches-list.tpl.php:14
+msgid "@count saved searches"
+msgstr "@count bewaarde zoekopdrachten"
+
+#: templates/culturefeed-saved-searches-list.tpl.php:25
+msgid "Edit"
+msgstr "Bewerken"
+
+#: templates/culturefeed-saved-searches-manage-list.tpl.php:25
+msgid "frequency e-mail alerts"
+msgstr "frequentie e-mailalerts"
+
+#: templates/culturefeed-saved-searches-manage-list.tpl.php:38
+msgid "There are no saved searches yet"
+msgstr "Je hebt nog geen bewaarde zoekopdrachten"
+
+#: templates/culturefeed-search-block-filter-links-item.tpl.php:12
+#: templates/culturefeed-search-facet-item.tpl.php:19
+msgid "Remove filter"
+msgstr "Verwijder filter"
+
+#: templates/culturefeed-search-list.tpl.php:14
+msgid "perform a new search."
+msgstr "voer een nieuwe zoekopdracht uit."
+
+#: templates/culturefeed-search-list.tpl.php:19
+msgid "There are no more search results."
+msgstr "Er zijn geen zoekresultaten meer."
+
+#: templates/culturefeed-search-list.tpl.php:19
+msgid "Refine your search results or"
+msgstr "Verfijn jouw zoekopdracht of"
+
+#: templates/culturefeed-search-page.tpl.php:15
+msgid "<strong>@count</strong> result found"
+msgid_plural "<strong>@count</strong> results found"
+msgstr[0] "<strong>@count</strong> resultaat gevonden"
+msgstr[1] "<strong>@count</strong> resultaten gevonden"
+
+#: templates/culturefeed-search-suggestions.tpl.php:10
+msgid "Did you mean"
+msgstr "Bedoelde je:"
+
+#: templates/culturefeed-social-activity-summary.tpl.php:32
+msgid "Recommended activities"
+msgstr "Aanbevolen activiteiten"
+
+#: templates/culturefeed-social-activity-summary.tpl.php:33
+msgid "Comments"
+msgstr "Reacties"
+
+#: templates/culturefeed-social-comment-list-item.tpl.php:36
+msgid "Posted by"
+msgstr "Geplaatst door"
+
+#: templates/culturefeed-social-event-teaser.tpl.php:40
+#: templates/culturefeed-social-production-teaser.tpl.php:30
+msgid "More information"
+msgstr "Meer informatie"
+
+#: templates/culturefeed-social-news-detail.tpl.php:35
+msgid "Delete news item"
+msgstr "Verwijder nieuwsbericht"
+
+#: templates/culturefeed-social-page-activity-summary.tpl.php:45
+msgid "members"
+msgstr "leden"
+
+#: templates/culturefeed-social-page-activity-summary.tpl.php:53
+msgid "admins"
+msgstr "beheerders"
+
+#: templates/culturefeed-social-page-activity-summary.tpl.php:61
+msgid "recommends"
+msgstr "aanbevelingen"
+
+#: templates/culturefeed-social-page-activity-summary.tpl.php:69
+msgid "comments"
+msgstr "Reacties"
+
+#: templates/culturefeed-ui-my-uitid.tpl.php:44
+msgid "My pages:"
+msgstr "Mijn pagina's"
+
+#: templates/culturefeed-ui-my-uitid.tpl.php:56
+msgid "Pages I follow:"
+msgstr "Pagina's die ik volg"
+
+#: templates/culturefeed-ui-my-uitid.tpl.php:64
+msgid "You don't follow any pages yet."
+msgstr "Je volgt nog geen pagina's"
+
+#: templates/culturefeed-ui-my-uitid.tpl.php:65
+msgid "Find pages to follow"
+msgstr "Zoek pagina's om te volgen"
+
+#: templates/culturefeed-ui-page-account-edit.tpl.php:17
+msgid "Connected accounts"
+msgstr "Gekoppelde accounts"
+
+#: templates/culturefeed-ui-page-account-edit.tpl.php:32
+msgid "Connected applications"
+msgstr "Geconnecteerde applicaties"
+
+#: templates/culturefeed-ui-page-account-edit.tpl.php:38
+msgid "Manage websites and applications"
+msgstr "Beheer websites en applicaties"
+
+#: templates/culturefeed-ui-page-account-edit.tpl.php:38
+msgid "who uses your UiTiD profile."
+msgstr "die je UiTiD gebruiken."
+
+#: templates/culturefeed-uitpas-profile-advantages.tpl.php:15
+msgid "My Promotions"
+msgstr "Mijn voordelen"
+
+#: templates/culturefeed-uitpas-profile-details.tpl.php:55
+msgid "My personal data"
+msgstr "Mijn persoonlijke gegevens"
+
+#: templates/culturefeed-uitpas-profile-details.tpl.php:94
+msgid "My opportunities tariff"
+msgstr "Mijn kansentarief"
+
+#: templates/culturefeed-uitpas-promotion.tpl.php:32
 msgid "This promotion is out of stock"
 msgstr "Dit voordeel is niet meer in voorraad"
+
+#: templates/page.tpl.php:80;81;86
+msgid "Home"
+msgstr "Home"
+
+#: templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php:54
+msgid "Last updated"
+msgstr "Laatst bijgewerkt"
