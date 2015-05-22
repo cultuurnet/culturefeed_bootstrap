@@ -1935,10 +1935,33 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['#attributes']['class'][] = '';
 
-  $form['date_range']['#prefix'] = '<div class="facet-label"><div class="row"><div class="col-xs-12">'
-    . '<div class="input-group specific-date"><i class="fa fa-calendar"></i>';
-  $form['date_range']['#suffix'] = '</div></div></div></div>';
+  $form['date_range_link'] = array(
+    '#markup' => l('<span>' . t('Specific dates') . '</span>', 'javascript:', array(
+      'html' => TRUE,
+      'external' => TRUE,
+      'attributes' => array('id' => 'specific-dates-range'),
+    )),
+    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date"><i class="fa fa-calendar"></i>',
+    '#suffix' => '</div></div></div></div>',
+  );
 
+  // Remove standard datepicker library.
+  $library = array('culturefeed_search_ui', 'ui.daterangepicker');
+  $library_index = array_search($library, $form['#attached']['library']);
+  if ($library_index !== FALSE) {
+    unset($form['#attached']['library'][$library_index]);
+  }
+
+  // Attach the bootstrap datepicker library.
+  $path = drupal_get_path('theme', 'culturefeed_bootstrap');
+  $form['#attached']['js'][] = $path . '/js/moment.js';
+  $form['#attached']['js'][] = $path . '/js/daterangepicker.js';
+  $form['#attached']['js'][] = $path . '/js/daterangepicker-bind.js';
+
+  $form['#attached']['css'][$path . '/css/daterangepicker-bs3.css'] = array(
+    'weight' => 100,
+    'group' => CSS_THEME,
+  );
 }
 
 /**
