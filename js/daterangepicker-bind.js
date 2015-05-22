@@ -106,9 +106,16 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
         firstDay: 1
       }
     }, function (start, end) {
+      var range;
       var from = start.format(format);
       var to = end.format(format);
-      var range = from + ' - ' + to;
+
+      if (from == to) {
+        range = from;
+      }
+      else {
+        range = from + ' - ' + to;
+      }
 
       field.val(range);
       link_content.html(range);
