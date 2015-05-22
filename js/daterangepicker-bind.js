@@ -36,32 +36,29 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
     var format = 'D/M/YYYY';
 
     var range = field.val();
-    var rangeValid = true;
+    var rangeValid = false;
 
     var from = null;
     var to = null;
 
     if (range.length > 0) {
       var dates = range.split(' - ');
+      var fromValid = false;
+      var toValid = false;
 
       if (moment(dates[0], format, true).isValid()) {
         from = dates[0];
-      }
-      else {
-        rangeValid = false;
+        fromValid = true;
       }
 
       if (dates[1] != undefined) {
         if (moment(dates[1], format, true).isValid()) {
           to = dates[1];
-        }
-        else {
-          rangeValid = false;
+          toValid = true;
         }
       }
-    }
-    else {
-      rangeValid = false;
+
+      rangeValid = fromValid && (toValid || dates[1] == undefined);
     }
 
     // $('#submit-specific-dates').hide();
