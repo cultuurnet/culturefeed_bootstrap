@@ -27,6 +27,7 @@
 #  js/bootstrap_autocomplete_override.js: n/a
 #  js/cookie_message.js: n/a
 #  js/culturefeed-bootstrap.js: n/a
+#  js/daterangepicker-bind.js: n/a
 #  templates/culturefeed-actor-summary.tpl.php: n/a
 #  templates/culturefeed-agenda-actor-program-item.tpl.php: n/a
 #  templates/culturefeed-calendar-activity-summary.tpl.php: n/a
@@ -78,20 +79,20 @@
 #  templates/culturefeed-uitpas-promotion.tpl.php: n/a
 #  templates/page.tpl.php: n/a
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-23 12:13+0200\n"
-"PO-Revision-Date: 2015-04-23 12:57+0100\n"
-"Last-Translator: Luk Dens <luk.dens@cultuurnet.be>\n"
+"POT-Creation-Date: 2015-05-22 14:37+0200\n"
+"PO-Revision-Date: 2015-05-22 14:37+0200\n"
+"Last-Translator: Bert Ramakers <EMAIL@ADDRESS>\n"
 "Language-Team: Dutch <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.5.7\n"
 
-#: template.php:85;783;2042
+#: template.php:85;742;2022
 msgid "Search"
 msgstr "Zoeken"
 
@@ -99,484 +100,465 @@ msgstr "Zoeken"
 msgid "Sort"
 msgstr "Sorteer op"
 
-#: template.php:167;176
-msgid "Share on Facebook"
-msgstr "Delen via Facebook"
-
-#: template.php:204
+#: template.php:163
 msgid "Print"
 msgstr "Afdrukken"
 
-#: template.php:302
+#: template.php:261
 msgid "Error occurred"
 msgstr "Er is een fout opgetreden."
 
-#: template.php:312
+#: template.php:271
 msgid "About me"
 msgstr "Over mij"
 
-#: template.php:312;538
+#: template.php:271;497
 msgid "View"
 msgstr "Weergeven"
 
-#: template.php:314;316
+#: template.php:273;275
 msgid "First name"
 msgstr "Voornaam"
 
-#: template.php:325;327
+#: template.php:284;286
 msgid "Family name"
 msgstr "Naam"
 
-#: template.php:335
+#: template.php:294
 msgid "Biography"
 msgstr "Beschrijf jezelf"
 
-#: template.php:337
+#: template.php:296
 msgid "Maximum 250 characters"
 msgstr "Maximum 250 karakters"
 
-#: template.php:364
+#: template.php:323
 msgid "Date of birth"
 msgstr "Geboortedatum"
 
-#: template.php:376
+#: template.php:335
 msgid "Gender"
 msgstr "Geslacht"
 
-#: template.php:377
+#: template.php:336
 msgid "Male"
 msgstr "Man"
 
-#: template.php:377
+#: template.php:336
 msgid "Female"
 msgstr "Vrouw"
 
-#: template.php:386 templates/culturefeed-page.tpl.php:26
+#: template.php:345 templates/culturefeed-page.tpl.php:26
 msgid "Address"
 msgstr "Adres"
 
-#: template.php:389;1106;1371
+#: template.php:348;1065;1330
 msgid "Street and number"
 msgstr "Straatnaam en nummer"
 
-#: template.php:397;1115;1380
+#: template.php:356;1074;1339
 msgid "Zipcode"
 msgstr "Postcode"
 
-#: template.php:405;1124;1389
+#: template.php:364;1083;1348
 msgid "City"
 msgstr "Stad of gemeente"
 
-#: template.php:413
+#: template.php:372
 msgid "Country"
 msgstr "Land"
 
-#: template.php:421
+#: template.php:380
 msgid "Privacy settings"
 msgstr "Privacy instellingen"
 
-#: template.php:424;435;446;458;469;480
+#: template.php:383;394;405;417;428;439
 msgid "ON"
 msgstr "AAN"
 
-#: template.php:424;435;446;458;469;480
+#: template.php:383;394;405;417;428;439
 msgid "OFF"
 msgstr "UIT"
 
-#: template.php:425
+#: template.php:384
 msgid "Hide 'first name' in public profile"
 msgstr "Verberg 'voornaam' in openbaar profiel"
 
-#: template.php:436
+#: template.php:395
 msgid "Hide 'family name' in public profile"
 msgstr "Verberg 'naam' in openbaar profiel"
 
-#: template.php:447
+#: template.php:406
 msgid "Hide 'gender' in public profile"
 msgstr "Verberg 'geslacht' in openbaar profiel"
 
-#: template.php:459
+#: template.php:418
 msgid "Hide 'address' in public profile"
 msgstr "Verberg 'woonplaats' in openbaar profiel"
 
-#: template.php:470
+#: template.php:429
 msgid "Hide 'date of birth' in public profile"
 msgstr "Verberg 'geboortedatum' in openbaar profiel"
 
-#: template.php:481
+#: template.php:440
 msgid "Hide 'biography' in public profile"
 msgstr "Verberg 'bio' in openbaar profiel"
 
-#: template.php:490
+#: template.php:449
 msgid "Language settings"
 msgstr "Taalinstellingen"
 
-#: template.php:493
+#: template.php:452
 msgid "Preferred language"
 msgstr "Voorkeur taal"
 
-#: template.php:495
+#: template.php:454
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: template.php:496
+#: template.php:455
 msgid "French"
 msgstr "Frans"
 
-#: template.php:497
+#: template.php:456
 msgid "English"
 msgstr "Engels"
 
-#: template.php:498
+#: template.php:457
 msgid "German"
 msgstr "Duits"
 
-#: template.php:507
+#: template.php:466
 msgid "Save"
 msgstr "Opslaan"
 
-#: template.php:523
+#: template.php:482
 msgid "An error occurred while loading your account, please try again later."
 msgstr ""
-"Er is een fout opgetreden bij het laden van jouw account. Probeer het later "
-"opnieuw."
+"Er is een fout opgetreden bij het laden van jouw account. Probeer het "
+"later opnieuw."
 
-#: template.php:538 templates/culturefeed-ui-profile.tpl.php:5
+#: template.php:497 templates/culturefeed-ui-profile.tpl.php:5
 msgid "My UiTiD"
 msgstr "Mijn UiTiD"
 
-#: template.php:538
+#: template.php:497
 msgid "Delete account"
 msgstr "Account verwijderen"
 
-#: template.php:540
+#: template.php:499
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: template.php:548;1143;1146;1408;1411
+#: template.php:507;1102;1105;1367;1370
 msgid "Email address"
 msgstr "E-mailadres"
 
-#: template.php:557
+#: template.php:516
 msgid "Edit e-mail"
 msgstr "Wijzig e-mailadres"
 
-#: template.php:564
+#: template.php:523
 msgid "Change password"
 msgstr "Paswoord wijzigen"
 
-#: template.php:620;1900
+#: template.php:579;1859
 msgid "Login with Facebook"
 msgstr "Aanmelden met Facebook"
 
-#: template.php:623
+#: template.php:582
 msgid "Or with"
 msgstr "Of met"
 
-#: template.php:623 templates/culturefeed-authenticated-page.tpl.php:4
+#: template.php:582 templates/culturefeed-authenticated-page.tpl.php:4
 msgid "or"
 msgstr "of"
 
-#: template.php:663;2165
+#: template.php:622;2145
 msgid "Connect with UiTiD"
 msgstr "Aanmelden met UiTiD"
 
-#: template.php:688
+#: template.php:647
 msgid "btn btn-primary"
 msgstr ""
 
-#: template.php:689
+#: template.php:648
 msgid "Send message"
 msgstr "Bericht versturen"
 
-#: template.php:773
+#: template.php:732
 msgid "Keyword"
 msgstr ""
 
-#: template.php:806
+#: template.php:765
 msgid "<strong>@total pages</strong> found for '@search'"
 msgstr "<strong>@total pagina's</strong> gevonden voor '@search'"
 
-#: template.php:809
+#: template.php:768
 msgid "<strong>0 pages</strong> found for '@search'"
 msgstr "<strong>0 pagina's</strong> gevonden voor '@search'"
 
-#: template.php:817
+#: template.php:776
 msgid "Create your own page"
 msgstr "Maak je eigen pagina"
 
-#: template.php:886
+#: template.php:845
 msgid "previous"
 msgstr "vorige"
 
-#: template.php:892
+#: template.php:851
 msgid "next"
 msgstr "volgende"
 
-#: template.php:1012;1015
-#: templates/culturefeed-pages-basic-search-result-item.tpl.php:25
-#: templates/culturefeed-pages-fellow-members-block.tpl.php:27
+#: template.php:971;974 templates/culturefeed-pages-basic-search-result-item.tpl.php:25 templates/culturefeed-pages-fellow-members-block.tpl.php:27
 msgid "Become a member"
 msgstr "Word lid"
 
-#: template.php:1076
+#: template.php:1035
 msgid "Name"
 msgstr "Naam"
 
-#: template.php:1083
+#: template.php:1042
 msgid "Description"
 msgstr "Beschrijving"
 
-#: template.php:1084
+#: template.php:1043
 msgid "Maximum 400 characters"
 msgstr "Maximum 400 karakters"
 
-#: template.php:1095;1358 templates/culturefeed-actor.tpl.php:59
-#: templates/culturefeed-event.tpl.php:133
-#: templates/culturefeed-page.tpl.php:41
-#: templates/culturefeed-production.tpl.php:118
+#: template.php:1054;1317 templates/culturefeed-actor.tpl.php:53 templates/culturefeed-event.tpl.php:127 templates/culturefeed-page.tpl.php:41 templates/culturefeed-production.tpl.php:112
 msgid "Contact"
 msgstr "Contact"
 
-#: template.php:1095;1225;1358;1492
+#: template.php:1054;1184;1317;1451
 msgid "Optional"
 msgstr "Optioneel"
 
-#: template.php:1133;1136;1398;1401
+#: template.php:1092;1095;1357;1360
 msgid "Phone number"
 msgstr "Telefoonnummer"
 
-#: template.php:1153;1156;1418;1421
+#: template.php:1112;1115;1377;1380
 msgid "Website"
 msgstr ""
 
-#: template.php:1162;1429
+#: template.php:1121;1388
 msgid "Other websites"
 msgstr "Andere websites"
 
-#: template.php:1164;1166;1431;1433
+#: template.php:1123;1125;1390;1392
 msgid "Ticketing"
 msgstr "Ticketlink"
 
-#: template.php:1174;1176;1441;1443
+#: template.php:1133;1135;1400;1402
 msgid "Facebook"
 msgstr ""
 
-#: template.php:1184;1186;1451;1453
+#: template.php:1143;1145;1410;1412
 msgid "Twitter"
 msgstr ""
 
-#: template.php:1194;1196;1461;1463
+#: template.php:1153;1155;1420;1422
 msgid "Google+"
 msgstr ""
 
-#: template.php:1204;1206;1471;1473
+#: template.php:1163;1165;1430;1432
 msgid "Youtube"
 msgstr ""
 
-#: template.php:1215;1217;1482;1484
+#: template.php:1174;1176;1441;1443
 msgid "Blog"
 msgstr "Blog"
 
-#: template.php:1225;1492
+#: template.php:1184;1451
 msgid "Page layout"
 msgstr "Pagina layout"
 
-#: template.php:1234;1506
+#: template.php:1193;1465
 msgid "Image or Logo"
 msgstr "Afbeelding of logo"
 
-#: template.php:1235;1257;1507;1538
+#: template.php:1194;1216;1466;1497
 msgid "Allowed extensions: jpg, jpeg, gif or png"
 msgstr "Toegelaten formaten: jpg, jpeg, gif of png"
 
-#: template.php:1249;1566
+#: template.php:1208;1525
 msgid "Baseline"
 msgstr "Slagzin"
 
-#: template.php:1256;1537
+#: template.php:1215;1496
 msgid "Cover Photo"
 msgstr "Omslagfoto"
 
-#: template.php:1276
+#: template.php:1235
 msgid "Save Page"
 msgstr "Pagina bewaren"
 
-#: template.php:1305;1594
+#: template.php:1264;1553
 msgid "View page"
 msgstr "Pagina bekijken"
 
-#: template.php:1527
+#: template.php:1486
 msgid "Select another Image or Logo"
 msgstr "Kies andere afbeelding"
 
-#: template.php:1558
+#: template.php:1517
 msgid "Select another Cover Photo"
 msgstr "Kies andere omslagfoto"
 
-#: template.php:1575
+#: template.php:1534
 msgid "Update Page"
 msgstr "Pagina bewerken"
 
-#: template.php:1601
+#: template.php:1560
 msgid "Allow users to"
 msgstr "Gebruikers toestaan om"
 
-#: template.php:1615
+#: template.php:1574
 msgid "follow my page"
 msgstr "mijn pagina volgen"
 
-#: template.php:1616
-msgid ""
-"Followers receive a notification when your page is updated, so that they "
-"stay informed of new activities, threads, ..."
+#: template.php:1575
+msgid "Followers receive a notification when your page is updated, so that they stay informed of new activities, threads, ..."
 msgstr "Volgers ontvangen een melding bij relevante update van je pagina."
 
-#: template.php:1622
+#: template.php:1581
 msgid "become member of my page"
 msgstr "lid worden van mij pagina"
 
-#: template.php:1623
-msgid ""
-"Members can, depending on the roles or rights, collaborate to maintain and "
-"update your page. Furthermore, page memberships are added to user profiles "
-"and can be used as an alias to add comments."
+#: template.php:1582
+msgid "Members can, depending on the roles or rights, collaborate to maintain and update your page. Furthermore, page memberships are added to user profiles and can be used as an alias to add comments."
 msgstr ""
 
-#: template.php:1629
+#: template.php:1588
 msgid "add comments to my activities"
 msgstr "commentaar posten op mijn activiteiten"
 
-#: template.php:1630
-msgid ""
-"Only available for organisations who added their activities via <a href="
-"\"http://www.uitdatabank.be\" target=\"_blank\">www.uitdatabank.be</a>."
+#: template.php:1589
+msgid "Only available for organisations who added their activities via <a href=\"http://www.uitdatabank.be\" target=\"_blank\">www.uitdatabank.be</a>."
 msgstr ""
 
-#: template.php:1636
+#: template.php:1595
 msgid "Update"
 msgstr "Bijwerken"
 
-#: template.php:1654
-#: templates/culturefeed-pages-block-admin-options.tpl.php:21
+#: template.php:1613 templates/culturefeed-pages-block-admin-options.tpl.php:21
 msgid "Manage page"
 msgstr ""
 
-#: template.php:1660 templates/culturefeed-pages-page-agenda.tpl.php:4
+#: template.php:1619 templates/culturefeed-pages-page-agenda.tpl.php:4
 msgid "Activities"
 msgstr "Activiteiten"
 
-#: template.php:1660 templates/culturefeed-pages-page-agenda.tpl.php:5
+#: template.php:1619 templates/culturefeed-pages-page-agenda.tpl.php:5
 msgid "Timeline"
 msgstr ""
 
-#: template.php:1712
+#: template.php:1671
 msgid "View page 123"
 msgstr ""
 
-#: template.php:1722
+#: template.php:1681
 msgid "Please enter at least 3 characters"
 msgstr ""
 
-#: template.php:1770;1789
+#: template.php:1729;1748
 msgid "Remove member"
 msgstr ""
 
-#: template.php:1831 templates/culturefeed-pages-page-my-pages.tpl.php:2
+#: template.php:1790 templates/culturefeed-pages-page-my-pages.tpl.php:2
 msgid "View profile"
 msgstr "Bekijk profiel"
 
-#: template.php:1834 templates/culturefeed-ui-profile.tpl.php:55
+#: template.php:1793 templates/culturefeed-ui-profile.tpl.php:55
 msgid "Member of"
 msgstr "Lid van"
 
-#: template.php:1834
+#: template.php:1793
 msgid "Add as member"
 msgstr ""
 
-#: template.php:1852
+#: template.php:1811
 msgid "Add new members"
 msgstr ""
 
-#: template.php:1865
+#: template.php:1824
 msgid "Search User"
 msgstr ""
 
-#: template.php:1876
+#: template.php:1835
 msgid "Not possible to remove"
 msgstr ""
 
-#: template.php:1877
-msgid ""
-"You're the only administrator of this page. You can not remove yourself as a "
-"member"
+#: template.php:1836
+msgid "You're the only administrator of this page. You can not remove yourself as a member"
 msgstr ""
 
-#: template.php:1891 templates/culturefeed-ui-connect-hover.tpl.php:3
+#: template.php:1850 templates/culturefeed-ui-connect-hover.tpl.php:3
 msgid "You should be logged in to proceed."
 msgstr "Om verder te gaan moet je aangemeld zijn."
 
-#: template.php:1911
+#: template.php:1870
 msgid "e-mail"
 msgstr "je e-mailadres"
 
-#: template.php:1912
+#: template.php:1871
 msgid "new account"
 msgstr "nieuwe account"
 
-#: template.php:1938
+#: template.php:1897
 msgid "Login as"
 msgstr "Aanmelden als"
 
-#: template.php:1951
+#: template.php:1910
 msgid "Confirm choice"
 msgstr "Bevestig keuze"
 
-#: template.php:1968
+#: template.php:1927
 msgid "Choose another location"
 msgstr "Kies andere plaats"
 
-#: template.php:2076
+#: template.php:1939
+msgid "Specific dates"
+msgstr "Specifieke datum"
+
+#: template.php:2056
 msgid "from"
 msgstr "van"
 
-#: template.php:2120;2146
-#: templates/culturefeed-pages-news-admin-page.tpl.php:18
-#: templates/culturefeed-saved-searches-manage-list.tpl.php:19
+#: template.php:2100;2126 templates/culturefeed-pages-news-admin-page.tpl.php:18 templates/culturefeed-saved-searches-manage-list.tpl.php:19
 msgid "Delete"
 msgstr "Verwijder"
 
-#: template.php:2135
+#: template.php:2115
 msgid "Reply"
 msgstr "Reageer"
 
-#: template.php:2169 templates/culturefeed-social-comment-list.tpl.php:12
+#: template.php:2149 templates/culturefeed-social-comment-list.tpl.php:12
 msgid "Post a comment"
 msgstr "Reageer"
 
-#: template.php:2184
+#: template.php:2164
 msgid "Report as inappropriate"
 msgstr "Meld als ongepast"
 
-#: template.php:2372;2393;2426
-#: templates/culturefeed-uitpas-advantages.tpl.php:17
+#: template.php:2352;2373;2406 templates/culturefeed-uitpas-advantages.tpl.php:17
 msgid "Promotions"
 msgstr "Voordelen"
 
-#: template.php:2376;2397 templates/culturefeed-uitpas-advantages.tpl.php:18
-#: templates/culturefeed-uitpas-profile-advantages.tpl.php:16
+#: template.php:2356;2377 templates/culturefeed-uitpas-advantages.tpl.php:18 templates/culturefeed-uitpas-profile-advantages.tpl.php:16
 msgid "Welcome Advantages"
 msgstr ""
 
-#: template.php:2437
+#: template.php:2417
 msgid "Welcome advantages"
 msgstr ""
 
-#: template.php:2680
+#: template.php:2659
 msgid "Save this search"
 msgstr "Bewaar deze zoekopdracht"
 
-#: template.php:834
+#: template.php:793
 msgid "@range from @count result"
 msgid_plural "@range from @count results"
 msgstr[0] "@range van @count resultaat"
@@ -587,53 +569,42 @@ msgid "Culturefeed Bootstrap"
 msgstr ""
 
 #: culturefeed_bootstrap.info:0
-msgid ""
-"Bootstrap subtheme to use with the culturefeed module suite (https://github."
-"com/cultuurnet/culturefeed)"
+msgid "Bootstrap subtheme to use with the culturefeed module suite (https://github.com/cultuurnet/culturefeed)"
 msgstr ""
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Navigation"
 msgstr "Navigatie"
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Top Bar"
 msgstr ""
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Highlighted"
 msgstr "Geaccentueerd"
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Help"
 msgstr "Help"
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Content"
 msgstr "Inhoud"
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Primary"
 msgstr ""
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Secondary"
 msgstr ""
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Content Bottom"
 msgstr ""
 
-#: culturefeed_bootstrap.info:0
-#: culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
+#: culturefeed_bootstrap.info:0 culturefeed_bootstrap_virgin/culturefeed_bootstrap_virgin.info:0
 msgid "Footer"
 msgstr "Voet"
 
@@ -658,61 +629,128 @@ msgid "close"
 msgstr "sluit"
 
 #: js/culturefeed-bootstrap.js:0
-msgid ""
-"The selected file %filename cannot be uploaded. Only files with the "
-"following extensions are allowed: %extensions."
+msgid "The selected file %filename cannot be uploaded. Only files with the following extensions are allowed: %extensions."
 msgstr ""
-"Het bestand %filename kan niet geüpload worden. Alleen bestanden met de "
-"volgende extensies zijn toegestaan: %extensions"
+"Het bestand %filename kan niet geüpload worden. Alleen bestanden met "
+"de volgende extensies zijn toegestaan: %extensions"
 
-#: templates/culturefeed-actor-summary.tpl.php:43
-#: templates/culturefeed-actor.tpl.php:22
-#: templates/culturefeed-agenda-actor-program-item.tpl.php:55
-#: templates/culturefeed-calendar-activity-summary.tpl.php:36
-#: templates/culturefeed-event-summary.tpl.php:64
-#: templates/culturefeed-event.tpl.php:43
-#: templates/culturefeed-production-summary.tpl.php:64
-#: templates/culturefeed-production.tpl.php:42
-#: templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php:44
+#: js/daterangepicker-bind.js:0
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: js/daterangepicker-bind.js:0
+msgid "Apply"
+msgstr "Toepassen"
+
+#: js/daterangepicker-bind.js:0
+msgid "Between"
+msgstr "Tussen"
+
+#: js/daterangepicker-bind.js:0
+msgid "And"
+msgstr "En"
+
+#: js/daterangepicker-bind.js:0
+msgid "January"
+msgstr "januari"
+
+#: js/daterangepicker-bind.js:0
+msgid "February"
+msgstr "februari"
+
+#: js/daterangepicker-bind.js:0
+msgid "March"
+msgstr "maart"
+
+#: js/daterangepicker-bind.js:0
+msgid "April"
+msgstr "april"
+
+#: js/daterangepicker-bind.js:0
+msgid "May"
+msgstr "mei"
+
+#: js/daterangepicker-bind.js:0
+msgid "June"
+msgstr "juni"
+
+#: js/daterangepicker-bind.js:0
+msgid "July"
+msgstr "juli"
+
+#: js/daterangepicker-bind.js:0
+msgid "August"
+msgstr "augustus"
+
+#: js/daterangepicker-bind.js:0
+msgid "September"
+msgstr "september"
+
+#: js/daterangepicker-bind.js:0
+msgid "October"
+msgstr "oktober"
+
+#: js/daterangepicker-bind.js:0
+msgid "November"
+msgstr "november"
+
+#: js/daterangepicker-bind.js:0
+msgid "December"
+msgstr "december"
+
+#: js/daterangepicker-bind.js:0
+msgid "Sun"
+msgstr "zo"
+
+#: js/daterangepicker-bind.js:0
+msgid "Mon"
+msgstr "ma"
+
+#: js/daterangepicker-bind.js:0
+msgid "Tue"
+msgstr "di"
+
+#: js/daterangepicker-bind.js:0
+msgid "Wed"
+msgstr "wo"
+
+#: js/daterangepicker-bind.js:0
+msgid "Thu"
+msgstr "do"
+
+#: js/daterangepicker-bind.js:0
+msgid "Fri"
+msgstr "vr"
+
+#: js/daterangepicker-bind.js:0
+msgid "Sat"
+msgstr "za"
+
+#: templates/culturefeed-actor-summary.tpl.php:43 templates/culturefeed-actor.tpl.php:22 templates/culturefeed-agenda-actor-program-item.tpl.php:55 templates/culturefeed-calendar-activity-summary.tpl.php:36 templates/culturefeed-event-summary.tpl.php:64 templates/culturefeed-event.tpl.php:43 templates/culturefeed-production-summary.tpl.php:64 templates/culturefeed-production.tpl.php:42 templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php:44
 msgid "Where"
 msgstr "Waar"
 
-#: templates/culturefeed-actor-summary.tpl.php:62
-#: templates/culturefeed-calendar-activity-summary.tpl.php:82
-#: templates/culturefeed-event-summary.tpl.php:95
-#: templates/culturefeed-production-summary.tpl.php:98
+#: templates/culturefeed-actor-summary.tpl.php:62 templates/culturefeed-calendar-activity-summary.tpl.php:82 templates/culturefeed-event-summary.tpl.php:95 templates/culturefeed-production-summary.tpl.php:98
 msgid "More info"
 msgstr "Meer info"
 
-#: templates/culturefeed-actor.tpl.php:32;34
-#: templates/culturefeed-event.tpl.php:53;55
-#: templates/culturefeed-production.tpl.php:52;54
+#: templates/culturefeed-actor.tpl.php:26;28 templates/culturefeed-event.tpl.php:47;49 templates/culturefeed-production.tpl.php:46;48
 msgid "Open map"
 msgstr "Toon op kaart"
 
-#: templates/culturefeed-actor.tpl.php:36
-#: templates/culturefeed-event.tpl.php:57
-#: templates/culturefeed-production.tpl.php:56
+#: templates/culturefeed-actor.tpl.php:30 templates/culturefeed-event.tpl.php:51 templates/culturefeed-production.tpl.php:50
 msgid "Show map"
 msgstr "Toon kaart"
 
-#: templates/culturefeed-actor.tpl.php:74
-#: templates/culturefeed-event.tpl.php:148
-#: templates/culturefeed-production.tpl.php:135
+#: templates/culturefeed-actor.tpl.php:68 templates/culturefeed-event.tpl.php:142 templates/culturefeed-production.tpl.php:129
 msgid "Links"
 msgstr "Links"
 
-#: templates/culturefeed-agenda-actor-program-item.tpl.php:37
-#: templates/culturefeed-event-summary.tpl.php:79
-#: templates/culturefeed-event.tpl.php:81
-#: templates/culturefeed-production-summary.tpl.php:79
-#: templates/culturefeed-production.tpl.php:80
-#: templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php:49
+#: templates/culturefeed-agenda-actor-program-item.tpl.php:37 templates/culturefeed-event-summary.tpl.php:79 templates/culturefeed-event.tpl.php:75 templates/culturefeed-production-summary.tpl.php:79 templates/culturefeed-production.tpl.php:74 templates/views-view-fields--culturefeed-events-createdbycurrentuser.tpl.php:49
 msgid "When"
 msgstr "Wanneer"
 
-#: templates/culturefeed-agenda-actor-program.tpl.php:10;26
-#: templates/culturefeed-calendar-page.tpl.php:11
+#: templates/culturefeed-agenda-actor-program.tpl.php:10;26 templates/culturefeed-calendar-page.tpl.php:11
 msgid "Calendar"
 msgstr "Agenda"
 
@@ -736,11 +774,11 @@ msgstr "In jouw buurt"
 msgid "No nearby activities found"
 msgstr "Er werden geen activiteiten in jouw buurt gevonden"
 
-#: templates/culturefeed-agenda-production-program.tpl.php:46
+#: templates/culturefeed-agenda-production-program.tpl.php:48
 msgid "This event is finished."
 msgstr "Deze activiteit is afgelopen"
 
-#: templates/culturefeed-agenda-production-program.tpl.php:51
+#: templates/culturefeed-agenda-production-program.tpl.php:53
 msgid "More details"
 msgstr "Meer details"
 
@@ -760,9 +798,7 @@ msgstr "Er werden nog geen activiteiten ingepland deze maand"
 msgid "Unscheduled events"
 msgstr "Nog niet ingepland"
 
-#: templates/culturefeed-calendar-activity-summary.tpl.php:61
-#: templates/culturefeed-event.tpl.php:105
-#: templates/culturefeed-production.tpl.php:96
+#: templates/culturefeed-calendar-activity-summary.tpl.php:61 templates/culturefeed-event.tpl.php:99 templates/culturefeed-production.tpl.php:90
 msgid "Price"
 msgstr "Prijs"
 
@@ -771,12 +807,10 @@ msgid "Phone"
 msgstr "Telefoon"
 
 #: templates/culturefeed-calendar-button-hover.tpl.php:2
-msgid ""
-"You have temporarily added events to your calendar. Log in and save the "
-"events to your personal calendar."
+msgid "You have temporarily added events to your calendar. Log in and save the events to your personal calendar."
 msgstr ""
-"Je hebt activiteiten toegevoegd aan je UiTkalender. Meld je aan om deze te "
-"bewaren."
+"Je hebt activiteiten toegevoegd aan je UiTkalender. Meld je aan om "
+"deze te bewaren."
 
 #: templates/culturefeed-calendar-button-hover.tpl.php:3
 msgid "Log in"
@@ -835,61 +869,48 @@ msgid "You can share this link with your friends"
 msgstr "Gebruik deze link om je kalender te delen"
 
 #: templates/culturefeed-calendar-share-page.tpl.php:39
-msgid ""
-"You have chosen earlier to not share your calendar. You can change this in "
-"your settings."
+msgid "You have chosen earlier to not share your calendar. You can change this in your settings."
 msgstr ""
-"Je kalender is ingesteld als privé. Wijzig de instellingen van je kalender."
+"Je kalender is ingesteld als privé. Wijzig de instellingen van je "
+"kalender."
 
 #: templates/culturefeed-calendar-share-page.tpl.php:41
 msgid "Edit settings"
 msgstr "Wijzig instellingen"
 
-#: templates/culturefeed-event-mini-summary.tpl.php:53
-#: templates/culturefeed-production-mini-summary.tpl.php:53
+#: templates/culturefeed-event-mini-summary.tpl.php:53 templates/culturefeed-production-mini-summary.tpl.php:53
 msgid "review"
 msgstr "beoordeling"
 
-#: templates/culturefeed-event-mini-summary.tpl.php:53;56
-#: templates/culturefeed-production-mini-summary.tpl.php:53;56
+#: templates/culturefeed-event-mini-summary.tpl.php:53;56 templates/culturefeed-production-mini-summary.tpl.php:53;56
 msgid "reviews"
 msgstr "beoordelingen"
 
-#: templates/culturefeed-event-summary.tpl.php:56
-#: templates/culturefeed-event.tpl.php:38
-#: templates/culturefeed-production.tpl.php:37
+#: templates/culturefeed-event-summary.tpl.php:56 templates/culturefeed-event.tpl.php:38 templates/culturefeed-production.tpl.php:37
 msgid "With"
 msgstr "Wie"
 
-#: templates/culturefeed-event-summary.tpl.php:93
-#: templates/culturefeed-production-summary.tpl.php:94
+#: templates/culturefeed-event-summary.tpl.php:93 templates/culturefeed-production-summary.tpl.php:94
 msgid "Info & tickets"
 msgstr ""
 
-#: templates/culturefeed-event.tpl.php:29
-#: templates/culturefeed-production.tpl.php:28
-#: templates/culturefeed-social-comment-teaser.tpl.php:16
-#: templates/culturefeed-social-news-teaser.tpl.php:23
+#: templates/culturefeed-event.tpl.php:29 templates/culturefeed-production.tpl.php:28 templates/culturefeed-social-comment-teaser.tpl.php:16 templates/culturefeed-social-news-teaser.tpl.php:23
 msgid "Read more"
 msgstr "Lees meer"
 
-#: templates/culturefeed-event.tpl.php:94
-#: templates/culturefeed-production.tpl.php:85
+#: templates/culturefeed-event.tpl.php:88 templates/culturefeed-production.tpl.php:79
 msgid "Organization"
 msgstr "Organisatie"
 
-#: templates/culturefeed-event.tpl.php:115
-#: templates/culturefeed-production.tpl.php:106
+#: templates/culturefeed-event.tpl.php:109 templates/culturefeed-production.tpl.php:100
 msgid "Reservations"
 msgstr "Reservaties"
 
-#: templates/culturefeed-event.tpl.php:153
-#: templates/culturefeed-production.tpl.php:140
+#: templates/culturefeed-event.tpl.php:147 templates/culturefeed-production.tpl.php:134
 msgid "Facilities"
 msgstr "Voorzieningen"
 
-#: templates/culturefeed-event.tpl.php:159
-#: templates/culturefeed-production.tpl.php:146
+#: templates/culturefeed-event.tpl.php:153 templates/culturefeed-production.tpl.php:140
 msgid "Keywords"
 msgstr "Trefwoorden"
 
@@ -935,14 +956,11 @@ msgid_plural "@count messages"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/culturefeed-page-summary.tpl.php:24
-#: templates/culturefeed-pages-page-suggestion-list-item.tpl.php:50
+#: templates/culturefeed-page-summary.tpl.php:24 templates/culturefeed-pages-page-suggestion-list-item.tpl.php:50
 msgid "follower"
 msgstr ""
 
-#: templates/culturefeed-page-summary.tpl.php:24
-#: templates/culturefeed-pages-page-suggestion-list-item.tpl.php:50
-#: templates/culturefeed-social-page-activity-summary.tpl.php:37
+#: templates/culturefeed-page-summary.tpl.php:24 templates/culturefeed-pages-page-suggestion-list-item.tpl.php:50 templates/culturefeed-social-page-activity-summary.tpl.php:37
 msgid "followers"
 msgstr ""
 
@@ -966,8 +984,7 @@ msgstr ""
 msgid "You are already a member"
 msgstr ""
 
-#: templates/culturefeed-pages-basic-search-result-item.tpl.php:42
-#: templates/culturefeed-pages-page-suggestion-list-item.tpl.php:64
+#: templates/culturefeed-pages-basic-search-result-item.tpl.php:42 templates/culturefeed-pages-page-suggestion-list-item.tpl.php:64
 msgid "You follow this page"
 msgstr ""
 
@@ -988,17 +1005,14 @@ msgid "Switch page"
 msgstr ""
 
 #: templates/culturefeed-pages-block-admin-options.tpl.php:46
-msgid ""
-"You have <strong>administrator privileges</strong> for this page. In order "
-"to make any changes, please <strong>change your active page</strong>:"
+msgid "You have <strong>administrator privileges</strong> for this page. In order to make any changes, please <strong>change your active page</strong>:"
 msgstr ""
 
 #: templates/culturefeed-pages-block-page-suggestions.tpl.php:9
 msgid "Show all pages"
 msgstr ""
 
-#: templates/culturefeed-pages-block-page-timeline.tpl.php:10
-#: templates/culturefeed-pages-news-admin-page.tpl.php:4
+#: templates/culturefeed-pages-block-page-timeline.tpl.php:10 templates/culturefeed-pages-news-admin-page.tpl.php:4
 msgid "Add a news item"
 msgstr ""
 
@@ -1007,15 +1021,11 @@ msgid "My events"
 msgstr ""
 
 #: templates/culturefeed-pages-events-admin-page.tpl.php:4
-msgid ""
-"The list below shows all the <strong>events</strong> that are "
-"<strong>currently published on"
+msgid "The list below shows all the <strong>events</strong> that are <strong>currently published on"
 msgstr ""
 
 #: templates/culturefeed-pages-events-admin-page.tpl.php:4
-msgid ""
-"Past or unpublished events can be consulted via <a href=\"http://www."
-"uitdatabank.be\" target=\"_blank\" class=\"alert-link\">UiTdatabank.be</a>."
+msgid "Past or unpublished events can be consulted via <a href=\"http://www.uitdatabank.be\" target=\"_blank\" class=\"alert-link\">UiTdatabank.be</a>."
 msgstr ""
 
 #: templates/culturefeed-pages-events-admin-page.tpl.php:13
@@ -1023,9 +1033,7 @@ msgid "There are currently <strong>no published events</strong> for"
 msgstr ""
 
 #: templates/culturefeed-pages-events-admin-page.tpl.php:13
-msgid ""
-"Past or unpublished events can be consulted via <a href=\"http://www."
-"uitdatabank.be\" target=\"_blank\">UiTdatabank.be</a>."
+msgid "Past or unpublished events can be consulted via <a href=\"http://www.uitdatabank.be\" target=\"_blank\">UiTdatabank.be</a>."
 msgstr ""
 
 #: templates/culturefeed-pages-events-admin-page.tpl.php:18
@@ -1077,9 +1085,7 @@ msgid "Your page has currently no published activities."
 msgstr ""
 
 #: templates/culturefeed-pages-page-agenda.tpl.php:24
-msgid ""
-"Add a new activity via <a href=\"http://www.uitdatabank.be\">www.uitdatabank."
-"be</a>."
+msgid "Add a new activity via <a href=\"http://www.uitdatabank.be\">www.uitdatabank.be</a>."
 msgstr ""
 
 #: templates/culturefeed-pages-page-my-pages.tpl.php:5
@@ -1087,21 +1093,15 @@ msgid "Pages where I am a member of"
 msgstr ""
 
 #: templates/culturefeed-pages-page-my-pages.tpl.php:9
-msgid ""
-"<strong>You are not a member of any page.</strong> <br/> Search (or create) "
-"the page of your employer and become a member. If you create a new page, you "
-"automatically become a member and administrator of the page."
+msgid "<strong>You are not a member of any page.</strong> <br/> Search (or create) the page of your employer and become a member. If you create a new page, you automatically become a member and administrator of the page."
 msgstr ""
 
-#: templates/culturefeed-pages-page-my-pages.tpl.php:13
-#: templates/culturefeed-social-activity-summary.tpl.php:35
+#: templates/culturefeed-pages-page-my-pages.tpl.php:13 templates/culturefeed-social-activity-summary.tpl.php:35
 msgid "Pages I follow"
 msgstr ""
 
 #: templates/culturefeed-pages-page-my-pages.tpl.php:17
-msgid ""
-"<strong> You follow no pages. </strong> <br/> Find and follow pages that "
-"interest you and receive a notification when there are relevant updates."
+msgid "<strong> You follow no pages. </strong> <br/> Find and follow pages that interest you and receive a notification when there are relevant updates."
 msgstr ""
 
 #: templates/culturefeed-pages-page-my-pages.tpl.php:20
@@ -1123,12 +1123,10 @@ msgid "Request to become an administrator"
 msgstr "Aanvraag om beheerder te worden"
 
 #: templates/culturefeed-pages-request-admin-membership-block.tpl.php:10
-msgid ""
-"This page currently has no administrator. As an administrator, you can "
-"update page details, layout and manage members."
+msgid "This page currently has no administrator. As an administrator, you can update page details, layout and manage members."
 msgstr ""
-"Deze pagina heeft geen beheerder. Als beheerder kan je de gegevens en layout "
-"van deze pagina aanpassen en leden beheren."
+"Deze pagina heeft geen beheerder. Als beheerder kan je de gegevens en "
+"layout van deze pagina aanpassen en leden beheren."
 
 #: templates/culturefeed-pages-request-admin-membership-block.tpl.php:11
 msgid "Send request"
@@ -1146,17 +1144,21 @@ msgstr "Met"
 msgid "Show program schedule"
 msgstr "Toon programmatie"
 
-#: templates/culturefeed-production.tpl.php:112
+#: templates/culturefeed-production.tpl.php:106
 msgid "or call"
 msgstr "of bel naar"
 
-#: templates/culturefeed-production.tpl.php:151
+#: templates/culturefeed-production.tpl.php:145
 msgid "Program schedule"
 msgstr "Programmatie"
 
 #: templates/culturefeed-saved-searches-list.tpl.php:14
-msgid "@count saved searches"
-msgstr "@count bewaarde zoekopdrachten"
+msgid "1 saved search"
+msgstr ""
+
+#: templates/culturefeed-saved-searches-list.tpl.php:14
+msgid "@total saved searches"
+msgstr ""
 
 #: templates/culturefeed-saved-searches-list.tpl.php:25
 msgid "Edit"
@@ -1170,22 +1172,21 @@ msgstr "frequentie e-mailalerts"
 msgid "There are no saved searches yet"
 msgstr "Je hebt nog geen bewaarde zoekopdrachten"
 
-#: templates/culturefeed-search-block-filter-links-item.tpl.php:12
-#: templates/culturefeed-search-facet-item.tpl.php:19
+#: templates/culturefeed-search-block-filter-links-item.tpl.php:12 templates/culturefeed-search-facet-item.tpl.php:19
 msgid "Remove filter"
 msgstr "Verwijder filter"
 
-#: templates/culturefeed-search-list.tpl.php:14
-msgid "perform a new search."
-msgstr "voer een nieuwe zoekopdracht uit."
-
-#: templates/culturefeed-search-list.tpl.php:19
+#: templates/culturefeed-search-list.tpl.php:17
 msgid "There are no more search results."
 msgstr "Er zijn geen zoekresultaten meer."
 
 #: templates/culturefeed-search-list.tpl.php:19
 msgid "Refine your search results or"
 msgstr "Verfijn jouw zoekopdracht of"
+
+#: templates/culturefeed-search-list.tpl.php:20
+msgid "perform a new search."
+msgstr "voer een nieuwe zoekopdracht uit."
 
 #: templates/culturefeed-search-page.tpl.php:15
 msgid "<strong>@count</strong> result found"
@@ -1209,8 +1210,7 @@ msgstr "Reacties"
 msgid "Posted by"
 msgstr "Geplaatst door"
 
-#: templates/culturefeed-social-event-teaser.tpl.php:40
-#: templates/culturefeed-social-production-teaser.tpl.php:30
+#: templates/culturefeed-social-event-teaser.tpl.php:40 templates/culturefeed-social-production-teaser.tpl.php:30
 msgid "More information"
 msgstr "Meer informatie"
 
