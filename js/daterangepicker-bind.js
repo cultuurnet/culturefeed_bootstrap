@@ -67,7 +67,9 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
       link_content.html(range);
     }
 
-    $('#specific-dates-range').daterangepicker({
+    var pickerlink = $('#specific-dates-range');
+
+    pickerlink.daterangepicker({
       format: format,
       startDate: from ? from : moment(),
       endDate: to ? to : moment(),
@@ -105,7 +107,12 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
         ],
         firstDay: 1
       }
-    }, function (start, end) {
+    });
+
+    pickerlink.on('apply.daterangepicker', function (ev, picker) {
+      var start = picker.startDate;
+      var end = picker.endDate;
+
       var range;
       var from = start.format(format);
       var to = end.format(format);
@@ -121,7 +128,9 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
       link_content.html(range);
 
       field.closest('form').submit();
-    }).click(function (e) {
+    });
+
+    pickerlink.click(function (e) {
       e.preventDefault();
     });
   };
