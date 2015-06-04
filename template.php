@@ -2656,7 +2656,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$for
  * Theme the saved searches CTA.
  */
 function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
-  return '<div class="text-center"><h5>' . check_plain($vars['text']) . '</h5>'. l(t('Save this search'), $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-save-search'))) . '</div>';
+  return '<div class="text-center"><p>' . check_plain($vars['text']) . '</p>'. l(t('Save this search'), $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-save-search'))) . '</div>';
 }
 
 /**
