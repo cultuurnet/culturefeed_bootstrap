@@ -1754,6 +1754,20 @@ function culturefeed_bootstrap_form_culturefeed_pages_remove_page_confirm_form_a
 
 }
 
+/**
+ * Form callback to delete one activity.
+ */
+function culturefeed_bootstrap_form_culturefeed_social_page_activity_delete_confirm_form_alter(&$form, &$form_state, $id, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove activity');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  return $form;
+
+}
 
 /**
  * Preprocess the search results on a user.
