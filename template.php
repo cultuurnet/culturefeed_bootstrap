@@ -249,9 +249,9 @@ function culturefeed_bootstrap_preprocess_culturefeed_actor(&$variables) {
 
 
 /**
- * Implements hook_form_{culturefeed_ui_page_profile_edit_form}_alter().
+ * Implements hook_form_{culturefeed_ui_profile_edit_form}_alter().
  */
-function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(&$form, &$form_state) {
+function culturefeed_bootstrap_form_culturefeed_ui_profile_edit_form_alter(&$form, &$form_state) {
 
   try {
     $cf_account = DrupalCultureFeed::getLoggedInUser();
