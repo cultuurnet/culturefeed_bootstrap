@@ -6,7 +6,17 @@
  */
 ?>
 
-<?php print $account ?>
+<?php if ($intro): ?>
+  <div id="account-edit-intro">
+    <?php print $intro; ?>
+  </div>
+<?php endif; ?>
+
+<?php print $profile_menu; ?>
+
+<div id="account-edit-form">
+  <?php print $form ?>
+</div><hr />
 
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
@@ -35,7 +45,7 @@
     </div>
     <div id="manage-consumers" class="panel-collapse collapse">
       <div class="panel-body">
-        <p><?php print l(t('Manage websites and applications'), 'culturefeed/serviceconsumers'); ?> <?php print t('who uses your UiTiD profile.'); ?></p>
+        <p><?php print $connected_applications; ?></p>
       </div>
     </div>
   </div>
