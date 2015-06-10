@@ -10,8 +10,8 @@
 
     <div class="panel-heading" role="tab" id="savedSearchesHeading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSavedSearches" aria-expanded="true" aria-controls="collapseSavedSearches">
-          <?php print t('@count saved searches', array('@count' => count($items))); ?>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSavedSearches" aria-expanded="true" aria-controls="collapseSavedSearches">          
+          <?php print format_plural($total_searches, t('1 saved search'), t('@total saved searches', array('@total' => $total_searches))); ?>
         </a>
       </h4>
     </div>

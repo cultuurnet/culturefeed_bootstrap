@@ -12,20 +12,19 @@
   <?php foreach ($items as $item): ?>
 
     <div class="row">
-      <div class="col-xs-10">
-        <a href="<?php print $item['search_url']; ?>"><?php print $item['title']; ?></a>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-sm-6">
+            <h5><a href="<?php print $item['search_url']; ?>"><?php print $item['title']; ?></a></h5>
+          </div>
+          <div class="col-sm-6">
+            <strong><?php print t('frequency e-mail alerts') ?>:</strong>
+            <?php print drupal_render($item['form']); ?>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-2">
+      <div class="col-sm-2">
         <a href="<?php print $item['delete_url']; ?>"><?php print t('Delete'); ?></a>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-6">
-        <?php print t('frequency e-mail alerts') ?>:
-      </div>
-      <div class="col-xs-6">
-        <?php print drupal_render($item['form']); ?>
       </div>
     </div>
 

@@ -18,6 +18,12 @@
 
 /* nearby location in culturefeed_agenda_search_block_form */
 
+#culturefeed-agenda-search-block-form {
+  label:not([for="edit-nearby"]) {
+    .sr-only();
+  }
+}
+
 .form-item-nearby label {
   font-size: @font-size-small;
 }
@@ -147,4 +153,42 @@
   top: 8px;
   display: block;
   position: relative;
+}
+
+/* new calendar summary */
+
+.detail-table,
+.production-program {
+  .cf-meta {
+    .text-muted();
+    font-size: 85%;
+    padding-left: 3px;
+    padding-right: 3px;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+  .cf-openinghours {
+  } 
+  .cf-weekday {
+    padding-left: 0;
+    display: inline-block;
+    min-width: 23px;
+  }
+  .cf-when li {
+    margin-bottom: 2px;
+  }
+}
+
+.production-program {
+  .cf-time {
+    border: 1px solid #CCC;
+    padding: 2px 4px;
+    font-size: 90%;
+  }
+  .cf-when li {
+    margin-bottom: 7px;
+  }
+  .cf-date {
+    margin-right: 4px;
+  }
 }

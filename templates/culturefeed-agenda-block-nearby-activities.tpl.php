@@ -6,30 +6,35 @@
  */
 ?>
 
-<div class="container">
+<div class="panel panel-default">
 
-  <div class="row">
-    <p class="block-title pull-left">In jouw buurt <span id="nearby-activities-title-location" class="text-muted"></span></p>
-
-    <span class="pull-left">
-      <?php if (!empty($change_location_link)): ?>
-        <?php print $change_location_link; ?>
-      <?php endif; ?>
-    </span>
-
+  <div class="panel-heading">
     <span class="pull-right">
       <?php if (!empty($all_activities_for_location_link)): ?>
         <?php print $all_activities_for_location_link; ?>
       <?php endif; ?>
     </span>
 
+    <h3 class="panel-title">
+      <?php print (t('Events nearby')); ?>
+      <span id="nearby-activities-title-location" class="text-muted"></span>
+
+      <small>
+        <?php if (!empty($change_location_link)): ?>
+          <?php print $change_location_link; ?>
+        <?php endif; ?>
+      </small>
+    </h3>
+
     <div id="nearby-activities-filter-form-wrapper">
       <?php print drupal_render($filter_form); ?>
     </div>
   </div>
 
-  <div id="nearby-activities" class="row">
-    <p class="text-muted"><i class="fa fa-refresh fa-spin"></i>Loading</p>
+  <div class="panel-body">
+    <div id="nearby-activities" class="">
+      <p class="text-muted"><i class="fa fa-refresh fa-spin"></i> Loading</p>
+    </div>
   </div>
 
 </div>

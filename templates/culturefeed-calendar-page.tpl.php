@@ -62,17 +62,7 @@
   </row>
 
   <row>
-    <aside class="col-md-3" role="complementary">
-      <div class="region region-sidebar-first">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            SIDEBAR
-            <?php print $sidebar; ?>
-          </div>
-        </div>
-      </div>
-    </aside>
-    <section class="col-md-9">
+    <section class="col-md-12">
       <?php if (!empty($planned) || !empty($not_yet_planned)): ?>
         <?php print $not_yet_planned ?>
         <?php print $planned ?>

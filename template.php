@@ -139,45 +139,6 @@ function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
 }
 
 /**
- * Show a share link to facebook.
- */
-function culturefeed_bootstrap_share_link($item) {
-
-  if (method_exists($item, 'getId')) {
-    global $language;
-    $activity_content_type = culturefeed_get_content_type($item->getType());
-    $id = $item->getId();
-    $path = culturefeed_search_detail_path($item->getType(), $item->getId(), $item->getTitle($language->language));
-  }
-  else {
-
-    $activity_content_type = culturefeed_get_content_type(get_class($item));
-    $id = $item->id;
-    $path = $_GET['q'];
-
-  }
-
-  $share_url = url($path, array('absolute' => TRUE));
-
-  $options = array(
-    'attributes' => array(
-      'target' => '_blank',
-      'class' => 'link-icon facebook-share-link',
-    ),
-    'title' => t('Share on Facebook'),
-    'query' => array('u' => $share_url),
-    'html' => TRUE,
-  );
-
-  if (culturefeed_is_culturefeed_user()) {
-    $options['attributes']['rel'] = url('culturefeed/do/' . CultureFeed_Activity::TYPE_FACEBOOK .'/' . $activity_content_type . '/' . urlencode($id) . '/ajax');
-  }
-
-  return l(t('Share on Facebook'), 'http://nl-nl.facebook.com/share.php', $options);
-
-}
-
-/**
  * Helper preprocess function for the general agenda item variables.
  */
 function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
@@ -198,8 +159,6 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
       'url' => 'culturefeed/do/8/' . $item->getType() . '/' . $item->getId() . '/redirect',
     ));
   }
-
-  $variables['share_link'] = culturefeed_bootstrap_share_link($item);
 
   $variables['print_link'] = l(t('Print'), '', array('attributes' => array('onclick' => 'javascript: window.print(); return false;'), 'external' => TRUE));
 
@@ -257,9 +216,10 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
 
   // Ticket buttons.
   if (isset($variables['ticket_buttons']) && !empty($variables['ticket_buttons'])) {
+
     $buttons = $variables['ticket_buttons'];
     foreach ($buttons as $button) {
-      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
+      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-primary reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
   }
@@ -832,7 +792,7 @@ function culturefeed_bootstrap_culturefeed_search_pager_summary($variables) {
 
   $pager_summary = format_plural($result->getTotalCount(), '@range from @count result', '@range from @count results', $args);
 
-  return '<p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
+  return '<div class="cf-result-count result-count-bottom text-muted pull-left">' . $pager_summary . '</div>';
 
 }
 
@@ -918,7 +878,7 @@ function culturefeed_bootstrap_pager($variables) {
       if ($i > 1) {
         $items[] = array(
           'class' => array('pager-ellipsis', 'disabled'),
-          'data' => '<span>?</span>',
+          'data' => '<span>…</span>',
         );
       }
       // Now generate the actual pager piece.
@@ -955,7 +915,7 @@ function culturefeed_bootstrap_pager($variables) {
       if ($i < $pager_max) {
         $items[] = array(
           'class' => array('pager-ellipsis', 'disabled'),
-          'data' => '<span>?</span>',
+          'data' => '<span>…</span>',
         );
       }
     }
@@ -1635,13 +1595,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
     '#value' => t('Update'),
   );
 
-  unset($form['remove-link']);
-
-  $form['#suffix'] = '
-    <div id="page_confirm" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-body outer"></div>
-    </div>';
-
   culturefeed_pages_set_page_breadcrumb($page);
 
   return $form;
@@ -1735,6 +1688,86 @@ function culturefeed_bootstrap_culturefeed_pages_page_manage_members(&$variables
 
 }
 
+/**
+ * Helper function to render prefix markup for modals
+ */
+
+function culturefeed_bootstrap_modal_prefix($modal_title) {
+
+  $output = '<div class="modal-dialog">';
+  $output .= '<div class="modal-content">';
+  $output .= '<div class="modal-header">';
+  $output .= '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+  $output .= '<span aria-hidden="true">&times;</span>';
+  $output .= '</button>';
+  $output .= '<h4 class="modal-title">' . $modal_title . '</h4>';
+  $output .= '</div>';
+  $output .= '<div class="modal-body">';
+
+  return $output;
+
+}
+
+/**
+ * Helper function to render suffix markup for modals
+ */
+
+function culturefeed_bootstrap_modal_suffix() {
+
+  $output = '</div></div></div>';
+
+  return $output;
+
+}
+
+/**
+ * Form confirmation callback to show a form to confirm the removal of member of a page.
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&$form, &$form_state, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove member');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  $form['decline']['#attributes']['class'] = array('button-decline', 'btn', 'btn-default');
+  $form['decline']['#attributes']['data-dismiss'] = 'modal';
+  $form['decline']['#href'] = '';
+
+  return $form;
+
+}
+
+/**
+ * Form confirmation callback to show a form to confirm the removal of a page.
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_remove_page_confirm_form_alter(&$form, &$form_state, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove member');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  return $form;
+
+}
+
+/**
+ * Form callback to delete one activity.
+ */
+function culturefeed_bootstrap_form_culturefeed_social_page_activity_delete_confirm_form_alter(&$form, &$form_state, $id, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove activity');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  return $form;
+
+}
 
 /**
  * Preprocess the search results on a user.
@@ -1916,12 +1949,33 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['#attributes']['class'][] = '';
 
-  $form['date_range']['#prefix'] = '<div class="input-group">';
-  $form['date_range']['#title'] = '';
+  $form['date_range_link'] = array(
+    '#markup' => l('<span>' . t('Specific dates') . '</span>', 'javascript:', array(
+      'html' => TRUE,
+      'external' => TRUE,
+      'attributes' => array('id' => 'specific-dates-range'),
+    )),
+    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date"><i class="fa fa-calendar"></i>',
+    '#suffix' => '</div></div></div></div>',
+  );
 
-  $form['submit']['#prefix'] = '<span class="input-group-btn">';
-  $form['submit']['#suffix'] = '</span></div>';
+  // Remove standard datepicker library.
+  $library = array('culturefeed_search_ui', 'ui.daterangepicker');
+  $library_index = array_search($library, $form['#attached']['library']);
+  if ($library_index !== FALSE) {
+    unset($form['#attached']['library'][$library_index]);
+  }
 
+  // Attach the bootstrap datepicker library.
+  $path = drupal_get_path('theme', 'culturefeed_bootstrap');
+  $form['#attached']['js'][] = $path . '/js/moment.js';
+  $form['#attached']['js'][] = $path . '/js/daterangepicker.js';
+  $form['#attached']['js'][] = $path . '/js/daterangepicker-bind.js';
+
+  $form['#attached']['css'][$path . '/css/daterangepicker-bs3.css'] = array(
+    'weight' => 100,
+    'group' => CSS_THEME,
+  );
 }
 
 /**
@@ -2284,6 +2338,21 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
     $javascript[$file]['data'] = $file;
   }
 
+  // Adding our own version of autocomplete for entry_ui because bootstrap
+  // is messing up default autocomplete.
+  $match_cp = false;
+  if (current_path() == 'agenda/e/add') {
+    $match_cp = true;
+  }
+  elseif (drupal_match_path(current_path(), 'agenda/e/*/*/edit')) {
+    $match_cp = true;
+  }
+
+  if (module_exists('culturefeed_entry_ui') && $match_cp) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/bootstrap_autocomplete_override.js';
+    drupal_add_js($file);
+  }
+
 }
 
 function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
@@ -2543,7 +2612,7 @@ function culturefeed_bootstrap_form_element(&$variables) {
   return $output;
 }
 
-/*
+/**
  * Implements hook_form_{culturefeed_calendar_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $form_state) {
@@ -2571,7 +2640,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $for
 
 }
 
-/*
+/**
  * Implements hook_form_{culturefeed_calendar_delete_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$form, $form_state) {
@@ -2601,10 +2670,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$for
  * Theme the saved searches CTA.
  */
 function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
-
-  $text = '<h5>' . t('Save this search') . '</h5>' . check_plain($vars['text']);
-  return l($text, $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-block')));
-
+  return '<div class="text-center"><p>' . check_plain($vars['text']) . '</p>'. l(t('Save this search'), $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-save-search'))) . '</div>';
 }
 
 /**

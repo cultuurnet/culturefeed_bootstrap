@@ -15,33 +15,35 @@
         <?php foreach ($tab['children'] as $content): ?>
         <div class="<?php print $tab['class']; ?>">
           <div class="row">
-            <div class="col-sm-3 col-md-4 col-lg-3"><strong><?php print $content['city']; ?></strong></div>
+            <div class="col-sm-3 col-md-4 col-lg-3 hidden-xs"><p class="text-right"><em><?php print $content['city']; ?></em></p></div>
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg"><p><em><?php print $content['city']; ?></em></p></div>
             <div class="col-sm-9 col-md-8 col-lg-9">
+              <p>
               <?php if (isset($content['all_url'])): ?>
-                <a href="<?print $content['all_url']; ?>"><strong><?php print $content['venue']; ?></strong></a>
+                <a href="<?php print $content['all_url']; ?>" class="link-primary">
+                  <strong><?php print $content['venue']; ?></strong>
+                </a>
               <?php else: ?>
                 <strong><?php print $content['venue']; ?></strong>
               <?php endif; ?>
-              <br />
+              </p>
               <?php if ($content['calendar']['type'] == 'timestamps'): ?>
                 <?php if (count($content['calendar']['timestamps']) > 0): ?>
+                  <ul class="list-unstyled cf-when">
                   <?php foreach ($content['calendar']['timestamps'] as $timestamp): ?>
                     <?php $day = substr($timestamp['day'], 0, -1); ?>
                     <?php if (!is_array($timestamp['begintime'])): ?>
-                      <div><small><?php print '<span class="cf-day">' . t($day) . '</span><strong>' . $timestamp['date'] . '</strong><small class="text-muted"> | </small>' . $timestamp['begintime']; ?></small></div>
+                      <li><?php print '<span class="cf-weekday cf-meta">' . t($day) . '</span><strong class="cf-date">' . $timestamp['date'] . '</strong> <span class="cf-time">' . $timestamp['begintime'] . '</span>'; ?></li>
                     <?php else: ?>
                       <?php $i=0; ?>
-                      <div><small><?php print '<span class="cf-day">' . t($day) . '</span><strong>' . $timestamp['date'] . '</strong><small class="text-muted"> | </small>'; ?>
+                      <li><?php print '<span class="cf-weekday cf-meta">' . t($day) . '</span><strong class="cf-date">' . $timestamp['date'] . '</strong>'; ?>
                         <?php foreach ($timestamp['begintime'] as $begintime): ?>
-                          <?php print $begintime; ?>
-                          <?php if (++$i !== count($timestamp['begintime'])): ?>
-                            <?php print '<small class="text-muted"> | </small>'; ?>
-                          <?php endif; ?>
+                          <?php print '<span class="cf-time">' . $begintime . '</span>'; ?>
                         <?php endforeach; ?>
-                      </small></div>
+                      </li>
                     <?php endif; ?>
-
                   <?php endforeach; ?>
+                  </ul>
                 <?php else: ?>
                   <p class="alert alert-warning"><?php print t('This event is finished.'); ?></p>
                 <?php endif; ?>

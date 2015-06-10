@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="calendar-months-navbar">
+<div class="calendar-months-navbar hidden-xs">
   <ul class="nav nav-tabs nav-justified" role="tablist">
     <?php foreach ($months as $month): ?>
     <li class="col-sd-1">

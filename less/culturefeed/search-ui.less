@@ -14,18 +14,19 @@
 /* theme culturefeed search ui blocks */
 
 .region-sidebar-first {
-  .block-culturefeed-search-ui {
-    margin-bottom: 20px;
+  .block-culturefeed-search-ui,
+  .block-culturefeed-agenda {
+    margin-bottom: 40px;
     .input-group-btn button {
       border-left: none;
     }
   }
-  
+
   // reset margin for related facets when directly adjacent
   #block-culturefeed-search-ui-facet-flandersregion + #block-culturefeed-search-ui-facet-city,
   #block-culturefeed-search-ui-facet-eventtype + #block-culturefeed-search-ui-facet-theme {
-    margin-top: -20px;
-  } 
+    margin-top: -40px;
+  }
 }
 
 .block-culturefeed-search-ui ul {
@@ -36,8 +37,18 @@
   }
   .facet-label.active ~ ul,
   ul.active-parent,
-  li.active-parent > ul {
+  li.active-parent > ul,
+  li.first.last > ul {
     display: block;
+    li > ul {
+      display: none;
+    }
+    li.first > ul {
+      display: block;
+      li > ul {
+        display: none;
+      }
+    }
   }
 }
 
@@ -116,14 +127,16 @@
 
 /* theme search_ui forms */
 
-.sortorder-form .form-group,
-.sortorder-form .form-submit,
 .block-culturefeed-search-ui .form-group,
 .block-culturefeed-search-ui .form-submit,
 .block-culturefeed-agenda .form-group,
 .block-culturefeed-agenda .form-submit, {
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 0;
+  margin-top: 0;
+  @media (max-width: @screen-sm) {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 }
 
 /* result header (count + sort) */
@@ -143,10 +156,44 @@
   }
 }
 
+/* result footer (count + pagination) */
+
+.pagination,
+.result-count-bottom {
+  margin: 0;
+  padding-bottom: 21px;
+  @media (max-width: @screen-sm) {
+    float: left !important;    
+  }
+}
+
 /* add vlieg label (for kids) */
 
 #block-culturefeed-search-ui-facet-age-range {
   background: url('/profiles/culturefeed_kickstart/themes/culturefeed_bootstrap/img/vlieg.png') top right no-repeat;
   background-position-y: -3px;
   background-size: 30px 30px;
+}
+
+/*
+ * Correct styling for Date Range Picker.
+ */
+
+.daterangepicker .calendar.left,
+.daterangepicker .calendar.right {
+  position: inherit;
+  width: auto;
+}
+
+.daterangepicker .form-group {
+  margin-top: 0;
+}
+
+.specific-date {
+  width: 100%;
+}
+
+.specific-date .fa-calendar {
+  float: right;
+  margin-left: 3px;
 }

@@ -9,7 +9,7 @@
  */
 ?>
 
-<ul class="facet-search facet-level-1">
+<ul class="facet-search facet-level-1 list-unstyled">
 <?php foreach ($items as $item): ?>
   <li>
     <?php print $item['data'] ?>
