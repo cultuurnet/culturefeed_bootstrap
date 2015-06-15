@@ -179,6 +179,29 @@
       }
     };
 
+    /**
+     * Command to provide a bootstrap modal with drupal ajax support.
+     */
+    Drupal.ajax.prototype.commands.bootstrapModal = function (ajax, response, status) {
+
+      // Support for jquery datepicker. See http://stackoverflow.com/questions/21059598/implementing-jquery-datepicker-in-bootstrap-modal
+      var enforceModalFocusFn = $.fn.modal.Constructor.prototype.enforceFocus;
+      $.fn.modal.Constructor.prototype.enforceFocus = function() {};
+      $('#bootstrap-modal-container').on('hidden', function() {
+          $.fn.modal.Constructor.prototype.enforceFocus = enforceModalFocusFn;
+      });
+
+      var wrapper = $('#bootstrap-modal-container').find('.modal-content');
+      var settings = response.settings || ajax.settings || Drupal.settings;
+      Drupal.detachBehaviors(wrapper, settings);
+
+      var new_content = $('<div></div>').html(response.data);
+      $('#bootstrap-modal-container').find('.modal-content').html(new_content);
+      $('#bootstrap-modal-container').modal({show : true});
+      Drupal.attachBehaviors(new_content, settings);
+
+    };
+
   }
 
   if (Drupal.ACDB) {
@@ -305,4 +328,3 @@
    };
 
 })(jQuery);
-

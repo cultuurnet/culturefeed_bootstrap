@@ -22,18 +22,12 @@
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
         <?php if (!empty($coordinates)): ?>
-          <?php
-            $iPod = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
-            $iPhone = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
-            $iPad = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
-            $Android = stripos($_SERVER['HTTP_USER_AGENT'],"Android");
-          ?>
-          <?php if ($iPod || $iPhone || $iPad): ?>
+          <?php if ($is_ios): ?>
             <a href="http://maps.apple.com/?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : ''); ?>" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
-          <?php elseif ($Android): ?>
+          <?php elseif ($is_android): ?>
             <a href="geo:<?php print (!empty($coordinates['lat']) ? $coordinates['lat'] : '0') . ',' . (!empty($coordinates['lng']) ? $coordinates['lng'] : '0'); ?>?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : '') ?>&zoom=14" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
           <?php else: ?>
-            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE)) ?>
+            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE, 'external' => 'TRUE')) ?>
           <?php endif; ?>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
@@ -103,3 +97,9 @@
   </div>
 
 </div>
+
+<div class="cf-social-share-bar">
+  <?php include('social-share-bar.inc'); ?>
+</div>
+
+<hr />
