@@ -2075,6 +2075,8 @@ function culturefeed_bootstrap_preprocess_culturefeed_ui_profile_edit_form(&$var
   }
   $vars['main_form'] = drupal_render_children($form);
 
+  drupal_add_js(drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/synchronization.js');
+
 }
 
 /**
@@ -2142,6 +2144,12 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
   if (module_exists('culturefeed_entry_ui') && $match_cp) {
     $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/bootstrap_autocomplete_override.js';
     drupal_add_js($file);
+  }
+
+  // Add a different version of the culturefeed ui synchronization link.
+  $synchronization_file = drupal_get_path('module', 'culturefeed_ui') . '/js/synchronization.js';
+  if (isset($javascript[$synchronization_file])) {
+    $javascript[$synchronization_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/synchronization.js';
   }
 
 }
