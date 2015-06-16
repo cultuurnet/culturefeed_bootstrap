@@ -306,6 +306,21 @@ function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(
 }
 
 /**
+ * Implements hook_form_culturefeed_ui_privacy_settings_form_alter().
+ *
+ * @param array $form
+ *   The form.
+ * @param array $form_state
+ *   The form state.
+ */
+function culturefeed_bootstrap_form_culturefeed_ui_privacy_settings_form_alter(&$form, &$form_state) {
+
+  if (isset($form['#attached']['js'][0])) {
+    $form['#attached']['js'][0] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/privacy_tooltip.js';
+  }
+}
+
+/**
  * Implements hook_links__locale_block().
  */
 function culturefeed_bootstrap_links__locale_block(&$variables) {
