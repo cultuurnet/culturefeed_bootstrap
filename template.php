@@ -1621,15 +1621,17 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
     case 'profile_menu':
       $items = $data['content']['#items'];
 
-      foreach ($items as $key => $item) {
-        $items[$key]['class'][] = 'list-group-item';
+      if ($items) {
+        foreach ($items as $key => $item) {
+          $items[$key]['class'][] = 'list-group-item';
+        }
+  
+        $data['content'] = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+          '#attributes' => array('class' => 'list-group'),
+        );
       }
-
-      $data['content'] = array(
-        '#theme' => 'item_list',
-        '#items' => $items,
-        '#attributes' => array('class' => 'list-group'),
-      );
 
     break;
     }
