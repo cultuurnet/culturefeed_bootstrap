@@ -1,0 +1,36 @@
+.points-value {
+  background-color: @link-color;
+  padding: 2px 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: .75em;
+  letter-spacing: .1em;
+}
+.points-value + .points-remark:before {
+  content: '';
+  display: block;
+}
+.points-remark {
+  color: @link-color;
+  font-size: .75em;
+  font-style: italic;
+}
+.provider {
+  color: @gray;
+  font-size: .85em;
+  text-transform: uppercase;
+}
+[id*="promotions-filter-sort"] > h2 {
+  font-size: ceil(@font-size-base * 1.25); /* like h4 */
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  em {
+    color: @brand-primary;
+    font-style: normal;
+  }
+  small {
+    color: @gray-darker;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+}

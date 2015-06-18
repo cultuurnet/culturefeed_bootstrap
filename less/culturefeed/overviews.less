@@ -1,0 +1,60 @@
+// Insert your styling here.
+.odd {
+  background-color: lighten(#000, 99.5%);
+}
+.even {
+  background-color: lighten(#000, 98%);
+}
+
+.overview {
+  article {
+    padding: 15px;
+    border-bottom: 1px solid @gray-lighter;
+    color: @gray;
+    &:first-child {
+      border-top: 1px solid @gray-dark;
+    }
+  }
+  .thumbnail {
+    display: none;
+    @media screen and (min-width: @screen-xs) {
+      float: left;
+      display: block;
+    }
+  }
+  .content {
+    @media screen and (min-width: @screen-xs) {
+      padding-left: 15px;
+      overflow: hidden;
+    }
+  }
+  aside {
+    border-top: 1px solid white;
+    padding-top: 10px;
+    margin-top: 10px;
+    @media screen and (min-width: @screen-md) {
+      text-align: right;
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+  h2 {
+    font-size: ceil(@font-size-base * 1.70); /* like h3 */
+    font-weight: normal;
+    color: @gray-darker;
+    a {
+      color: @gray-darker;
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+        color: @brand-primary;
+      }
+    }
+  }
+
+  /* Advantages overview */
+  &-advantages {
+  }
+}
