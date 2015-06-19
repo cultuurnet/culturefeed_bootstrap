@@ -1,16 +1,16 @@
-// Insert your styling here.
+/* overview shared styles */
 .odd {
-  background-color: lighten(#000, 99.5%);
+  background-color: lighten(#000, 98.5%);
 }
 .even {
-  background-color: lighten(#000, 98%);
+  background-color: lighten(#000, 96%);
 }
 
 .overview {
   article {
-    padding: 15px;
-    border-bottom: 1px solid @gray-lighter;
+    border-bottom: 1px solid darken(@gray-lighter, 5%);
     color: @gray;
+    padding: 15px;
     &:first-child {
       border-top: 1px solid @gray-dark;
     }
@@ -18,8 +18,8 @@
   .thumbnail {
     display: none;
     @media screen and (min-width: @screen-xs) {
-      float: left;
       display: block;
+      float: left;
     }
   }
   .content {
@@ -29,32 +29,52 @@
     }
   }
   aside {
-    border-top: 1px solid white;
+    border-top: 1px dashed white;
     padding-top: 10px;
     margin-top: 10px;
     @media screen and (min-width: @screen-md) {
-      text-align: right;
       border-top: none;
-      padding-top: 0;
       margin-top: 0;
+      padding-top: 0;
+      text-align: right;
     }
   }
   h2 {
-    font-size: ceil(@font-size-base * 1.70); /* like h3 */
-    font-weight: normal;
     color: @gray-darker;
+    font-size: ceil(@font-size-base * 1.25); /* like h4 */
+    font-weight: normal;
+    margin-bottom: 10px;
     a {
       color: @gray-darker;
       &:hover,
       &:focus,
       &:active {
-        text-decoration: none;
         color: @brand-primary;
+        text-decoration: none;
       }
+    }
+  }
+  [class*="cashin-not-possible"] {
+    background-color: lighten(#000, 96%);
+    color: @gray-light;
+    * {
+      color: @gray-light;
+    }
+    a:hover,
+    a:focus {
+      color: inherit;
+    }
+    img {
+      -webkit-filter: grayscale();
+      filter: grayscale();
+      .opacity(.5);
     }
   }
 
   /* Advantages overview */
   &-advantages {
+  }
+  /* Promotions overview */
+  &-promotions {
   }
 }
