@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * Load FontAwesome 4.3.0 through CDN
+ */
+ 
+$element = array(
+  '#tag' => 'link',
+  '#attributes' => array(
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 
+    'rel' => 'stylesheet',
+    'type' => 'text/css',
+  ),
+);
+
+drupal_add_html_head($element, 'font-awesome');
+
+/**
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
