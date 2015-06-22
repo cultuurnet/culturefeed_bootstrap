@@ -16,6 +16,7 @@
   }
   .radio {
     float: left;
+    position: relative;
     padding: 0;
     width: 100%;
     @media screen and (min-width: @screen-xs) {
@@ -29,6 +30,8 @@
       position: relative;
       z-index: 10;
       display: block;
+      height: 37px;
+      overflow: hidden;
       padding: 7px 10px;
       border: 1px solid @gray-lighter;
       text-align: center;
@@ -43,13 +46,14 @@
     div.ajax-progress,
     div.throbber {
       display: inline-block;
-      float: left;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 20px;
       text-align: center;
       padding: 7px 5px;
       + label {
-         padding: 7px 10px 7px 30px;
-         height: 37px;
+         padding: 7px 10px 7px 32px;
       }
     }
   }  

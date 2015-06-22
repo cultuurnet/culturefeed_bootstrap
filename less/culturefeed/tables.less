@@ -1,0 +1,22 @@
+/* Table user history */
+.table {
+  > thead > tr > th {
+    font-size: .9em;
+    letter-spacing: .05em;
+    border-bottom: 1px solid @gray-dark;
+  }
+  > tbody > tr > td {
+    font-size: .9em;
+    background-color: white;
+    a {
+      color: @gray-dark;
+      &:hover,
+      &:focus {
+        color: @link-color;
+      }
+    }
+  }
+  > tbody > tr:nth-child(odd) > td {
+    background-color: white;
+  }
+}
