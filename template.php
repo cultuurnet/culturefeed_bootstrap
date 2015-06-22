@@ -2278,13 +2278,13 @@ function culturefeed_bootstrap_preprocess_page(&$variables) {
 
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-6"';
+    $variables['content_column_class'] = ' class="col-sm-4 col-md-6"';
   }
   elseif (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-9"';
+    $variables['content_column_class'] = ' class="col-sm-8 col-md-9"';
   }
   else {
-    $variables['content_column_class'] = ' class="col-md-12"';
+    $variables['content_column_class'] = ' class="col-sm-12"';
   }
 }
 
