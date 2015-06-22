@@ -15,9 +15,7 @@
   <div class="col-xs-6"><?php print $dob; ?></div>
   <div class="col-xs-6"><?php print $gender; ?></div>
 </div>
-<div class="row">
-  <div class="col-xs-12"><?php print $picture; ?></div>
-</div>
+  <?php print $picture; ?>
 <hr />
 <div class="row">
   <div class="col-xs-12"><?php print $street; ?></div>

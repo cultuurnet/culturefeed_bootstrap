@@ -1943,7 +1943,7 @@ function culturefeed_bootstrap_file_managed_file($variables) {
   // This wrapper is required to apply JS behaviors and CSS styling.
   $attributes['class'] = array('row', 'form-managed-file');
 
-  $output = '<div class="row"><div class="col-md-6">';
+  $output = '<div class="row"><div class="col-xs-12">';
   $output .= '<div' . drupal_attributes($attributes) . '>';
   $output .= drupal_render_children($element);
   $output .= '</div>';

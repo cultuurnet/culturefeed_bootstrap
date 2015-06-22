@@ -1,0 +1,40 @@
+/* Forms */
+  /* Finetune buttons */
+  .btn-primary {
+    border-bottom: 1px solid darken(@brand-primary, 30%);
+    border-right: 1px solid darken(@brand-primary, 30%);
+    .transition(background-color .2s ease-in-out);
+    &:hover,
+    &:focus {
+      background-color: darken(@brand-primary, 20%);
+    }
+  }
+  /* Form edit profile */
+  #culturefeed-ui-profile-edit-form {
+    max-width: 550px;
+    margin-bottom: 30px;
+    label {
+      font-weight: 200;
+    }
+    select {
+      -webkit-border-bottom-left-radius: 0px;
+      -webkit-border-bottom-right-radius: 0px;
+      -webkit-border-top-left-radius: 0px;
+      -webkit-border-top-right-radius: 0px;
+      -webkit-border-radius: 0;
+    }
+    .form-control {
+      box-shadow: none;
+    }
+    /* float gender radios */
+    @media screen and (min-width: @screen-xs) {
+      .form-item-gender .form-radios > .radio {
+        .make-xs-column(6);
+        margin-top: 5px;
+        margin-bottom: 5px;
+        label {
+          color: @gray;
+        }
+      }
+    }
+  }
