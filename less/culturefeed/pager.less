@@ -1,0 +1,41 @@
+.pager {
+  .pagination {
+    padding-bottom: 0;
+  }
+  li {
+    display: inline-block;
+    margin-left: 10px;
+    > a,
+    > span {
+      border-radius: 0;
+      border-color: @gray-darker;
+      color: @gray-darker;
+      padding: 7px @padding-base-horizontal;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        border-color: @brand-primary;
+        color: @brand-primary;
+      }
+    }
+    &.active {
+      > a,
+      > span {
+        background-color: @brand-primary;
+        border-color: @brand-primary;
+        color: white;
+      }
+    }
+  }
+}
+
+.link-more {
+  text-align: right;
+  margin-bottom: @line-height-computed;
+  a {
+    text-decoration: underline;
+  }
+  a + i {
+    margin-left: 5px;
+  }
+}

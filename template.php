@@ -2131,27 +2131,6 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 
 }
 
-function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
-  // Promotions.
-  $form['promotions_link'] = array(
-    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
-
-  $form['promotions_link']['promotions'] = array(
-    '#markup' => '<li class="active lead"><a href="/promotions">' . t('Promotions') . '</a></li>',
-  );
-
-  $form['promotions_link']['advantages'] = array(
-    '#markup' => '<li class="lead"><a href="/advantages">' . t('Welcome Advantages') . '</a></li>',
-  );
-
-  $form['profile_promotions_link'] = array(
-    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
-}
-
 function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
   // Profile promotions.
   $form['profile_promotions_link'] = array(
