@@ -1,0 +1,92 @@
+/* overview shared styles */
+.odd {
+  background-color: lighten(#000, 98.5%);
+}
+.even {
+  background-color: lighten(#000, 96%);
+}
+
+.overview {
+  article {
+    border-bottom: 1px solid darken(@gray-lighter, 5%);
+    color: @gray;
+    padding: 15px;
+    &:first-child {
+      border-top: 1px solid @gray-dark;
+    }
+  }
+  figure {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  .content {
+    @media screen and (min-width: @screen-xs) {
+      padding-left: 15px;
+      overflow: hidden;
+    }
+  }
+  aside {
+    border-top: 1px dashed white;
+    padding-top: 10px;
+    margin-top: 10px;
+    @media screen and (min-width: @screen-md) {
+      border-top: none;
+      margin-top: 0;
+      padding-top: 0;
+      text-align: right;
+    }
+  }
+  h2 {
+    color: @gray-darker;
+    font-size: ceil(@font-size-base * 1.25); /* like h4 */
+    font-weight: normal;
+    margin-bottom: 10px;
+    a {
+      color: @gray-darker;
+      &:hover,
+      &:focus,
+      &:active {
+        color: @brand-primary;
+        text-decoration: none;
+      }
+    }
+  }
+  [class*="cashin-not-possible"] {
+    background-color: lighten(#000, 96%);
+    color: @gray-light;
+    * {
+      color: @gray-light;
+    }
+    a:hover,
+    a:focus {
+      color: inherit;
+    }
+    img {
+      -webkit-filter: grayscale();
+      filter: grayscale();
+      .opacity(.5);
+    }
+  }
+
+  /* Advantages overview */
+  &-advantages {
+  }
+  /* Promotions overview */
+  &-promotions {
+  }
+
+  /* Enhance with flex for browsers that understand */
+  article {
+    @media screen and (min-width: @screen-md) {
+      > .row {
+        display: flex;
+        > aside {
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+      }
+    }
+  }
+}
