@@ -1,4 +1,7 @@
 /* overview shared styles */
+a {
+  .transition(~"border .2s ease-in-out, color .2s ease-in-out, background .2s ease-in-out");
+}
 .odd {
   background-color: lighten(#000, 98.5%);
 }
@@ -11,6 +14,8 @@
     border-bottom: 1px solid darken(@gray-lighter, 5%);
     color: @gray;
     padding: 15px;
+    position: relative;
+    .transition(background .2s ease-in-out);
     &:first-child {
       border-top: 1px solid @gray-dark;
     }
@@ -19,6 +24,8 @@
     img {
       max-width: 100%;
       height: auto;
+      border: 1px solid transparent;
+      .transition(border .2s ease-in-out);
     }
   }
   .content {
@@ -28,7 +35,7 @@
     }
   }
   aside {
-    border-top: 1px dashed white;
+    border-top: 1px dashed @white;
     padding-top: 10px;
     margin-top: 10px;
     @media screen and (min-width: @screen-md) {
@@ -75,6 +82,19 @@
   }
   /* Promotions overview */
   &-promotions {
+  }
+
+  /* Hover states */
+  article:hover,
+  article:focus {
+    background-color: lighten(#000, 99.5%);
+    img {
+      border-color: @brand-primary;
+    }
+    h2 a {
+      color: @brand-primary;
+      text-decoration: none;
+    }
   }
 
   /* Enhance with flex for browsers that understand */
