@@ -1,0 +1,68 @@
+/* All user profile pages */
+.page-header {
+  font-size: floor(@font-size-base * 2.15); 
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+/* Edit profile */
+  /*- tabs */
+  .region-content ul.culturefeed-profile-menu {
+    margin-bottom: 12px;
+    > li {
+      width: 100% !important;
+      margin-bottom: -1px;
+      text-align: left;
+      border-bottom: 1px solid @gray-lighter;
+      @media screen and (min-width: @screen-sm) {
+        width: 33.333% !important;
+        float: left;
+        border-bottom: none;
+        text-align: center;
+      }
+      a {
+        font-size: .85em;
+        display: inline-block;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        color: @gray-dark;
+        font-weight: 600;
+        letter-spacing: .05em;
+        text-decoration: none;
+        text-transform: uppercase;
+        .transition(border .2s ease-in-out);
+        &:hover,
+        &:focus {
+          border-bottom: 4px solid @brand-primary;
+        }
+        @media screen and (min-width: @screen-sm) {
+          font-size: 1em;
+        }
+      }
+      &.active {
+        border-bottom: 1px solid @gray-lighter !important;
+        @media screen and (min-width: @screen-sm) {
+          border-bottom: none !important;
+        }
+      }
+      &.first {
+        border-bottom: 1px solid @gray-lighter;
+        @media screen and (min-width: @screen-sm) {
+          border-bottom: none;
+          text-align: left;
+        }
+      }
+      &.last {
+        text-align: left;
+        @media screen and (min-width: @screen-sm) {
+          text-align: right;
+        }
+      }
+      &.active {
+        border-bottom: none;
+        a {
+          border-bottom: 4px solid @brand-primary;
+        }
+      } 
+    }
+  }

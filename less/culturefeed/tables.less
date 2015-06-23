@@ -20,3 +20,23 @@
     background-color: white;
   }
 }
+
+@media screen and (max-width: @screen-xs-max) {
+  table#activities-table {
+    thead {
+      display: none;
+    }
+    tr, td {
+      display: block;
+      width: 100%;
+      color: @gray-light;
+    }
+    tr {
+      border-top: 1px solid @gray-dark;
+    }
+    tr > td:first-child {
+      font-weight: 600;
+      font-size: 1em;
+    }
+  }
+}
