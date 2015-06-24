@@ -7,24 +7,33 @@
 
 /* Edit profile */
   /*- tabs */
-  .region-content ul.culturefeed-profile-menu {
+  .culturefeed-profile-shortcuts {
     margin-bottom: 12px;
+    padding-left: 0;
+    list-style: none;
+    overflow: hidden;
     > li {
-      width: 100% !important;
-      margin-bottom: -1px;
+      list-style: none;
+      display: block;
+      padding-left: 0;
       text-align: left;
-      border-bottom: 1px solid @gray-lighter;
-      @media screen and (min-width: @screen-sm) {
-        width: 33.333% !important;
+      border-top: 1px solid @gray-lighter;
+      border-bottom: 1px solid @gray-dark;
+      @media screen and (min-width: @screen-xs) {
+        width: 33.333%;
         float: left;
-        border-bottom: none;
         text-align: center;
       }
+      @media screen and (min-width: @screen-sm) {
+        border-top: none;
+      }
       a {
-        font-size: .85em;
+        font-size: .8em;
         display: inline-block;
         padding-bottom: 10px;
         padding-top: 10px;
+        margin-bottom: -1px;
+        border-bottom: 4px solid transparent;
         color: @gray-dark;
         font-weight: 600;
         letter-spacing: .05em;
@@ -39,29 +48,20 @@
           font-size: 1em;
         }
       }
-      &.active {
-        border-bottom: 1px solid @gray-lighter !important;
-        @media screen and (min-width: @screen-sm) {
-          border-bottom: none !important;
-        }
-      }
       &.first {
-        border-bottom: 1px solid @gray-lighter;
-        @media screen and (min-width: @screen-sm) {
-          border-bottom: none;
+        @media screen and (min-width: @screen-xs) {
           text-align: left;
         }
       }
       &.last {
         text-align: left;
-        @media screen and (min-width: @screen-sm) {
+        @media screen and (min-width: @screen-xs) {
           text-align: right;
         }
       }
       &.active {
-        border-bottom: none;
         a {
-          border-bottom: 4px solid @brand-primary;
+          border-bottom-color: @brand-primary;
         }
       } 
     }
