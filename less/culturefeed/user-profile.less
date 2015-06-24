@@ -5,64 +5,111 @@
   letter-spacing: .05em;
 }
 
-/* Edit profile */
-  /*- tabs */
-  .culturefeed-profile-shortcuts {
-    margin-bottom: 12px;
-    padding-left: 0;
+/* Profile tabs */
+.culturefeed-profile-shortcuts {
+  margin-bottom: 12px;
+  padding-left: 0;
+  list-style: none;
+  overflow: hidden;
+  > li {
     list-style: none;
-    overflow: hidden;
-    > li {
-      list-style: none;
-      display: block;
-      padding-left: 0;
-      text-align: left;
-      border-top: 1px solid @gray-lighter;
-      border-bottom: 1px solid @gray-dark;
-      @media screen and (min-width: @screen-xs) {
-        width: 33.333%;
-        float: left;
-        text-align: center;
+    display: block;
+    padding-left: 0;
+    text-align: left;
+    border-top: 1px solid @gray-lighter;
+    border-bottom: 1px solid @gray-dark;
+    @media screen and (min-width: @screen-xs) {
+      width: 33.333%;
+      float: left;
+      text-align: center;
+    }
+    @media screen and (min-width: @screen-sm) {
+      border-top: none;
+    }
+    a {
+      font-size: .8em;
+      display: inline-block;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      margin-bottom: -1px;
+      border-bottom: 4px solid transparent;
+      color: @gray-light;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      .transition(~"border .2s ease-in-out, color .2s ease-in-out");
+      &:hover,
+      &:focus {
+        color: @gray-dark;
+        border-bottom: 4px solid @brand-primary;
       }
       @media screen and (min-width: @screen-sm) {
-        border-top: none;
+        font-size: 1em;
       }
-      a {
-        font-size: .8em;
-        display: inline-block;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        margin-bottom: -1px;
-        border-bottom: 4px solid transparent;
-        color: @gray-dark;
-        font-weight: 600;
-        letter-spacing: .05em;
-        text-decoration: none;
-        text-transform: uppercase;
-        .transition(border .2s ease-in-out);
-        &:hover,
-        &:focus {
-          border-bottom: 4px solid @brand-primary;
-        }
-        @media screen and (min-width: @screen-sm) {
-          font-size: 1em;
-        }
+      @media screen and (min-width: @screen-md) {
+        font-size: 1.25em;
       }
-      &.first {
-        @media screen and (min-width: @screen-xs) {
-          text-align: left;
-        }
-      }
-      &.last {
+    }
+    &.first {
+      @media screen and (min-width: @screen-xs) {
         text-align: left;
-        @media screen and (min-width: @screen-xs) {
-          text-align: right;
-        }
       }
-      &.active {
-        a {
-          border-bottom-color: @brand-primary;
-        }
-      } 
+    }
+    &.last {
+      text-align: left;
+      @media screen and (min-width: @screen-xs) {
+        text-align: right;
+      }
+    }
+    &.active {
+      a {
+        color: @gray-dark;
+        border-bottom-color: @brand-primary;
+      }
+    } 
+  }
+}
+
+/* Profile link blocks */
+.block-links {
+  li > a {
+    text-decoration: underline;
+  }
+  li {
+    padding: 10px 0;
+    + li {
+      border-top: 1px solid @gray-lighter;
     }
   }
+}
+
+.user-account-actions {
+  padding: 0 15px;
+}
+
+.profile-small { 
+  padding: 15px 0 5px;
+  @media screen and (min-width: @screen-sm) {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  img {
+    margin: 0 10px 10px 0;
+  }
+}
+
+.statement {
+  display: block;
+  overflow: hidden;
+  color: @gray-light;
+  font-size: .85em;
+  margin-top: 10px;
+  @media screen and (min-width: @screen-sm) {
+    margin-top: 0;
+  }
+  a {
+    color: @gray-light;
+    text-decoration: underline;
+  }
+}

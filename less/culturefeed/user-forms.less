@@ -1,16 +1,41 @@
 /* Forms */
   /* Finetune buttons */
+  .btn {
+    .transition(all .2s ease-in-out);
+  }
+  .btn-default {
+    border-color: @gray-dark;
+    &:hover,
+    &:focus {
+      border-color: @brand-primary;
+      color: @brand-primary;
+      background: @white;
+    }
+  }
   .btn-primary {
     border-bottom: 1px solid darken(@brand-primary, 20%);
     border-right: 1px solid darken(@brand-primary, 20%);
-    .transition(background-color .2s ease-in-out);
     &:hover,
     &:focus {
       background-color: darken(@brand-primary, 20%);
     }
+    + #change-password {
+      display: inline-block;
+      @media screen and (min-width: @screen-xs) {
+        margin-left: 5px;
+      }
+      a {
+        color: @gray-dark;
+        text-decoration: underline;
+        &:hover,
+        &:focus {
+          color: @brand-primary;
+        }
+      }
+    }
   }
   /* Form edit profile */
-  #culturefeed-ui-profile-edit-form {
+  form {
     max-width: 550px;
     margin-bottom: 30px;
     label {

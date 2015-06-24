@@ -8,15 +8,16 @@
 ?>
 
 <div class="row">
-  <div class="col-xs-12"><?php print $nick; ?></div>
+  <div class="col-sm-6"><?php print $nick; ?></div>
 </div>
 <div class="row">
-  <div class="col-xs-12"><?php print $mbox; ?></div>
+  <div class="col-sm-6"><?php print $mbox; ?></div>
 </div>
-<div class="row">
-  <div class="col-xs-6"><?php print $submit; ?></div>
-</div>
-<div class="row">
-  <div class="col-xs-6"><?php print $change_password; ?></div>
+<div class="row actions">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <?php print $submit; ?><?php print $change_password; ?>
+    </div>
+  </div>
 </div>
 <?php print $main_form; ?>
