@@ -77,16 +77,21 @@
     text-decoration: underline;
   }
   li {
-    padding: 10px 0 0;
+    padding: 0 0 10px;
     + li {
       //border-top: 1px solid @gray-lighter;
     }
   }
 }
-
 .user-accounts {
-  img {
+  .profile-pic {
+    display: inline-block;
     margin: 0 10px 10px 0;
+  }
+  .profile-nick {
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: 10px;
   }
   .inside {
     margin-top: 20px;
@@ -106,12 +111,16 @@
     }
   }
 }
-.statement {
+.date {
+  color: @gray-light;
+  margin: 10px 0;
+}
+.small {
   display: block;
   overflow: hidden;
   color: @gray-light;
   font-size: .85em;
-  margin-top: 10px;
+  padding-top: 9px;
   a {
     color: @gray-light;
     text-decoration: underline;

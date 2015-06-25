@@ -1923,6 +1923,10 @@ function culturefeed_bootstrap_file_managed_file($variables) {
     $element['filename']['#markup'] = '<div class="col-md-4">';
     $element['filename']['#markup'] .= theme('image_style', array('style_name' => 'thumbnail', 'path' => $element['#file']->uri, 'attributes' => array('class' => array('img-thumbnail'))));
     $element['filename']['#markup'] .= '</div>';
+    $element['remove_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
+    $element['remove_button']['#suffix'] = '</span></div>';
+    $element['remove']['#prefix'] = '<div class="col-md-6">';
+    $element['remove']['#suffix'] = '</div>';
   }
   else {
     $element['filename']['#markup'] = '';
@@ -2417,4 +2421,54 @@ function culturefeed_bootstrap_preprocess_culturefeed_calendar_button_hover(&$va
   $variables['options']['attributes'] = array(
     'class' => array('btn', 'btn-primary', 'btn-block'),
   );
+}
+
+/**
+ * Override image output advantage for gallery
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_advantage(&$vars) {
+
+  $advantage = $vars['advantage'];
+
+  // Image.
+  $vars['image'] = '';
+  $vars['images_list'] = '';
+  $images = array();
+  if (isset($advantage->pictures[0])) {
+    $vars['image'] = theme_image(array('path' => $advantage->pictures[0], 'attributes' => array()));
+    foreach ($advantage->pictures as $key => $picture) {
+      $images[] = l(
+        theme('image', array('path' => $advantage->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        $advantage->pictures[$key],
+        array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
+      );
+    }
+    $vars['images_list'] = theme('item_list', array('items' => $images));
+  }
+
+}
+
+/**
+ * Override image output promotion for gallery
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
+  $promotion = $vars['promotion'];
+
+  // Image.
+  $vars['image'] = '';
+  $vars['images_list'] = '';
+  $images = array();
+  if (isset($promotion->pictures[0])) {
+    $vars['image'] = theme('image', array('path' => $promotion->pictures[0] . '?maxwidth=300&max-height=300', 'attributes' => array()));
+    foreach ($promotion->pictures as $key => $picture) {
+      $images[] = l(
+        theme('image', array('path' => $promotion->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        $promotion->pictures[$key],
+        array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
+      );
+    }
+    $vars['images_list'] = theme('item_list', array('items' => $images));
+  }
+
 }

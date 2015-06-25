@@ -1,3 +1,4 @@
+<div class="row"> 
   <div class="col-xs-12">
     <?php if ($type == 'facebook') : ?>
       <i class="fa fa-facebook-square"></i> 
@@ -13,17 +14,18 @@
     <?php print $delete_link ?>
     <?php endif; ?>
   </div>
+</div>
   <?php if ($picture || $name || $nick || $publish_link) : ?>
   <div class="inside clearfix">
-    <div class="col-sm-4 user-accounts--profile">
+    <div class="col-sm-4 user-accounts-profile">
       <?php if ($picture) : ?>
-        <?php print $picture ?>
+        <div class="profile-pic"><?php print $picture ?></div>
       <?php endif; ?>
       <?php if ($name) : ?>
         <span class="hidden"><?php print $name ?></span>
       <?php endif; ?>
       <?php if ($nick) : ?>
-        <?php print $nick ?>
+        <div class="profile-nick"><?php print $nick ?></div>
       <?php endif; ?>
     </div>
     <div class="col-sm-8 user-accounts--privacy">
