@@ -77,37 +77,41 @@
     text-decoration: underline;
   }
   li {
-    padding: 10px 0;
+    padding: 10px 0 0;
     + li {
-      border-top: 1px solid @gray-lighter;
+      //border-top: 1px solid @gray-lighter;
     }
   }
 }
 
-.user-account-actions {
-  padding: 0 15px;
-}
-
-.profile-small { 
-  padding: 15px 0 5px;
-  @media screen and (min-width: @screen-sm) {
-    display: inline-block;
-    margin-right: 15px;
-  }
+.user-accounts {
   img {
     margin: 0 10px 10px 0;
   }
+  .inside {
+    margin-top: 20px;
+    padding: 15px 0;
+    background-color: @gray-lighter;
+    position: relative;
+    &:before {
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      content: '';
+      width: 0; 
+      height: 0; 
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid @gray-lighter;
+    }
+  }
 }
-
 .statement {
   display: block;
   overflow: hidden;
   color: @gray-light;
   font-size: .85em;
   margin-top: 10px;
-  @media screen and (min-width: @screen-sm) {
-    margin-top: 0;
-  }
   a {
     color: @gray-light;
     text-decoration: underline;
