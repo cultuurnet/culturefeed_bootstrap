@@ -115,7 +115,7 @@
   color: @gray-light;
   margin: 10px 0;
 }
-.small {
+.statement {
   display: block;
   overflow: hidden;
   color: @gray-light;
@@ -124,5 +124,12 @@
   a {
     color: @gray-light;
     text-decoration: underline;
+  }
+}
+.revoke-link {
+  &:after {
+    .fa-icon();
+    content: @fa-var-trash-o;
+    margin-left: 5px;
   }
 }
