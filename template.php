@@ -2479,6 +2479,18 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
  */
 function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
 
+  $prefix .= variable_get('culturefeed_uitpas_user_register_intro_text', '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>');
+  $prefix = '<h2>' . t('Register your UiTpas') . '</h2>';
+
+  // Fields
+  $form['username']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['username']['#suffix'] = '</div></div>';
+  $form['uitpasnumber']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['uitpasnumber']['#suffix'] = '</div></div>';
+  $form['dob']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['dob']['#suffix'] = '</div></div>';
+
+  // Button
   $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
 
 }
