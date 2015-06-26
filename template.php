@@ -2472,3 +2472,13 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
   }
 
 }
+
+/**
+ * Add bootstrap class to user register button
+ *
+ */
+function culturefeed_bootstrap_user_register_form_alter(&$form, $form_state) {
+
+  $form['submit']['#attributes']['class'][] = 'btn-primary';
+
+}
