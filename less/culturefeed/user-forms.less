@@ -38,26 +38,44 @@
   #culturefeed-ui-profile-edit-form,
   #culturefeed-ui-account-edit-form,
   #culturefeed-ui-privacy-settings-form,
-  #culturefeed-uitpas-user-register-form {
-    max-width: 550px;
+  #culturefeed-uitpas-user-register-form,
+  #culturefeed-uitpas-registration-confirmation-form {
     margin-bottom: 30px;
+    .row {
+      max-width: 550px;
+    }
   }
   form {
+    h2 {
+      border-bottom: 1px solid @gray-dark;
+      margin-bottom: 12px;
+      font-size: 1em;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      @media screen and (min-width: @screen-md) {
+        font-size: 1.2em;
+      }
+      > span {
+        border-bottom: 4px solid @brand-primary;
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: -1px;
+      }
+    }
     label {
+      font-size: 1.05em;
       font-weight: 200;
+      margin-bottom: 7px;
     }
     select {
     }
     .form-group {
-      margin-bottom: 5px;
-      margin-top: 5px;
+      margin-bottom: 7px;
+      margin-top: 7px;
       @media screen and (min-width: @screen-sm) {
         margin-bottom: 10px;
         margin-top: 10px;
-      }
-      @media screen and (min-width: @screen-lg) {
-        margin-bottom: 15px;
-        margin-top: 15px;
       }
     }
     .form-control {
@@ -83,6 +101,6 @@
   #edit-dob {
     > .form-group {
       margin-top: 0;
-      margin-bottom: 5px;
+      margin-bottom: 15px;
     }
   }

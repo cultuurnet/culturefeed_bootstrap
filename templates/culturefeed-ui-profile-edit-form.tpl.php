@@ -6,7 +6,6 @@
  */
 
 ?>
-
 <div class="row">
   <div class="col-sm-6"><?php print $givenName; ?></div>
   <div class="col-sm-6"><?php print $familyName; ?></div>
@@ -15,7 +14,9 @@
   <div class="col-sm-6"><?php print $dob; ?></div>
   <div class="col-sm-6"><?php print $gender; ?></div>
 </div>
+<div class="row">
   <?php print $picture; ?>
+</div>
 <hr />
 <div class="row">
   <div class="col-xs-12"><?php print $street; ?></div>
@@ -34,5 +35,3 @@
 <div class="row">
   <div class="col-xs-12"><?php print $main_form; ?></div>
 </div>
-
-

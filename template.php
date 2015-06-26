@@ -1923,16 +1923,16 @@ function culturefeed_bootstrap_file_managed_file($variables) {
     $element['filename']['#markup'] = '<div class="col-md-4">';
     $element['filename']['#markup'] .= theme('image_style', array('style_name' => 'thumbnail', 'path' => $element['#file']->uri, 'attributes' => array('class' => array('img-thumbnail'))));
     $element['filename']['#markup'] .= '</div>';
-    $element['remove_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
+    $element['remove_button']['#prefix'] = '<div class="col-md-8"><span class="input-group-btn">';
     $element['remove_button']['#suffix'] = '</span></div>';
-    $element['remove']['#prefix'] = '<div class="col-md-6">';
+    $element['remove']['#prefix'] = '<div class="col-md-8">';
     $element['remove']['#suffix'] = '</div>';
   }
   else {
     $element['filename']['#markup'] = '';
-    $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
+    $element['upload_button']['#prefix'] = '<div class="col-md-8"><span class="input-group-btn">';
     $element['upload_button']['#suffix'] = '</span></div>';
-    $element['upload']['#prefix'] = '<div class="col-md-6">';
+    $element['upload']['#prefix'] = '<div class="col-md-8">';
     $element['upload']['#suffix'] = '</div>';
   }
 
@@ -1945,14 +1945,14 @@ function culturefeed_bootstrap_file_managed_file($variables) {
   }
 
   // This wrapper is required to apply JS behaviors and CSS styling.
-  $attributes['class'] = array('row', 'form-managed-file');
+  $attributes['class'] = array('form-managed-file');
 
-  $output = '<div class="row"><div class="col-xs-12">';
+  $output = '<div class="row">';
   $output .= '<div' . drupal_attributes($attributes) . '>';
   $output .= drupal_render_children($element);
   $output .= '</div>';
   $output .= render($hidden_elements);
-  $output .= '</div></div>';
+  $output .= '</div>';
 
   return $output;
 }
@@ -2040,6 +2040,9 @@ function culturefeed_bootstrap_preprocess_culturefeed_ui_account_edit_form(&$var
 function culturefeed_bootstrap_preprocess_culturefeed_ui_profile_edit_form(&$vars) {
 
   $form = $vars['form'];
+
+  $form['picture']['#prefix'] = '<div class="col-xs-12">';
+  $form['picture']['#suffix'] = '</div>';
 
   $vars['givenName'] = drupal_render($form['givenName']);
   $vars['familyName'] = drupal_render($form['familyName']);
@@ -2479,8 +2482,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
  */
 function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
 
-  $prefix .= variable_get('culturefeed_uitpas_user_register_intro_text', '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>');
-  $prefix = '<h2>' . t('Register your UiTpas') . '</h2>';
+  $prefix = variable_get('culturefeed_uitpas_user_register_intro_text', '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>');
+  $prefix .= '<h2><span>' . t('Register your UiTpas') . '</span></h2>';
+
+  $form['prefix']['#markup'] = $prefix;
 
   // Fields
   $form['username']['#prefix'] = '<div class="row"><div class="col-sm-6">';

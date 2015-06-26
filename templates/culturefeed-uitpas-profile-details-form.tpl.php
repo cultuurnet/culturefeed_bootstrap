@@ -6,9 +6,6 @@
  */
 
 ?>
-
-<div class="details-form">
-
   <div class="row">
     <div class="col-xs-6"><?php print $first_name; ?></div>
     <div class="col-xs-6"><?php print $last_name; ?></div>
@@ -40,5 +37,3 @@
   <div class="row">
     <div class="col-xs-12"><?php print $main_form; ?><?php print $actions; ?></div>
   </div>
-
-</div>
