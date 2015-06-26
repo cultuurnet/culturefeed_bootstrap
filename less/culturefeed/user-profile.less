@@ -1,14 +1,9 @@
 /* All user profile pages */
-.page-header {
-  font-size: floor(@font-size-base * 2.15); 
-  font-weight: 600;
-  letter-spacing: .05em;
-}
 
-/* Intro */
-.intro {
-  margin-top: 15px;
-  margin-bottom: 30px;
+/* Tables */
+table {
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Profile tabs */
@@ -40,11 +35,7 @@
       margin-bottom: -1px;
       border-bottom: 4px solid transparent;
       color: @gray-light;
-      font-weight: 600;
-      letter-spacing: .05em;
       text-decoration: none;
-      text-transform: uppercase;
-      .transition(~"border .2s ease-in-out, color .2s ease-in-out");
       &:hover,
       &:focus {
         color: @gray-dark;
@@ -122,33 +113,13 @@
     }
   }
 }
-.privacy-link {
-  &:after {
-    .fa-icon();
-    content: @fa-var-angle-down;
-    margin-left: 5px;
-  }
-}
 .date {
-  color: @gray-light;
   margin: 10px 0;
 }
 .statement {
   display: block;
   overflow: hidden;
-  color: @gray-light;
   font-size: .85em;
   padding-top: 9px;
-  a {
-    color: @gray-light;
-    text-decoration: underline;
-  }
 }
-.remove-link,
-.revoke-link {
-  &:after {
-    .fa-icon();
-    content: @fa-var-trash-o;
-    margin-left: 5px;
-  }
-}
+

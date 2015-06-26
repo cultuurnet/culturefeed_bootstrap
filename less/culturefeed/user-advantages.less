@@ -4,7 +4,6 @@
   border-radius: 10px;
   color: @white;
   font-size: .75em;
-  letter-spacing: .1em;
   &__brand {
     background-color: @brand-primary;
   }
@@ -19,9 +18,7 @@
   font-style: italic;
 }
 .provider {
-  color: @gray;
   font-size: .85em;
-  text-transform: uppercase;
 }
 .out-of-stock,
 .insufficient-points {
@@ -36,16 +33,12 @@
 }
 [id*="promotions-filter-sort"] > h2 {
   font-size: ceil(@font-size-base * 1.25); /* like h4 */
-  letter-spacing: .1em;
-  text-transform: uppercase;
   em {
     color: @brand-primary;
     font-style: normal;
   }
   small {
     color: @gray-darker;
-    letter-spacing: normal;
-    text-transform: none;
   }
 }
 .locations {
@@ -55,5 +48,33 @@
   font-style: italic;
   i {
     margin-right: 5px;
+  }
+}
+
+.profile-promotions {
+  margin-bottom: 1em;
+}
+
+.media {
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .make-row();
+    @media screen and (max-width: @screen-xs-max) {
+      display: flex;
+    }
+  }
+  li {
+    margin: 0;
+    padding: 0;
+    .make-xs-column(6);
+    .make-sm-column(12);
+    + li {
+      padding-top: 15px;
+    }
+  }
+  img {
+    .img-responsive;
   }
 }
