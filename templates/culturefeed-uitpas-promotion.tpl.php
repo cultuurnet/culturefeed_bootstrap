@@ -16,17 +16,17 @@
 ?>
 <div class="detail promotion-detail row">
   <div class="col-xs-12 col-sm-8 col-md-9" role="main">
-    <?php if ($provider_raw): ?>
-    <div class="provider-label">
-      <span class="<?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></span>
+    <div class="clearfix">
+      <?php if ($provider_raw): ?>
+      <p class="text-muted pull-left <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
+      <?php endif; ?>
+      <div class="points pull-right"><span class="label label-primary"><?php print $points; ?></span></div>
     </div>
-    <?php endif; ?>
-    <div class="points"><span class="points-value points-value__brand"><?php print $points; ?></span></div>
     <?php if ($period): ?>
-    <div class="period"><?php print $period; ?></div>
+    <p class="period"><?php print $period; ?></p>
     <?php endif; ?>
     <?php if ($available): ?>
-    <div class="available"><?php print $available; ?></div>
+    <p class="available"><?php print $available; ?></p>
     <?php endif; ?>
     <?php if ($description1): ?>
     <p class="description1"><?php print $description1; ?></p>

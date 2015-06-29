@@ -35,10 +35,10 @@
 <?php endif; ?>
 
 <h2><?php print $uitpas_title; ?> </h2>
-<div class="uitpas_numbers"><?php print $uitpas_numbers; ?></div>
+<div class="uitpas_numbers panel panel-default"><?php print $uitpas_numbers; ?></div>
 
 <h3><?php print $form_title; ?></h3>
-<div id="personalData">
+<div id="personalData panel panel-default">
 
   <?php if ($form_intro): ?>
   <div class="form-intro"><?php print $form_intro; ?></div>

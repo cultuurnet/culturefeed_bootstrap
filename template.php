@@ -2499,3 +2499,120 @@ function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(
   $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
 
 }
+
+/**
+ * Preprocess variables for culturefeed_ui_profile_menu to bootstrap styles
+ */
+function culturefeed_bootstrap_culturefeed_ui_profile_shortcuts() {
+
+  $build = array(
+    '#attributes' => array(
+      'class' => array('culturefeed-profile-shortcuts nav nav-tabs'),
+    ),
+    '#theme' => 'links',
+  );
+
+  $build['#links'] = array(
+    'personal_data' => array(
+      'title' => t('Personal data'),
+      'href' => 'culturefeed/profile/edit',
+    ),
+    'login_data' => array(
+      'title' => t('Login data'),
+      'href' => 'culturefeed/account/edit',
+    ),
+    'privacy_settings' => array(
+      'title' => t('Privacy settings'),
+      'href' => 'culturefeed/profile/privacy',
+    ),
+  );
+
+  return drupal_render($build);
+
+}
+
+/**
+ * Implements hook_preprocess_preprocess_culturefeed_uitpas_profile_details().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$vars) {
+  
+  $uitpas_user = $vars['uitpas_user'];
+  // @codingStandardsIgnoreStart
+  /** @var CultureFeed_Uitpas_Passholder $passholder */
+  // @codingStandardsIgnoreEnd
+  $passholder = $uitpas_user->passholder;
+  // @codingStandardsIgnoreStart
+  /** @var CultureFeed_Uitpas_Passholder_CardSystemSpecific $card_system */
+  // @codingStandardsIgnoreEnd
+  $card_system = $uitpas_user->card_system;
+
+  // Title.
+  $vars['uitpas_title'] = variable_get('culturefeed_uitpas_profile_details_title', t('My UiTPAS'));
+
+  // Intro.
+  $vars['intro'] = variable_get('culturefeed_uitpas_profile_details_intro');
+
+  // Card numbers.
+  $uitpas_numbers = array(
+    'items' => array(),
+    'type' => 'ul',
+    'attributes' => array(),
+    'title' => '',
+  );
+  foreach ($passholder->cardSystemSpecific as $card_system_specific) {
+
+    if ($card_system_specific->currentCard->uitpasNumber) {
+      $uitpas_numbers['items'][] = $card_system_specific->currentCard->uitpasNumber . ' (' . $card_system_specific->cardSystem->name . ')';
+    }
+
+  }
+  $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . variable_get('culturefeed_uitpas_profile_details_uitpas_number', t('UiTPAS number(s)')) . ':</h3></div><div class="panel-body">';
+  $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
+  $uitpas_numbers_output .= '</div><div class="panel-footer">';
+  $uitpas_numbers_output .= l(t('Register new UiTpas'), 'register_uitpas');
+  $uitpas_numbers_output .= '</div>';
+  $vars['uitpas_numbers'] = $uitpas_numbers_output;
+
+  $vars['form_title'] = variable_get('culturefeed_uitpas_profile_details_form_title', t('My personal data'));
+  $vars['form_intro'] = variable_get('culturefeed_uitpas_profile_details_form_intro');
+  $form = drupal_get_form('culturefeed_uitpas_profile_details_form');
+  $vars['form'] = drupal_render($form);
+
+  $vars['status_title'] = t('Status');
+  $vars['kansen_statuut'] = '';
+  $vars['kansen_statuut_valid_end_date'] = '';
+  $vars['status_valid_till'] = '';
+
+  if ($card_system) {
+
+    $vars['kansen_statuut'] = $card_system->kansenStatuut;
+    $vars['kansen_statuut_valid_end_date'] = (time() < $card_system->kansenStatuutEndDate);
+    $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system->kansenStatuutEndDate)));
+    $vars['status_valid_till'] = '<label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
+
+  }
+
+  if (count($passholder->memberships)) {
+
+    $memberships = array();
+    foreach ($passholder->memberships as $membership) {
+
+      if (isset($membership->association->association)) {
+
+        $endate = t('valid till !date', array('!date' => date('j/m/Y', $membership->endDate)));
+        $memberships[] = '<label>' . $membership->association . ':</label> ' . $endate;
+
+      }
+
+    }
+    $vars['memberships'] = implode('<br />', $memberships);
+
+  }
+  else {
+    $vars['memberships'] = '';
+  }
+
+  $vars['outro'] = variable_get('culturefeed_uitpas_profile_details_outro');
+ 
+}
+

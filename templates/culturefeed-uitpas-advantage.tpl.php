@@ -17,7 +17,7 @@
   <div class="col-xs-8 col-md-9" role="main">
     <?php if ($provider_raw): ?>
       <div class="provider-label">
-        <span class="<?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></span>
+        <p class="text-muted <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
       </div>
     <?php endif; ?>
     <?php if ($period): ?>

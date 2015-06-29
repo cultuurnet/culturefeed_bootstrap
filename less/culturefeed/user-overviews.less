@@ -1,34 +1,8 @@
 /* overview shared styles */
-.odd {
-  background-color: @gray-lighter;
-}
-
 .overview {
-  article {
-    color: @gray;
-    padding: 15px;
-    position: relative;
-  }
   figure img {
     max-width: 100%;
     height: auto;
-  }
-  .content {
-    @media screen and (min-width: @screen-xs) {
-      padding-left: 15px;
-      overflow: hidden;
-    }
-  }
-  aside {
-    border-top: 1px dashed @white;
-    padding-top: 10px;
-    margin-top: 10px;
-    @media screen and (min-width: @screen-md) {
-      border-top: none;
-      margin-top: 0;
-      padding-top: 0;
-      text-align: right;
-    }
   }
   [class*="cashin-not-possible"] {
     color: @gray-light;
@@ -43,14 +17,6 @@
       -webkit-filter: grayscale();
       filter: grayscale();
       .opacity(.5);
-    }
-  }
-
-  /* Hover states */
-  article:hover,
-  article:focus {
-    h2 a {
-      color: @brand-primary;
     }
   }
 
