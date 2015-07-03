@@ -74,6 +74,7 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
       startDate: from ? from : moment(),
       endDate: to ? to : moment(),
       opens: 'right',
+      drops: 'down',
       showWeekNumbers: false,
       applyClass: "btn-primary",
       cancelClass: "btn-link",
@@ -131,6 +132,11 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
     });
 
     pickerlink.click(function (e) {
+      var offset = $('.daterangepicker').offset(); // Contains .top and .left
+      $('html, body').animate({
+          scrollTop: offset.top - 120,
+          scrollLeft: offset.left - 120
+      });
       e.preventDefault();
     });
   };
