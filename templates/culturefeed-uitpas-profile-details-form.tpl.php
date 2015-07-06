@@ -5,8 +5,6 @@
  * Default theme implementation to display culturefeed uitpas profile details form.
  */
 
-dpm(get_defined_vars());
-
 ?>
   <div class="row">
     <div class="col-xs-6"><?php print $first_name; ?></div>
