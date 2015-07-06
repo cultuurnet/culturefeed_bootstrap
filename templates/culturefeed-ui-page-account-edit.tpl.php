@@ -22,7 +22,7 @@
   </div>
   <hr />
   <div class="block block-links">
-    <h4><?php print t('Connected applications'); ?></h5>
+    <h4><?php print t('Connected applications'); ?> <span><?php print l(t('User history'), 'culturefeed/activities'); ?></span></h4>
     <?php print $connected_applications; ?>
   </div>
 </div>
