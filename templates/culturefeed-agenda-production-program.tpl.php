@@ -19,6 +19,7 @@
             <div class="col-xs-12 hidden-sm hidden-md hidden-lg"><p><em><?php print $content['city']; ?></em></p></div>
             <div class="col-sm-9 col-md-8 col-lg-9">
               <p>
+              <strong><?php print $content['title']; ?></strong> | 
               <?php if (isset($content['all_url'])): ?>
                 <a href="<?php print $content['all_url']; ?>" class="link-primary">
                   <strong><?php print $content['venue']; ?></strong>
