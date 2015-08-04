@@ -3,11 +3,11 @@
 /**
  * Load FontAwesome 4.3.0 through CDN
  */
- 
+
 $element = array(
   '#tag' => 'link',
   '#attributes' => array(
-    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
     'rel' => 'stylesheet',
     'type' => 'text/css',
   ),
@@ -175,7 +175,8 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
     ));
   }
 
-  $variables['print_link'] = l(t('Print'), '', array('attributes' => array('onclick' => 'javascript: window.print(); return false;'), 'external' => TRUE));
+  $rel = url('culturefeed/do/' . CultureFeed_Activity::TYPE_PRINT . '/' . $item->getType() . '/' . $item->getId() . '/ajax');
+  $variables['print_link'] = l(t('Print'), '', array('attributes' => array('rel' => $rel, 'class' => array('share-link', 'print-link')), 'external' => TRUE));
 
 }
 
@@ -1640,7 +1641,7 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
         foreach ($items as $key => $item) {
           $items[$key]['class'][] = 'list-group-item';
         }
-  
+
         $data['content'] = array(
           '#theme' => 'item_list',
           '#items' => $items,
