@@ -59,7 +59,7 @@
       <?php endif; ?>
     </p>
 
-    <p class="hidden-xs"><?php print culturefeed_search_detail_l('actor', $cdbid, $title, t('More info') . ' &rarr;', array('html' => TRUE, 'attributes' => array('rel' => $track_moreinfo_rel, 'class' => array('btn', 'btn-default', $track_moreinfo_classes), 'id' => 'cf-readmore_' . $cdbid))); ?></p>
+    <p class="hidden-xs"><?php print $moreinfo_link; ?></p>
 
   </div>
 
