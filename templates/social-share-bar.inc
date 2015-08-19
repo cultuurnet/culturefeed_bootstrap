@@ -1,12 +1,12 @@
-<?php 
+<?php
   if (!empty($personal_calendar_buttons)) {
     $col_width = 2;
   }
   else $col_width = 3;
 ?>
 
-<div class="text-right">   
-  <i class="fa fa-envelope-o"></i> <?php print $mail_link; ?> 
+<div class="text-right">
+  <i class="fa fa-envelope-o"></i> <?php print $mail_link; ?>
   <i class="fa fa-print"></i> <?php print $print_link; ?>
 </div>
 
