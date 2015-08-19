@@ -3,11 +3,11 @@
 /**
  * Load FontAwesome 4.3.0 through CDN
  */
- 
+
 $element = array(
   '#tag' => 'link',
   '#attributes' => array(
-    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
     'rel' => 'stylesheet',
     'type' => 'text/css',
   ),
@@ -1640,7 +1640,7 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
         foreach ($items as $key => $item) {
           $items[$key]['class'][] = 'list-group-item';
         }
-  
+
         $data['content'] = array(
           '#theme' => 'item_list',
           '#items' => $items,
@@ -1972,7 +1972,7 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
       'external' => TRUE,
       'attributes' => array('id' => 'specific-dates-range'),
     )),
-    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date"><i class="fa fa-calendar"></i>',
+    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date">',
     '#suffix' => '</div></div></div></div>',
   );
 
