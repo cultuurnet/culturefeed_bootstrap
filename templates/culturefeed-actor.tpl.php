@@ -8,16 +8,16 @@
 <div class="row">
 
   <div class="col-sm-8">
-  
+
     <?php if (!empty($shortdescription)) : ?>
       <p>
         <?php print $shortdescription; ?>
       </p>
     <?php endif; ?>
-    
+
     <table class="table table-condended">
       <tbody>
-    
+
       <?php if ($location): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
@@ -47,8 +47,8 @@
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
-      
-   
+
+
       <?php if (!empty($contact['mail']) || (!empty($contact['phone']) || !empty($contact['fax']))) : ?>
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
         <td>
@@ -63,12 +63,12 @@
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>
-    
+
       <?php if (!empty($links)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Links'); ?></strong><i class="fa fa-external-link hidden-md hidden-lg"></i></td>
       <td><?php print implode('<br />', $links); ?></td></tr>
       <?php endif; ?>
-    
+
       </tbody>
 
     </table>
@@ -76,10 +76,10 @@
   </div>
 
   <div class="col-sm-4 hidden-xs">
-    
+
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
-      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&crop=auto" class="img-responsive" />
       <?php if(!empty($pictures)): ?>
         <br />
         <div class="row">
@@ -91,7 +91,7 @@
         </div>
       <?php endif; ?>
       <br />
-    </div>  
+    </div>
     <?php endif; ?>
 
   </div>
