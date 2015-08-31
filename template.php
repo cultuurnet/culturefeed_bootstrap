@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * Load FontAwesome 4.3.0 through CDN
+ */
+
+$element = array(
+  '#tag' => 'link',
+  '#attributes' => array(
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
+    'rel' => 'stylesheet',
+    'type' => 'text/css',
+  ),
+);
+
+drupal_add_html_head($element, 'font-awesome');
+
+/**
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
@@ -1621,15 +1636,17 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
     case 'profile_menu':
       $items = $data['content']['#items'];
 
-      foreach ($items as $key => $item) {
-        $items[$key]['class'][] = 'list-group-item';
-      }
+      if ($items) {
+        foreach ($items as $key => $item) {
+          $items[$key]['class'][] = 'list-group-item';
+        }
 
-      $data['content'] = array(
-        '#theme' => 'item_list',
-        '#items' => $items,
-        '#attributes' => array('class' => 'list-group'),
-      );
+        $data['content'] = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+          '#attributes' => array('class' => 'list-group'),
+        );
+      }
 
     break;
     }
@@ -1955,7 +1972,7 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
       'external' => TRUE,
       'attributes' => array('id' => 'specific-dates-range'),
     )),
-    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date"><i class="fa fa-calendar"></i>',
+    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date">',
     '#suffix' => '</div></div></div></div>',
   );
 
@@ -2276,13 +2293,13 @@ function culturefeed_bootstrap_preprocess_page(&$variables) {
 
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-6"';
+    $variables['content_column_class'] = ' class="col-sm-4 col-md-6"';
   }
   elseif (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-9"';
+    $variables['content_column_class'] = ' class="col-sm-8 col-md-9"';
   }
   else {
-    $variables['content_column_class'] = ' class="col-md-12"';
+    $variables['content_column_class'] = ' class="col-sm-12"';
   }
 }
 

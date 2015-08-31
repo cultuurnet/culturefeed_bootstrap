@@ -10,8 +10,8 @@
   <div class="col-sm-8">
 
     <?php if (isset($forkids)): ?>
-      <span class="forkids pull-right"></span>        
-    <?php endif; ?> 
+      <span class="forkids pull-right"></span>
+    <?php endif; ?>
     <?php if (isset($agefrom) && is_numeric($agefrom)): ?>
       <?php if ($agefrom > 0): ?>
         <span class="agefrom h4"><span class="label label-success pull-right"> <?php print $agefrom; ?> +</span></span>
@@ -161,7 +161,7 @@
 
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
-      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&crop=auto" class="img-responsive" />
       <?php if(!empty($pictures)): ?>
         <br />
         <div class="row">
