@@ -248,7 +248,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
     $content_type = culturefeed_get_content_type($item->getType());
     $id = $item->getId();
     $variables['readmore_options']['attributes']['rel'] = url('culturefeed/do/' . CultureFeed_Activity::TYPE_MORE_INFO .'/' . $content_type . '/' . urlencode($id) . '/ajax');
-    $variables['readmore_options']['attributes']['class'] = array('share-link', 'moreinfo-link');
+    $variables['readmore_options']['attributes']['class'] = array('moreinfo-link');
   }
 
 }
