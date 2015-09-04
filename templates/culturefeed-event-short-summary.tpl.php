@@ -34,7 +34,7 @@
       <?php endif; ?>
     </p>
 
-    <p class="hidden-xs hidden-sm"><span class="more-info"> <?php print culturefeed_search_detail_l('event', $cdbid, $title, 'Meer informatie &rarr;', $moreinfo_options); ?> </span></p>
+    <p class="hidden-xs hidden-sm"><span class="more-info"> <?php print culturefeed_search_detail_l('event', $cdbid, $title, 'Meer informatie &rarr;', array('attributes' => array('class' => 'btn btn-default'), 'html' => TRUE)); ?> </span></p>
 
   <!-- @ end CONTENT -->
   </div>

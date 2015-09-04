@@ -187,7 +187,6 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   _culturefeed_bootstrap_preprocess_culturefeed_agenda($variables);
 
   $item = $variables['item'];
-  $cdb_item = $item->getEntity();
 
   $variables['delijn_link'] = '';
   $variables['map_link'] = '';
@@ -238,6 +237,18 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
       $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-primary reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
+  }
+
+  $variables['readmore_options'] = array();
+  $variables['readmore_options']['attributes']['fragment'] = 'cf-longdescription';
+  $variables['readmore_options']['attributes']['external'] = TRUE;
+
+  // Add options for the readmore link to send an activity to the profile.
+  if (culturefeed_is_culturefeed_user()) {
+    $content_type = culturefeed_get_content_type($item->getType());
+    $id = $item->getId();
+    $variables['readmore_options']['attributes']['rel'] = url('culturefeed/do/' . CultureFeed_Activity::TYPE_MORE_INFO .'/' . $content_type . '/' . urlencode($id) . '/ajax');
+    $variables['readmore_options']['attributes']['class'] = array('share-link', 'moreinfo-link');
   }
 
 }
