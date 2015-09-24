@@ -75,19 +75,7 @@
   .collapse();
 }
 
-.toggle-facet {
-  i:after {
-    content: '\f0d7';
-    font-family: "FontAwesome";
-  }
-  .collapsed {
-    i:after {
-      content: '\f0da';
-    }
-  }
-}
-
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   #facet-container {
     display: block;
   }
@@ -153,7 +141,7 @@
   margin: 0;
   padding-bottom: 21px;
   @media (max-width: @screen-sm) {
-    float: left !important;    
+    float: left !important;
   }
 }
 
@@ -186,4 +174,10 @@
 .specific-date .fa-calendar {
   float: right;
   margin-left: 3px;
+  margin-top: 3px;
+}
+
+.daterangepicker.dropdown-menu {
+  margin-top: -22px;
+  margin-left: 6px;
 }

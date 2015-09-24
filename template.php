@@ -161,7 +161,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
   $item = $variables['item'];
   $entity = $item->getEntity();
 
-  if (!culturefeed_is_culturefeed_user()) {
+  if (module_exists('culturefeed_social') && !culturefeed_is_culturefeed_user()) {
     $variables['recommend_link'] = theme('culturefeed_social_login_required_message', array(
       'activity_type' => CultureFeed_Activity::TYPE_RECOMMEND,
       'item' => $item,
@@ -586,11 +586,11 @@ function culturefeed_bootstrap_pager($variables) {
 
   // End of generation loop preparation.
   // @todo add theme setting for this.
-  // $li_first = theme('pager_first', array(
-  // 'text' => (isset($tags[0]) ? $tags[0] : t('first')),
-  // 'element' => $element,
-  // 'parameters' => $parameters,
-  // ));
+  $li_first = theme('pager_first', array(
+   'text' => (isset($tags[0]) ? $tags[0] : t('first')),
+   'element' => $element,
+   'parameters' => $parameters,
+  ));
   $li_previous = theme('pager_previous', array(
     'text' => (isset($tags[1]) ? $tags[1] : t('previous')),
     'element' => $element,
@@ -604,19 +604,19 @@ function culturefeed_bootstrap_pager($variables) {
     'parameters' => $parameters,
   ));
   // @todo add theme setting for this.
-  // $li_last = theme('pager_last', array(
-  // 'text' => (isset($tags[4]) ? $tags[4] : t('last')),
-  // 'element' => $element,
-  // 'parameters' => $parameters,
-  // ));
+  $li_last = theme('pager_last', array(
+   'text' => (isset($tags[4]) ? $tags[4] : t('last')),
+   'element' => $element,
+   'parameters' => $parameters,
+  ));
   if ($pager_total[$element] > 1) {
     // @todo add theme setting for this.
-    // if ($li_first) {
-    // $items[] = array(
-    // 'class' => array('pager-first'),
-    // 'data' => $li_first,
-    // );
-    // }
+    if ($li_first) {
+      $items[] = array(
+        'class' => array('pager-first'),
+        'data' => $li_first,
+      );
+    }
     if ($li_previous) {
       $items[] = array(
         'class' => array('prev'),
@@ -677,12 +677,12 @@ function culturefeed_bootstrap_pager($variables) {
       );
     }
     // @todo add theme setting for this.
-    // if ($li_last) {
-    // $items[] = array(
-    // 'class' => array('pager-last'),
-    // 'data' => $li_last,
-    // );
-    // }
+    if ($li_last) {
+      $items[] = array(
+        'class' => array('pager-last'),
+        'data' => $li_last,
+      );
+    }
     return theme('item_list', array(
       'items' => $items,
       'attributes' => array('class' => array('pagination pull-right')),
@@ -1371,15 +1371,17 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
     case 'profile_menu':
       $items = $data['content']['#items'];
 
-      foreach ($items as $key => $item) {
-        $items[$key]['class'][] = 'list-group-item';
-      }
+      if ($items) {
+        foreach ($items as $key => $item) {
+          $items[$key]['class'][] = 'list-group-item';
+        }
 
-      $data['content'] = array(
-        '#theme' => 'item_list',
-        '#items' => $items,
-        '#attributes' => array('class' => 'list-group'),
-      );
+        $data['content'] = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+          '#attributes' => array('class' => 'list-group'),
+        );
+      }
 
     break;
     }
@@ -1504,6 +1506,20 @@ function culturefeed_bootstrap_form_culturefeed_pages_remove_page_confirm_form_a
 
 }
 
+/**
+ * Form callback to delete one activity.
+ */
+function culturefeed_bootstrap_form_culturefeed_social_page_activity_delete_confirm_form_alter(&$form, &$form_state, $id, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove activity');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  return $form;
+
+}
 
 /**
  * Preprocess the search results on a user.
@@ -1691,7 +1707,7 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
       'external' => TRUE,
       'attributes' => array('id' => 'specific-dates-range'),
     )),
-    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date"><i class="fa fa-calendar"></i>',
+    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date">',
     '#suffix' => '</div></div></div></div>',
   );
 
@@ -2016,13 +2032,13 @@ function culturefeed_bootstrap_preprocess_page(&$variables) {
 
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-6"';
+    $variables['content_column_class'] = ' class="col-sm-4 col-md-6"';
   }
   elseif (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-9"';
+    $variables['content_column_class'] = ' class="col-sm-8 col-md-9"';
   }
   else {
-    $variables['content_column_class'] = ' class="col-md-12"';
+    $variables['content_column_class'] = ' class="col-sm-12"';
   }
 }
 
@@ -2427,7 +2443,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$for
  * Theme the saved searches CTA.
  */
 function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
-  return '<div class="text-center"><h5>' . check_plain($vars['text']) . '</h5>'. l(t('Save this search'), $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-save-search'))) . '</div>';
+  return '<div class="text-center"><p>' . check_plain($vars['text']) . '</p>'. l(t('Save this search'), $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-save-search'))) . '</div>';
 }
 
 /**

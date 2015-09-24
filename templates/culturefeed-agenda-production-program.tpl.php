@@ -3,7 +3,7 @@
   <div class="panel">
     <?php if (count($tabs) > 1): ?>
       <div class="">
-        <a data-toggle="collapse" data-parent="#accordion" data-target="#<?php print str_replace(' ', '',$tab['name']); ?>" class="btn-link">
+        <a data-toggle="collapse" data-parent="#accordion" href="#<?php print str_replace(' ', '',$tab['name']); ?>" class="btn-link collapsed">
           <i class="fa pull-right"></i>
           <?php print $tab['name']; ?>
         </a>
@@ -19,6 +19,7 @@
             <div class="col-xs-12 hidden-sm hidden-md hidden-lg"><p><em><?php print $content['city']; ?></em></p></div>
             <div class="col-sm-9 col-md-8 col-lg-9">
               <p>
+              <strong><?php print $content['title']; ?></strong> | 
               <?php if (isset($content['all_url'])): ?>
                 <a href="<?php print $content['all_url']; ?>" class="link-primary">
                   <strong><?php print $content['venue']; ?></strong>
