@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Load FontAwesome 4.3.0 through CDN
+ * Load FontAwesome 4.4.0 through CDN
  */
 
 $element = array(
   '#tag' => 'link',
   '#attributes' => array(
-    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
     'rel' => 'stylesheet',
     'type' => 'text/css',
   ),
@@ -2643,7 +2643,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $for
   }
 
   // Add header, don't loose existing prefix.
-  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+  $form['#prefix'] .= '<div class="modal-header"><h4 class="modal-title">' . drupal_get_title() . '</h4></div>';
 
   $form['info']['#prefix'] = '<div class="modal-body">';
   $form['date']['#suffix'] = '</div>';
@@ -2671,7 +2671,7 @@ function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$for
   }
 
   // Add header, don't loose existing prefix.
-  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+  $form['#prefix'] .= '<div class="modal-header"><h4 class="modal-title">' . drupal_get_title() . '</h4></div>';
 
   $form['info']['#prefix'] = '<div class="modal-body">';
   $form['date']['#suffix'] = '</div>';
