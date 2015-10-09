@@ -48,7 +48,7 @@
 
   <?php if (!empty($personal_calendar_buttons)): ?>
     <div class="col-xs-12 col-sm-3 col-sm-offset-1">
-      <?php foreach ($personal_calendar_buttons['footer'] as $button) : ?>
+      <?php foreach ($personal_calendar_buttons['aside'] as $button) : ?>
         <?php print $button; ?>
       <?php endforeach; ?>
     </div>
