@@ -1,12 +1,14 @@
 <div class="row"> 
   <div class="col-xs-12">
+    <h5>
     <?php if ($type == 'facebook') : ?>
-      <i class="fa fa-facebook-square"></i> 
+      <i class="fa fa-facebook-square"></i> <?php print t('Facebook') ?>
       <?php elseif ($type == 'twitter'): ?>
-      <i class="fa fa-twitter-square"></i> 
+      <i class="fa fa-twitter-square"></i> <?php print t('Twitter') ?>
       <?php elseif ($type == 'google'): ?>
-      <i class="fa fa-google-plus-square"></i> 
+      <i class="fa fa-google-plus-square"></i> <?php print t('Google') ?>
     <?php endif; ?>
+    </h5>
     <?php if ($connect_link && !$delete_link) : ?>
     <?php print $connect_link ?>
     <?php endif; ?>
@@ -17,7 +19,7 @@
 </div>
   <?php if ($picture || $name || $nick || $publish_link) : ?>
   <div class="inside clearfix">
-    <div class="col-sm-4 user-accounts-profile">
+    <div class="col-sm-3 user-accounts-profile">
       <?php if ($picture) : ?>
         <div class="profile-pic"><?php print $picture ?></div>
       <?php endif; ?>
@@ -28,7 +30,7 @@
         <div class="profile-nick"><?php print $nick ?></div>
       <?php endif; ?>
     </div>
-    <div class="col-sm-8 user-accounts--privacy">
+    <div class="col-sm-9 user-accounts--privacy">
       <?php if ($publish_link) : ?>
         <?php print $publish_link ?>
       <?php endif; ?>
