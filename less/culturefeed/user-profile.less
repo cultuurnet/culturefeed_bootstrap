@@ -3,10 +3,10 @@
 /* Synchronisation modal */
 #culturefeed-uitpas-synchronization-form {
   button#edit-yes {
-    //border: 2px solid red;
     .btn-primary();
   }
 }
+/* All user profile pages */
 
 /* Tables */
 table {
@@ -26,9 +26,6 @@ table {
   }
   li {
     padding: 0 0 10px;
-    + li {
-      //border-top: 1px solid @gray-lighter;
-    }
   }
 }
 .user-accounts {
@@ -67,5 +64,9 @@ table {
   overflow: hidden;
   font-size: .85em;
   padding-top: 9px;
+}
+.btn-primary + #remove-account {
+  display: inline-block;
+  margin-left: 7px;
 }
 
