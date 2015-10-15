@@ -2072,9 +2072,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_ui_profile_edit_form(&$var
 
   $form = $vars['form'];
 
-  $form['picture']['#prefix'] = '<div class="col-xs-12">';
-  $form['picture']['#suffix'] = '</div>';
-
   $vars['givenName'] = drupal_render($form['givenName']);
   $vars['familyName'] = drupal_render($form['familyName']);
   $vars['dob'] = drupal_render($form['dob']);

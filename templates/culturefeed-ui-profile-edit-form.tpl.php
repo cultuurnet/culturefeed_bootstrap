@@ -15,7 +15,7 @@
   <div class="col-sm-6"><?php print $gender; ?></div>
 </div>
 <div class="row">
-  <?php print $picture; ?>
+  <div class="col-xs-12"><?php print $picture; ?></div>
 </div>
 <hr />
 <div class="row">
