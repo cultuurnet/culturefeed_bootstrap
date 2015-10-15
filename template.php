@@ -2058,8 +2058,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_ui_account_edit_form(&$var
   $vars['submit'] = drupal_render($form['submit']);
   $vars['main_form'] = drupal_render_children($form);
 
-  drupal_add_js(drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/synchronization.js');
-
 }
 
 /**
@@ -2086,8 +2084,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_ui_profile_edit_form(&$var
     $vars['preferredLanguage'] = $form['preferredLanguage'];
   }
   $vars['main_form'] = drupal_render_children($form);
-
-  drupal_add_js(drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/synchronization.js');
 
 }
 
@@ -2162,6 +2158,12 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
   $synchronization_file = drupal_get_path('module', 'culturefeed_ui') . '/js/synchronization.js';
   if (isset($javascript[$synchronization_file])) {
     $javascript[$synchronization_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/synchronization.js';
+  }
+
+  // Add a different version of the culturefeed ui account edit tooltip.
+  $account_edit_tooltip_file = drupal_get_path('module', 'culturefeed_ui') . '/js/account_edit_tooltip.js';
+  if (isset($javascript[$account_edit_tooltip_file])) {
+    $javascript[$account_edit_tooltip_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/account_edit_tooltip.js';
   }
 
 }
