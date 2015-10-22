@@ -2643,17 +2643,15 @@ function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $for
   }
 
   // Add header, don't loose existing prefix.
-  $form['#prefix'] .= '<div class="modal-header"><h4 class="modal-title">' . drupal_get_title() . '</h4></div>';
+  $form['#prefix'] .= '<div class="modal-header"><h4 class="modal-title">' . drupal_get_title() . '</h4></div><div class="modal-body">';
 
-  $form['info']['#prefix'] = '<div class="modal-body">';
-  $form['date']['#suffix'] = '</div>';
-
-  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#prefix'] = '</div></div><div class="modal-footer">';
   $form['actions']['#suffix'] = '</div>';
 
   unset($form['actions']['cancel']['#ajax']);
   $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
-  $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+  $form['actions']['cancel']['#attributes']['class'][] = 'btn-link';
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-default';
 
 }
 
