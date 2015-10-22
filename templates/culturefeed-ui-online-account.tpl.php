@@ -30,11 +30,11 @@
         <div class="profile-nick"><?php print $nick ?></div>
       <?php endif; ?>
     </div>
-    <div class="col-sm-9 user-accounts--privacy">
-      <?php if ($publish_link) : ?>
-        <?php print $publish_link ?>
+    <div class="col-sm-8 user-accounts--privacy">
+      <?php if (!empty($publish_form)) : ?>
+        <?php print $publish_form ?>
       <?php endif; ?>
-    </div>  
+    </div>
   </div>
   <?php endif; ?>
   
