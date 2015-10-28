@@ -2168,20 +2168,32 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 
 }
 
+function culturefeed_bootstrap_form_culturefeed_uitpas_profile_advantages_filter_sort_alter(&$form, &$form_state) {
+
+  // Profile advantages.
+  $form['profile_advantagess_link']['#attributes']['class'][] = 'nav';
+  $form['profile_advantages_link']['#attributes']['class'][] = 'nav-tabs';
+  $promotions = $form['profile_advantages_link']['#links']['promotions'];
+  $form['profile_advantages_link']['#links']['promotions lead'] = $promotions;
+  unset($form['profile_advantages_link']['#links']['promotions']);
+  $advantages = $form['profile_advantages_link']['#links']['advantages'];
+  $form['profile_advantages_link']['#links']['advantages lead'] = $advantages;
+  unset($form['profile_advantages_link']['#links']['advantages']);
+
+  return $form;
+}
+
 function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
+
   // Profile promotions.
-  $form['profile_promotions_link'] = array(
-    '#prefix' => '<div id="profile_promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
-
-  $form['profile_promotions_link']['promotions'] = array(
-    '#markup' => '<li class="active lead"><a href="/culturefeed/profile/uitpas/promotions">' . t('Promotions') . '</a></li>',
-  );
-
-  $form['profile_promotions_link']['advantages'] = array(
-    '#markup' => '<li class="lead"><a href="/culturefeed/profile/uitpas/advantages">' . t('Welcome Advantages') . '</a></li>',
-  );
+  $form['profile_promotions_link']['#attributes']['class'][] = 'nav';
+  $form['profile_promotions_link']['#attributes']['class'][] = 'nav-tabs';
+  $promotions = $form['profile_promotions_link']['#links']['promotions'];
+  $form['profile_promotions_link']['#links']['promotions lead'] = $promotions;
+  unset($form['profile_promotions_link']['#links']['promotions']);
+  $advantages = $form['profile_promotions_link']['#links']['advantages'];
+  $form['profile_promotions_link']['#links']['advantages lead'] = $advantages;
+  unset($form['profile_promotions_link']['#links']['advantages']);
 
   return $form;
 }
