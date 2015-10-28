@@ -2171,8 +2171,7 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 function culturefeed_bootstrap_form_culturefeed_uitpas_profile_advantages_filter_sort_alter(&$form, &$form_state) {
 
   // Profile advantages.
-  $form['profile_advantagess_link']['#attributes']['class'][] = 'nav';
-  $form['profile_advantages_link']['#attributes']['class'][] = 'nav-tabs';
+  $form['profile_advantages_link']['#attributes']['class'][] = 'nav nav-tabs';
   $promotions = $form['profile_advantages_link']['#links']['promotions'];
   $form['profile_advantages_link']['#links']['promotions lead'] = $promotions;
   unset($form['profile_advantages_link']['#links']['promotions']);
@@ -2186,8 +2185,7 @@ function culturefeed_bootstrap_form_culturefeed_uitpas_profile_advantages_filter
 function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
 
   // Profile promotions.
-  $form['profile_promotions_link']['#attributes']['class'][] = 'nav';
-  $form['profile_promotions_link']['#attributes']['class'][] = 'nav-tabs';
+  $form['profile_promotions_link']['#attributes']['class'][] = 'nav nav-tabs';
   $promotions = $form['profile_promotions_link']['#links']['promotions'];
   $form['profile_promotions_link']['#links']['promotions lead'] = $promotions;
   unset($form['profile_promotions_link']['#links']['promotions']);
