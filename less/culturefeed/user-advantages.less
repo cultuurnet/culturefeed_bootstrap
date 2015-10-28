@@ -28,10 +28,8 @@
 }
 
 // Filters regions top
-#advantages-filter-sort,
-#promotions-filter-sort,
-#profile-advantages-filter-sort,
-#profile-promotions-filter-sort {
+[id*='advantages-filter-sort'],
+[id*='promotions-filter-sort'], {
   .form-radios,
   .form-checkboxes {
     .clearfix();
@@ -46,12 +44,18 @@
       border: 1px solid @gray-lighter;
       border-radius: @border-radius-base;
       float: left;
-      margin-left: 3px;
-      margin-right: 3px;
+      margin: 0 3px 5px;
       padding: 5px 6px;
+    }
+    .ajax-progress {
+      margin: 0 3px 0 -2px;
     }
     input {
       margin: 3px 5px 0 0;
+      &[checked='checked'] + label {
+        color: @brand-primary;
+        font-weight: bold;
+      }
     }
   }
 }
