@@ -8,29 +8,31 @@
       <?php elseif ($type == 'google'): ?>
       <i class="fa fa-google-plus-square"></i> <?php print t('Google') ?>
     <?php endif; ?>
-    </h5>
     <?php if ($connect_link && !$delete_link) : ?>
-    <?php print $connect_link ?>
+    : <?php print $connect_link ?>
     <?php endif; ?>
     <?php if ($delete_link) : ?>
-    <?php print $delete_link ?>
+    : <?php print $delete_link ?>
     <?php endif; ?>
+    </h5> 
   </div>
 </div>
   <?php if ($picture || $name || $nick || $publish_link) : ?>
   <div class="inside clearfix">
-    <div class="col-sm-3 user-accounts-profile">
-      <?php if ($picture) : ?>
-        <div class="profile-pic"><?php print $picture ?></div>
-      <?php endif; ?>
-      <?php if ($name) : ?>
+    <?php if ($name) : ?>
         <span class="hidden"><?php print $name ?></span>
       <?php endif; ?>
       <?php if ($nick) : ?>
+      <div class="col-md-12 user-accounts-profile"> 
         <div class="profile-nick"><?php print $nick ?></div>
+      </div>
+      <?php endif; ?>
+    <div class="col-md-1 user-accounts-profile">      
+      <?php if ($picture) : ?>
+        <div class="profile-pic"><?php print $picture ?></div>
       <?php endif; ?>
     </div>
-    <div class="col-sm-8 user-accounts--privacy">
+    <div class="col-md-11 user-accounts--privacy">
       <?php if (!empty($publish_form)) : ?>
         <?php print $publish_form ?>
       <?php endif; ?>

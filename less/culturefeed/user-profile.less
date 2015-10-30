@@ -29,18 +29,12 @@ table {
   }
 }
 .user-accounts {
-  .profile-pic {
-    display: inline-block;
-    margin: 0 10px 10px 0;
-  }
-  .profile-nick {
-    display: inline-block;
-    overflow: hidden;
-    margin-bottom: 10px;
+  h5 a {
+    font-weight: normal;
   }
   .inside {
-    margin-top: 20px;
-    padding: 15px 0;
+    margin-top: 5px;
+    padding: 15px 0 5px;
     background-color: @gray-lighter;
     position: relative;
     &:before {
@@ -55,15 +49,33 @@ table {
       border-bottom: 15px solid @gray-lighter;
     }
   }
+  .profile-pic {
+    margin: 0 10px 10px 0;
+  }
+  .profile-nick {
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .form-type-checkbox {
+    position: relative;
+  }
+  input[type='checkbox'] {
+    margin: 0;
+    position: absolute;
+    top: 3px;
+    left: 0;
+  }
 }
 .date {
   margin: 10px 0;
 }
 .statement {
+  color: @gray-light;
   display: block;
+  margin-bottom: 0;
+  margin-top: 0;
   overflow: hidden;
-  font-size: .85em;
-  padding-top: 9px;
+  vertical-align: middle;
 }
 .btn-primary + #remove-account {
   display: inline-block;
