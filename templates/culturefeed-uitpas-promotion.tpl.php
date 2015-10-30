@@ -18,7 +18,9 @@
   <div class="col-xs-12 col-sm-8 col-md-9" role="main">
     <div class="clearfix">
       <?php if ($provider_raw): ?>
-      <p class="text-muted pull-left <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
+      <div class="provider-label">
+        <p class="text-muted pull-left <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
+      </div>
       <?php endif; ?>
       <div class="points pull-right"><span class="label label-primary"><?php print $points; ?></span></div>
     </div>
