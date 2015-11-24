@@ -2602,9 +2602,15 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   foreach ($passholder->cardSystemSpecific as $card_system_specific) {
 
     if ($card_system_specific->currentCard->uitpasNumber) {
-      $uitpas_numbers['items'][] = $card_system_specific->currentCard->uitpasNumber . ' (' . $card_system_specific->cardSystem->name . ')';
-    }
 
+      $output = $card_system_specific->currentCard->uitpasNumber . ' (' . $card_system_specific->cardSystem->name . ')';
+      if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
+        $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
+        $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
+      }
+      $uitpas_numbers['items'][] = $output;
+
+    }
   }
   $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . variable_get('culturefeed_uitpas_profile_details_uitpas_number', t('UiTPAS number(s)')) . ':</h3></div><div class="panel-body">';
   $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
@@ -2617,20 +2623,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   $vars['form_intro'] = variable_get('culturefeed_uitpas_profile_details_form_intro');
   $form = drupal_get_form('culturefeed_uitpas_profile_details_form');
   $vars['form'] = drupal_render($form);
-
-  $vars['status_title'] = t('Status');
-  $vars['kansen_statuut'] = '';
-  $vars['kansen_statuut_valid_end_date'] = '';
-  $vars['status_valid_till'] = '';
-
-  if ($card_system) {
-
-    $vars['kansen_statuut'] = $card_system->kansenStatuut;
-    $vars['kansen_statuut_valid_end_date'] = (time() < $card_system->kansenStatuutEndDate);
-    $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system->kansenStatuutEndDate)));
-    $vars['status_valid_till'] = '<label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
-
-  }
 
   if (count($passholder->memberships)) {
 
