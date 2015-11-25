@@ -2615,7 +2615,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . variable_get('culturefeed_uitpas_profile_details_uitpas_number', t('UiTPAS number(s)')) . ':</h3></div><div class="panel-body">';
   $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
   $uitpas_numbers_output .= '</div><div class="panel-footer">';
-  $uitpas_numbers_output .= l(t('Register new UiTpas'), 'register_uitpas');
   $uitpas_numbers_output .= '</div>';
   $vars['uitpas_numbers'] = $uitpas_numbers_output;
 
