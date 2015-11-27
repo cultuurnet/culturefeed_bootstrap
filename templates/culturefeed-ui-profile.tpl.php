@@ -38,10 +38,23 @@
             <?php print $heading_info; ?>
           </p>
         <?php endif; ?>
+
+        <?php if ($gender) : ?>
+          <p><?php print $gender ?></p>
+        <?php endif; ?>
+
+        <?php if ($age) : ?>
+          <p><?php print $age?> jaar</p>
+        <?php endif; ?>
+
         <?php if ($bio): ?>
           <p>
             <?php print $bio;?>
           </p>
+        <?php endif; ?>
+
+        <?php if ($city) : ?>
+          <p><?php print $city ?></p>
         <?php endif; ?>
 
       </div>

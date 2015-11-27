@@ -3,11 +3,11 @@
 /**
  * Load FontAwesome 4.3.0 through CDN
  */
-
+ 
 $element = array(
   '#tag' => 'link',
   '#attributes' => array(
-    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 
     'rel' => 'stylesheet',
     'type' => 'text/css',
   ),
@@ -262,284 +262,19 @@ function culturefeed_bootstrap_preprocess_culturefeed_actor(&$variables) {
   _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
 }
 
-
 /**
- * Implements hook_form_{culturefeed_ui_page_profile_edit_form}_alter().
+ * Implements hook_form_culturefeed_ui_privacy_settings_form_alter().
+ *
+ * @param array $form
+ *   The form.
+ * @param array $form_state
+ *   The form state.
  */
-function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(&$form, &$form_state) {
+function culturefeed_bootstrap_form_culturefeed_ui_privacy_settings_form_alter(&$form, &$form_state) {
 
-  try {
-    $cf_account = DrupalCultureFeed::getLoggedInUser();
+  if (isset($form['#attached']['js'][0])) {
+    $form['#attached']['js'][0] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/privacy_tooltip.js';
   }
-  catch (Exception $e) {
-    watchdog_exception('culturefeed_ui', $e);
-    drupal_set_message(t('Error occurred'), 'error');
-    return;
-  }
-
-  unset($form['view-profile']);
-
-  // About me
-
-  // Firstname.
-  $form['givenName'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('About me') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a></span><div class="clearfix"></div></div><div class="panel-body"><div class="row"><div class="col-xs-6">',
-    '#suffix' => '</div>',
-    '#attributes' => array('placeholder' => array(t('First name'))),
-    '#type' => 'textfield',
-    '#title' => t('First name'),
-    '#default_value' => $cf_account->givenName,
-    '#weight' => '-299',
-  );
-
-  // Name.
-  $form['familyName'] = array(
-    '#prefix' => '<div class="col-xs-6">',
-    '#suffix' => '</div></div>',
-    '#attributes' => array('placeholder' => array(t('Family name'))),
-    '#type' => 'textfield',
-    '#title' => t('Family name'),
-    '#default_value' => $cf_account->familyName,
-    '#weight' => '-289',
-  );
-
-  // Bio
-  $form['bio'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Biography'),
-    '#default_value' => $cf_account->bio,
-    '#description' => t('Maximum 250 characters'),
-    '#weight' => '-279',
-  );
-
-  // Picture.
-  $form['picture']['#weight'] = -259;
-  /*$form['current_picture'] = array(
-    '#prefix' => '<div class="row"><div class="col-md-6"><div class="row"><div class="col-md-4">',
-    '#theme' => 'image',
-    '#path' => $cf_account->depiction . '?maxwidth=100&maxheight=100&crop=auto',
-    '#attributes' => array('class' => array('img-thumbnail')),
-    '#suffix' => '</div>',
-    '#weight' => '-269',
-
-  );
-
-  $form['picture'] = array(
-    '#prefix' => '<div class="col-md-8">',
-    '#suffix' => '</div></div></div></div><hr />',
-    '#type' => 'file',
-    '#size' => 26,
-    '#title' => t('Choose picture'),
-    '#weight' => '-259',
-  );*/
-
-  // Date of birth.
-  $form['dob'] = array(
-    '#title' => t('Date of birth'),
-    '#type' => 'textfield',
-    '#default_value' => $cf_account->dob ? date('d/m/Y', $cf_account->dob) : '',
-    '#attributes' => array('placeholder' => array('01/01/1970')),
-    '#size' => 10,
-    '#weight' => '-249',
-  );
-
-    // Gender.
-  $form['gender'] = array(
-    '#suffix' => '</div></div>',
-    '#type' => 'radios',
-    '#title' => t('Gender'),
-    '#options' => array('male' => t('Male'), 'female' => t('Female')),
-    '#default_value' => $cf_account->gender,
-    '#weight' => '-239',
-  );
-
-  // Contact
-
-    // Address
-  $form['street'] = array(
-    '#prefix' => '<div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#contact">' . ' ' . t('Address') . '</a></h4></div><div id="contact" class="panel-collapse collapse in"><div class="panel-body">',
-    '#suffix' => '</li>',
-    '#type' => 'textfield',
-    '#title' => t('Street and number'),
-    '#default_value' => $cf_account->street,
-    '#weight' => '-199',
-  );
-  $form['zip'] = array(
-    '#prefix' => '<div class="row"><div class="col-xs-2">',
-    '#suffix' => '</div>',
-    '#type' => 'textfield',
-    '#title' => t('Zipcode'),
-    '#default_value' => $cf_account->zip,
-    '#weight' => '-189',
-  );
-  $form['city'] = array(
-    '#prefix' => '<div class="col-xs-10">',
-    '#suffix' => '</div></div>',
-    '#type' => 'textfield',
-    '#title' => t('City'),
-    '#default_value' => $cf_account->city,
-    '#weight' => '-179',
-  );
-  $form['country'] = array(
-    '#suffix' => '</div></div></div>',
-    '#type' => 'select',
-    '#options' => country_get_list(),
-    '#title' => t('Country'),
-    '#default_value' => !empty($cf_account->country) ? $cf_account->country : 'BE',
-    '#weight' => '-169',
-  );
-
-  // Privacy settings
-
-  $form['givenNamePrivacy'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#privacy">' . ' ' . t('Privacy settings') . '</a></h4></div><div id="privacy" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'first name\' in public profile'),
-    //'#title' => t('Hide \'first name\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->givenName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-99',
-  );
-
-  $form['familyNamePrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'family name\' in public profile'),
-    //'#title' => t('Hide \'family name\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->familyName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-89',
-  );
-
-  $form['genderPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'gender\' in public profile'),
-     //'#title' => t('Hide \'gender\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->gender == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-79',
-
-  );
-
-  $form['homeAddressPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'address\' in public profile'),
-     //'#title' => t('Hide \'address\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->homeAddress == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-69',
-  );
-
-  $form['dobPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'date of birth\' in public profile'),
-     //'#title' => t('Hide \'date of birth\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->dob == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-59',
-  );
-
-  $form['bioPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li></ul></div></div>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'biography\' in public profile'),
-    //'#title' => t('Hide \'biography\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->bio == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-49',
-  );
-
-   // Language settings - Default language
-
-  $form['preferredLanguage'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#language">' . ' ' . t('Language settings') . '</a></h4></div><div id="language" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
-    '#type' => 'select',
-    '#default_value' => !empty($cf_account->preferredLanguage) ? $cf_account->preferredLanguage : '',
-    '#title' => t('Preferred language'),
-    '#options' => array(
-      'nl' => t('Dutch'),
-      'fr' => t('French'),
-      'en' => t('English'),
-      'de' => t('German'),
-    ),
-    '#weight' => '-9',
-    '#suffix' => '</div></div>',
-  );
-
-  $form['submit'] = array(
-    '#prefix' => '<hr />',
-    '#type' => 'submit',
-    '#value' => t('Save'),
-  );
-
-  return $form;
-}
-
-/**
- * Implements hook_form_{culturefeed_ui_page_account_edit_form}_alter().
- */
-function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(&$form, &$form_state) {
-
-  try {
-    $cf_account = DrupalCultureFeed::getLoggedInUser();
-  }
-  catch (Exception $e) {
-    watchdog_exception('culturefeed_ui', $e);
-    drupal_set_message(t('An error occurred while loading your account, please try again later.'));
-    return;
-  }
-
-  $destination = url('culturefeed/account/edit', array('absolute' => TRUE, 'query' => array('closepopup' => 'true')));
-
-  $url = DrupalCultureFeed::getUrlChangePassword($cf_account->id, $destination);
-
-  $options = array('attributes' => array('class' => array('culturefeedconnect')), 'query' => drupal_get_destination());
-
-  unset($form['view-profile']);
-  unset($form['remove_account']);
-
-
-  $form['nick'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('My UiTiD') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a> | <i class="fa fa-trash-o"></i> <a href="/culturefeed/removeaccount" class="profile-edit-link">'. t('Delete account') . '</a></span><div class="clearfix"></div></div><div class="panel-body">',
-    '#type' => 'textfield',
-    '#title' => t('Username'),
-    '#disabled' => TRUE,
-    '#value' => $cf_account->nick,
-    '#weight' => '-999',
-  );
-
-  $form['mbox'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Email address'),
-    '#default_value' => $cf_account->mbox,
-    '#required' => TRUE,
-    '#weight' => '-989',
-  );
-
-  $form['submit'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-6">',
-    '#type' => 'submit',
-    '#value' => t('Edit e-mail'),
-    '#attributes' => array('class' => array('btn-primary')),
-    '#weight' => '-979',
-  );
-
-    $form['change_password'] = array(
-    '#suffix' => '</div></div></div>',
-    '#markup' => l(t('Change password'), $url, $options),
-    '#weight' => '-969',
-  );
-
-  return $form;
 }
 
 /**
@@ -2219,12 +1954,16 @@ function culturefeed_bootstrap_file_managed_file($variables) {
     $element['filename']['#markup'] = '<div class="col-md-4">';
     $element['filename']['#markup'] .= theme('image_style', array('style_name' => 'thumbnail', 'path' => $element['#file']->uri, 'attributes' => array('class' => array('img-thumbnail'))));
     $element['filename']['#markup'] .= '</div>';
+    $element['remove_button']['#prefix'] = '<div class="col-md-8"><span class="input-group-btn">';
+    $element['remove_button']['#suffix'] = '</span></div>';
+    $element['remove']['#prefix'] = '<div class="col-md-8">';
+    $element['remove']['#suffix'] = '</div>';
   }
   else {
     $element['filename']['#markup'] = '';
-    $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
+    $element['upload_button']['#prefix'] = '<div class="col-md-8"><span class="input-group-btn">';
     $element['upload_button']['#suffix'] = '</span></div>';
-    $element['upload']['#prefix'] = '<div class="col-md-6">';
+    $element['upload']['#prefix'] = '<div class="col-md-8">';
     $element['upload']['#suffix'] = '</div>';
   }
 
@@ -2237,14 +1976,14 @@ function culturefeed_bootstrap_file_managed_file($variables) {
   }
 
   // This wrapper is required to apply JS behaviors and CSS styling.
-  $attributes['class'] = array('row', 'form-managed-file');
+  $attributes['class'] = array('form-managed-file');
 
-  $output = '<div class="row"><div class="col-md-6">';
+  $output = '<div class="row">';
   $output .= '<div' . drupal_attributes($attributes) . '>';
   $output .= drupal_render_children($element);
   $output .= '</div>';
   $output .= render($hidden_elements);
-  $output .= '</div></div>';
+  $output .= '</div>';
 
   return $output;
 }
@@ -2301,6 +2040,51 @@ function culturefeed_bootstrap_preprocess_page(&$variables) {
   else {
     $variables['content_column_class'] = ' class="col-sm-12"';
   }
+}
+
+/**
+ * Preprocess the culturefeed ui account edit form.
+ *
+ * @param array $vars
+ *   The variables.
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_ui_account_edit_form(&$vars) {
+
+  $form = $vars['form'];
+
+  $vars['nick'] = drupal_render($form['nick']);
+  $vars['mbox'] = drupal_render($form['mbox']);
+  $vars['change_password'] = drupal_render($form['change_password']);
+  $vars['submit'] = drupal_render($form['submit']);
+  $vars['main_form'] = drupal_render_children($form);
+
+}
+
+/**
+ * Preprocess the culturefeed ui profile edit form.
+ *
+ * @param array $vars
+ *   The variables.
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_ui_profile_edit_form(&$vars) {
+
+  $form = $vars['form'];
+
+  $vars['givenName'] = drupal_render($form['givenName']);
+  $vars['familyName'] = drupal_render($form['familyName']);
+  $vars['dob'] = drupal_render($form['dob']);
+  $vars['gender'] = drupal_render($form['gender']);
+  $vars['picture'] = drupal_render($form['picture']);
+  $vars['street'] = drupal_render($form['street']);
+  $vars['zip'] = drupal_render($form['zip']);
+  $vars['city'] = drupal_render($form['city']);
+  $vars['country'] = drupal_render($form['country']);
+  $vars['bio'] = drupal_render($form['bio']);
+  if (variable_get('culturefeed_ui_profile_show_language_settings', FALSE)) {
+    $vars['preferredLanguage'] = $form['preferredLanguage'];
+  }
+  $vars['main_form'] = drupal_render_children($form);
+
 }
 
 /**
@@ -2370,65 +2154,46 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
     drupal_add_js($file);
   }
 
+  // Add a different version of the culturefeed ui synchronization link.
+  $synchronization_file = drupal_get_path('module', 'culturefeed_ui') . '/js/synchronization.js';
+  if (isset($javascript[$synchronization_file])) {
+    $javascript[$synchronization_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/synchronization.js';
+  }
+
+  // Add a different version of the culturefeed ui account edit tooltip.
+  $account_edit_tooltip_file = drupal_get_path('module', 'culturefeed_ui') . '/js/account_edit_tooltip.js';
+  if (isset($javascript[$account_edit_tooltip_file])) {
+    $javascript[$account_edit_tooltip_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/account_edit_tooltip.js';
+  }
+
 }
 
-function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
-  // Promotions.
-  $form['promotions_link'] = array(
-    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
+function culturefeed_bootstrap_form_culturefeed_uitpas_profile_advantages_filter_sort_alter(&$form, &$form_state) {
 
-  $form['promotions_link']['promotions'] = array(
-    '#markup' => '<li class="active lead"><a href="/promotions">' . t('Promotions') . '</a></li>',
-  );
-
-  $form['promotions_link']['advantages'] = array(
-    '#markup' => '<li class="lead"><a href="/advantages">' . t('Welcome Advantages') . '</a></li>',
-  );
-
-  $form['profile_promotions_link'] = array(
-    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
-}
-
-function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
-  // Profile promotions.
-  $form['profile_promotions_link'] = array(
-    '#prefix' => '<div id="profile_promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
-
-  $form['profile_promotions_link']['promotions'] = array(
-    '#markup' => '<li class="active lead"><a href="/culturefeed/profile/uitpas/promotions">' . t('Promotions') . '</a></li>',
-  );
-
-  $form['profile_promotions_link']['advantages'] = array(
-    '#markup' => '<li class="lead"><a href="/culturefeed/profile/uitpas/advantages">' . t('Welcome Advantages') . '</a></li>',
-  );
+  // Profile advantages.
+  $form['profile_advantages_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['profile_advantages_link']['#links']['promotions'];
+  $form['profile_advantages_link']['#links']['promotions lead'] = $promotions;
+  unset($form['profile_advantages_link']['#links']['promotions']);
+  $advantages = $form['profile_advantages_link']['#links']['advantages'];
+  $form['profile_advantages_link']['#links']['advantages lead'] = $advantages;
+  unset($form['profile_advantages_link']['#links']['advantages']);
 
   return $form;
 }
 
-/**
- * Implements hook_culturefeed_ui_profile_box_dropdown_items_alter().
- */
-function culturefeed_bootstrap_culturefeed_ui_profile_box_dropdown_items_alter(&$items, CultureFeed_User $cf_user) {
+function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
 
-  if (module_exists('culturefeed_uitpas')) {
-    unset($items['settings']);
+  // Profile promotions.
+  $form['profile_promotions_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['profile_promotions_link']['#links']['promotions'];
+  $form['profile_promotions_link']['#links']['promotions lead'] = $promotions;
+  unset($form['profile_promotions_link']['#links']['promotions']);
+  $advantages = $form['profile_promotions_link']['#links']['advantages'];
+  $form['profile_promotions_link']['#links']['advantages lead'] = $advantages;
+  unset($form['profile_promotions_link']['#links']['advantages']);
 
-    $items['my-uitpas'] = array(
-      'data' => 'UiTPAS',
-      'class' => 'my-uitpas',
-      'children' => array(
-        array('data' => l('Mijn voordelen', 'culturefeed/profile/uitpas/promotions'),),
-      ),
-      'weight' => 10,
-    );
-  }
-
+  return $form;
 }
 
 function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
@@ -2700,3 +2465,186 @@ function culturefeed_bootstrap_preprocess_culturefeed_calendar_button_hover(&$va
     'class' => array('btn', 'btn-primary', 'btn-block'),
   );
 }
+
+/**
+ * Override image output advantage for gallery
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_advantage(&$vars) {
+
+  $advantage = $vars['advantage'];
+
+  // Image.
+  $vars['image'] = '';
+  $vars['images_list'] = '';
+  $images = array();
+  if (isset($advantage->pictures[0])) {
+    $vars['image'] = theme_image(array('path' => $advantage->pictures[0], 'attributes' => array()));
+    foreach ($advantage->pictures as $key => $picture) {
+      $images[] = l(
+        theme('image', array('path' => $advantage->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        $advantage->pictures[$key],
+        array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
+      );
+    }
+    $vars['images_list'] = theme('item_list', array('items' => $images));
+  }
+
+}
+
+/**
+ * Override image output promotion for gallery
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
+  $promotion = $vars['promotion'];
+
+  // Image.
+  $vars['image'] = '';
+  $vars['images_list'] = '';
+  $images = array();
+  if (isset($promotion->pictures[0])) {
+    $vars['image'] = theme('image', array('path' => $promotion->pictures[0] . '?maxwidth=300&max-height=300', 'attributes' => array()));
+    foreach ($promotion->pictures as $key => $picture) {
+      $images[] = l(
+        theme('image', array('path' => $promotion->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        $promotion->pictures[$key],
+        array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
+      );
+    }
+    $vars['images_list'] = theme('item_list', array('items' => $images));
+  }
+
+}
+
+/**
+ * Add bootstrap class to user register button
+ *
+ */
+function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
+
+  $prefix = variable_get('culturefeed_uitpas_user_register_intro_text', '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>');
+  $prefix .= '<h2><span>' . t('Register your UiTpas') . '</span></h2>';
+
+  $form['prefix']['#markup'] = $prefix;
+
+  // Fields
+  $form['username']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['username']['#suffix'] = '</div></div>';
+  $form['uitpasnumber']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['uitpasnumber']['#suffix'] = '</div></div>';
+  $form['dob']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['dob']['#suffix'] = '</div></div>';
+
+  // Button
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+
+}
+
+/**
+ * Preprocess variables for culturefeed_ui_profile_menu to bootstrap styles
+ */
+function culturefeed_bootstrap_culturefeed_ui_profile_shortcuts() {
+
+  $build = array(
+    '#attributes' => array(
+      'class' => array('culturefeed-profile-shortcuts nav nav-tabs'),
+    ),
+    '#theme' => 'links',
+  );
+
+  $build['#links'] = array(
+    'personal_data' => array(
+      'title' => t('Personal data'),
+      'href' => 'culturefeed/profile/edit',
+    ),
+    'login_data' => array(
+      'title' => t('Login data'),
+      'href' => 'culturefeed/account/edit',
+    ),
+    'privacy_settings' => array(
+      'title' => t('Privacy settings'),
+      'href' => 'culturefeed/profile/privacy',
+    ),
+  );
+
+  return drupal_render($build);
+
+}
+
+/**
+ * Implements hook_preprocess_preprocess_culturefeed_uitpas_profile_details().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$vars) {
+  
+  $uitpas_user = $vars['uitpas_user'];
+  // @codingStandardsIgnoreStart
+  /** @var CultureFeed_Uitpas_Passholder $passholder */
+  // @codingStandardsIgnoreEnd
+  $passholder = $uitpas_user->passholder;
+  // @codingStandardsIgnoreStart
+  /** @var CultureFeed_Uitpas_Passholder_CardSystemSpecific $card_system */
+  // @codingStandardsIgnoreEnd
+  $card_system = $uitpas_user->card_system;
+
+  // Title.
+  $vars['uitpas_title'] = variable_get('culturefeed_uitpas_profile_details_title', t('My UiTPAS'));
+
+  // Intro.
+  $vars['intro'] = variable_get('culturefeed_uitpas_profile_details_intro');
+
+  // Card numbers.
+  $uitpas_numbers = array(
+    'items' => array(),
+    'type' => 'ul',
+    'attributes' => array(),
+    'title' => '',
+  );
+  foreach ($passholder->cardSystemSpecific as $card_system_specific) {
+
+    if ($card_system_specific->currentCard->uitpasNumber) {
+
+      $output = $card_system_specific->currentCard->uitpasNumber . ' (' . $card_system_specific->cardSystem->name . ')';
+      if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
+        $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
+        $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
+      }
+      $uitpas_numbers['items'][] = $output;
+
+    }
+  }
+  $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . variable_get('culturefeed_uitpas_profile_details_uitpas_number', t('UiTPAS number(s)')) . ':</h3></div><div class="panel-body">';
+  $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
+  $uitpas_numbers_output .= '</div><div class="panel-footer">';
+  $uitpas_numbers_output .= l(t('Register new UiTpas'), 'register_uitpas');
+  $uitpas_numbers_output .= '</div>';
+  $vars['uitpas_numbers'] = $uitpas_numbers_output;
+
+  $vars['form_title'] = variable_get('culturefeed_uitpas_profile_details_form_title', t('My personal data'));
+  $vars['form_intro'] = variable_get('culturefeed_uitpas_profile_details_form_intro');
+  $form = drupal_get_form('culturefeed_uitpas_profile_details_form');
+  $vars['form'] = drupal_render($form);
+
+  if (count($passholder->memberships)) {
+
+    $memberships = array();
+    foreach ($passholder->memberships as $membership) {
+
+      if (isset($membership->association->association)) {
+
+        $endate = t('valid till !date', array('!date' => date('j/m/Y', $membership->endDate)));
+        $memberships[] = '<label>' . $membership->association . ':</label> ' . $endate;
+
+      }
+
+    }
+    $vars['memberships'] = implode('<br />', $memberships);
+
+  }
+  else {
+    $vars['memberships'] = '';
+  }
+
+  $vars['outro'] = variable_get('culturefeed_uitpas_profile_details_outro');
+ 
+}
+
