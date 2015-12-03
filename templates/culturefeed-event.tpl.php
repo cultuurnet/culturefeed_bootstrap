@@ -95,6 +95,18 @@
       </td></tr>
       <?php endif; ?>
 
+      <php ?>
+
+      <?php if (isset($uitpas_info)):  ?>
+        <?php if ($uitpas_info->numberOfPoints > 0.00): ?>
+          <tr><td><strong class="hidden-xs hidden-sm"><?php print t('UiTPAS'); ?></strong><i class="fa fa-credit-card hidden-md hidden-lg"></i></td>
+            <td>
+              <?php echo t("Collect") . " " . $uitpas_info->numberOfPoints . " " . t(" point(s)"); ?></span>
+            </td>
+          </tr>
+        <?php endif; ?>
+      <?php endif; ?>
+
       <?php if (!empty($price)): ?>
       <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Price'); ?></strong><i class="fa fa-eur hidden-md hidden-lg"></i></td>
       <td>
