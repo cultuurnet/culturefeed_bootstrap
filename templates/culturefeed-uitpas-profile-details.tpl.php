@@ -5,7 +5,7 @@
  * Default theme implementation to display culturefeed uitpas profile details.
  *
  * Available variables:
- * - $uitpas_title.
+ * - $uitpas_numbers_title.
  * - $uitpas_numbers.
  * - $intro.
  * - $intro.
@@ -26,7 +26,6 @@
  * - $status_title.
  * - $status_valid_till.
  * - $memberships.
- * - $outro.
  */
 ?>
 
@@ -34,7 +33,6 @@
   <p class="intro"><?php print $intro; ?></p>
 <?php endif; ?>
 
-<h2><?php print $uitpas_title; ?> </h2>
 <div class="uitpas_numbers panel panel-default"><?php print $uitpas_numbers; ?></div>
 
 <h3><?php print $form_title; ?></h3>
@@ -45,10 +43,6 @@
   <?php endif; ?>
 
   <?php print $form; ?>
-
-  <?php if ($outro): ?>
-  <p><?php print $outro; ?></p>
-  <?php endif; ?>
 
 </div>
 

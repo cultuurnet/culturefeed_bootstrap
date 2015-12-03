@@ -2522,7 +2522,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
  */
 function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
 
-  $prefix = variable_get('culturefeed_uitpas_user_register_intro_text', '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>');
+  $prefix = '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>';
   $prefix .= '<h2><span>' . t('Register your UiTpas') . '</span></h2>';
 
   $form['prefix']['#markup'] = $prefix;
@@ -2586,12 +2586,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   // @codingStandardsIgnoreEnd
   $card_system = $uitpas_user->card_system;
 
-  // Title.
-  $vars['uitpas_title'] = variable_get('culturefeed_uitpas_profile_details_title', t('My UiTPAS'));
-
-  // Intro.
-  $vars['intro'] = variable_get('culturefeed_uitpas_profile_details_intro');
-
   // Card numbers.
   $uitpas_numbers = array(
     'items' => array(),
@@ -2612,14 +2606,12 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
 
     }
   }
-  $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . variable_get('culturefeed_uitpas_profile_details_uitpas_number', t('UiTPAS number(s)')) . ':</h3></div><div class="panel-body">';
+  $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . $vars['uitpas_numbers_title'] . ':</h3></div><div class="panel-body">';
   $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
   $uitpas_numbers_output .= '</div><div class="panel-footer">';
   $uitpas_numbers_output .= '</div>';
   $vars['uitpas_numbers'] = $uitpas_numbers_output;
 
-  $vars['form_title'] = variable_get('culturefeed_uitpas_profile_details_form_title', t('My personal data'));
-  $vars['form_intro'] = variable_get('culturefeed_uitpas_profile_details_form_intro');
   $form = drupal_get_form('culturefeed_uitpas_profile_details_form');
   $vars['form'] = drupal_render($form);
 
@@ -2642,8 +2634,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   else {
     $vars['memberships'] = '';
   }
-
-  $vars['outro'] = variable_get('culturefeed_uitpas_profile_details_outro');
  
 }
 
