@@ -1,0 +1,183 @@
+/**
+ * @file
+ * Culturefeed Bootstrap theme for the Search UI module.
+ */
+
+/* collapse city-facet-form when a city has been chosen */
+
+#culturefeed-search-ui-proximity-distance-form {
+  ~#culturefeed-search-ui-city-facet-form {
+    .collapse();
+  }
+}
+
+/* theme culturefeed search ui blocks */
+
+.region-sidebar-first {
+  .block-culturefeed-search-ui,
+  .block-culturefeed-agenda {
+    margin-bottom: 40px;
+    .input-group-btn button {
+      border-left: none;
+    }
+  }
+
+  // reset margin for related facets when directly adjacent
+  #block-culturefeed-search-ui-facet-flandersregion + #block-culturefeed-search-ui-facet-city,
+  #block-culturefeed-search-ui-facet-eventtype + #block-culturefeed-search-ui-facet-theme {
+    margin-top: -40px;
+  }
+}
+
+.block-culturefeed-search-ui ul {
+  .list-unstyled();
+  ul {
+    margin-left: 10px;
+    display: none;
+  }
+  .facet-label.active ~ ul,
+  ul.active-parent,
+  li.active-parent > ul {
+    display: block;
+  }
+}
+
+.region-sidebar-second {
+  .block {
+    margin-bottom: 40px;
+    position: relative;
+  }
+}
+
+.facet-label {
+  border-bottom: 1px solid #DDD;
+  padding: @padding-small-vertical 0;
+  &.active {
+    background: @gray;
+    border-radius: @border-radius-small;
+    color: @gray-lighter;
+    margin: @padding-small-vertical -@padding-small-horizontal;
+    padding: @padding-small-vertical @padding-small-horizontal;
+    a {
+      color: @gray-light;
+      font-weight: bold;
+      &:hover {
+        color: @gray-lighter;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/* make facets responsive */
+
+#facet-container {
+  .collapse();
+}
+
+@media (min-width: 768px) {
+  #facet-container {
+    display: block;
+  }
+}
+
+/* search active filters & suggestions block */
+
+#block-culturefeed-search-ui-culturefeed-search-activefilters {
+  font-size: 90%;
+  .block-title {
+    font-size: 125%;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  span.filter,
+  span.suggestion {
+    display: inline-block;
+    padding-right: 15px;
+  }
+  a.filter-remove {
+    font-size: 125%;
+  }
+  a.remove-all {
+    display: inline-block;
+  }
+}
+
+/* theme search_ui forms */
+
+.block-culturefeed-search-ui .form-group,
+.block-culturefeed-search-ui .form-submit,
+.block-culturefeed-agenda .form-group,
+.block-culturefeed-agenda .form-submit, {
+  margin-bottom: 0;
+  margin-top: 0;
+  @media (max-width: @screen-sm) {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+}
+
+/* result header (count + sort) */
+
+.cf-result-count {
+  padding: 4px 0;
+}
+
+.cf-sort-label {
+  display: inline-block;
+  padding: 4px 10px;
+}
+
+.cf-sort-links {
+  .active {
+    font-weight: bold;
+  }
+}
+
+/* result footer (count + pagination) */
+
+.pagination,
+.result-count-bottom {
+  margin: 0;
+  padding-bottom: 21px;
+  @media (max-width: @screen-sm) {
+    float: left !important;
+  }
+}
+
+/* add vlieg label (for kids) */
+
+#block-culturefeed-search-ui-facet-age-range {
+  background: url('/profiles/culturefeed_kickstart/themes/culturefeed_bootstrap/img/vlieg.png') top right no-repeat;
+  background-position-y: -3px;
+  background-size: 30px 30px;
+}
+
+/*
+ * Correct styling for Date Range Picker.
+ */
+
+.daterangepicker .calendar.left,
+.daterangepicker .calendar.right {
+  position: inherit;
+  width: auto;
+}
+
+.daterangepicker .form-group {
+  margin-top: 0;
+}
+
+.specific-date {
+  width: 100%;
+}
+
+.specific-date .fa-calendar {
+  float: right;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+
+.daterangepicker.dropdown-menu {
+  margin-top: -22px;
+  margin-left: 6px;
+}

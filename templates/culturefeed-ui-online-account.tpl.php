@@ -1,40 +1,42 @@
-<p>
-  <!-- @start TYPES -->
-  <?php if ($type == 'facebook') : ?>
-    <span class="lead"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span> <?php print $type ?></span> :
-    <?php elseif ($type == 'twitter'): ?>
-    <span class="lead"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span> <?php print $type ?></span> :
-    <?php elseif ($type == 'google'): ?>
-    <span class="lead"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-google-plus fa-stack-1x fa-inverse"></i></span> <?php print $type ?></span> :
+<div class="row"> 
+  <div class="col-xs-12">
+    <h5>
+    <?php if ($type == 'facebook') : ?>
+      <i class="fa fa-facebook-square"></i> <?php print t('Facebook') ?>
+      <?php elseif ($type == 'twitter'): ?>
+      <i class="fa fa-twitter-square"></i> <?php print t('Twitter') ?>
+      <?php elseif ($type == 'google'): ?>
+      <i class="fa fa-google-plus-square"></i> <?php print t('Google') ?>
+    <?php endif; ?>
+    <?php if ($connect_link && !$delete_link) : ?>
+    : <?php print $connect_link ?>
+    <?php endif; ?>
+    <?php if ($delete_link) : ?>
+    : <?php print $delete_link ?>
+    <?php endif; ?>
+    </h5> 
+  </div>
+</div>
+  <?php if ($picture || $name || $nick || $publish_link) : ?>
+  <div class="inside clearfix">
+    <?php if ($name) : ?>
+        <span class="hidden"><?php print $name ?></span>
+      <?php endif; ?>
+      <?php if ($nick) : ?>
+      <div class="col-md-12 user-accounts-profile"> 
+        <div class="profile-nick"><?php print $nick ?></div>
+      </div>
+      <?php endif; ?>
+    <div class="col-md-1 user-accounts-profile">      
+      <?php if ($picture) : ?>
+        <div class="profile-pic"><?php print $picture ?></div>
+      <?php endif; ?>
+    </div>
+    <div class="col-md-11 user-accounts--privacy">
+      <?php if (!empty($publish_form)) : ?>
+        <?php print $publish_form ?>
+      <?php endif; ?>
+    </div>
+  </div>
   <?php endif; ?>
-  <!-- @end TYPES -->
   
-  <!-- @start TYPE DATA -->
-  <?php if ($picture) : ?>
-    <?php print $picture ?>
-  <?php endif; ?>
-  <?php if ($name) : ?>
-   <span class="hidden"><?php print $name ?></span>
-  <?php endif; ?>
-  <?php if ($nick) : ?>
-    <?php print $nick ?>
-  <?php endif; ?>      
-  <!-- @end TYPE DATA -->  
-    
-  <!-- @start LINK / UNLINK -->
-  <?php if ($connect_link && !$delete_link) : ?>
-    - <i class="fa fa-link"></i> <?php print $connect_link ?>
-  <?php endif; ?>
-  <?php if ($delete_link) : ?>
-    - <i class="fa fa-unlink"></i> <?php print $delete_link ?>
-  <?php endif; ?>
-  <!-- @end LINK / UNLINK -->
-</p>
- 
-<!-- @start PUBLISH -->
-<?php if ($publish_link) : ?>
-<p>
-<?php print $publish_link ?>
-</p>
-<?php endif; ?>
-<!-- @end PUBLISH -->  

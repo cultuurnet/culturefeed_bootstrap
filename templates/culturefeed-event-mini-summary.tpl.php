@@ -7,9 +7,9 @@
 
 <div class="row cf-search-summary">
   <div class="col-sm-9">
-  
+
     <div class="media">
-      
+
       <?php if ($thumbnail): ?>
         <a class="pull-left hidden-xs" href="<?php print $url ?>">
           <?php if (!empty($thumbnail)): ?>
@@ -20,8 +20,8 @@
         <a class="pull-left hidden-xs" href="<?php print $url ?>">
           <img class="media-object" src="/<?php print path_to_theme(); ?>/img/no-thumbnail.gif?width=75&height=75&crop=auto" width="75" height="75" />
         </a>
-      <?php endif; ?>      
-    
+      <?php endif; ?>
+
       <div class="media-body">
         <h4 class="media-heading">
           <?php if (!empty($agefrom)): ?>
@@ -41,11 +41,11 @@
             <?php print $when; ?>
           <?php endif;?>
         </p>
-    
+
       </div>
-    </div>    
+    </div>
   </div>
-  
+
   <div class="col-sm-3 hidden-xs">
 
     <?php if ($comment_count > 0): ?>

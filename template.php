@@ -1,31 +1,92 @@
 <?php
 
 /**
+ * Load FontAwesome 4.3.0 through CDN
+ */
+ 
+$element = array(
+  '#tag' => 'link',
+  '#attributes' => array(
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 
+    'rel' => 'stylesheet',
+    'type' => 'text/css',
+  ),
+);
+
+drupal_add_html_head($element, 'font-awesome');
+
+/**
  * Implements hook_{culturefeed_agenda_search_block_form}_alter().
  */
 function culturefeed_bootstrap_form_culturefeed_agenda_search_block_form_alter(&$form, &$form_state) {
+
+  // Calculate width for input elements.
+  $space_free = 10;
+  if (isset($form['when'])) {
+
+    $when_width = 2;
+    $space_free -= 2;
+    if (isset($form['category'])) {
+      $category_width = 2;
+      $space_free -= 2;
+    }
+
+  }
+  elseif (isset($form['category'])) {
+    $category_width = 3;
+    $space_free -= 3;
+  }
+
+  if (isset($form['location']) && isset($form['search'])) {
+    $where_width = $search_width = $space_free / 2;
+    // If width was a double, correct it.
+    if ($space_free % 2) {
+      $where_width -= 0.5;
+      $search_width += 0.5;
+    }
+  }
+  elseif (isset($form['location'])) {
+    $where_width = $space_free;
+  }
+  elseif (isset($form['search'])) {
+    $search_width = $space_free;
+  }
+
   $form['title'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-2 hidden-xs">',
+    '#prefix' => '<div class="row">',
     '#type' => 'item',
-    '#markup' => '<p class="lead"><i class="fa fa-search"></i>  ' . t('Search') . '</p>',
-    '#suffix' => '</div>',
+    '#markup' => '',
+    '#suffix' => '',
+    '#weight' => -200,
   );
-  $form['category']['#prefix'] = '<div class="col-sm-3 hidden-xs">';
-  $form['category']['#weight'] = '1';
-  $form['category']['#title'] = '';
-  $form['category']['#suffix'] = '</div>';
-  $form['search']['#prefix'] = '<div class="col-sm-5 col-xs-8">';
-  $form['search']['#weight'] = '2';
-  $form['search']['#title'] = '';
-  $form['search']['#autocomplete_path'] = '';
-  $form['search']['#suffix'] = '</div>';
-  $form['submit']['#attributes']['class'][] = 'btn-block';
-  $form['submit']['#prefix'] = '<div class="col-sm-2 col-xs-4">';
-  $form['submit']['#weight'] = '3';
+
+  if (isset($form['when'])) {
+    $form['when']['#prefix'] = '<div class="col-sm-' . $when_width . '">';
+    $form['when']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['category'])) {
+    $form['category']['#prefix'] = '<div class="col-sm-' . $category_width .'">';
+    $form['category']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['search'])) {
+    $form['search']['#prefix'] = '<div class="col-sm-' . $search_width .'">';
+    $form['search']['#suffix'] = '</div>';
+  }
+
+  if (isset($form['location'])) {
+    $form['location']['#prefix'] = '<div class="col-sm-' . $where_width .'">';
+    $form['location']['#suffix'] = '</div>';
+    $form['location']['nearby']['#prefix'] = '<div class="clearfix">';
+    $form['location']['nearby']['#suffix'] = '</div>';
+  }
+
+  // Style button.
+  $form['submit']['#attributes']['class'][] = 'btn-primary btn-block';
+  $form['submit']['#prefix'] = '<div class="col-sm-2">';
   $form['submit']['#suffix'] = '</div>';
-  $form['nearby']['#weight'] = '3';
-  $form['nearby']['#prefix'] = '</div><div class="row"><div class="visible-xs visible-sm clearfix"><div class="col-sm-10 col-sm-offset-2">';
-  $form['nearby']['#suffix'] = '</div></div></div>';
+
 }
 
 /**
@@ -93,45 +154,6 @@ function culturefeed_bootstrap_cleanup_calsum($calsum, $minlength, $classname) {
 }
 
 /**
- * Show a share link to facebook.
- */
-function culturefeed_bootstrap_share_link($item) {
-
-  if (method_exists($item, 'getId')) {
-    global $language;
-    $activity_content_type = culturefeed_get_content_type($item->getType());
-    $id = $item->getId();
-    $path = culturefeed_search_detail_path($item->getType(), $item->getId(), $item->getTitle($language->language));
-  }
-  else {
-
-    $activity_content_type = culturefeed_get_content_type(get_class($item));
-    $id = $item->id;
-    $path = $_GET['q'];
-
-  }
-
-  $share_url = url($path, array('absolute' => TRUE));
-
-  $options = array(
-    'attributes' => array(
-      'target' => '_blank',
-      'class' => 'link-icon facebook-share-link',
-    ),
-    'title' => t('Share on Facebook'),
-    'query' => array('u' => $share_url),
-    'html' => TRUE,
-  );
-
-  if (culturefeed_is_culturefeed_user()) {
-    $options['attributes']['rel'] = url('culturefeed/do/' . CultureFeed_Activity::TYPE_FACEBOOK .'/' . $activity_content_type . '/' . urlencode($id) . '/ajax');
-  }
-
-  return l(t('Share on Facebook'), 'http://nl-nl.facebook.com/share.php', $options);
-
-}
-
-/**
  * Helper preprocess function for the general agenda item variables.
  */
 function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
@@ -139,7 +161,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
   $item = $variables['item'];
   $entity = $item->getEntity();
 
-  if (!culturefeed_is_culturefeed_user()) {
+  if (module_exists('culturefeed_social') && !culturefeed_is_culturefeed_user()) {
     $variables['recommend_link'] = theme('culturefeed_social_login_required_message', array(
       'activity_type' => CultureFeed_Activity::TYPE_RECOMMEND,
       'item' => $item,
@@ -152,8 +174,6 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
       'url' => 'culturefeed/do/8/' . $item->getType() . '/' . $item->getId() . '/redirect',
     ));
   }
-
-  $variables['share_link'] = culturefeed_bootstrap_share_link($item);
 
   $variables['print_link'] = l(t('Print'), '', array('attributes' => array('onclick' => 'javascript: window.print(); return false;'), 'external' => TRUE));
 
@@ -211,9 +231,10 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
 
   // Ticket buttons.
   if (isset($variables['ticket_buttons']) && !empty($variables['ticket_buttons'])) {
+
     $buttons = $variables['ticket_buttons'];
     foreach ($buttons as $button) {
-      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-warning btn-xs reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
+      $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-primary reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
   }
@@ -241,284 +262,19 @@ function culturefeed_bootstrap_preprocess_culturefeed_actor(&$variables) {
   _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail($variables);
 }
 
-
 /**
- * Implements hook_form_{culturefeed_ui_page_profile_edit_form}_alter().
+ * Implements hook_form_culturefeed_ui_privacy_settings_form_alter().
+ *
+ * @param array $form
+ *   The form.
+ * @param array $form_state
+ *   The form state.
  */
-function culturefeed_bootstrap_form_culturefeed_ui_page_profile_edit_form_alter(&$form, &$form_state) {
+function culturefeed_bootstrap_form_culturefeed_ui_privacy_settings_form_alter(&$form, &$form_state) {
 
-  try {
-    $cf_account = DrupalCultureFeed::getLoggedInUser();
+  if (isset($form['#attached']['js'][0])) {
+    $form['#attached']['js'][0] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/privacy_tooltip.js';
   }
-  catch (Exception $e) {
-    watchdog_exception('culturefeed_ui', $e);
-    drupal_set_message(t('Error occurred'), 'error');
-    return;
-  }
-
-  unset($form['view-profile']);
-
-  // About me
-
-  // Firstname.
-  $form['givenName'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('About me') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a></span><div class="clearfix"></div></div><div class="panel-body"><div class="row"><div class="col-xs-6">',
-    '#suffix' => '</div>',
-    '#attributes' => array('placeholder' => array(t('First name'))),
-    '#type' => 'textfield',
-    '#title' => t('First name'),
-    '#default_value' => $cf_account->givenName,
-    '#weight' => '-299',
-  );
-
-  // Name.
-  $form['familyName'] = array(
-    '#prefix' => '<div class="col-xs-6">',
-    '#suffix' => '</div></div>',
-    '#attributes' => array('placeholder' => array(t('Family name'))),
-    '#type' => 'textfield',
-    '#title' => t('Family name'),
-    '#default_value' => $cf_account->familyName,
-    '#weight' => '-289',
-  );
-
-  // Bio
-  $form['bio'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Biography'),
-    '#default_value' => $cf_account->bio,
-    '#description' => t('Maximum 250 characters'),
-    '#weight' => '-279',
-  );
-
-  // Picture.
-  $form['picture']['#weight'] = -259;
-  /*$form['current_picture'] = array(
-    '#prefix' => '<div class="row"><div class="col-md-6"><div class="row"><div class="col-md-4">',
-    '#theme' => 'image',
-    '#path' => $cf_account->depiction . '?maxwidth=100&maxheight=100&crop=auto',
-    '#attributes' => array('class' => array('img-thumbnail')),
-    '#suffix' => '</div>',
-    '#weight' => '-269',
-
-  );
-
-  $form['picture'] = array(
-    '#prefix' => '<div class="col-md-8">',
-    '#suffix' => '</div></div></div></div><hr />',
-    '#type' => 'file',
-    '#size' => 26,
-    '#title' => t('Choose picture'),
-    '#weight' => '-259',
-  );*/
-
-  // Date of birth.
-  $form['dob'] = array(
-    '#title' => t('Date of birth'),
-    '#type' => 'textfield',
-    '#default_value' => $cf_account->dob ? date('d/m/Y', $cf_account->dob) : '',
-    '#attributes' => array('placeholder' => array('01/01/1970')),
-    '#size' => 10,
-    '#weight' => '-249',
-  );
-
-    // Gender.
-  $form['gender'] = array(
-    '#suffix' => '</div></div>',
-    '#type' => 'radios',
-    '#title' => t('Gender'),
-    '#options' => array('male' => t('Male'), 'female' => t('Female')),
-    '#default_value' => $cf_account->gender,
-    '#weight' => '-239',
-  );
-
-  // Contact
-
-    // Address
-  $form['street'] = array(
-    '#prefix' => '<div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#contact">' . ' ' . t('Address') . '</a></h4></div><div id="contact" class="panel-collapse collapse in"><div class="panel-body">',
-    '#suffix' => '</li>',
-    '#type' => 'textfield',
-    '#title' => t('Street and number'),
-    '#default_value' => $cf_account->street,
-    '#weight' => '-199',
-  );
-  $form['zip'] = array(
-    '#prefix' => '<div class="row"><div class="col-xs-2">',
-    '#suffix' => '</div>',
-    '#type' => 'textfield',
-    '#title' => t('Zipcode'),
-    '#default_value' => $cf_account->zip,
-    '#weight' => '-189',
-  );
-  $form['city'] = array(
-    '#prefix' => '<div class="col-xs-10">',
-    '#suffix' => '</div></div>',
-    '#type' => 'textfield',
-    '#title' => t('City'),
-    '#default_value' => $cf_account->city,
-    '#weight' => '-179',
-  );
-  $form['country'] = array(
-    '#suffix' => '</div></div></div>',
-    '#type' => 'select',
-    '#options' => country_get_list(),
-    '#title' => t('Country'),
-    '#default_value' => !empty($cf_account->country) ? $cf_account->country : 'BE',
-    '#weight' => '-169',
-  );
-
-  // Privacy settings
-
-  $form['givenNamePrivacy'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#privacy">' . ' ' . t('Privacy settings') . '</a></h4></div><div id="privacy" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'first name\' in public profile'),
-    //'#title' => t('Hide \'first name\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->givenName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-99',
-  );
-
-  $form['familyNamePrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'family name\' in public profile'),
-    //'#title' => t('Hide \'family name\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->familyName == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-89',
-  );
-
-  $form['genderPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'gender\' in public profile'),
-     //'#title' => t('Hide \'gender\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->gender == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-79',
-
-  );
-
-  $form['homeAddressPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'address\' in public profile'),
-     //'#title' => t('Hide \'address\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->homeAddress == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-69',
-  );
-
-  $form['dobPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'date of birth\' in public profile'),
-     //'#title' => t('Hide \'date of birth\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->dob == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-59',
-  );
-
-  $form['bioPrivacy'] = array(
-    '#prefix' => '<li class="list-group-item">',
-    '#suffix' => '</li></ul></div></div>',
-    '#type' => 'checkbox',
-    '#field_prefix' => '<div class="make-switch" data-on="success" data-off="danger" data-on-label="'. t('ON') .'" data-off-label="'. t('OFF') . '">',
-    '#field_suffix' => '</div>' . ' ' .  t('Hide \'biography\' in public profile'),
-    //'#title' => t('Hide \'biography\' in public profile'),
-    '#default_value' => $cf_account->privacyConfig->bio == CultureFeed_UserPrivacyConfig::PRIVACY_PRIVATE,
-    '#weight' => '-49',
-  );
-
-   // Language settings - Default language
-
-  $form['preferredLanguage'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span class="caret"></span><a data-toggle="collapse" data-parent="#accordion" href="#language">' . ' ' . t('Language settings') . '</a></h4></div><div id="language" class="panel-collapse collapse"><ul class="list-group"> <li class="list-group-item">',
-    '#type' => 'select',
-    '#default_value' => !empty($cf_account->preferredLanguage) ? $cf_account->preferredLanguage : '',
-    '#title' => t('Preferred language'),
-    '#options' => array(
-      'nl' => t('Dutch'),
-      'fr' => t('French'),
-      'en' => t('English'),
-      'de' => t('German'),
-    ),
-    '#weight' => '-9',
-    '#suffix' => '</div></div>',
-  );
-
-  $form['submit'] = array(
-    '#prefix' => '<hr />',
-    '#type' => 'submit',
-    '#value' => t('Save'),
-  );
-
-  return $form;
-}
-
-/**
- * Implements hook_form_{culturefeed_ui_page_account_edit_form}_alter().
- */
-function culturefeed_bootstrap_form_culturefeed_ui_page_account_edit_form_alter(&$form, &$form_state) {
-
-  try {
-    $cf_account = DrupalCultureFeed::getLoggedInUser();
-  }
-  catch (Exception $e) {
-    watchdog_exception('culturefeed_ui', $e);
-    drupal_set_message(t('An error occurred while loading your account, please try again later.'));
-    return;
-  }
-
-  $destination = url('culturefeed/account/edit', array('absolute' => TRUE, 'query' => array('closepopup' => 'true')));
-
-  $url = DrupalCultureFeed::getUrlChangePassword($cf_account->id, $destination);
-
-  $options = array('attributes' => array('class' => array('culturefeedconnect')), 'query' => drupal_get_destination());
-
-  unset($form['view-profile']);
-  unset($form['remove_account']);
-
-
-  $form['nick'] = array(
-    '#prefix' => '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title pull-left">' . ' ' . t('My UiTiD') . '</h4><span class="pull-right"><i class="fa fa-eye"></i> <a href="/user/'. culturefeed_get_uid_for_cf_uid($cf_account->id, $cf_account->nick) . '" class="profile-edit-link">'. t('View') . '</a> | <i class="fa fa-trash-o"></i> <a href="/culturefeed/removeaccount" class="profile-edit-link">'. t('Delete account') . '</a></span><div class="clearfix"></div></div><div class="panel-body">',
-    '#type' => 'textfield',
-    '#title' => t('Username'),
-    '#disabled' => TRUE,
-    '#value' => $cf_account->nick,
-    '#weight' => '-999',
-  );
-
-  $form['mbox'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Email address'),
-    '#default_value' => $cf_account->mbox,
-    '#required' => TRUE,
-    '#weight' => '-989',
-  );
-
-  $form['submit'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-6">',
-    '#type' => 'submit',
-    '#value' => t('Edit e-mail'),
-    '#attributes' => array('class' => array('btn-primary')),
-    '#weight' => '-979',
-  );
-
-    $form['change_password'] = array(
-    '#suffix' => '</div></div></div>',
-    '#markup' => l(t('Change password'), $url, $options),
-    '#weight' => '-969',
-  );
-
-  return $form;
 }
 
 /**
@@ -687,6 +443,33 @@ function culturefeed_bootstrap_culturefeed_messages_total_messages_profile_box_i
 }
 
 /**
+ * Theme the profile box item for calendar..
+ */
+function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables) {
+
+  $icon = '<i class="fa fa-lg fa-calendar"></i>';
+  $icon_new = '<i class="fa fa-lg fa-calendar-o"></i>';
+  $url = 'culturefeed/calendar';
+  $authenticated = DrupalCultureFeed::isCultureFeedUser();
+
+  if ($authenticated) {
+    return l($icon, $url, array('html' => TRUE));
+  }
+  // Show default with 0 for anonymous. JS sets the correct value.
+  else {
+    $hover = theme('culturefeed_calendar_button_hover');
+    $popover_options = array(
+      'class' => '',
+      'data-toggle' => 'popover',
+      'data-content' => $hover,
+      'data-placement' => 'bottom',
+      'data-html' => 'true'
+    );
+    return l($icon_new . ' ' . '<small class="activity-count"><span class="unread-activities label label-danger">0</span></small>', $url, array('attributes' => $popover_options, 'html' => TRUE));
+  }
+}
+
+/**
  * Form callback for the basic search form.
  */
 
@@ -759,7 +542,7 @@ function culturefeed_bootstrap_culturefeed_search_pager_summary($variables) {
 
   $pager_summary = format_plural($result->getTotalCount(), '@range from @count result', '@range from @count results', $args);
 
-  return '<p class="pagination text-muted pull-left">' . $pager_summary . '</p>';
+  return '<div class="cf-result-count result-count-bottom text-muted pull-left">' . $pager_summary . '</div>';
 
 }
 
@@ -803,11 +586,11 @@ function culturefeed_bootstrap_pager($variables) {
 
   // End of generation loop preparation.
   // @todo add theme setting for this.
-  // $li_first = theme('pager_first', array(
-  // 'text' => (isset($tags[0]) ? $tags[0] : t('first')),
-  // 'element' => $element,
-  // 'parameters' => $parameters,
-  // ));
+  $li_first = theme('pager_first', array(
+   'text' => (isset($tags[0]) ? $tags[0] : t('first')),
+   'element' => $element,
+   'parameters' => $parameters,
+  ));
   $li_previous = theme('pager_previous', array(
     'text' => (isset($tags[1]) ? $tags[1] : t('previous')),
     'element' => $element,
@@ -821,19 +604,19 @@ function culturefeed_bootstrap_pager($variables) {
     'parameters' => $parameters,
   ));
   // @todo add theme setting for this.
-  // $li_last = theme('pager_last', array(
-  // 'text' => (isset($tags[4]) ? $tags[4] : t('last')),
-  // 'element' => $element,
-  // 'parameters' => $parameters,
-  // ));
+  $li_last = theme('pager_last', array(
+   'text' => (isset($tags[4]) ? $tags[4] : t('last')),
+   'element' => $element,
+   'parameters' => $parameters,
+  ));
   if ($pager_total[$element] > 1) {
     // @todo add theme setting for this.
-    // if ($li_first) {
-    // $items[] = array(
-    // 'class' => array('pager-first'),
-    // 'data' => $li_first,
-    // );
-    // }
+    if ($li_first) {
+      $items[] = array(
+        'class' => array('pager-first'),
+        'data' => $li_first,
+      );
+    }
     if ($li_previous) {
       $items[] = array(
         'class' => array('prev'),
@@ -845,7 +628,7 @@ function culturefeed_bootstrap_pager($variables) {
       if ($i > 1) {
         $items[] = array(
           'class' => array('pager-ellipsis', 'disabled'),
-          'data' => '<span>?</span>',
+          'data' => '<span>…</span>',
         );
       }
       // Now generate the actual pager piece.
@@ -882,7 +665,7 @@ function culturefeed_bootstrap_pager($variables) {
       if ($i < $pager_max) {
         $items[] = array(
           'class' => array('pager-ellipsis', 'disabled'),
-          'data' => '<span>?</span>',
+          'data' => '<span>…</span>',
         );
       }
     }
@@ -894,12 +677,12 @@ function culturefeed_bootstrap_pager($variables) {
       );
     }
     // @todo add theme setting for this.
-    // if ($li_last) {
-    // $items[] = array(
-    // 'class' => array('pager-last'),
-    // 'data' => $li_last,
-    // );
-    // }
+    if ($li_last) {
+      $items[] = array(
+        'class' => array('pager-last'),
+        'data' => $li_last,
+      );
+    }
     return theme('item_list', array(
       'items' => $items,
       'attributes' => array('class' => array('pagination pull-right')),
@@ -1562,13 +1345,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_configuration_page_form_al
     '#value' => t('Update'),
   );
 
-  unset($form['remove-link']);
-
-  $form['#suffix'] = '
-    <div id="page_confirm" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-body outer"></div>
-    </div>';
-
   culturefeed_pages_set_page_breadcrumb($page);
 
   return $form;
@@ -1593,8 +1369,20 @@ function culturefeed_bootstrap_block_view_alter(&$data, $block) {
       $data['subject'] = '<ul class="nav nav-tabs"><li class="tab-agenda"><a href="#block-culturefeed-pages-page-agenda" class="text-muted"><h4><i class="fa fa-calendar fa-fw fa-lg"></i>' . t('Activities') . '</h4></a></li><li class="active"><a href="#"><h4><i class="fa fa-th-list fa-fw fa-lg"></i>' . t('Timeline') .'</h4></a></li></ul>';
       break;
     case 'profile_menu':
-      $data['subject'] = '<div class="btn-group pull-right"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i>' . ' ' . t('Manage profile') . ' ' . '<span class="caret"></span></button>';
-      //TO DO: add $data['content']
+      $items = $data['content']['#items'];
+
+      if ($items) {
+        foreach ($items as $key => $item) {
+          $items[$key]['class'][] = 'list-group-item';
+        }
+
+        $data['content'] = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+          '#attributes' => array('class' => 'list-group'),
+        );
+      }
+
     break;
     }
 
@@ -1652,6 +1440,86 @@ function culturefeed_bootstrap_culturefeed_pages_page_manage_members(&$variables
 
 }
 
+/**
+ * Helper function to render prefix markup for modals
+ */
+
+function culturefeed_bootstrap_modal_prefix($modal_title) {
+
+  $output = '<div class="modal-dialog">';
+  $output .= '<div class="modal-content">';
+  $output .= '<div class="modal-header">';
+  $output .= '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+  $output .= '<span aria-hidden="true">&times;</span>';
+  $output .= '</button>';
+  $output .= '<h4 class="modal-title">' . $modal_title . '</h4>';
+  $output .= '</div>';
+  $output .= '<div class="modal-body">';
+
+  return $output;
+
+}
+
+/**
+ * Helper function to render suffix markup for modals
+ */
+
+function culturefeed_bootstrap_modal_suffix() {
+
+  $output = '</div></div></div>';
+
+  return $output;
+
+}
+
+/**
+ * Form confirmation callback to show a form to confirm the removal of member of a page.
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&$form, &$form_state, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove member');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  $form['decline']['#attributes']['class'] = array('button-decline', 'btn', 'btn-default');
+  $form['decline']['#attributes']['data-dismiss'] = 'modal';
+  $form['decline']['#href'] = '';
+
+  return $form;
+
+}
+
+/**
+ * Form confirmation callback to show a form to confirm the removal of a page.
+ */
+function culturefeed_bootstrap_form_culturefeed_pages_remove_page_confirm_form_alter(&$form, &$form_state, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove member');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  return $form;
+
+}
+
+/**
+ * Form callback to delete one activity.
+ */
+function culturefeed_bootstrap_form_culturefeed_social_page_activity_delete_confirm_form_alter(&$form, &$form_state, $id, &$request_type) {
+
+  if ($request_type != 'ajax') {
+    $modal_title = t('Remove activity');
+    $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
+    $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
+  }
+
+  return $form;
+
+}
 
 /**
  * Preprocess the search results on a user.
@@ -1833,12 +1701,33 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_date_facet_form_alter(
 
   $form['#attributes']['class'][] = '';
 
-  $form['date_range']['#prefix'] = '<div class="input-group">';
-  $form['date_range']['#title'] = '';
+  $form['date_range_link'] = array(
+    '#markup' => l('<span>' . t('Specific dates') . '</span>', 'javascript:', array(
+      'html' => TRUE,
+      'external' => TRUE,
+      'attributes' => array('id' => 'specific-dates-range'),
+    )),
+    '#prefix' => '<div class="facet-label"><div class="row"><div class="col-xs-12"><div class="input-group specific-date">',
+    '#suffix' => '</div></div></div></div>',
+  );
 
-  $form['submit']['#prefix'] = '<span class="input-group-btn">';
-  $form['submit']['#suffix'] = '</span></div>';
+  // Remove standard datepicker library.
+  $library = array('culturefeed_search_ui', 'ui.daterangepicker');
+  $library_index = array_search($library, $form['#attached']['library']);
+  if ($library_index !== FALSE) {
+    unset($form['#attached']['library'][$library_index]);
+  }
 
+  // Attach the bootstrap datepicker library.
+  $path = drupal_get_path('theme', 'culturefeed_bootstrap');
+  $form['#attached']['js'][] = $path . '/js/moment.js';
+  $form['#attached']['js'][] = $path . '/js/daterangepicker.js';
+  $form['#attached']['js'][] = $path . '/js/daterangepicker-bind.js';
+
+  $form['#attached']['css'][$path . '/css/daterangepicker-bs3.css'] = array(
+    'weight' => 100,
+    'group' => CSS_THEME,
+  );
 }
 
 /**
@@ -1850,6 +1739,21 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(
 
   $form['location']['#prefix'] = '<div class="input-group">';
   $form['location']['#title'] = '';
+
+  $form['submit']['#prefix'] = '<span class="input-group-btn">';
+  $form['submit']['#suffix'] = '</span></div>';
+
+}
+
+/**
+ * Theme the culturefeed_search_ui_city_actor_facet_form
+ */
+function culturefeed_bootstrap_form_culturefeed_search_ui_block_city_actor_facet_form_alter(&$form, &$form_state) {
+
+  $form['#attributes']['class'][] = '';
+
+  $form['city_actor']['#prefix'] = '<div class="input-group">';
+  $form['city_actor']['#title'] = '';
 
   $form['submit']['#prefix'] = '<span class="input-group-btn">';
   $form['submit']['#suffix'] = '</span></div>';
@@ -2046,36 +1950,40 @@ function culturefeed_bootstrap_file_managed_file($variables) {
     $attributes['class'] = (array) $element['#attributes']['class'];
   }
 
-  if (!empty($element['filename'])) {
+  if (!empty($element['filename']) && !empty($element['#file']->uri)) {
     $element['filename']['#markup'] = '<div class="col-md-4">';
     $element['filename']['#markup'] .= theme('image_style', array('style_name' => 'thumbnail', 'path' => $element['#file']->uri, 'attributes' => array('class' => array('img-thumbnail'))));
     $element['filename']['#markup'] .= '</div>';
+    $element['remove_button']['#prefix'] = '<div class="col-md-8"><span class="input-group-btn">';
+    $element['remove_button']['#suffix'] = '</span></div>';
+    $element['remove']['#prefix'] = '<div class="col-md-8">';
+    $element['remove']['#suffix'] = '</div>';
   }
   else {
-  $element['upload_button']['#prefix'] = '<div class="col-md-6"><span class="input-group-btn">';
-  $element['upload_button']['#suffix'] = '</span></div>';
-    $element['upload']['#prefix'] = '<div class="col-md-6">';
+    $element['filename']['#markup'] = '';
+    $element['upload_button']['#prefix'] = '<div class="col-md-8"><span class="input-group-btn">';
+    $element['upload_button']['#suffix'] = '</span></div>';
+    $element['upload']['#prefix'] = '<div class="col-md-8">';
     $element['upload']['#suffix'] = '</div>';
-
   }
 
   $hidden_elements = array();
   foreach (element_children($element) as $child) {
-    if ($element[$child]['#type'] === 'hidden') {
+    if (isset($element[$child]['#type']) && $element[$child]['#type'] === 'hidden') {
       $hidden_elements[$child] = $element[$child];
       unset($element[$child]);
     }
   }
 
   // This wrapper is required to apply JS behaviors and CSS styling.
-  $attributes['class'] = array('row', 'form-managed-file');
+  $attributes['class'] = array('form-managed-file');
 
-  $output = '<div class="row"><div class="col-md-6">';
+  $output = '<div class="row">';
   $output .= '<div' . drupal_attributes($attributes) . '>';
   $output .= drupal_render_children($element);
   $output .= '</div>';
   $output .= render($hidden_elements);
-  $output .= '</div></div>';
+  $output .= '</div>';
 
   return $output;
 }
@@ -2124,14 +2032,59 @@ function culturefeed_bootstrap_preprocess_page(&$variables) {
 
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-6"';
+    $variables['content_column_class'] = ' class="col-sm-4 col-md-6"';
   }
   elseif (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-md-9"';
+    $variables['content_column_class'] = ' class="col-sm-8 col-md-9"';
   }
   else {
-    $variables['content_column_class'] = ' class="col-md-12"';
+    $variables['content_column_class'] = ' class="col-sm-12"';
   }
+}
+
+/**
+ * Preprocess the culturefeed ui account edit form.
+ *
+ * @param array $vars
+ *   The variables.
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_ui_account_edit_form(&$vars) {
+
+  $form = $vars['form'];
+
+  $vars['nick'] = drupal_render($form['nick']);
+  $vars['mbox'] = drupal_render($form['mbox']);
+  $vars['change_password'] = drupal_render($form['change_password']);
+  $vars['submit'] = drupal_render($form['submit']);
+  $vars['main_form'] = drupal_render_children($form);
+
+}
+
+/**
+ * Preprocess the culturefeed ui profile edit form.
+ *
+ * @param array $vars
+ *   The variables.
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_ui_profile_edit_form(&$vars) {
+
+  $form = $vars['form'];
+
+  $vars['givenName'] = drupal_render($form['givenName']);
+  $vars['familyName'] = drupal_render($form['familyName']);
+  $vars['dob'] = drupal_render($form['dob']);
+  $vars['gender'] = drupal_render($form['gender']);
+  $vars['picture'] = drupal_render($form['picture']);
+  $vars['street'] = drupal_render($form['street']);
+  $vars['zip'] = drupal_render($form['zip']);
+  $vars['city'] = drupal_render($form['city']);
+  $vars['country'] = drupal_render($form['country']);
+  $vars['bio'] = drupal_render($form['bio']);
+  if (variable_get('culturefeed_ui_profile_show_language_settings', FALSE)) {
+    $vars['preferredLanguage'] = $form['preferredLanguage'];
+  }
+  $vars['main_form'] = drupal_render_children($form);
+
 }
 
 /**
@@ -2186,66 +2139,61 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
     $javascript[$file]['data'] = $file;
   }
 
+  // Adding our own version of autocomplete for entry_ui because bootstrap
+  // is messing up default autocomplete.
+  $match_cp = false;
+  if (current_path() == 'agenda/e/add') {
+    $match_cp = true;
+  }
+  elseif (drupal_match_path(current_path(), 'agenda/e/*/*/edit')) {
+    $match_cp = true;
+  }
+
+  if (module_exists('culturefeed_entry_ui') && $match_cp) {
+    $file = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/bootstrap_autocomplete_override.js';
+    drupal_add_js($file);
+  }
+
+  // Add a different version of the culturefeed ui synchronization link.
+  $synchronization_file = drupal_get_path('module', 'culturefeed_ui') . '/js/synchronization.js';
+  if (isset($javascript[$synchronization_file])) {
+    $javascript[$synchronization_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/synchronization.js';
+  }
+
+  // Add a different version of the culturefeed ui account edit tooltip.
+  $account_edit_tooltip_file = drupal_get_path('module', 'culturefeed_ui') . '/js/account_edit_tooltip.js';
+  if (isset($javascript[$account_edit_tooltip_file])) {
+    $javascript[$account_edit_tooltip_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/account_edit_tooltip.js';
+  }
+
 }
 
-function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
-  // Promotions.
-  $form['promotions_link'] = array(
-    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
+function culturefeed_bootstrap_form_culturefeed_uitpas_profile_advantages_filter_sort_alter(&$form, &$form_state) {
 
-  $form['promotions_link']['promotions'] = array(
-    '#markup' => '<li class="active lead"><a href="/promotions">' . t('Promotions') . '</a></li>',
-  );
-
-  $form['promotions_link']['advantages'] = array(
-    '#markup' => '<li class="lead"><a href="/advantages">' . t('Welcome Advantages') . '</a></li>',
-  );
-
-  $form['profile_promotions_link'] = array(
-    '#prefix' => '<div id="promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
-}
-
-function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
-  // Profile promotions.
-  $form['profile_promotions_link'] = array(
-    '#prefix' => '<div id="profile_promotions_link"><ul class="nav nav-tabs">',
-    '#suffix' => '</ul></div>',
-  );
-
-  $form['profile_promotions_link']['promotions'] = array(
-    '#markup' => '<li class="active lead"><a href="/culturefeed/profile/uitpas/promotions">' . t('Promotions') . '</a></li>',
-  );
-
-  $form['profile_promotions_link']['advantages'] = array(
-    '#markup' => '<li class="lead"><a href="/culturefeed/profile/uitpas/advantages">' . t('Welcome Advantages') . '</a></li>',
-  );
+  // Profile advantages.
+  $form['profile_advantages_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['profile_advantages_link']['#links']['promotions'];
+  $form['profile_advantages_link']['#links']['promotions lead'] = $promotions;
+  unset($form['profile_advantages_link']['#links']['promotions']);
+  $advantages = $form['profile_advantages_link']['#links']['advantages'];
+  $form['profile_advantages_link']['#links']['advantages lead'] = $advantages;
+  unset($form['profile_advantages_link']['#links']['advantages']);
 
   return $form;
 }
 
-/**
- * Implements hook_culturefeed_ui_profile_box_dropdown_items_alter().
- */
+function culturefeed_bootstrap_form_culturefeed_uitpas_profile_promotions_filter_sort_alter(&$form, &$form_state) {
 
-function culturefeed_bootstrap_culturefeed_ui_profile_box_dropdown_items_alter(&$items, CultureFeed_User $cf_user) {
+  // Profile promotions.
+  $form['profile_promotions_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['profile_promotions_link']['#links']['promotions'];
+  $form['profile_promotions_link']['#links']['promotions lead'] = $promotions;
+  unset($form['profile_promotions_link']['#links']['promotions']);
+  $advantages = $form['profile_promotions_link']['#links']['advantages'];
+  $form['profile_promotions_link']['#links']['advantages lead'] = $advantages;
+  unset($form['profile_promotions_link']['#links']['advantages']);
 
-  if (module_exists('culturefeed_uitpas')) {
-    unset($items['settings']);
-
-    $items['my-uitpas'] = array(
-      'data' => 'UiTPAS',
-      'class' => 'my-uitpas',
-      'children' => array(
-        array('data' => l('Mijn voordelen', 'culturefeed/profile/uitpas/promotions'),),
-      ),
-      'weight' => 10,
-    );
-  }
-
+  return $form;
 }
 
 function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
@@ -2272,3 +2220,431 @@ function culturefeed_bootstrap_menu_breadcrumb_alter(&$active_trail, $item) {
   }
 
 }
+
+/**
+ * Overrides theme_textfield().
+ */
+function culturefeed_bootstrap_textfield(&$variables) {
+
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'text';
+  element_set_attributes($element, array(
+    'id',
+    'name',
+    'value',
+    'size',
+    'maxlength',
+  ));
+  _form_set_class($element, array('form-text'));
+
+  $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
+  $extra = '';
+
+  // If this is a jquery ui autocomplete, also change to group-addon.
+  if (isset($element['#attributes']['class']) && in_array('jquery-ui-autocomplete', $element['#attributes']['class'])) {
+    $output = '<div class="input-group">' . $output . '<span class="input-group-addon">' . _bootstrap_icon('refresh') . '</span></div>';
+  }
+  // Normal autocomplete
+  elseif ($element['#autocomplete_path'] && drupal_valid_path($element['#autocomplete_path'])) {
+    drupal_add_library('system', 'drupal.autocomplete');
+    $element['#attributes']['class'][] = 'form-autocomplete';
+
+    $attributes = array();
+    $attributes['type'] = 'hidden';
+    $attributes['id'] = $element['#attributes']['id'] . '-autocomplete';
+    $attributes['value'] = url($element['#autocomplete_path'], array('absolute' => TRUE));
+    $attributes['disabled'] = 'disabled';
+    $attributes['class'][] = 'autocomplete';
+    $output = '<div class="input-group">' . $output . '<span class="input-group-addon">' . _bootstrap_icon('refresh') . '</span></div>';
+    $extra = '<input' . drupal_attributes($attributes) . ' />';
+  }
+
+  return $output . $extra;
+
+}
+
+/**
+ * Overrides theme_form_element().
+ */
+function culturefeed_bootstrap_form_element(&$variables) {
+  $element = &$variables['element'];
+  $is_checkbox = FALSE;
+  $is_radio = FALSE;
+
+  // This function is invoked as theme wrapper, but the rendered form element
+  // may not necessarily have been processed by form_builder().
+  $element += array(
+    '#title_display' => 'before',
+  );
+
+  // Add element #id for #type 'item'.
+  if (isset($element['#markup']) && !empty($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+
+  // Check for errors and set correct error class.
+  if (isset($element['#parents']) && form_get_error($element)) {
+    $attributes['class'][] = 'error';
+  }
+
+  if (!empty($element['#type'])) {
+    $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
+  }
+  if (!empty($element['#name'])) {
+    $attributes['class'][] = 'form-item-' . strtr($element['#name'], array(
+        ' ' => '-',
+        '_' => '-',
+        '[' => '-',
+        ']' => '',
+      ));
+  }
+  // Add a class for disabled elements to facilitate cross-browser styling.
+  if (!empty($element['#attributes']['disabled'])) {
+    $attributes['class'][] = 'form-disabled';
+  }
+  if (!empty($element['#autocomplete_path']) && drupal_valid_path($element['#autocomplete_path'])) {
+    $attributes['class'][] = 'form-autocomplete';
+  }
+  elseif (isset($element['#attributes']['class']) && in_array('jquery-ui-autocomplete', $element['#attributes']['class'])) {
+    $attributes['class'][] = 'form-autocomplete';
+  }
+  $attributes['class'][] = 'form-item';
+
+  // See http://getbootstrap.com/css/#forms-controls.
+  if (isset($element['#type'])) {
+    if ($element['#type'] == "radio") {
+      $attributes['class'][] = 'radio';
+      $is_radio = TRUE;
+    }
+    elseif ($element['#type'] == "checkbox") {
+      $attributes['class'][] = 'checkbox';
+      $is_checkbox = TRUE;
+    }
+    else {
+      $attributes['class'][] = 'form-group';
+    }
+  }
+
+  $description = FALSE;
+  $tooltip = FALSE;
+  // Convert some descriptions to tooltips.
+  // @see bootstrap_tooltip_descriptions setting in _bootstrap_settings_form()
+  if (!empty($element['#description'])) {
+    $description = $element['#description'];
+    if (theme_get_setting('bootstrap_tooltip_enabled') && theme_get_setting('bootstrap_tooltip_descriptions') && $description === strip_tags($description) && strlen($description) <= 200) {
+      $tooltip = TRUE;
+      $attributes['data-toggle'] = 'tooltip';
+      $attributes['title'] = $description;
+    }
+  }
+
+  $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
+
+  // If #title is not set, we don't display any label or required marker.
+  if (!isset($element['#title'])) {
+    $element['#title_display'] = 'none';
+  }
+
+  $prefix = '';
+  $suffix = '';
+  if (isset($element['#field_prefix']) || isset($element['#field_suffix'])) {
+    // Determine if "#input_group" was specified.
+    if (!empty($element['#input_group'])) {
+      $prefix .= '<div class="input-group">';
+      $prefix .= isset($element['#field_prefix']) ? '<span class="input-group-addon">' . $element['#field_prefix'] . '</span>' : '';
+      $suffix .= isset($element['#field_suffix']) ? '<span class="input-group-addon">' . $element['#field_suffix'] . '</span>' : '';
+      $suffix .= '</div>';
+    }
+    else {
+      $prefix .= isset($element['#field_prefix']) ? $element['#field_prefix'] : '';
+      $suffix .= isset($element['#field_suffix']) ? $element['#field_suffix'] : '';
+    }
+  }
+
+  switch ($element['#title_display']) {
+    case 'before':
+    case 'invisible':
+      $output .= ' ' . theme('form_element_label', $variables);
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+
+    case 'after':
+      if ($is_radio || $is_checkbox) {
+        $output .= ' ' . $prefix . $element['#children'] . $suffix;
+      }
+      else {
+        $variables['#children'] = ' ' . $prefix . $element['#children'] . $suffix;
+      }
+      $output .= ' ' . theme('form_element_label', $variables) . "\n";
+      break;
+
+    case 'none':
+    case 'attribute':
+      // Output no label and no required marker, only the children.
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+  }
+
+  if ($description && !$tooltip) {
+    $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
+  }
+
+  $output .= "</div>\n";
+
+  return $output;
+}
+
+/**
+ * Implements hook_form_{culturefeed_calendar_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_form_alter(&$form, $form_state) {
+
+  if (arg(4) != 'ajax') {
+    return;
+  }
+
+  if (!isset($form['#prefix'])) {
+    $form['#prefix'] = '';
+  }
+
+  // Add header, don't loose existing prefix.
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+
+  $form['info']['#prefix'] = '<div class="modal-body">';
+  $form['date']['#suffix'] = '</div>';
+
+  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#suffix'] = '</div>';
+
+  unset($form['actions']['cancel']['#ajax']);
+  $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+
+}
+
+/**
+ * Implements hook_form_{culturefeed_calendar_delete_form}_alter().
+ */
+function culturefeed_bootstrap_form_culturefeed_calendar_delete_form_alter(&$form, $form_state) {
+
+  if (arg(4) != 'ajax') {
+    return;
+  }
+
+  if (!isset($form['#prefix'])) {
+    $form['#prefix'] = '';
+  }
+
+  // Add header, don't loose existing prefix.
+  $form['#prefix'] .= '<div class="modal-header"><h3>' . drupal_get_title() . '</h3></div>';
+
+  $form['info']['#prefix'] = '<div class="modal-body">';
+  $form['date']['#suffix'] = '</div>';
+
+  $form['actions']['#prefix'] = '<div class="modal-footer">';
+  $form['actions']['#suffix'] = '</div>';
+
+  $form['actions']['cancel']['#attributes']['data-dismiss'] = 'modal';
+
+}
+
+/**
+ * Theme the saved searches CTA.
+ */
+function culturefeed_bootstrap_culturefeed_saved_searches_cta($vars) {
+  return '<div class="text-center"><p>' . check_plain($vars['text']) . '</p>'. l(t('Save this search'), $vars['path'], array('query' => $vars['query'], 'html' => TRUE, 'attributes' => array('class' => 'btn-primary btn btn-save-search'))) . '</div>';
+}
+
+/**
+ * Theme add to calendar button tooltip.
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_calendar_button_hover(&$variables) {
+
+  $variables['options']['attributes'] = array(
+    'class' => array('btn', 'btn-primary', 'btn-block'),
+  );
+}
+
+/**
+ * Override image output advantage for gallery
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_advantage(&$vars) {
+
+  $advantage = $vars['advantage'];
+
+  // Image.
+  $vars['image'] = '';
+  $vars['images_list'] = '';
+  $images = array();
+  if (isset($advantage->pictures[0])) {
+    $vars['image'] = theme_image(array('path' => $advantage->pictures[0], 'attributes' => array()));
+    foreach ($advantage->pictures as $key => $picture) {
+      $images[] = l(
+        theme('image', array('path' => $advantage->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        $advantage->pictures[$key],
+        array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
+      );
+    }
+    $vars['images_list'] = theme('item_list', array('items' => $images));
+  }
+
+}
+
+/**
+ * Override image output promotion for gallery
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
+  $promotion = $vars['promotion'];
+
+  // Image.
+  $vars['image'] = '';
+  $vars['images_list'] = '';
+  $images = array();
+  if (isset($promotion->pictures[0])) {
+    $vars['image'] = theme('image', array('path' => $promotion->pictures[0] . '?maxwidth=300&max-height=300', 'attributes' => array()));
+    foreach ($promotion->pictures as $key => $picture) {
+      $images[] = l(
+        theme('image', array('path' => $promotion->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        $promotion->pictures[$key],
+        array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
+      );
+    }
+    $vars['images_list'] = theme('item_list', array('items' => $images));
+  }
+
+}
+
+/**
+ * Add bootstrap class to user register button
+ *
+ */
+function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
+
+  $prefix = variable_get('culturefeed_uitpas_user_register_intro_text', '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>');
+  $prefix .= '<h2><span>' . t('Register your UiTpas') . '</span></h2>';
+
+  $form['prefix']['#markup'] = $prefix;
+
+  // Fields
+  $form['username']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['username']['#suffix'] = '</div></div>';
+  $form['uitpasnumber']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['uitpasnumber']['#suffix'] = '</div></div>';
+  $form['dob']['#prefix'] = '<div class="row"><div class="col-sm-6">';
+  $form['dob']['#suffix'] = '</div></div>';
+
+  // Button
+  $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+
+}
+
+/**
+ * Preprocess variables for culturefeed_ui_profile_menu to bootstrap styles
+ */
+function culturefeed_bootstrap_culturefeed_ui_profile_shortcuts() {
+
+  $build = array(
+    '#attributes' => array(
+      'class' => array('culturefeed-profile-shortcuts nav nav-tabs'),
+    ),
+    '#theme' => 'links',
+  );
+
+  $build['#links'] = array(
+    'personal_data' => array(
+      'title' => t('Personal data'),
+      'href' => 'culturefeed/profile/edit',
+    ),
+    'login_data' => array(
+      'title' => t('Login data'),
+      'href' => 'culturefeed/account/edit',
+    ),
+    'privacy_settings' => array(
+      'title' => t('Privacy settings'),
+      'href' => 'culturefeed/profile/privacy',
+    ),
+  );
+
+  return drupal_render($build);
+
+}
+
+/**
+ * Implements hook_preprocess_preprocess_culturefeed_uitpas_profile_details().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$vars) {
+  
+  $uitpas_user = $vars['uitpas_user'];
+  // @codingStandardsIgnoreStart
+  /** @var CultureFeed_Uitpas_Passholder $passholder */
+  // @codingStandardsIgnoreEnd
+  $passholder = $uitpas_user->passholder;
+  // @codingStandardsIgnoreStart
+  /** @var CultureFeed_Uitpas_Passholder_CardSystemSpecific $card_system */
+  // @codingStandardsIgnoreEnd
+  $card_system = $uitpas_user->card_system;
+
+  // Title.
+  $vars['uitpas_title'] = variable_get('culturefeed_uitpas_profile_details_title', t('My UiTPAS'));
+
+  // Intro.
+  $vars['intro'] = variable_get('culturefeed_uitpas_profile_details_intro');
+
+  // Card numbers.
+  $uitpas_numbers = array(
+    'items' => array(),
+    'type' => 'ul',
+    'attributes' => array(),
+    'title' => '',
+  );
+  foreach ($passholder->cardSystemSpecific as $card_system_specific) {
+
+    if ($card_system_specific->currentCard->uitpasNumber) {
+
+      $output = $card_system_specific->currentCard->uitpasNumber . ' (' . $card_system_specific->cardSystem->name . ')';
+      if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
+        $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
+        $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
+      }
+      $uitpas_numbers['items'][] = $output;
+
+    }
+  }
+  $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . variable_get('culturefeed_uitpas_profile_details_uitpas_number', t('UiTPAS number(s)')) . ':</h3></div><div class="panel-body">';
+  $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
+  $uitpas_numbers_output .= '</div><div class="panel-footer">';
+  $uitpas_numbers_output .= l(t('Register new UiTpas'), 'register_uitpas');
+  $uitpas_numbers_output .= '</div>';
+  $vars['uitpas_numbers'] = $uitpas_numbers_output;
+
+  $vars['form_title'] = variable_get('culturefeed_uitpas_profile_details_form_title', t('My personal data'));
+  $vars['form_intro'] = variable_get('culturefeed_uitpas_profile_details_form_intro');
+  $form = drupal_get_form('culturefeed_uitpas_profile_details_form');
+  $vars['form'] = drupal_render($form);
+
+  if (count($passholder->memberships)) {
+
+    $memberships = array();
+    foreach ($passholder->memberships as $membership) {
+
+      if (isset($membership->association->association)) {
+
+        $endate = t('valid till !date', array('!date' => date('j/m/Y', $membership->endDate)));
+        $memberships[] = '<label>' . $membership->association . ':</label> ' . $endate;
+
+      }
+
+    }
+    $vars['memberships'] = implode('<br />', $memberships);
+
+  }
+  else {
+    $vars['memberships'] = '';
+  }
+
+  $vars['outro'] = variable_get('culturefeed_uitpas_profile_details_outro');
+ 
+}
+
