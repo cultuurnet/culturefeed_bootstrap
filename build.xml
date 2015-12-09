@@ -3,6 +3,7 @@
     <fileset dir="." id="phpfiles">
         <include name="*.php"/>
         <include name="**/*.php"/>
+        <exclude name="vendor/**" />
     </fileset>
 
     <target name="lint">
