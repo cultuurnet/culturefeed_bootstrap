@@ -24,6 +24,9 @@
       <?php endif; ?>
       <div class="points pull-right"><span class="label label-primary"><?php print $points; ?></span></div>
     </div>
+    <?php if ($counters): ?>
+      <div class="counters"><?php print $counters; ?></div>
+    <?php endif; ?>
     <?php if ($period): ?>
     <p class="period"><?php print $period; ?></p>
     <?php endif; ?>
