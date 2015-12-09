@@ -3,11 +3,11 @@
 /**
  * Load FontAwesome 4.3.0 through CDN
  */
- 
+
 $element = array(
   '#tag' => 'link',
   '#attributes' => array(
-    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
     'rel' => 'stylesheet',
     'type' => 'text/css',
   ),
@@ -161,7 +161,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
   $item = $variables['item'];
   $entity = $item->getEntity();
 
-  if (module_exists('culturefeed_social') && !culturefeed_is_culturefeed_user()) {
+  if (CULTUREFEED_AGENDA_ENABLE_SOCIAL_ACTIVITY_PREPPROCESSING && module_exists('culturefeed_social') && !culturefeed_is_culturefeed_user()) {
     $variables['recommend_link'] = theme('culturefeed_social_login_required_message', array(
       'activity_type' => CultureFeed_Activity::TYPE_RECOMMEND,
       'item' => $item,
@@ -2575,7 +2575,7 @@ function culturefeed_bootstrap_culturefeed_ui_profile_shortcuts() {
  * Implements hook_preprocess_preprocess_culturefeed_uitpas_profile_details().
  */
 function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$vars) {
-  
+
   $uitpas_user = $vars['uitpas_user'];
   // @codingStandardsIgnoreStart
   /** @var CultureFeed_Uitpas_Passholder $passholder */
@@ -2645,6 +2645,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   }
 
   $vars['outro'] = variable_get('culturefeed_uitpas_profile_details_outro');
- 
+
 }
 
