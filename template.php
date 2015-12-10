@@ -3,11 +3,11 @@
 /**
  * Load FontAwesome 4.3.0 through CDN
  */
- 
+
 $element = array(
   '#tag' => 'link',
   '#attributes' => array(
-    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 
+    'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
     'rel' => 'stylesheet',
     'type' => 'text/css',
   ),
@@ -175,7 +175,8 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
     ));
   }
 
-  $variables['print_link'] = l(t('Print'), '', array('attributes' => array('onclick' => 'javascript: window.print(); return false;'), 'external' => TRUE));
+  $rel = url('culturefeed/do/' . CultureFeed_Activity::TYPE_PRINT . '/' . $item->getType() . '/' . $item->getId() . '/ajax');
+  $variables['print_link'] = l(t('Print'), '', array('attributes' => array('rel' => $rel, 'class' => array('share-link', 'print-link')), 'external' => TRUE));
 
 }
 
@@ -186,7 +187,6 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   _culturefeed_bootstrap_preprocess_culturefeed_agenda($variables);
 
   $item = $variables['item'];
-  $cdb_item = $item->getEntity();
 
   $variables['delijn_link'] = '';
   $variables['map_link'] = '';
@@ -237,6 +237,18 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
       $ticket_button[] = l($button['text'], $button['link'], array('attributes' => array('class' => 'btn btn-primary reservation-link', 'id' => 'cf-ticket'), 'html' => TRUE));
     }
     $variables['ticket_buttons'] = implode(' ', $ticket_button);
+  }
+
+  $variables['readmore_options'] = array();
+  $variables['readmore_options']['attributes']['fragment'] = 'cf-longdescription';
+  $variables['readmore_options']['attributes']['external'] = TRUE;
+
+  // Add options for the readmore link to send an activity to the profile.
+  if (culturefeed_is_culturefeed_user()) {
+    $content_type = culturefeed_get_content_type($item->getType());
+    $id = $item->getId();
+    $variables['readmore_options']['attributes']['rel'] = url('culturefeed/do/' . CultureFeed_Activity::TYPE_MORE_INFO .'/' . $content_type . '/' . urlencode($id) . '/ajax');
+    $variables['readmore_options']['attributes']['class'] = array('moreinfo-link');
   }
 
 }

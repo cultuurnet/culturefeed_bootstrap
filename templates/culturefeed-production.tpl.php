@@ -25,7 +25,7 @@
     <p>
       <?php print $shortdescription; ?>
       <?php if (!empty($longdescription)): ?>
-        <?php print l(t('Read more'), '', array('attributes' => array('data-toggle' => 'collapse'), 'fragment' => 'cf-longdescription', 'external' => 'TRUE')) ?>
+        <?php print l(t('Read more'), '', $read_more_options) ?>
         <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
       <?php endif; ?>
     </p>
