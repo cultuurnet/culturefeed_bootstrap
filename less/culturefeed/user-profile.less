@@ -1,0 +1,84 @@
+/* All user profile pages */
+
+/* Synchronisation modal */
+#culturefeed-uitpas-synchronization-form {
+  button#edit-yes {
+    .btn-primary();
+  }
+}
+/* All user profile pages */
+
+/* Tables */
+table {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Profile link blocks */
+.block-links {
+  ul,
+  ul li {
+    list-style: none;
+    padding-left: 0;
+  }
+  li > a {
+    text-decoration: underline;
+  }
+  li {
+    padding: 0 0 10px;
+  }
+}
+.user-accounts {
+  h5 a {
+    font-weight: normal;
+  }
+  .inside {
+    margin-top: 5px;
+    padding: 15px 0 5px;
+    background-color: @gray-lighter;
+    position: relative;
+    &:before {
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      content: '';
+      width: 0; 
+      height: 0; 
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid @gray-lighter;
+    }
+  }
+  .profile-pic {
+    margin: 0 10px 10px 0;
+  }
+  .profile-nick {
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .form-type-checkbox {
+    position: relative;
+  }
+  input[type='checkbox'] {
+    margin: 0;
+    position: absolute;
+    top: 3px;
+    left: 0;
+  }
+}
+.date {
+  margin: 10px 0;
+}
+.statement {
+  color: @gray-light;
+  display: block;
+  margin-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.btn-primary + #remove-account {
+  display: inline-block;
+  margin-left: 7px;
+}
+

@@ -48,6 +48,10 @@
       </td></tr>
       <?php endif; ?>
 
+      <?php if (!empty($when_lg)): ?>
+      <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Opening hours'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i></td>
+      <td class="cf-when"><?php print $when_lg; ?></td></tr>
+      <?php endif; ?>
 
       <?php if (!empty($contact['mail']) || (!empty($contact['phone']) || !empty($contact['fax']))) : ?>
         <tr><td><strong class="hidden-xs hidden-sm"><?php print t('Contact'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i></td>
@@ -79,7 +83,7 @@
 
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
-      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&scale=both&crop=auto" class="img-responsive" />
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&crop=auto" class="img-responsive" />
       <?php if(!empty($pictures)): ?>
         <br />
         <div class="row">

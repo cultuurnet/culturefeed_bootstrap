@@ -91,6 +91,10 @@ h1, h2, h3 {
   margin-bottom: 20px;
 }
 
+h4, h5, h6 {
+  font-weight: 600;
+}
+
 // breadcrumb
 
 .breadcrumb {
@@ -98,6 +102,15 @@ h1, h2, h3 {
   background-color: inherit;
   border-radius: inherit;
   font-size: 85%;
+  color: @gray-dark;
+  a {
+    color: @gray-dark;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: @brand-primary;
+    }
+  }
 }
 
 // page-header
@@ -117,6 +130,13 @@ body.admin-menu {
 }
 
 // override default glyphicon throbbers
+i.glyphicon,
+i.fa {
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.004);
+}
 
 .glyphicon-refresh {
   font-family: FontAwesome;
