@@ -166,6 +166,11 @@
       <td><?php print $keywords; ?></td></tr>
       <?php endif; ?>
 
+      <?php if (!empty($uitpas_promotions)): ?>
+      <tr class="hidden-xs hidden-sm"><td><strong class="hidden-xs hidden-sm"><?php print t('Promotions'); ?></strong></td>
+      <td class="promotions"><?php print $uitpas_promotions; ?></td></tr>
+      <?php endif; ?>
+
       </tbody>
 
     </table>
