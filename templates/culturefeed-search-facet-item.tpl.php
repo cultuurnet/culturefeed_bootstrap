@@ -16,7 +16,7 @@
   <div class="facet-label active">
     <div class="row">
       <div class="col-xs-9"><span class="active-label"><?php print check_plain($label); ?></span></div>
-      <div class="col-xs-3 text-right text-muted"><a href="<?php print $path; ?>" class="" title="<?php print t('Remove filter'); ?>">&times;</a></div>
+      <div class="col-xs-3 text-right text-muted"><a href="<?php print $url; ?>" class="" title="<?php print t('Remove filter'); ?>">&times;</a></div>
     </div>
   </div>
 <?php else: ?>
