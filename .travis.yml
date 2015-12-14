@@ -1,9 +1,8 @@
 language: php
 php:
+  - 5.6
   - 5.5
   - 5.4
 install:
-  - pear channel-discover pear.phing.info
-  - pear install phing/phing
-  - phpenv rehash
-script: phing
+  - composer install
+script: ./vendor/bin/phing

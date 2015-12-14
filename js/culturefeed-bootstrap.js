@@ -113,6 +113,19 @@
     }
   };
 
+  /**
+   * Add click events on the read more link.
+   */
+  Drupal.behaviors.culturefeedPushMoreInfoToUitId = {
+    attach: function(context, settings) {
+      $('a.moreinfo-link', context).bind('click', function(e) {
+        e.preventDefault();
+        $.ajax($(this).prop('rel'));
+        $('#cf-longdescription').toggle();
+      });
+    }
+  };
+
   if (Drupal.file) {
 
     /**
