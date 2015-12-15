@@ -17,7 +17,7 @@
     </h5> 
   </div>
 </div>
-  <?php if ($picture || $name || $nick || $publish_link) : ?>
+  <?php if ($picture || $name || $nick) : ?>
   <div class="inside clearfix">
     <?php if ($name) : ?>
         <span class="hidden"><?php print $name ?></span>
