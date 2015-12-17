@@ -2535,7 +2535,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
 function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
 
   $prefix = '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>';
-  $prefix .= '<h2><span>' . t('Register your UiTpas') . '</span></h2>';
 
   $form['prefix']['#markup'] = $prefix;
 
