@@ -2505,6 +2505,98 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_advantage(&$vars) {
 }
 
 /**
+ * Add bootstrap classes to register_where table
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_register_where(&$vars) {
+
+  $table = array(
+    'header' => array(),
+    'rows' => array(),
+    'attributes' => array(
+      'class' => 'table',
+    ),
+    'caption' => '',
+    'colgroups' => array(),
+    'sticky' => '',
+    'empty' => '',
+  );
+
+  if (count($vars['pos'])) {
+
+    foreach ($vars['pos'] as $pos) {
+
+      // Address.
+      $address = array();
+
+      if (isset($vars['actors'][$pos->id])) {
+
+        // @codingStandardsIgnoreStart
+        /** @var CultureFeed_Cdb_Item_Actor $actor */
+        // @codingStandardsIgnoreEnd
+        $actor = $vars['actors'][$pos->id]->getEntity();
+        $contact_info = $actor->getContactInfo();
+        // @codingStandardsIgnoreStart
+        /** @var CultureFeed_Cdb_Data_Address[] $addresses */
+        // @codingStandardsIgnoreEnd
+        $addresses = $contact_info->getAddresses();
+        if ($addresses[0]) {
+
+          if ($addresses[0]->getPhysicalAddress()->getZip()) {
+            $address[] = $addresses[0]->getPhysicalAddress()->getZip();
+          }
+          if ($addresses[0]->getPhysicalAddress()->getCity()) {
+            $address[] = $addresses[0]->getPhysicalAddress()->getCity();
+          }
+        }
+
+      }
+
+      elseif ($pos->city && !count($address)) {
+
+        if ($pos->postalCode) {
+          $address[] = $pos->postalCode;
+        }
+        if ($pos->city) {
+          $address[] = $pos->city;
+        }
+
+      }
+
+      // Card systems.
+      $card_systems = array();
+      if (!empty($pos->cardSystems)) {
+        foreach ($pos->cardSystems as $card_system) {
+          /* @var CultureFeed_Uitpas_CardSystem $card_system */
+          $card_systems[] = $card_system->name;
+        }
+      }
+
+      $table['rows'][] = array(
+        l($pos->name, 'agenda/a/' . culturefeed_search_slug($pos->name) . '/' . $pos->id),
+        (count($card_systems)) ? theme('item_list', array('items' => $card_systems, 'type' => 'ul', 'attributes' => array('class' => 'list-unstyled'))) : '',
+        implode(' ', $address),
+      );
+
+    }
+
+  }
+  else {
+    $table['rows'][] = array(array('data' => t('No results found.'), 'colspan' => 2));
+  }
+
+  $pager = array(
+    'element' => $vars['pos_pager_element'],
+    'quantity' => $vars['pos_total'],
+  );
+
+  $vars['intro'] = t('You can get an UiTPAS at one of these registration counters. An UiTPAS costs € 5. Younger than 18 years? Then you\'ll pay € 2. For people with an opportunities tarrif UiTPAS is free. You\'ll need your eID to register your UiTPAS.');
+  $vars['pos_table'] = theme_table($table) . '<div class="pager clearfix">' . theme('pager', $pager) . '</div>';
+  $vars['outro'] = t('Important: you\'ll need your eID to register your UiTPAS. <a href="@read-more">Read more</a> about the UiTPAS project.', array('@read-more' => 'http://www.cultuurnet.be/project/uitpas'));
+
+}
+
+/**
  * Override image output promotion for gallery
  */
 function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
