@@ -6,8 +6,8 @@
  * Available variables:
  * - $image.
  * - $period: The period.
- * - $location: The location.
- * - $provider: The provider.
+ * - $counters: The providing organisations.
+ * - $provider: The providing cardsystem.
  * - $available: The availability.
  * - $description1.
  * - $description2.
