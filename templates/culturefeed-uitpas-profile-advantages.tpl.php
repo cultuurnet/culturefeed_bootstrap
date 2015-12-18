@@ -12,4 +12,6 @@
 
 <div class="table-responsive">
   <?php print $profile_advantages_table; ?>
+  <hr />
+  <div class="info"><?php print $info; ?></div>
 </div>

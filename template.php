@@ -2505,6 +2505,98 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_advantage(&$vars) {
 }
 
 /**
+ * Add bootstrap classes to register_where table
+ *
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_register_where(&$vars) {
+
+  $table = array(
+    'header' => array(),
+    'rows' => array(),
+    'attributes' => array(
+      'class' => 'table',
+    ),
+    'caption' => '',
+    'colgroups' => array(),
+    'sticky' => '',
+    'empty' => '',
+  );
+
+  if (count($vars['pos'])) {
+
+    foreach ($vars['pos'] as $pos) {
+
+      // Address.
+      $address = array();
+
+      if (isset($vars['actors'][$pos->id])) {
+
+        // @codingStandardsIgnoreStart
+        /** @var CultureFeed_Cdb_Item_Actor $actor */
+        // @codingStandardsIgnoreEnd
+        $actor = $vars['actors'][$pos->id]->getEntity();
+        $contact_info = $actor->getContactInfo();
+        // @codingStandardsIgnoreStart
+        /** @var CultureFeed_Cdb_Data_Address[] $addresses */
+        // @codingStandardsIgnoreEnd
+        $addresses = $contact_info->getAddresses();
+        if ($addresses[0]) {
+
+          if ($addresses[0]->getPhysicalAddress()->getZip()) {
+            $address[] = $addresses[0]->getPhysicalAddress()->getZip();
+          }
+          if ($addresses[0]->getPhysicalAddress()->getCity()) {
+            $address[] = $addresses[0]->getPhysicalAddress()->getCity();
+          }
+        }
+
+      }
+
+      elseif ($pos->city && !count($address)) {
+
+        if ($pos->postalCode) {
+          $address[] = $pos->postalCode;
+        }
+        if ($pos->city) {
+          $address[] = $pos->city;
+        }
+
+      }
+
+      // Card systems.
+      $card_systems = array();
+      if (!empty($pos->cardSystems)) {
+        foreach ($pos->cardSystems as $card_system) {
+          /* @var CultureFeed_Uitpas_CardSystem $card_system */
+          $card_systems[] = $card_system->name;
+        }
+      }
+
+      $table['rows'][] = array(
+        l($pos->name, 'agenda/a/' . culturefeed_search_slug($pos->name) . '/' . $pos->id),
+        (count($card_systems)) ? theme('item_list', array('items' => $card_systems, 'type' => 'ul', 'attributes' => array('class' => 'list-unstyled'))) : '',
+        implode(' ', $address),
+      );
+
+    }
+
+  }
+  else {
+    $table['rows'][] = array(array('data' => t('No results found.'), 'colspan' => 2));
+  }
+
+  $pager = array(
+    'element' => $vars['pos_pager_element'],
+    'quantity' => $vars['pos_total'],
+  );
+
+  $vars['intro'] = t('You can get an UiTPAS at one of these registration counters. An UiTPAS costs € 5. Younger than 18 years? Then you\'ll pay € 2. For people with an opportunities tarrif UiTPAS is free. You\'ll need your eID to register your UiTPAS.');
+  $vars['pos_table'] = theme_table($table) . '<div class="pager clearfix">' . theme('pager', $pager) . '</div>';
+  $vars['outro'] = t('Important: you\'ll need your eID to register your UiTPAS. <a href="@read-more">Read more</a> about the UiTPAS project.', array('@read-more' => 'http://www.cultuurnet.be/project/uitpas'));
+
+}
+
+/**
  * Override image output promotion for gallery
  */
 function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
@@ -2534,8 +2626,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
  */
 function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
 
-  $prefix = variable_get('culturefeed_uitpas_user_register_intro_text', '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>');
-  $prefix .= '<h2><span>' . t('Register your UiTpas') . '</span></h2>';
+  $prefix = '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>';
 
   $form['prefix']['#markup'] = $prefix;
 
@@ -2598,12 +2689,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   // @codingStandardsIgnoreEnd
   $card_system = $uitpas_user->card_system;
 
-  // Title.
-  $vars['uitpas_title'] = variable_get('culturefeed_uitpas_profile_details_title', t('My UiTPAS'));
-
-  // Intro.
-  $vars['intro'] = variable_get('culturefeed_uitpas_profile_details_intro');
-
   // Card numbers.
   $uitpas_numbers = array(
     'items' => array(),
@@ -2624,15 +2709,12 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
 
     }
   }
-  $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . variable_get('culturefeed_uitpas_profile_details_uitpas_number', t('UiTPAS number(s)')) . ':</h3></div><div class="panel-body">';
+  $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . $vars['uitpas_numbers_title'] . ':</h3></div><div class="panel-body">';
   $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
   $uitpas_numbers_output .= '</div><div class="panel-footer">';
-  $uitpas_numbers_output .= l(t('Register new UiTpas'), 'register_uitpas');
   $uitpas_numbers_output .= '</div>';
   $vars['uitpas_numbers'] = $uitpas_numbers_output;
 
-  $vars['form_title'] = variable_get('culturefeed_uitpas_profile_details_form_title', t('My personal data'));
-  $vars['form_intro'] = variable_get('culturefeed_uitpas_profile_details_form_intro');
   $form = drupal_get_form('culturefeed_uitpas_profile_details_form');
   $vars['form'] = drupal_render($form);
 
@@ -2655,8 +2737,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   else {
     $vars['memberships'] = '';
   }
-
-  $vars['outro'] = variable_get('culturefeed_uitpas_profile_details_outro');
-
+ 
 }
 

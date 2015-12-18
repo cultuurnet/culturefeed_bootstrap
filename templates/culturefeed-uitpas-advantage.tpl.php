@@ -27,19 +27,52 @@
     <div class="available"><?php print $available; ?></div>
     <?php endif; ?>
     <?php if ($description1): ?>
-    <p class="description1"><?php print $description1; ?></p>
+      <p class="description1"><?php print $description1; ?></p>
     <?php endif; ?>
-      <div class="how-to-exchange">
-        <button class="show-exchange-info btn btn-primary" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
-        <div class="exchange-info">
-          <div class="locations">
-            <?php print t('At') . ' ' . implode(', ', $location_links); ?>
-          </div>
-          <?php if ($description2): ?>
-          <p class="description2"><?php print $description2; ?></p>
-          <?php endif; ?>
-        </div>
+    <?php if ($description2): ?>
+    <div class="how-to-exchange">
+      <button class="show-exchange-info btn btn-primary" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
+      <div class="exchange-info">
+        <p class="description2"><?php print $description2; ?></p>
       </div>
+    </div>
+    <?php endif; ?>
+    <p class="block-title">Info</p>
+    <table class="detail-table">
+      <tbody>
+        <?php if ($counters): ?>
+        <tr>
+          <td>
+            <em class="detail-label"><?php print t('Offered by'); ?></em><i class="fa fa-map-marker hidden-md hidden-lg"></i>
+          </td>
+          <td><?php print $counters; ?></td>
+        </tr>
+        <?php endif; ?>
+        <?php if($period or $available): ?>
+        <tr><td colspan="2" class="divider"></td></tr>
+        <?php endif; ?>
+        <?php if ($period): ?>
+        <tr>
+          <td>
+            <em class="detail-label"><?php print t('Valid till'); ?></em><i class="fa fa-calendar hidden-md hidden-lg"></i>
+          </td>
+          <td><?php print $period; ?></td>
+        </tr>
+        <?php endif; ?>
+        <?php if($available): ?>
+        <tr><td colspan="2" class="divider"></td></tr>
+        <?php endif; ?>
+        <?php if ($available): ?>
+        <tr>
+          <td>
+            <em class="detail-label"><?php print t('Still available'); ?></em><i class="fa fa-ticket hidden-md hidden-lg"></i>
+          </td>
+          <td><?php print $available; ?></td>
+        </tr>
+        <?php endif; ?>
+
+      </tbody>
+    </table>
   </div>
   <div class="col-xs-4 col-md-3">
     <div class="media">

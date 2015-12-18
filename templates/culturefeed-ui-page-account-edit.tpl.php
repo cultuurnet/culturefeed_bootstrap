@@ -8,7 +8,9 @@
 <div class="user user-account">
   <!--intro-->
   <?php if ($intro): ?>
+    <div id="account-edit-intro">
       <?php print $intro; ?>
+    </div>
   <?php endif; ?>
   <!--tabs-->
   <?php print $profile_shortcuts; ?>
