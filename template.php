@@ -2549,18 +2549,15 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_register_where(&$va
             $address[] = $addresses[0]->getPhysicalAddress()->getCity();
           }
         }
-
       }
 
       elseif ($pos->city && !count($address)) {
-
         if ($pos->postalCode) {
           $address[] = $pos->postalCode;
         }
         if ($pos->city) {
           $address[] = $pos->city;
         }
-
       }
 
       // Card systems.
@@ -2579,7 +2576,6 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_register_where(&$va
       );
 
     }
-
   }
   else {
     $table['rows'][] = array(array('data' => t('No results found.'), 'colspan' => 2));
@@ -2624,7 +2620,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
  * Add bootstrap class to user register button
  *
  */
-function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, $form_state) {
+function culturefeed_bootstrap_form_culturefeed_uitpas_user_register_form_alter(&$form, &$form_state) {
 
   $prefix = '<p class="intro">' . t('Register here, so you can follow your UiTPAS advantages and points balance online.') . '</p>';
 
