@@ -18,65 +18,59 @@
     <div class="col-xs-12 col-sm-8 col-md-9" role="main">
       <div class="clearfix">
         <?php if ($provider_raw): ?>
-        <div class="provider-label pull-left">
+        <div class="provider-label">
           <p class="text-muted <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
         </div>
         <?php endif; ?>
-        <div class="points pull-right"><span class="label label-primary"><?php print $points; ?></span></div>
+        <div class="points"><span class="label label-primary"><?php print $points; ?></span></div>
       </div>
-      <table class="table table-condended">
+      <?php if ($description1): ?>
+        <p class="intro"><?php print $description1; ?></p>
+      <?php endif; ?>
+      <?php if ($description2): ?>
+      <div class="how-to-exchange">
+        <button class="show-exchange-info btn btn-primary" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
+        <div class="exchange-info">
+          <p class="description2"><?php print $description2; ?></p>
+        </div>
+      </div>
+      <?php endif; ?>
+      <p class="block-title">Info</p>
+      <table class="detail-table">
         <tbody>
           <?php if ($counters): ?>
-          <tr class="counters">
-            <td class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
-              <strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i>
+          <tr>
+            <td>
+              <em class="detail-label"><?php print t('Offered by'); ?></em><i class="fa fa-map-marker hidden-md hidden-lg"></i>
             </td>
             <td><?php print $counters; ?></td>
           </tr>
           <?php endif; ?>
-
+          <?php if($period or $available): ?>
+          <tr><td colspan="2" class="divider"></td></tr>
+          <?php endif; ?>
           <?php if ($period): ?>
-          <tr class="period">
-            <td class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
-              <strong class="hidden-xs hidden-sm"><?php print t('Valid till'); ?></strong><i class="fa fa-calendar hidden-md hidden-lg"></i>
+          <tr>
+            <td>
+              <em class="detail-label"><?php print t('Valid till'); ?></em><i class="fa fa-calendar hidden-md hidden-lg"></i>
             </td>
             <td><?php print $period; ?></td>
           </tr>
           <?php endif; ?>
-
+          <?php if($available): ?>
+          <tr><td colspan="2" class="divider"></td></tr>
+          <?php endif; ?>
           <?php if ($available): ?>
-          <tr class="available">
-            <td class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
-              <strong class="hidden-xs hidden-sm"><?php print t('Still available'); ?></strong><i class="fa fa-ticket hidden-md hidden-lg"></i>
+          <tr>
+            <td>
+              <em class="detail-label"><?php print t('Still available'); ?></em><i class="fa fa-ticket hidden-md hidden-lg"></i>
             </td>
             <td><?php print $available; ?></td>
           </tr>
           <?php endif; ?>
 
-          <?php if ($description1): ?>
-          <tr class="description1">
-            <td class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
-              <strong class="hidden-xs hidden-sm"><?php print t('Conditions'); ?></strong><i class="fa fa-info-circle hidden-md hidden-lg"></i>
-            </td>
-            <td><?php print $description1; ?></td>
-          </tr>
-          <?php endif; ?>
-
         </tbody>
       </table>
-
-
-      <?php if ($description2): ?>
-      <div class="how-to-exchange">
-        <button class="show-exchange-info btn btn-primary" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
-        <div class="exchange-info">
-          <div class="locations">
-            <?php print t('At') . ' ' . implode(', ', $location_links); ?>
-          </div>
-          <p class="description2"><?php print $description2; ?></p>
-        </div>
-      </div>
-      <?php endif; ?>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-3" role="aside">
       <div class="media">
