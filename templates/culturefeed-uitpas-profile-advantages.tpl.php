@@ -11,7 +11,8 @@
 ?>
 
 <div class="table-responsive">
-  <?php print $profile_advantages_table; ?>
+  <div class="page_elements pull-right"><?php print $page_elements; ?></div>
+  <div class="advantages_table"><?php print $profile_advantages_table; ?></div>
   <hr />
   <div class="info"><?php print $info; ?></div>
 </div>
