@@ -161,7 +161,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda(&$variables) {
   $item = $variables['item'];
   $entity = $item->getEntity();
 
-  if (CULTUREFEED_AGENDA_ENABLE_SOCIAL_ACTIVITY_PREPPROCESSING && module_exists('culturefeed_social') && !culturefeed_is_culturefeed_user()) {
+  if (culturefeed_agenda_social_links_preprocessing_enabled() && module_exists('culturefeed_social') && !culturefeed_is_culturefeed_user()) {
     $variables['recommend_link'] = theme('culturefeed_social_login_required_message', array(
       'activity_type' => CultureFeed_Activity::TYPE_RECOMMEND,
       'item' => $item,
