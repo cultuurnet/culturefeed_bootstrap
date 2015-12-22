@@ -2692,9 +2692,9 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   );
   foreach ($passholder->cardSystemSpecific as $card_system_specific) {
 
-    if ($card_system_specific->currentCard->uitpasNumber) {
+    if ($card_system_specific->currentCard) {
 
-      $output = $card_system_specific->currentCard->uitpasNumber . ' (' . $card_system_specific->cardSystem->name . ')';
+      $output = isset($card_system_specific->currentCard->uitpasNumber)?:'' . ' (' . $card_system_specific->cardSystem->name . ')';
       if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
         $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
         $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
