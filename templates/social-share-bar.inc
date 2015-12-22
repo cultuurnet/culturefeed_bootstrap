@@ -14,21 +14,25 @@
 
 <div class="row">
 
-  <div class="col-xs-6 col-sm-<?php print $col_width; ?>">
-    <span class="fa-stack">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-    </span>
-    <?php print $recommend_link; ?>
-  </div>
+  <?php if (!empty($recommend_link)) : ?>
+    <div class="col-xs-6 col-sm-<?php print $col_width; ?>">
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+      </span>
+      <?php print $recommend_link; ?>
+    </div>
+  <?php endif; ?>
 
-  <div class="col-xs-6 col-sm-<?php print $col_width; ?>">
-    <span class="fa-stack">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-    </span>
-    <?php print $attend_link; ?>
-  </div>
+  <?php if (!empty($attend_link)) : ?>
+    <div class="col-xs-6 col-sm-<?php print $col_width; ?>">
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+      </span>
+      <?php print $attend_link; ?>
+    </div>
+  <?php endif; ?>
 
   <div class="col-xs-6 col-sm-<?php print $col_width; ?>">
     <span class="fa-stack">
