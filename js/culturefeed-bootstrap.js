@@ -163,57 +163,74 @@
 
   if (Drupal.ajax) {
 
-    /**
-     * Handler for the form redirection error.
-     * Custom override: Don't show an error when people are navigation away of the site.
-     */
-    Drupal.ajax.prototype.error = function (response, uri) {
+    if (typeof Drupal.ajax.prototype != "undefined") {
 
-      if (!response.status) {
-        return;
+      /**
+       * Handler for the form redirection error.
+       * Custom override: Don't show an error when people are navigation away of the site.
+       */
+      Drupal.ajax.prototype.error = function (response, uri) {
+  
+        if (!response.status) {
+          return;
+        }
+  
+        alert(Drupal.ajaxError(response, uri));
+        // Remove the progress element.
+        if (this.progress.element) {
+          $(this.progress.element).remove();
+        }
+        if (this.progress.object) {
+          this.progress.object.stopMonitoring();
+        }
+        // Undo hide.
+        $(this.wrapper).show();
+        // Re-enable the element.
+        $(this.element).removeClass('progress-disabled').removeAttr('disabled');
+        // Reattach behaviors, if they were detached in beforeSerialize().
+        if (this.form) {
+          var settings = response.settings || this.settings || Drupal.settings;
+          Drupal.attachBehaviors(this.form, settings);
+        }
+      };
+  
+      /**
+       * Command to provide a bootstrap modal with drupal ajax support.
+       */
+      Drupal.ajax.prototype.commands.bootstrapModal = function (ajax, response, status) {
+  
+        // Support for jquery datepicker. See http://stackoverflow.com/questions/21059598/implementing-jquery-datepicker-in-bootstrap-modal
+        var enforceModalFocusFn = $.fn.modal.Constructor.prototype.enforceFocus;
+        $.fn.modal.Constructor.prototype.enforceFocus = function() {};
+        $('#bootstrap-modal-container').on('hidden', function() {
+            $.fn.modal.Constructor.prototype.enforceFocus = enforceModalFocusFn;
+        });
+  
+        var wrapper = $('#bootstrap-modal-container').find('.modal-content');
+        var settings = response.settings || ajax.settings || Drupal.settings;
+        Drupal.detachBehaviors(wrapper, settings);
+  
+        var new_content = $('<div></div>').html(response.data);
+        $('#bootstrap-modal-container').find('.modal-content').html(new_content);
+        $('#bootstrap-modal-container').modal({show : true});
+        Drupal.attachBehaviors(new_content, settings);
+  
+      };
+
+      /**
+       * Command to reload current page.
+       */
+      Drupal.ajax.prototype.commands.culturefeedGoto = function (ajax, response, status) {
+    
+        if (ajax.progress.element) {
+          $(ajax.element).addClass('progress-disabled').attr('disabled', 'disabled');
+          $(ajax.element).append(ajax.progress.element);
+        }
+    
+        window.location.href = response.url;
       }
 
-      alert(Drupal.ajaxError(response, uri));
-      // Remove the progress element.
-      if (this.progress.element) {
-        $(this.progress.element).remove();
-      }
-      if (this.progress.object) {
-        this.progress.object.stopMonitoring();
-      }
-      // Undo hide.
-      $(this.wrapper).show();
-      // Re-enable the element.
-      $(this.element).removeClass('progress-disabled').removeAttr('disabled');
-      // Reattach behaviors, if they were detached in beforeSerialize().
-      if (this.form) {
-        var settings = response.settings || this.settings || Drupal.settings;
-        Drupal.attachBehaviors(this.form, settings);
-      }
-    };
-
-    /**
-     * Command to provide a bootstrap modal with drupal ajax support.
-     */
-    Drupal.ajax.prototype.commands.bootstrapModal = function (ajax, response, status) {
-
-      // Support for jquery datepicker. See http://stackoverflow.com/questions/21059598/implementing-jquery-datepicker-in-bootstrap-modal
-      var enforceModalFocusFn = $.fn.modal.Constructor.prototype.enforceFocus;
-      $.fn.modal.Constructor.prototype.enforceFocus = function() {};
-      $('#bootstrap-modal-container').on('hidden', function() {
-          $.fn.modal.Constructor.prototype.enforceFocus = enforceModalFocusFn;
-      });
-
-      var wrapper = $('#bootstrap-modal-container').find('.modal-content');
-      var settings = response.settings || ajax.settings || Drupal.settings;
-      Drupal.detachBehaviors(wrapper, settings);
-
-      var new_content = $('<div></div>').html(response.data);
-      $('#bootstrap-modal-container').find('.modal-content').html(new_content);
-      $('#bootstrap-modal-container').modal({show : true});
-      Drupal.attachBehaviors(new_content, settings);
-
-    };
+    }
 
   }
 
@@ -339,18 +356,5 @@
        this.owner.hidePopup();
      }).length == 0;
    };
-
-  /**
-   * Command to reload current page.
-   */
-  Drupal.ajax.prototype.commands.culturefeedGoto = function (ajax, response, status) {
-
-    if (ajax.progress.element) {
-      $(ajax.element).addClass('progress-disabled').attr('disabled', 'disabled');
-      $(ajax.element).append(ajax.progress.element);
-    }
-
-    window.location.href = response.url;
-  }
 
 })(jQuery);
