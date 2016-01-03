@@ -15,7 +15,7 @@
       var isVisible = false;
       var clickedAway = false;
 
-      $popoverLogin = $("a[href^='/culturefeed/do'");
+      $popoverLogin = $("a[href^='/culturefeed/do']");
 
       // show popover
       $popoverLogin.popover({
