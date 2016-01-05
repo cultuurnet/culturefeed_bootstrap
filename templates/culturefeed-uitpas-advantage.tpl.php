@@ -20,12 +20,6 @@
         <p class="text-muted <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
       </div>
     <?php endif; ?>
-    <?php if ($period): ?>
-    <div class="period"><?php print $period; ?></div>
-    <?php endif; ?>
-    <?php if ($available): ?>
-    <div class="available"><?php print $available; ?></div>
-    <?php endif; ?>
     <?php if ($description1): ?>
       <p class="description1"><?php print $description1; ?></p>
     <?php endif; ?>
@@ -54,7 +48,7 @@
         <?php if ($period): ?>
         <tr>
           <td>
-            <em class="detail-label"><?php print t('Valid till'); ?></em><i class="fa fa-calendar hidden-md hidden-lg"></i>
+            <em class="detail-label"><?php print t('Availability'); ?></em><i class="fa fa-calendar hidden-md hidden-lg"></i>
           </td>
           <td><?php print $period; ?></td>
         </tr>

@@ -52,7 +52,7 @@
           <?php if ($period): ?>
           <tr>
             <td>
-              <em class="detail-label"><?php print t('Valid till'); ?></em><i class="fa fa-calendar hidden-md hidden-lg"></i>
+              <em class="detail-label"><?php print t('Availability'); ?></em><i class="fa fa-calendar hidden-md hidden-lg"></i>
             </td>
             <td><?php print $period; ?></td>
           </tr>
