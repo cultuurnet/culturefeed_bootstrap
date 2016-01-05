@@ -59,7 +59,7 @@
         <?php if ($available): ?>
         <tr>
           <td>
-            <em class="detail-label"><?php print t('Still available'); ?></em><i class="fa fa-ticket hidden-md hidden-lg"></i>
+            <em class="detail-label"><?php print t('Only available for'); ?></em><i class="fa fa-ticket hidden-md hidden-lg"></i>
           </td>
           <td><?php print $available; ?></td>
         </tr>

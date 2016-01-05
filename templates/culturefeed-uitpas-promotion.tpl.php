@@ -12,6 +12,7 @@
    * - $available: The availability.
    * - $description1.
    * - $description2.
+   * - $out_of_stock: True or False
    */
   ?>
   <div class="detail promotion-detail row">
@@ -46,15 +47,21 @@
             <td><?php print $counters; ?></td>
           </tr>
           <?php endif; ?>
-          <?php if($period or $available): ?>
+          <?php if($period || $available || $out_of_stock): ?>
           <tr><td colspan="2" class="divider"></td></tr>
           <?php endif; ?>
-          <?php if ($period): ?>
+          <?php if ($period || $out_of_stock): ?>
           <tr>
             <td>
               <em class="detail-label"><?php print t('Availability'); ?></em><i class="fa fa-calendar hidden-md hidden-lg"></i>
             </td>
-            <td><?php print $period; ?></td>
+            <td>
+              <?php if ($out_of_stock): ?>
+                <?php print t('Out of stock'); ?>
+              <?php else: ?>
+                <?php print $period; ?>
+              <?php endif; ?>
+            </td>
           </tr>
           <?php endif; ?>
           <?php if($available): ?>
@@ -63,7 +70,7 @@
           <?php if ($available): ?>
           <tr>
             <td>
-              <em class="detail-label"><?php print t('Still available'); ?></em><i class="fa fa-ticket hidden-md hidden-lg"></i>
+              <em class="detail-label"><?php print t('Only available for'); ?></em><i class="fa fa-ticket hidden-md hidden-lg"></i>
             </td>
             <td><?php print $available; ?></td>
           </tr>
