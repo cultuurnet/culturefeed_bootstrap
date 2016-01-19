@@ -7,6 +7,7 @@
   .nav-tabs {
     border-top: 1px solid #ddd;
   }
+
   .nav-month {
     text-transform: uppercase;
     font-weight: bold;
@@ -18,16 +19,19 @@
   font-weight: 200;
 }
 
-#culturefeed-calendar-form {
+form[id^=culturefeed-calendar-form] {
   .container-inline-date .date-padding {
     clear: left;
     float: none;
     padding: 0;
   }
+
   .form-item-date-date label {
     .sr-only();
   }
+
   button[name="no_idea_yet"] {
     padding: 0;
   }
+
 }
