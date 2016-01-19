@@ -10,17 +10,20 @@
  *   $nowrapper (default=false). 
  *     For ajax request, you should hide the wrapper.
  */
+?>
 
-$link = l(t('perform a new search.'), str_replace("/ajax", "", $_GET['q']));
-
-if ($noitems) :
-  ?>
-  <?php print 
-  '<div class="alert alert-warning"><p><strong>' . t('There are no more search results.') . '</strong></p> <p>' . t('Refine your search results or') . ' ' . $link . '</p></div>'  
-  ?>
-  <?php 
-else :
+<?php if ($noitems): ?>
+  <div class="alert alert-warning">
+    <p><strong><?php print t('There are no more search results.'); ?></strong></p>
+    <p>
+      <?php print t('Refine your search results or'); ?>
+      <?php print l(t('perform a new search.'), str_replace("/ajax", "", $_GET['q'])); ?>
+    </p>
+  </div>
+<?php else: ?>
+<?php 
   foreach ($items as $item) {
     print $item;
   }
-endif;
+?>
+<?php endif; ?>

@@ -26,12 +26,12 @@
       <a href="<?php print $url ?>"><?php print $title; ?></a>
     </h4>
 
-    <p>      
+    <p>
       <?php if (isset($location['city'])): ?>
         <strong><?php print $location['city']; ?></strong>
         <br />
         <span><?php print $location['title'] ?></span>
-      <?php endif; ?>    
+      <?php endif; ?>
     </p>
 
     <p class="hidden-xs hidden-sm"><span class="more-info"> <?php print culturefeed_search_detail_l('production', $cdbid, $title, 'Meer informatie &rarr;', array('attributes' => array('class' => 'btn btn-default'), 'html' => TRUE)); ?> </span></p>

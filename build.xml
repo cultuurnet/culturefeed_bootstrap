@@ -1,11 +1,30 @@
 <?xml version="1.0"?>
 <project name="CultureFeed Bootstrap theme" description="" default="lint">
+    <fileset dir="." id="phpfiles">
+        <include name="*.php"/>
+        <include name="**/*.php"/>
+        <exclude name="vendor/**" />
+    </fileset>
+
     <target name="lint">
-        <phplint haltonfailure="true" level="debug" interpreter="php -d short_open_tag=Off">
-            <fileset dir=".">
-                <include name="*.php"/>
-                <include name="**/*.php"/>
-            </fileset>
-        </phplint>
+        <foreach param="phpfilename" absparam="absphpfilename" target="lint-one-file">
+            <fileset refid="phpfiles" />
+        </foreach>
+    </target>
+
+    <target name="lint-one-file" hidden="true">
+        <exec executable="php" returnProperty="lintexitcode">
+            <arg value="-n" />
+            <arg value="-d error_reporting=32767" />
+            <arg value="-d short_open_tag=Off" />
+            <arg value="-l" />
+            <arg value="${absphpfilename}" />
+        </exec>
+        <if>
+            <not><equals arg1="${lintexitcode}" arg2="0"></equals></not>
+            <then>
+                <fail message="PHP lint check failed on ${phpfilename}"></fail>
+            </then>
+        </if>
     </target>
 </project>

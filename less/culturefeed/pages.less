@@ -1,0 +1,98 @@
+/**
+ * @file
+ * Culturefeed Bootstrap theme for the Pages module.
+ */
+
+/* page-agenda-g detail */
+
+.page-agenda-g address {
+  margin-bottom: 0;
+}
+
+/* theme page header */
+
+.bg-invert {
+  color: #fff;
+  #gradient > .vertical(rgba(20,20,20,0.65); rgba(20,20,20,0.95); 0%; 80%);
+}
+
+.page-cover {
+  margin-bottom: 15px;
+  padding-top: 150px;
+  background-repeat: no-repeat;
+  background-color: rgb(20,20,20,1);
+
+  .page-title {
+    color: #FFF;
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-size: 24px;
+    font-weight: 500;
+    text-shadow: black 2px 2px 1px;
+  }
+
+  .baseline {
+    color: #ABABAB;
+    text-shadow: black 1px 1px 1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  .page-actions {
+    margin-top: 15px;
+    &.no-baseline {
+      margin-top: 8px;
+      .btn {
+        padding: 3px 9px;
+      }
+    }
+  }
+
+  .page-actions a {
+    box-shadow: black 0px 1px 1px;
+  }
+}
+
+/* page suggestions block */
+
+.block-culturefeed-pages {
+  position: relative;
+
+  .all-pages-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .follow-button .btn {
+    .btn-warning();
+    .btn-xs();
+    @media (max-width: @screen-sm) {
+      margin-top:10px;
+    }
+  }
+  label[for="edit-city"] {
+    padding-top: 7px;
+  }
+  @media (max-width: @screen-sm) {
+    .form-group {
+      margin-bottom: 5px;
+      margin-top: 0;
+    }
+  }
+}
+
+/* filter timeline */
+
+#culturefeed-pages-timeline-filter-form {
+  .hidden-xs();
+  text-align: right;
+  .form-group {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  select {
+    width: auto;
+    display: inline-block;
+  }
+}

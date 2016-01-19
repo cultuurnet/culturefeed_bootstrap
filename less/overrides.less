@@ -528,3 +528,53 @@ a .glyphicon-spin {
     }
   }
 }
+
+// Alerts addition 
+.alert-success {
+  font-weight: 400;
+  a:not(.close){
+    color: darken(@alert-success-text, 15%);
+    font-weight: 600;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: @alert-success-text;
+    }
+  }
+}
+.alert-info {
+  font-weight: 400;
+  a:not(.close){
+    color: darken(@alert-info-text, 15%);
+    font-weight: 600;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: @alert-info-text;
+    }
+  }
+}
+.alert-warning {
+  font-weight: 400;
+  a:not(.close){
+    color: darken(@alert-warning-text, 15%);
+    font-weight: 600;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: @alert-warning-text;
+    }
+  }
+}
+.alert-danger {
+  font-weight: 400;
+  a:not(.close){
+    color: darken(@alert-danger-text, 15%);
+    font-weight: 600;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: @alert-danger-text;
+    }
+  }
+}

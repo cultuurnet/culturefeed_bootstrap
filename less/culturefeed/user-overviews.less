@@ -1,0 +1,20 @@
+/* overview shared styles */
+.overview {
+  figure img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Enhance with flex for browsers that understand */
+  article {
+    @media screen and (min-width: @screen-md) {
+      > .row {
+        display: flex;
+        > aside {
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+      }
+    }
+  }
+}

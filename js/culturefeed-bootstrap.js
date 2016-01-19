@@ -1,60 +1,75 @@
-jQuery(function($) {
+(function ($) {
 
-  // Init popovers
-  $("a[data-toggle=popover]")
-    .popover()
-    .click(function(e) {
-      e.preventDefault()
-    })
+  $(document).ready(function() {
 
-  // popover - authentication required
-  if (!Drupal.settings.culturefeed || !Drupal.settings.culturefeed.isCultureFeedUser) {
+    // Init popovers
+    $("a[data-toggle=popover]")
+      .popover()
+      .click(function(e) {
+        e.preventDefault()
+      })
 
-    var isVisible = false;
-    var clickedAway = false;
+    // popover - authentication required
+    if (!Drupal.settings.culturefeed || !Drupal.settings.culturefeed.isCultureFeedUser) {
 
-    $popoverLogin = $(".do-link");
+      var isVisible = false;
+      var clickedAway = false;
 
-    // show popover
-    $popoverLogin.popover({
-      html: true,
-      placement: 'top',
-      trigger: 'manual',
-      content: function() {
-        // see custom culturefeed-ui-connect-hover.tpl.php
-        return $(".popover-login").html();
-      }
-    }).click(function(e) {
-      $(this).popover('show');
-      clickedAway = false
-      isVisible = true
-      e.preventDefault()
+      $popoverLogin = $("a[href^='/culturefeed/do']");
+
+      // show popover
+      $popoverLogin.popover({
+        html: true,
+        placement: 'top',
+        trigger: 'manual',
+        content: function() {
+          // see custom culturefeed-ui-connect-hover.tpl.php
+          return $(".popover-login").html();
+        }
+      }).click(function(e) {
+        $(this).popover('show');
+        clickedAway = false
+        isVisible = true
+        e.preventDefault()
+      });
+
+      // hide popover
+      $(document).click(function(e) {
+        if (isVisible && clickedAway)
+        {
+          $popoverLogin.popover('hide')
+          isVisible = clickedAway = false
+        }
+        else
+        {
+          clickedAway = true
+        }
+      });
+
+    }
+
+    // Init tooltips
+    $("a[data-toggle=tooltip]").tooltip();
+    $("span[data-toggle=tooltip]").tooltip();
+
+    // Init the map if this toggles a map.
+    $(".map-toggle").click(function() {
+      Drupal.CultureFeed.Agenda.initializeMap();
     });
 
-
-    // hide popover
-    $(document).click(function(e) {
-      if (isVisible && clickedAway)
-      {
-        $popoverLogin.popover('hide')
-        isVisible = clickedAway = false
-      }
-      else
-      {
-        clickedAway = true
-      }
+    // Count characters input field - limit 400 characters
+    $(function(){
+          $('#limit-400').keyup(function(){
+                  limitChars('limit-400', 400, 'charlimitinfo');
+          })
     });
 
-  }
+    // Remove agenda tab from page timeline block if agenda block is not available
+    if ($("#block-culturefeed-pages-page-agenda").length == 0) {
+      $(".tab-agenda").remove();
+    }
 
-  // Init tooltips
-  $("a[data-toggle=tooltip]").tooltip();
-  $("span[data-toggle=tooltip]").tooltip();
-
-  // Init the map if this toggles a map.
-  $(".map-toggle").click(function() {
-    Drupal.CultureFeed.Agenda.initializeMap();
-  });
+  })
 
   // Count characters input field - limit - general
   function limitChars(textid, limit, infodiv)
@@ -73,18 +88,6 @@ jQuery(function($) {
   		$('#' + infodiv).html('Nog '+ (limit - textlength) +' resterende karakters');
   		return true;
   	}
-  }
-
-  // Count characters input field - limit 400 characters
-  $(function(){
-   	$('#limit-400').keyup(function(){
-   		limitChars('limit-400', 400, 'charlimitinfo');
-   	})
-  });
-
-  // Remove agenda tab from page timeline block if agenda block is not available
-  if ($("#block-culturefeed-pages-page-agenda").length == 0) {
-    $(".tab-agenda").remove();
   }
 
   /**
@@ -107,6 +110,19 @@ jQuery(function($) {
           $(selector, context).unbind('change', Drupal.file.validateExtension);
         });
       }
+    }
+  };
+
+  /**
+   * Add click events on the read more link.
+   */
+  Drupal.behaviors.culturefeedPushMoreInfoToUitId = {
+    attach: function(context, settings) {
+      $('a.moreinfo-link', context).bind('click', function(e) {
+        e.preventDefault();
+        $.ajax($(this).prop('rel'));
+        $('#cf-longdescription').toggle();
+      });
     }
   };
 
@@ -147,34 +163,74 @@ jQuery(function($) {
 
   if (Drupal.ajax) {
 
-    /**
-     * Handler for the form redirection error.
-     * Custom override: Don't show an error when people are navigation away of the site.
-     */
-    Drupal.ajax.prototype.error = function (response, uri) {
+    if (typeof Drupal.ajax.prototype != "undefined") {
 
-      if (!response.status) {
-        return;
+      /**
+       * Handler for the form redirection error.
+       * Custom override: Don't show an error when people are navigation away of the site.
+       */
+      Drupal.ajax.prototype.error = function (response, uri) {
+  
+        if (!response.status) {
+          return;
+        }
+  
+        alert(Drupal.ajaxError(response, uri));
+        // Remove the progress element.
+        if (this.progress.element) {
+          $(this.progress.element).remove();
+        }
+        if (this.progress.object) {
+          this.progress.object.stopMonitoring();
+        }
+        // Undo hide.
+        $(this.wrapper).show();
+        // Re-enable the element.
+        $(this.element).removeClass('progress-disabled').removeAttr('disabled');
+        // Reattach behaviors, if they were detached in beforeSerialize().
+        if (this.form) {
+          var settings = response.settings || this.settings || Drupal.settings;
+          Drupal.attachBehaviors(this.form, settings);
+        }
+      };
+  
+      /**
+       * Command to provide a bootstrap modal with drupal ajax support.
+       */
+      Drupal.ajax.prototype.commands.bootstrapModal = function (ajax, response, status) {
+  
+        // Support for jquery datepicker. See http://stackoverflow.com/questions/21059598/implementing-jquery-datepicker-in-bootstrap-modal
+        var enforceModalFocusFn = $.fn.modal.Constructor.prototype.enforceFocus;
+        $.fn.modal.Constructor.prototype.enforceFocus = function() {};
+        $('#bootstrap-modal-container').on('hidden', function() {
+            $.fn.modal.Constructor.prototype.enforceFocus = enforceModalFocusFn;
+        });
+  
+        var wrapper = $('#bootstrap-modal-container').find('.modal-content');
+        var settings = response.settings || ajax.settings || Drupal.settings;
+        Drupal.detachBehaviors(wrapper, settings);
+  
+        var new_content = $('<div></div>').html(response.data);
+        $('#bootstrap-modal-container').find('.modal-content').html(new_content);
+        $('#bootstrap-modal-container').modal({show : true});
+        Drupal.attachBehaviors(new_content, settings);
+  
+      };
+
+      /**
+       * Command to reload current page.
+       */
+      Drupal.ajax.prototype.commands.culturefeedGoto = function (ajax, response, status) {
+    
+        if (ajax.progress.element) {
+          $(ajax.element).addClass('progress-disabled').attr('disabled', 'disabled');
+          $(ajax.element).append(ajax.progress.element);
+        }
+    
+        window.location.href = response.url;
       }
 
-      alert(Drupal.ajaxError(response, uri));
-      // Remove the progress element.
-      if (this.progress.element) {
-        $(this.progress.element).remove();
-      }
-      if (this.progress.object) {
-        this.progress.object.stopMonitoring();
-      }
-      // Undo hide.
-      $(this.wrapper).show();
-      // Re-enable the element.
-      $(this.element).removeClass('progress-disabled').removeAttr('disabled');
-      // Reattach behaviors, if they were detached in beforeSerialize().
-      if (this.form) {
-        var settings = response.settings || this.settings || Drupal.settings;
-        Drupal.attachBehaviors(this.form, settings);
-      }
-    };
+    }
 
   }
 
@@ -234,4 +290,71 @@ jQuery(function($) {
 
   }
 
-});
+  // Create a custom autocomplete widget that supports categorisation of data with bootstrap html.
+  if ($.custom && $.custom.categorisedAutocomplete) {
+
+    // Take over the search function.
+    $.custom.categorisedAutocomplete.prototype.search = function(value, event) {
+
+      var $throbber = $('.glyphicon-refresh', $(this.element).parent());
+      $throbber.addClass('glyphicon-spin');
+
+      value = value != null ? value : this._value();
+
+      // always save the actual value, not the one passed as an argument
+      this.term = this._value();
+
+      if ( value.length < this.options.minLength ) {
+        return this.close( event );
+      }
+
+      if ( this._trigger( "search", event ) === false ) {
+        return;
+      }
+
+      return this._search(value);
+
+    }
+
+    // Take over the render menu function.
+    $.custom.categorisedAutocomplete.prototype._renderMenu = function(ul, items) {
+
+      var $throbber = $('.glyphicon-refresh', $(this.element).parent());
+      $throbber.removeClass('glyphicon-spin');
+
+      var that = this,
+      currentCategory = "";
+      $.each(items, function(index, item) {
+        var li;
+        if (!item.label) {
+          if (item.category != currentCategory) {
+            ul.append("<li class='ui-autocomplete-category " + item.type+ "'>" + item.category + "</li>");
+            currentCategory = item.category;
+          }
+        } else {
+          if (item.category != currentCategory) {
+            ul.append("<li class='ui-autocomplete-category " + item.type+ "'>" + item.category + "</li>");
+            currentCategory = item.category;
+          }
+          li = that._renderItemData(ul, item);
+          if (item.category) {
+            li.attr("aria-label", item.category + " : " + item.label);
+          }
+        }
+      });
+
+    }
+
+  }
+
+  /**
+   * Prevents the form from submitting if the suggestions popup is open
+   * and closes the suggestions popup when doing so.
+   */
+   Drupal.autocompleteSubmit = function () {
+     return $('.form-autocomplete > .dropdown').each(function () {
+       this.owner.hidePopup();
+     }).length == 0;
+   };
+
+})(jQuery);

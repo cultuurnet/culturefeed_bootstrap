@@ -5,38 +5,26 @@
  * Template to render the page account edit page.
  */
 ?>
-
-<?php print $account ?>
-
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <span class="caret"></span>
-        <a data-toggle="collapse" data-parent="#accordion" href="#online_accounts">
-          <?php print t('Connected accounts'); ?>
-        </a>
-      </h4>
+<div class="user user-account">
+  <!--intro-->
+  <?php if ($intro): ?>
+    <div id="account-edit-intro">
+      <?php print $intro; ?>
     </div>
-    <div id="online_accounts" class="panel-collapse collapse">
-      <div class="panel-body">
-        <?php print $online_accounts ?>
-      </div>
-    </div>
+  <?php endif; ?>
+  <!--tabs-->
+  <?php print $profile_shortcuts; ?>
+  <!--form-->
+  <?php print $form ?>
+  <hr />
+  <!--links-->
+  <div class="block block-links">
+    <h4><?php print t('Connected accounts'); ?></h4>
+    <?php print $online_accounts ?>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <span class="caret"></span>
-        <a data-toggle="collapse" data-parent="#accordion" href="#manage-consumers">
-          <?php print t('Connected applications'); ?>
-        </a>
-      </h4>
-    </div>
-    <div id="manage-consumers" class="panel-collapse collapse">
-      <div class="panel-body">
-        <p><?php print l(t('Manage websites and applications'), 'culturefeed/serviceconsumers'); ?> <?php print t('who uses your UiTiD profile.'); ?></p>
-      </div>
-    </div>
+  <hr />
+  <div class="block block-links">
+    <h4><?php print t('Connected applications'); ?> <small><?php print l(t('User history'), 'culturefeed/activities'); ?></small></h4>
+    <?php print $connected_applications; ?>
   </div>
 </div>
