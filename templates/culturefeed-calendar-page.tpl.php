@@ -16,9 +16,9 @@
       </small>
   </h1>
   </div>
-  <?php if (!empty($save_cookie_button)) : ?>
+  <?php if (!empty($login_url)) : ?>
     <div class='pull-right'>
-      <?php print $save_cookie_button ?>
+        <a href="<?php print $login_url ?>" class="btn btn-default"><?php print t('Login') ?></a>
     </div>
   <?php endif; ?>
   <ul class="nav nav-pills">
