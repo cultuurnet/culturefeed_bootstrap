@@ -8,7 +8,9 @@
 
 <div class="<?php print $classes; ?>" data-eventid="<?php print $event_id; ?>">
 
-<?php if ($finished) : ?>
+<?php if ($started && !$finished) : ?>
+  <?php print t('This event is already started'); ?>
+<?php elseif ($finished) : ?>
   <?php print t('This event is already finished'); ?>
 <?php else : ?>
   <?php if ($button['action'] == 'view') : ?>
