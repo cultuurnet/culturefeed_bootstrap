@@ -108,3 +108,8 @@
         </div>
       </div>
     </div>
+
+  <hr />
+
+  <p class="hidden-xs hidden-sm"><?php print l('Show all advantages', 'advantages'); ?></a></p>
+  

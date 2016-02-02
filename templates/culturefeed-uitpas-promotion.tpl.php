@@ -119,3 +119,6 @@
           </div>
         </div>
       </div>
+  <hr />
+
+  <p class="hidden-xs hidden-sm"><?php print l('Show all promotions', 'promotions'); ?></a></p>
