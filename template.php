@@ -2689,19 +2689,20 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
     'type' => 'ul',
     'attributes' => array(),
     'title' => '',
-  );
+  ); 
+  
   foreach ($passholder->cardSystemSpecific as $card_system_specific) {
 
-    if ($card_system_specific->currentCard) {
-
-      $output = isset($card_system_specific->currentCard->uitpasNumber)?:'' . ' (' . $card_system_specific->cardSystem->name . ')';
-      if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
-        $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
-        $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
-      }
-      $uitpas_numbers['items'][] = $output;
-
+    $cardsystemnumber = isset($card_system_specific->currentCard->uitpasNumber) ? $card_system_specific->currentCard->uitpasNumber : '';
+    $output = $cardsystemnumber . ' <span class="text-muted">(' . $card_system_specific->cardSystem->name . ')</span>';
+    if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
+      $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
+      $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
     }
+    $uitpas_numbers['items'][] = array(
+      'class' => array(drupal_html_class($card_system_specific->cardSystem->name)),
+      'data' => $output,
+    );
   }
   $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . $vars['uitpas_numbers_title'] . ':</h3></div><div class="panel-body">';
   $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
