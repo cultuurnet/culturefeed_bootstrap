@@ -12,8 +12,8 @@
  */
 ?>
 <div class="profile-promotions">
-  <div class="page_elements pull-right"><?php print $page_elements; ?></div>
+  <h2 class="results-title"><?php print $page_elements; ?></h2>
   <div class="promotions_table"><?php print $profile_promotions_table; ?></div>
-  <hr />
+
   <div class="info"><?php print $info; ?></div>
 </div>
