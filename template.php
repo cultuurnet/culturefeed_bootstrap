@@ -2180,6 +2180,34 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
 
 }
 
+function culturefeed_bootstrap_form_culturefeed_uitpas_advantages_filter_sort_alter(&$form, &$form_state) {
+
+  // Advantages.
+  $form['advantages_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['advantages_link']['#links']['promotions'];
+  $form['advantages_link']['#links']['promotions lead'] = $promotions;
+  unset($form['advantages_link']['#links']['promotions']);
+  $advantages = $form['advantages_link']['#links']['advantages'];
+  $form['advantages_link']['#links']['advantages lead'] = $advantages;
+  unset($form['advantages_link']['#links']['advantages']);
+
+  return $form;
+}
+
+function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
+
+  // Promotions.
+  $form['promotions_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['promotions_link']['#links']['promotions'];
+  $form['promotions_link']['#links']['promotions lead'] = $promotions;
+  unset($form['promotions_link']['#links']['promotions']);
+  $advantages = $form['promotions_link']['#links']['advantages'];
+  $form['promotions_link']['#links']['advantages lead'] = $advantages;
+  unset($form['promotions_link']['#links']['advantages']);
+
+  return $form;
+}
+
 function culturefeed_bootstrap_form_culturefeed_uitpas_profile_advantages_filter_sort_alter(&$form, &$form_state) {
 
   // Profile advantages.
@@ -2689,19 +2717,20 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
     'type' => 'ul',
     'attributes' => array(),
     'title' => '',
-  );
+  ); 
+  
   foreach ($passholder->cardSystemSpecific as $card_system_specific) {
 
-    if ($card_system_specific->currentCard) {
-
-      $output = isset($card_system_specific->currentCard->uitpasNumber)?:'' . ' (' . $card_system_specific->cardSystem->name . ')';
-      if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
-        $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
-        $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
-      }
-      $uitpas_numbers['items'][] = $output;
-
+    $cardsystemnumber = isset($card_system_specific->currentCard->uitpasNumber) ? $card_system_specific->currentCard->uitpasNumber : '';
+    $output = $cardsystemnumber . ' <span class="text-muted">(' . $card_system_specific->cardSystem->name . ')</span>';
+    if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
+      $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
+      $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
     }
+    $uitpas_numbers['items'][] = array(
+      'class' => array(drupal_html_class($card_system_specific->cardSystem->name)),
+      'data' => $output,
+    );
   }
   $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . $vars['uitpas_numbers_title'] . ':</h3></div><div class="panel-body">';
   $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
@@ -2734,3 +2763,21 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
  
 }
 
+
+/**
+ * Implements hook_preprocess_culturefeed_uitpas_profile_section_register().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_section_register(&$vars) {
+
+  if(culturefeed_uitpas_not_yet_registered()) {
+    $vars['intro_title'] = t('You did not register your UiTPAS yet.');
+    $vars['intro_text'] = t('Register here, so you can follow your UiTPAS advantages and points balance online.');
+    $vars['cta_link'] = l(t('Register your UiTPAS'), 'register_uitpas', array('attributes' => array('class' => array('btn', 'btn-primary', 'btn-block'))));
+  }
+
+  else {
+    $vars['intro_title'] = t('No UiTPAS yet?');
+    $vars['intro_text'] = t('Holders of an UiTPAS can earn points by participating in leisure activities and exchange them for') . ' ' . l(t('nice benefits'), 'promotions') . '.';
+    $vars['cta_link'] = l(t('Get an UiTPAS'), 'register_where', array('attributes' => array('class' => array('btn', 'btn-primary', 'btn-block'))));
+  }
+}
