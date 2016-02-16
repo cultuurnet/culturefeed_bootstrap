@@ -1,8 +1,53 @@
 /* overview shared styles */
 .overview {
+  margin-bottom: 30px;
   figure img {
     max-width: 100%;
     height: auto;
+  }
+  article {
+    border-bottom: 1px solid darken(@gray-lighter, 5%);
+    color: @gray;
+    padding: 15px;
+    position: relative;
+    .transition(background .2s ease-in-out);
+    &:first-child {
+      border-top: 1px solid @gray-lighter;
+      margin-top: 5px;
+    }
+  }
+  .content {
+    @media screen and (min-width: @screen-xs) {
+      padding-left: 15px;
+      overflow: hidden;
+    }
+  }
+  aside {
+    border-top: 1px dashed @white;
+    padding-top: 10px;
+    margin-top: 10px;
+    .label {
+      float: left;
+      margin-bottom: 5px;
+      + .small {
+        clear: both;
+        display: inline-block;
+      }
+    }
+    @media screen and (min-width: @screen-md) {
+      border-top: none;
+      margin-top: 0;
+      padding-top: 0;
+      text-align: right;
+      .label {
+        float: none;
+      }
+    }
+  }
+  h2 {
+    font-size: ceil(@font-size-base * 1.5); /* like h3 */
+    font-weight: normal;
+    margin: 10px 0 0;
   }
 
   /* Enhance with flex for browsers that understand */

@@ -12,7 +12,7 @@
  */
 ?>
 <div class="profile-promotions">
-  <h2 class="results-title"><?php print $page_elements; ?></h2>
+  <h3 class="results-title"><?php print $page_elements; ?></h3>
   <div class="promotions_table"><?php print $profile_promotions_table; ?></div>
 
   <div class="info"><?php print $info; ?></div>
