@@ -17,7 +17,7 @@
               <?php endforeach; ?>
             </ul>
             <?php if($item['availability'] !== t('Until end of stock')): ?>
-              <span class="availability"><i class="fa fa-exclamation-circle"></i></a><?php print $item['availability']; ?></span>
+              <span class="availability"><i class="fa fa-exclamation-circle"></i></a> <?php print $item['availability']; ?></span>
             <?php endif; ?>
           </div>
         </div>

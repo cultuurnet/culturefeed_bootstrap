@@ -11,7 +11,7 @@
  * - $info: Info text.
  */
 ?>
-<div class="profile-promotions">
+<div class="overview profile-promotions">
   <h3 class="results-title"><?php print $page_elements; ?></h3>
   <div class="promotions_table"><?php print $profile_promotions_table; ?></div>
 
