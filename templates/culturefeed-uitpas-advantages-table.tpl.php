@@ -1,6 +1,6 @@
 <section class="overview overview-advantages clearfix">
   <?php foreach($items as $item): ?>
-  <article class="<?php print implode(' ', $item['classes']); ?> well clearfix">
+  <article class="<?php print implode(' ', $item['classes']); ?> clearfix">
     <div class="row">
       <?php print $item['overlay_link']; ?>
       <div class="main col-md-8 col-lg-9" role="main">
@@ -9,14 +9,16 @@
             <?php print $item['image']; ?>
           </figure>
           <div class="content col-xs-9 col-lg-10">
-            <p class="text-muted <?php print $item['cardsystem']['class']; ?>"><?php print $item['cardsystem']['name']; ?></p>
+            <span class="provider-label"><p class="text-muted <?php print $item['cardsystem']['class']; ?>"><?php print $item['cardsystem']['name']; ?></p></span>
             <h2 class="title"><?php print $item['title']; ?></h2>
             <ul class="locations list-unstyled">
               <?php foreach($item['counters'] as $counter): ?>
               <li class="<?php print $counter['class']; ?>"><?php print $counter['name']; ?></li>
               <?php endforeach; ?>
             </ul>
-            <span class="availability"><i class="fa fa-exclamation-circle"></i></a><?php print $item['availability']; ?></span>
+            <?php if($item['availability'] !== t('Until end of stock')): ?>
+              <span class="availability"><i class="fa fa-exclamation-circle"></i></a> <?php print $item['availability']; ?></span>
+            <?php endif; ?>            
           </div>
         </div>
       </div> <!--/ end .main -->

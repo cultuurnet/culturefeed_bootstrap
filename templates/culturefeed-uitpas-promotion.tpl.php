@@ -17,26 +17,29 @@
   ?>
   <div class="detail promotion-detail row">
     <div class="col-xs-12 col-sm-8 col-md-9" role="main">
-      <div class="clearfix">
+      <p class="clearfix">
+        <span class="points">
+          <span class="label label-primary"><?php print $points; ?></span>
+        </span>
         <?php if ($provider_raw): ?>
-        <div class="provider-label">
-          <p class="text-muted <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
-        </div>
+          <span class="provider-label text-muted <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?>
+        </span>
         <?php endif; ?>
-        <div class="points"><span class="label label-primary"><?php print $points; ?></span></div>
-      </div>
+      </p>
       <?php if ($description1): ?>
         <p class="intro"><?php print $description1; ?></p>
       <?php endif; ?>
       <?php if ($description2): ?>
       <div class="how-to-exchange">
-        <button class="show-exchange-info btn btn-primary" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
+        <p>
+          <button class="show-exchange-info btn btn-default" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
+        </p>
         <div class="exchange-info">
           <p class="description2"><?php print $description2; ?></p>
         </div>
       </div>
       <?php endif; ?>
-      <p class="block-title">Info</p>
+      <br />
       <table class="detail-table">
         <tbody>
           <?php if ($counters): ?>
@@ -46,9 +49,6 @@
             </td>
             <td><?php print $counters; ?></td>
           </tr>
-          <?php endif; ?>
-          <?php if($period || $available || $out_of_stock): ?>
-          <tr><td colspan="2" class="divider"></td></tr>
           <?php endif; ?>
           <?php if ($period || $out_of_stock): ?>
           <tr>
@@ -63,9 +63,6 @@
               <?php endif; ?>
             </td>
           </tr>
-          <?php endif; ?>
-          <?php if($available): ?>
-          <tr><td colspan="2" class="divider"></td></tr>
           <?php endif; ?>
           <?php if ($available): ?>
           <tr>
@@ -119,3 +116,6 @@
           </div>
         </div>
       </div>
+  <hr />
+
+  <p class="hidden-xs hidden-sm"><?php print l('Show all promotions', 'promotions'); ?></a></p>

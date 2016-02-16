@@ -15,7 +15,7 @@
       </p>
     <?php endif; ?>
 
-    <table class="table table-condended">
+    <table class="table table-condended detail-table">
       <tbody>
 
       <?php if ($location): ?>
