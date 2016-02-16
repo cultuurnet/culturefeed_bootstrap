@@ -16,13 +16,49 @@
 
 #culturefeed-uitpas-register-where-filter-form {
   .well();
-  label,
-  select#edit-location,
-  .form-type-select,
-  button {
-    display: inline;
-    width: 25%;
-    margin-right: 10px;
+  .form-type-select {
+    display: block;
+    margin: 0 0 10px;
+    width: 100%;
+    label {
+      display: block;
+      margin-bottom: 5px;
+      width: 100%;
+    }
+  }
+  @media screen and (min-width: @screen-xs) {
+    .form-type-checkbox {
+      float: left;
+      margin: 0; 
+      padding: 7px 20px;
+      width: 50%;
+    }
+    .form-submit {
+      margin: 0;
+      width: 50%;
+    }
+  }
+  @media screen and (min-width: @screen-md) {
+    .form-type-select {
+      float: left;
+      padding-right: 15px;
+      width: 50%;
+      label {
+        float: left;
+        padding: 7px 15px 7px 0;
+        margin: 0;
+        width: 32%;
+      }
+      .form-control {
+        width: 68%;
+      }
+    }
+    .form-type-checkbox {
+      width: 30%;
+    }
+    .form-submit {
+      width: 20%;
+    }
   }
 }
 
