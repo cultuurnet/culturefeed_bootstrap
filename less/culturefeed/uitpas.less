@@ -29,7 +29,7 @@
   @media screen and (min-width: @screen-xs) {
     .form-type-checkbox {
       float: left;
-      margin: 0; 
+      margin: 0;
       padding: 7px 20px;
       width: 50%;
     }
@@ -66,8 +66,8 @@
 
 .filters-regions {
   .results-title {
-    margin-top: 15px; 
-    margin-bottom: 5px;   
+    margin-top: 15px;
+    margin-bottom: 5px;
     font-size: ceil(@font-size-base * 1.25);
   }
 }
@@ -120,4 +120,48 @@
     font-weight: normal;
     margin: 10px 0 0;
   }
+}
+
+
+.promotions-highlight-list-item {
+  position: relative;
+  padding-top: 75%;
+  margin-bottom: 30px;
+  background-color: #777;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .promotions-highlight-title {
+    font-size: @font-size-base;
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+
+  .promotions-highlight-details {
+    background-color: #FFF;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 9px;
+  }
+
+  .promotions-highlight-points{
+  	background-color: @uitpas-brand-primary;
+  }
+
+  &:hover {
+    .promotions-highlight-details {
+      background-color: #ccc;
+    }
+  }
+
+
 }
