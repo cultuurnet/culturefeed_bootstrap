@@ -26,6 +26,31 @@ form[id^=culturefeed-calendar-form] {
     padding: 0;
   }
 
+  .cf-period,
+  .cf-openinghours {
+    .sr-only()
+  }
+
+  .form-type-date-popup li {
+    font-size: @font-size-small;
+    color: @gray-light;
+    display: inline;
+  }
+
+  .form-type-date-popup ul {
+    font-size: @font-size-small;
+    color: @gray-light;
+    margin: 6px 0 0 0;
+
+    &:before
+    {
+      content: "\f017";
+      font-family: "FontAwesome";
+      color: @gray-light;
+      display: inline-block;
+    }
+  }
+
   .form-item-date-date label {
     .sr-only();
   }
