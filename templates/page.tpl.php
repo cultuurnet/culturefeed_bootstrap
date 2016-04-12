@@ -134,11 +134,10 @@
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
 
-    <section<?php print $content_column_class; ?>>
+    <section<?php print $content_column_class; ?> id="main-content" tabindex="-1">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
-      <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if (!empty($title) && !($is_front)): ?>
         <h1 class="page-header"><?php print $title; ?></h1>

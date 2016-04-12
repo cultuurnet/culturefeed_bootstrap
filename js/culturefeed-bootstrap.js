@@ -9,6 +9,11 @@
         e.preventDefault()
       })
 
+    // skip-link focus
+    $("a[href^='#']").click(function() {
+      $("#"+$(this).attr("href").slice(1)+"").focus();
+    });
+
     // popover - authentication required
     if (!Drupal.settings.culturefeed || !Drupal.settings.culturefeed.isCultureFeedUser) {
 
