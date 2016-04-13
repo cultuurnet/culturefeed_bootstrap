@@ -124,7 +124,7 @@
 
 <div class="main-container container">
 
-  <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+  <?php if (!empty($breadcrumb)): print '<span class="element-invisible">' . t('You are here') . ':</span>' . $breadcrumb; endif;?>
 
   <div class="row">
 
