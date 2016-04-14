@@ -122,7 +122,7 @@
   </div>
 </header> <!-- /#page-header -->
 
-<div class="main-container container">
+<div class="main-container container" role="main">
 
   <?php if (!empty($breadcrumb)): print '<span class="element-invisible">' . t('You are here') . ':</span>' . $breadcrumb; endif;?>
 

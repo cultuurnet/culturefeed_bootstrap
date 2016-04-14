@@ -1,9 +1,9 @@
 <section class="overview overview-promotions clearfix">
   <?php foreach($items as $item): ?>
-  <article class="<?php print implode(' ', $item['classes']); ?> clearfix">
+  <article class="article <?php print implode(' ', $item['classes']); ?> clearfix">
     <div class="row">
       <?php print $item['overlay_link']; ?>
-      <div class="main col-md-8 col-lg-9" role="main">
+      <div class="article--main col-md-8 col-lg-9">
         <div class="row">
           <figure class="col-xs-3 col-lg-2">
             <?php print $item['image']; ?>
@@ -22,12 +22,12 @@
           </div>
         </div>
       </div> <!--/ end .main -->
-      <aside class="text-right <?php print $item['points']['classes']; ?> col-md-4 col-lg-3">
+      <div class="text-right <?php print $item['points']['classes']; ?> col-md-4 col-lg-3">
         <span class="label label-primary"><?php print $item['points']['value']; ?></span>
         <?php if ($item['points']['remark']): ?>
         <em class="small clearfix"><?php print $item['points']['remark']; ?></em>
         <?php endif; ?>
-      </aside> <!--/ end aside -->
+      </div> <!--/ end aside -->
     </div>
   </article> <!--/ end article -->
   <?php endforeach; ?>
