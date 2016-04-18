@@ -1,5 +1,5 @@
 <div class="btn-group profile-menu pull-right">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
     <i class="fa fa-cog"></i> <span class="caret"></span>
   </button>
   <ul class="dropdown-menu list-unstyled" role="menu" aria-labelledby="dLabel">

@@ -2109,13 +2109,13 @@ function culturefeed_bootstrap_culturefeed_search_sort_links(&$variables) {
   }
 
   $output = '<div class="btn-group pull-right">';
-  $output .= '<a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#">';
+  $output .= '<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
   foreach ($variables['links'] as $link) {
     if (isset($link['options']['attributes']['class'][0])) {
       $output .= $link['text'] . ' ';
     }
   }
-  $output .= ' <span class="caret"></span></a>';
+  $output .= ' <span class="caret"></span></button>';
   $output .= '<ul class="cf-sort-links dropdown-menu text-left">';
   foreach ($variables['links'] as $link) {
     $output .= '<li>' . theme('link', $link) . '</li>';

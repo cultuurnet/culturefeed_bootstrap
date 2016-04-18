@@ -14,6 +14,16 @@
       $("#"+$(this).attr("href").slice(1)+"").focus();
     });
 
+   // Temp adding aria-expanded to dropdown untill base bootstrap is updated
+    $('.dropdown-toggle').click(function(){
+      var status = $(this).attr('aria-expanded');
+      if(status == 'false'){
+        $(this).attr('aria-expanded', 'true');
+      } else {
+        $(this).attr('aria-expanded', 'false');
+      }
+    });
+
     // popover - authentication required
     if (!Drupal.settings.culturefeed || !Drupal.settings.culturefeed.isCultureFeedUser) {
 

@@ -1,13 +1,13 @@
 <ul class="menu nav navbar-nav navbar-right">
   <?php if ($dropdown_items): ?>
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <button class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
       <?php print $picture ?> 
       <span class="current-user visible-lg">
         <?php (strlen($nick) > 50) ? print substr($nick, 0, 50) . '...' : print $nick; ?>
       </span> 
       <span class="caret"></span>
-    </a>
+    </button>
     <ul class="dropdown-menu">
       <?php foreach ($dropdown_items as $dropdown_item): ?>
       <li class="<?php if (isset($dropdown_item['class'])): print $dropdown_item['class']?><?php endif;?> <?php if (isset($dropdown_item['children'])): print 'dropdown-header' ?><?php endif;?>">
