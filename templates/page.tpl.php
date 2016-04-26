@@ -122,9 +122,9 @@
   </div>
 </header> <!-- /#page-header -->
 
-<div class="main-container container">
+<div class="main-container container" role="main">
 
-  <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+  <?php if (!empty($breadcrumb)): print '<span class="element-invisible">' . t('You are here') . ':</span>' . $breadcrumb; endif;?>
 
   <div class="row">
 
@@ -134,11 +134,10 @@
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
 
-    <section<?php print $content_column_class; ?>>
+    <section<?php print $content_column_class; ?> id="main-content" tabindex="-1">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
-      <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if (!empty($title) && !($is_front)): ?>
         <h1 class="page-header"><?php print $title; ?></h1>

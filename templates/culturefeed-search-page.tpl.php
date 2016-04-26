@@ -16,7 +16,7 @@
     </p>
   </div>
   <div class="col-sm-6 hidden-xs text-right">
-    <?php print '<span class="cf-sort-label">' . t('Sort') . '</span>'; ?>
+    <?php print '<label class="cf-sort-label">' . t('Sort') . '</label>'; ?>
     <?php print $variables['sort_links']; ?>
   </div>
 </div>
