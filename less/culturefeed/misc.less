@@ -299,7 +299,10 @@ hr.small {
   }
   @media @wide {
     .current-user {
-      display: inline !important;
+      display: inline-block !important;
+      max-width: 250px;
+      vertical-align: middle;
+      .text-overflow();
     }
   }
   .dropdown-menu {
