@@ -487,8 +487,15 @@ function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables)
 
 function culturefeed_bootstrap_form_culturefeed_pages_basic_search_form_alter(&$form, &$form_state) {
 
+  $form['zipcode'] = array(
+    '#prefix' => '<div class="row"><div class="col-sm-2">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#default_value' => isset($_GET['zipcode']) ? $_GET['zipcode'] : '',
+  );
+
   $form['page'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-9">',
+    '#prefix' => '<div class="col-sm-7">',
     '#suffix' => '</div>',
     '#type' => 'textfield',
     '#attributes' => array('placeholder' => array(t('Keyword'))),
@@ -524,10 +531,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_basic_search_page(&$
   }
 
   if ($variables['total_results'] > 0) {
-    $variables['total_results_message'] = '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for '@search'", array('@total' => $variables['total_results'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] = '<div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for <em>@zipcode @search</em>", array('@total' => $variables['total_results'], '@zipcode' => $variables['zipcode'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
   }
   else {
-    $variables['total_results_message'] =  '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for '@search'", array('@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] =  '<div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for <em>@zipcode @search</em>", array('@zipcode' => $variables['zipcode'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
   }
 
   $query = drupal_get_query_parameters();
