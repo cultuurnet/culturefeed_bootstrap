@@ -144,9 +144,6 @@
         <?php if (!empty($contact['phone'])): ?>
           <?php print $contact['phone'] ?><br />
         <?php endif; ?>
-        <?php if (!empty($contact['fax'])): ?>
-          <?php print $contact['fax'] . '(fax)' ?>
-        <?php endif; ?>
         </td></tr>
       <?php endif; ?>
 
