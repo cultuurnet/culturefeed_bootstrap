@@ -368,4 +368,37 @@
      }).length == 0;
    };
 
+    /**
+     * Add mobile detect helper classes to the body tag.
+     */
+    Drupal.behaviors.culturefeedMobileDetect = {
+      attach: function(context, settings) {
+        var bodyClasses = [];
+        var md = new MobileDetect(window.navigator.userAgent);
+
+        if (md.mobile() !== null) {
+          if (md.tablet() !== null) {
+            bodyClasses.push('isTablet');
+          }
+          else {
+            bodyClasses.push('isPhone');
+          }
+        }
+        else {
+          bodyClasses.push('isComputer');
+        }
+
+        if (md.os() === 'AndroidOs') {
+          bodyClasses.push('isAndroid');
+        }
+        if (md.os() === 'iOS') {
+          bodyClasses.push('isIOS');
+        }
+
+        $.each(bodyClasses, function (key, value) {
+          $('body').addClass(value);
+        });
+      }
+    };
+
 })(jQuery);
