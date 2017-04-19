@@ -430,7 +430,7 @@
             if (md.os() === 'iOS') {
                 mapLink = '<a href="http://maps.apple.com/?q' + querystring + '">' + Drupal.t('Open map') + '</a>';
             }
-            else if (md.os() === 'AndroidOs') {
+            else if (md.os() === 'AndroidOS') {
                 mapLink = '<a href="geo:' + lat + ',' + lng + '?q=' + querystring + '&zoom=14" class="btn btn-default btn-sm pull-right">' + Drupal.t('Open map') + '</a>';
             }
             else {
