@@ -121,7 +121,7 @@
           <?php print $reservation['mail']; ?><br />
         <?php endif; ?>
         <?php if (!empty($reservation['phone'])): ?>
-          <?php print $reservation['phone']; ?><br />
+            <span class="reservation-phone-placeholder"></span><br />
         <?php endif; ?>
         <?php if (!empty($reservation['url'])): ?>
           <?php print $reservation['url']; ?>

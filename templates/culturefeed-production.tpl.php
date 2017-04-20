@@ -97,7 +97,7 @@
           <span><?php print implode(' ', $tickets); ?></span>
         <?php endif; ?>
         <?php if (!empty($reservation['phone'])): ?>
-          <?php print (!empty($tickets) ? ' ' . t('or call') : ''); ?> <?php print implode(', ', $reservation['phone']); ?>
+          <?php print (!empty($tickets) ? ' ' . t('or call') : ''); ?> <span class="reservation-phone-placeholder"></span><br />
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>

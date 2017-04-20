@@ -414,36 +414,40 @@
         if (Drupal.settings.culturefeed_map) {
             var md = new MobileDetect(window.navigator.userAgent);
             var title = Drupal.settings.culturefeed_map.title;
-            var zip = Drupal.settings.culturefeed_map.info.location.zip;
-            var city = Drupal.settings.culturefeed_map.info.location.city;
-            var street = Drupal.settings.culturefeed_map.info.location.street;
-            var lat = (Drupal.settings.culturefeed_map.info.coordinates.lat) ? Drupal.settings.culturefeed_map.info.coordinates.lat : '0';
-            var lng = (Drupal.settings.culturefeed_map.info.coordinates.lng) ? Drupal.settings.culturefeed_map.info.coordinates.lng : '0';
-            var querystring = title;
-            var mapLink = '';
+            // Map
+            if (Drupal.settings.culturefeed_map.info.location) {
+                var zip = Drupal.settings.culturefeed_map.info.location.zip;
+                var city = Drupal.settings.culturefeed_map.info.location.city;
+                var street = Drupal.settings.culturefeed_map.info.location.street;
+                var lat = (Drupal.settings.culturefeed_map.info.coordinates.lat) ? Drupal.settings.culturefeed_map.info.coordinates.lat : '0';
+                var lng = (Drupal.settings.culturefeed_map.info.coordinates.lng) ? Drupal.settings.culturefeed_map.info.coordinates.lng : '0';
+                var querystring = title;
+                var mapLink = '';
 
-            if (zip) {
-                querystring = querystring + '+' + zip;
-            }
-            if (city) {
-                querystring = querystring + '+' + city;
-            }
-            if (street) {
-                querystring = querystring + '+' + street;
+                if (zip) {
+                    querystring = querystring + '+' + zip;
+                }
+                if (city) {
+                    querystring = querystring + '+' + city;
+                }
+                if (street) {
+                    querystring = querystring + '+' + street;
+                }
+
+                if (md.os() === 'iOS') {
+                    mapLink = '<a href="http://maps.apple.com/?q' + querystring + '">' + Drupal.t('Open map') + '</a>';
+                }
+                else if (md.os() === 'AndroidOS') {
+                    mapLink = '<a href="geo:' + lat + ',' + lng + '?q=' + querystring + '&zoom=14" class="btn btn-default btn-sm pull-right">' + Drupal.t('Open map') + '</a>';
+                }
+                else {
+                    mapLink = '<a href="#cf-map" data-toggle="collapse" class="pull-right map-toggle collapsed">' + Drupal.t('Show map') + ' <span class="caret"></span></a>';
+                }
+
+                $('.map-js-link').html(mapLink);
             }
 
-            if (md.os() === 'iOS') {
-                mapLink = '<a href="http://maps.apple.com/?q' + querystring + '">' + Drupal.t('Open map') + '</a>';
-            }
-            else if (md.os() === 'AndroidOS') {
-                mapLink = '<a href="geo:' + lat + ',' + lng + '?q=' + querystring + '&zoom=14" class="btn btn-default btn-sm pull-right">' + Drupal.t('Open map') + '</a>';
-            }
-            else {
-                mapLink = '<a href="#cf-map" data-toggle="collapse" class="pull-right map-toggle collapsed">' + Drupal.t('Show map') + ' <span class="caret"></span></a>';
-            }
-
-            $('.map-js-link').html(mapLink);
-
+            // Contact phone
             if (Drupal.settings.culturefeed_map.info.contact.phone) {
                 var phones = Drupal.settings.culturefeed_map.info.contact.phone;
 
@@ -458,6 +462,23 @@
                 }
 
                 $('.phone-placeholder').html(phones);
+            }
+
+            // Reservation phone
+            if (Drupal.settings.culturefeed_map.info.reservation.phone) {
+                var resPhones = Drupal.settings.culturefeed_map.info.reservation.phone;
+
+                if (md.mobile()) {
+                    var linkResPhones = Array();
+                    resPhones = resPhones.split(', ');
+
+                    $.each(resPhones, function (key, phone) {
+                        linkResPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
+                    });
+                    resPhones = linkResPhones.join(', ');
+                }
+
+                $('.reservation-phone-placeholder').html(resPhones);
             }
         }
       }
