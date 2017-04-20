@@ -136,7 +136,7 @@
           <?php print $contact['mail'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['phone'])): ?>
-          <?php print $contact['phone'] ?><br />
+          <span class="phone-placeholder"></span><br />
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>

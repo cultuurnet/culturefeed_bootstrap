@@ -402,8 +402,13 @@
     };
 
     /**
-     * Add the right map link
+     * Add the right links for maps and phones depending on the device.
      */
+    function validate_phone(rawPhone) {
+      var phone = rawPhone.replace(new RegExp(' ', 'g'), '-');
+      return phone.replace(new RegExp(/[^0-9+()]/, 'g'), '');
+    }
+
     Drupal.behaviors.culturefeedAddMapLink = {
       attach: function (context, settings) {
         if (Drupal.settings.culturefeed_map) {
@@ -438,6 +443,22 @@
             }
 
             $('.map-js-link').html(mapLink);
+
+            if (Drupal.settings.culturefeed_map.info.contact.phone) {
+                var phones = Drupal.settings.culturefeed_map.info.contact.phone;
+
+                if (md.mobile()) {
+                    var linkPhones = Array();
+                    phones = phones.split(', ');
+
+                    $.each(phones, function (key, phone) {
+                      linkPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
+                    });
+                    phones = linkPhones.join(', ');
+                }
+
+                $('.phone-placeholder').html(phones);
+            }
         }
       }
     };
