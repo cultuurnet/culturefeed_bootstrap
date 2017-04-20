@@ -42,13 +42,7 @@
       <tr><td class="col-lg-2 col-md-2 col-sm-1 col-xs-1"><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
         <?php if (!empty($coordinates)): ?>
-          <?php if ($is_ios): ?>
-            <a href="http://maps.apple.com/?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : ''); ?>" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
-          <?php elseif ($is_android): ?>
-            <a href="geo:<?php print (!empty($coordinates['lat']) ? $coordinates['lat'] : '0') . ',' . (!empty($coordinates['lng']) ? $coordinates['lng'] : '0'); ?>?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : '') ?>&zoom=14" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
-          <?php else: ?>
-            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE, 'external' => 'TRUE')) ?>
-          <?php endif; ?>
+            <div class="map-js-link"></div>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
         <?php print $location['link']; ?><br/>
@@ -115,9 +109,7 @@
           <?php print $contact['mail'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['phone'])): ?>
-          <?php if (!empty($reservation['phone']) && ($contact['phone'] != implode(', ', $reservation['phone'])) || empty($reservation['phone'])): ?>
-            <i class="fa fa-phone"></i> <?php print $contact['phone'] ?><br />
-          <?php endif; ?>
+          <span class="phone-placeholder"></span><br />
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>
