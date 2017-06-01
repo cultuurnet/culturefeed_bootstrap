@@ -144,9 +144,6 @@
         <?php if (!empty($contact['phone'])): ?>
           <?php print $contact['phone'] ?><br />
         <?php endif; ?>
-        <?php if (!empty($contact['fax'])): ?>
-          <?php print $contact['fax'] . '(fax)' ?>
-        <?php endif; ?>
         </td></tr>
       <?php endif; ?>
 
@@ -178,9 +175,6 @@
   </div>
 
   <div class="col-sm-4 hidden-xs">
-    <pre>
-      <?php dpm(get_defined_vars()); ?>
-    </pre>
 
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
