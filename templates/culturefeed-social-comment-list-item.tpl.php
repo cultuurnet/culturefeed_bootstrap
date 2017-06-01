@@ -45,6 +45,13 @@
             <i class="fa fa-trash-o fa-fw"></i> <small><?php print $delete_link ?></small>
             <hr class="small" />
           </li>
+
+          <div id="delete-wrapper-<?php print $activity->id; ?>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content"></div>
+            </div>
+          </div>
+
           <?php endif; ?>
           
           <?php if ($level == 0): ?>
