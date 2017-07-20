@@ -1872,11 +1872,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
     $remove_path = 'culturefeed/activity/delete/' . $activity->id;
     $attributes = array(
-      /*'class' => array('remove-link', 'use-ajax'),
+      'class' => array('remove-link'),
       'role' => 'button',
       'data-toggle' => 'modal',
       'data-target' => '#delete-wrapper-' . $activity->id,
-      'data-remote' => url($remove_path . "/ajax", array('query' => $destination)),*/
+      'data-remote' => url($remove_path . "/ajax", array('query' => $destination)),
     );
 
     if ($variables['level'] == 0) {
@@ -1890,11 +1890,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
       $comment_url = 'culturefeed/activity/comment/' . $activity->id;
       $attributes = array(
-        /*'class' => array('comment-link link-icon'),
+        'class' => array('comment-link link-icon'),
         'role' => 'button',
         'data-toggle' => 'modal',
         'data-target' => '#comment-wrapper-' . $activity->id,
-        'data-remote' => url($comment_url . "/ajax", array('query' => $destination)),*/
+        'data-remote' => url($comment_url . "/ajax", array('query' => $destination)),
       );
 
       $variables['comment_link'] = l(t('Reply'), $comment_url . '/nojs', array(
@@ -1939,11 +1939,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
     $abuse_url = 'culturefeed/activity/report-abuse/' . $activity->id;
     $attributes = array(
-      /*'class' => array('comment-abuse-link'),
+      'class' => array('comment-abuse-link'),
       'role' => 'button',
       'data-toggle' => 'modal',
       'data-target' => '#abuse-wrapper-' . $activity->id,
-      'href' => url($abuse_url . "/ajax", array('query' => $destination)),*/
+      'href' => url($abuse_url . "/ajax", array('query' => $destination)),
     );
 
     $variables['abuse_link'] = l(t('Report as inappropriate'), $abuse_url . '/nojs', array(
