@@ -401,17 +401,39 @@
 
         // Format phones for mobile.
         // Contact phone
-        if (Drupal.settings.culturefeed_agenda.contact.phones) {
-            var phones = Drupal.settings.culturefeed_agenda.contact.phones;
+        if (Drupal.settings.culturefeed_agenda) {
+            if (Drupal.settings.culturefeed_agenda.contact) {
+                if (Drupal.settings.culturefeed_agenda.contact.phones) {
+                    var phones = Drupal.settings.culturefeed_agenda.contact.phones;
 
-            if (md.mobile()) {
-                var linkPhones = Array();
+                    if (md.mobile()) {
+                        var linkPhones = Array();
 
-                $.each(phones, function (key, phone) {
-                    linkPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
-                });
-                phones = linkPhones.join(', ');
-                $('.phone-placeholder').html(phones);
+                        $.each(phones, function (key, phone) {
+                            linkPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
+                        });
+                        phones = linkPhones.join(', ');
+                        $('.phone-placeholder').html(phones);
+                    }
+                }
+            }
+
+            // Reservation phone
+            if (Drupal.settings.culturefeed_agenda.reservation) {
+                if (Drupal.settings.culturefeed_agenda.reservation.phones) {
+                    var resPhones = Drupal.settings.culturefeed_agenda.reservation.phones;
+
+                    if (md.mobile()) {
+                        var linkResPhones = Array();
+                        resPhones = resPhones.split(', ');
+
+                        $.each(resPhones, function (key, phone) {
+                            linkResPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
+                        });
+                        resPhones = linkResPhones.join(', ');
+                        $('.reservation-phone-placeholder').html(resPhones);
+                    }
+                }
             }
         }
       }
