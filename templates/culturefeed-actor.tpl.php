@@ -54,7 +54,9 @@
           <?php print $contact['mail'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['phone'])): ?>
-            <i class="fa fa-phone"></i> <span class="phone-placeholder"></span><br />
+            <i class="fa fa-phone"></i> <span class="phone-placeholder">
+                <?php print $contact['phone'] ?>
+            </span><br />
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>
