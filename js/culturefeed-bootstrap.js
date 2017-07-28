@@ -408,6 +408,7 @@
 
                     if (md.mobile()) {
                         var linkPhones = Array();
+                        phones = phones.split(', ');
 
                         $.each(phones, function (key, phone) {
                             linkPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
