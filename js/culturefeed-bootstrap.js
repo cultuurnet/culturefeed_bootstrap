@@ -411,7 +411,7 @@
                         phones = phones.split(', ');
 
                         $.each(phones, function (key, phone) {
-                            linkPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
+                            linkPhones[key] = '<a href="tel:' + validate_phone(phone) + '">' + phone + '</a>';
                         });
                         phones = linkPhones.join(', ');
                         $('.phone-placeholder').html(phones);
@@ -429,7 +429,7 @@
                         resPhones = resPhones.split(', ');
 
                         $.each(resPhones, function (key, phone) {
-                            linkResPhones[key] = '<a href="tel:' + validate_phone(phone) + '" class="jquery-once-3-processed">' + phone + '</a>';
+                            linkResPhones[key] = '<a href="tel:' + validate_phone(phone) + '">' + phone + '</a>';
                         });
                         resPhones = linkResPhones.join(', ');
                         $('.reservation-phone-placeholder').html(resPhones);
