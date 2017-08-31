@@ -487,8 +487,15 @@ function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables)
 
 function culturefeed_bootstrap_form_culturefeed_pages_basic_search_form_alter(&$form, &$form_state) {
 
+  $form['zipcode'] = array(
+    '#prefix' => '<div class="row"><div class="col-sm-2">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#default_value' => isset($_GET['zipcode']) ? $_GET['zipcode'] : '',
+  );
+
   $form['page'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-9">',
+    '#prefix' => '<div class="col-sm-7">',
     '#suffix' => '</div>',
     '#type' => 'textfield',
     '#attributes' => array('placeholder' => array(t('Keyword'))),
@@ -524,10 +531,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_basic_search_page(&$
   }
 
   if ($variables['total_results'] > 0) {
-    $variables['total_results_message'] = '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for '@search'", array('@total' => $variables['total_results'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] = '<div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for <em>@zipcode @search</em>", array('@total' => $variables['total_results'], '@zipcode' => $variables['zipcode'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
   }
   else {
-    $variables['total_results_message'] =  '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for '@search'", array('@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] =  '<div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for <em>@zipcode @search</em>", array('@zipcode' => $variables['zipcode'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
   }
 
   $query = drupal_get_query_parameters();
@@ -1865,11 +1872,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
     $remove_path = 'culturefeed/activity/delete/' . $activity->id;
     $attributes = array(
-      /*'class' => array('remove-link', 'use-ajax'),
+      'class' => array('remove-link'),
       'role' => 'button',
       'data-toggle' => 'modal',
       'data-target' => '#delete-wrapper-' . $activity->id,
-      'data-remote' => url($remove_path . "/ajax", array('query' => $destination)),*/
+      'data-remote' => url($remove_path . "/ajax", array('query' => $destination)),
     );
 
     if ($variables['level'] == 0) {
@@ -1883,11 +1890,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
       $comment_url = 'culturefeed/activity/comment/' . $activity->id;
       $attributes = array(
-        /*'class' => array('comment-link link-icon'),
+        'class' => array('comment-link link-icon'),
         'role' => 'button',
         'data-toggle' => 'modal',
         'data-target' => '#comment-wrapper-' . $activity->id,
-        'data-remote' => url($comment_url . "/ajax", array('query' => $destination)),*/
+        'data-remote' => url($comment_url . "/ajax", array('query' => $destination)),
       );
 
       $variables['comment_link'] = l(t('Reply'), $comment_url . '/nojs', array(
@@ -1932,11 +1939,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
     $abuse_url = 'culturefeed/activity/report-abuse/' . $activity->id;
     $attributes = array(
-      /*'class' => array('comment-abuse-link'),
+      'class' => array('comment-abuse-link'),
       'role' => 'button',
       'data-toggle' => 'modal',
       'data-target' => '#abuse-wrapper-' . $activity->id,
-      'href' => url($abuse_url . "/ajax", array('query' => $destination)),*/
+      'href' => url($abuse_url . "/ajax", array('query' => $destination)),
     );
 
     $variables['abuse_link'] = l(t('Report as inappropriate'), $abuse_url . '/nojs', array(
@@ -2109,13 +2116,13 @@ function culturefeed_bootstrap_culturefeed_search_sort_links(&$variables) {
   }
 
   $output = '<div class="btn-group pull-right">';
-  $output .= '<a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#">';
+  $output .= '<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
   foreach ($variables['links'] as $link) {
     if (isset($link['options']['attributes']['class'][0])) {
       $output .= $link['text'] . ' ';
     }
   }
-  $output .= ' <span class="caret"></span></a>';
+  $output .= ' <span class="caret"></span></button>';
   $output .= '<ul class="cf-sort-links dropdown-menu text-left">';
   foreach ($variables['links'] as $link) {
     $output .= '<li>' . theme('link', $link) . '</li>';
@@ -2517,10 +2524,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_advantage(&$vars) {
   $vars['images_list'] = '';
   $images = array();
   if (isset($advantage->pictures[0])) {
-    $vars['image'] = theme_image(array('path' => $advantage->pictures[0], 'attributes' => array()));
+    $vars['image'] = theme_image(array('path' => $advantage->pictures[0], 'alt' => $advantage->title, 'title' => $advantage->title, 'attributes' => array()));
     foreach ($advantage->pictures as $key => $picture) {
       $images[] = l(
-        theme('image', array('path' => $advantage->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        theme('image', array('path' => $advantage->pictures[$key] . '?maxwidth=300&max-height=300', 'alt' => $advantage->title, 'title' => $advantage->title, 'attributes' => array())),
         $advantage->pictures[$key],
         array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
       );
@@ -2629,10 +2636,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
   $vars['images_list'] = '';
   $images = array();
   if (isset($promotion->pictures[0])) {
-    $vars['image'] = theme('image', array('path' => $promotion->pictures[0] . '?maxwidth=300&max-height=300', 'attributes' => array()));
+    $vars['image'] = theme('image', array('path' => $promotion->pictures[0] . '?maxwidth=300&max-height=300', 'alt' => $promotion->title, 'title' => $promotion->title, 'attributes' => array()));
     foreach ($promotion->pictures as $key => $picture) {
       $images[] = l(
-        theme('image', array('path' => $promotion->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        theme('image', array('path' => $promotion->pictures[$key] . '?maxwidth=300&max-height=300', 'alt' => $promotion->title, 'title' => $promotion->title, 'attributes' => array())),
         $promotion->pictures[$key],
         array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
       );

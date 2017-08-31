@@ -144,9 +144,6 @@
         <?php if (!empty($contact['phone'])): ?>
           <?php print $contact['phone'] ?><br />
         <?php endif; ?>
-        <?php if (!empty($contact['fax'])): ?>
-          <?php print $contact['fax'] . '(fax)' ?>
-        <?php endif; ?>
         </td></tr>
       <?php endif; ?>
 
@@ -181,13 +178,13 @@
 
     <?php if (!empty($main_picture)): ?>
     <div class="hidden-xs">
-      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&crop=auto" class="img-responsive" />
+      <img src="<?php print $main_picture; ?>?width=360&maxheight=400&crop=auto" class="img-responsive" alt="<?php print $title; ?>" />
       <?php if(!empty($pictures)): ?>
         <br />
         <div class="row">
           <?php foreach ($pictures as $picture): ?>
             <div class="col-xs-6">
-              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive"'; ?> />
+              <?php print '<img src="' . $picture . '?width=165&height=165&crop=auto" class="img-responsive" alt="' . $title . '"'; ?> />
             </div>
           <?php endforeach; ?>
         </div>

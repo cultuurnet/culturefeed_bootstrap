@@ -137,7 +137,14 @@ Drupal.CulturefeedSearch = Drupal.CulturefeedSearch || {};
           scrollTop: offset.top - 120,
           scrollLeft: offset.left - 120
       });
+      // move focus to first field for anysurfer
+      $('.daterangepicker input[name="daterangepicker_start"]').focus();
       e.preventDefault();
+    });
+
+    pickerlink.on('cancel.daterangepicker', function (ev, picker) {
+      // move focus back to triggerlink after cancel for anysurfer
+      pickerlink.focus();
     });
   };
 

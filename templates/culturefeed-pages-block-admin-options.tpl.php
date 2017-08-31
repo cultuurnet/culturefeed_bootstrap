@@ -18,7 +18,7 @@
 
     <div>
       <div class="btn-group pull-right">
-        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs fa-fw fa-lg"></i> <?php print t('Manage page'); ?> <span class="caret"></span></button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs fa-fw fa-lg"></i> <?php print t('Manage page'); ?> <span class="caret"></span></button>
         <?php print $admin_menu; ?>
       </div>
     </div>

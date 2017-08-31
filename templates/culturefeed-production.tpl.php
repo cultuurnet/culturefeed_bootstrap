@@ -119,9 +119,6 @@
             <i class="fa fa-phone"></i> <?php print $contact['phone'] ?><br />
           <?php endif; ?>
         <?php endif; ?>
-        <?php if (!empty($contact['fax'])): ?>
-          <i class="fa fa-print"></i> <?php print $contact['fax'] ?>
-        <?php endif; ?>
         </td></tr>
       <?php endif; ?>
 
