@@ -23,10 +23,18 @@
     <?php endif; ?>
 
     <p>
-      <?php print $shortdescription; ?>
-      <?php if (!empty($longdescription)): ?>
-        <?php print l(t('Read more'), '', $read_more_options) ?>
-        <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
+      <?php if (!empty($shortdescription)): ?>
+        <div class="short-description">
+          <?php print $shortdescription; ?>
+        </div>
+        <?php if (!empty($longdescription)): ?>
+          <div class="long-description">
+            <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
+            <?php print l(t('Read more'), '', $readmore_options) ?>
+          </div>
+        <?php endif; ?>
+      <?php else: ?>
+        <?php print $longdescription; ?>
       <?php endif; ?>
     </p>
 
