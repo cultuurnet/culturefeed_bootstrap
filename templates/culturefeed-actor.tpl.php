@@ -9,11 +9,21 @@
 
   <div class="col-sm-8">
 
-    <?php if (!empty($shortdescription)) : ?>
-      <p>
-        <?php print $shortdescription; ?>
-      </p>
-    <?php endif; ?>
+    <p>
+      <?php if (!empty($shortdescription)): ?>
+        <div class="short-description">
+          <?php print $shortdescription; ?>
+        </div>
+        <?php if (!empty($longdescription)): ?>
+          <div class="long-description">
+            <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
+            <?php print l(t('Read more'), '', $readmore_options) ?>
+          </div>
+        <?php endif; ?>
+      <?php else: ?>
+        <?php print $longdescription; ?>
+      <?php endif; ?>
+    </p>
 
     <table class="table table-condended detail-table">
       <tbody>
