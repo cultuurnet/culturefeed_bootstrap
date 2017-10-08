@@ -17,7 +17,7 @@ regions[content_bottom] = 'Content Bottom'
 regions[footer]         = 'Footer'
 
 ; Stylesheets
-; stylesheets[all][] =  less/style.less
+stylesheets[all][] =  less/style.less
 ; TEMP
 ; stylesheets[all][] =  css/bootstrap-switch.css
 stylesheets[all][] =  css/bootstrap-gallery.css
