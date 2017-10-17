@@ -477,7 +477,7 @@
                     mapLink = '<a href="http://maps.apple.com/?q' + querystring + '">' + Drupal.t('Open map') + '</a>';
                 }
                 else if (md.os() === 'AndroidOS') {
-                    mapLink = '<a href="geo:' + lat + ',' + lng + '?q=' + querystring + '&zoom=14" class="btn btn-default btn-sm pull-right">' + Drupal.t('Open map') + '</a>';
+                    mapLink = '<a href="geo:' + lat + ',' + lng + '?q=' + querystring + '&zoom=14">' + Drupal.t('Open map') + '</a>';
                 }
                 else {
                     mapLink = '<a href="#cf-map" data-toggle="collapse" class="pull-right map-toggle collapsed">' + Drupal.t('Show map') + ' <span class="caret"></span></a>';
