@@ -378,21 +378,21 @@
 
         if (md.mobile() !== null) {
           if (md.tablet() !== null) {
-            bodyClasses.push('isTablet');
+            bodyClasses.push('is-tablet');
           }
           else {
-            bodyClasses.push('isPhone');
+            bodyClasses.push('is-phone');
           }
         }
         else {
-          bodyClasses.push('isComputer');
+          bodyClasses.push('is-computer');
         }
 
         if (md.os() === 'AndroidOs') {
-          bodyClasses.push('isAndroid');
+          bodyClasses.push('is-android');
         }
         if (md.os() === 'iOS') {
-          bodyClasses.push('isIOS');
+          bodyClasses.push('is-ios');
         }
 
         $.each(bodyClasses, function (key, value) {
