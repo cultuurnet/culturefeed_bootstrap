@@ -388,7 +388,7 @@
           bodyClasses.push('is-computer');
         }
 
-        if (md.os() === 'AndroidOs') {
+        if (md.os() === 'AndroidOS') {
           bodyClasses.push('is-android');
         }
         if (md.os() === 'iOS') {
