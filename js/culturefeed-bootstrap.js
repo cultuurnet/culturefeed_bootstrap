@@ -368,4 +368,125 @@
      }).length == 0;
    };
 
+    /**
+     * Add mobile detect helper classes to the body tag.
+     */
+    Drupal.behaviors.culturefeedMobileDetect = {
+      attach: function(context, settings) {
+        var bodyClasses = [];
+        var md = new MobileDetect(window.navigator.userAgent);
+
+        if (md.mobile() !== null) {
+          if (md.tablet() !== null) {
+            bodyClasses.push('is-tablet');
+          }
+          else {
+            bodyClasses.push('is-phone');
+          }
+        }
+        else {
+          bodyClasses.push('is-computer');
+        }
+
+        if (md.os() === 'AndroidOS') {
+          bodyClasses.push('is-android');
+        }
+        if (md.os() === 'iOS') {
+          bodyClasses.push('is-ios');
+        }
+
+        $.each(bodyClasses, function (key, value) {
+          $('body').addClass(value);
+        });
+
+        // Format phones for mobile.
+        // Contact phone
+        if (Drupal.settings.culturefeed_agenda) {
+            if (Drupal.settings.culturefeed_agenda.contact) {
+                if (Drupal.settings.culturefeed_agenda.contact.phones) {
+                    var phones = Drupal.settings.culturefeed_agenda.contact.phones;
+
+                    if (md.mobile()) {
+                        var linkPhones = Array();
+                        phones = phones.split(', ');
+
+                        $.each(phones, function (key, phone) {
+                            linkPhones[key] = '<a href="tel:' + validate_phone(phone) + '">' + phone + '</a>';
+                        });
+                        phones = linkPhones.join(', ');
+                        $('.phone-placeholder').html(phones);
+                    }
+                }
+            }
+
+            // Reservation phone
+            if (Drupal.settings.culturefeed_agenda.reservation) {
+                if (Drupal.settings.culturefeed_agenda.reservation.phones) {
+                    var resPhones = Drupal.settings.culturefeed_agenda.reservation.phones;
+
+                    if (md.mobile()) {
+                        var linkResPhones = Array();
+                        resPhones = resPhones.split(', ');
+
+                        $.each(resPhones, function (key, phone) {
+                            linkResPhones[key] = '<a href="tel:' + validate_phone(phone) + '">' + phone + '</a>';
+                        });
+                        resPhones = linkResPhones.join(', ');
+                        $('.reservation-phone-placeholder').html(resPhones);
+                    }
+                }
+            }
+        }
+      }
+    };
+
+    /**
+     * Add the right links for maps and phones depending on the device.
+     */
+    function validate_phone(rawPhone) {
+      var phone = rawPhone.replace(new RegExp(' ', 'g'), '-');
+      return phone.replace(new RegExp(/[^0-9+()]/, 'g'), '');
+    }
+
+    Drupal.behaviors.culturefeedAddMapLink = {
+      attach: function (context, settings) {
+        if (Drupal.settings.culturefeed_map) {
+            var md = new MobileDetect(window.navigator.userAgent);
+            var title = Drupal.settings.culturefeed_map.title;
+            // Map
+            if (Drupal.settings.culturefeed_map.info.location) {
+                var zip = Drupal.settings.culturefeed_map.info.location.zip;
+                var city = Drupal.settings.culturefeed_map.info.location.city;
+                var street = Drupal.settings.culturefeed_map.info.location.street;
+                var lat = (Drupal.settings.culturefeed_map.info.coordinates.lat) ? Drupal.settings.culturefeed_map.info.coordinates.lat : '0';
+                var lng = (Drupal.settings.culturefeed_map.info.coordinates.lng) ? Drupal.settings.culturefeed_map.info.coordinates.lng : '0';
+                var querystring = title;
+                var mapLink = '';
+
+                if (zip) {
+                    querystring = querystring + '+' + zip;
+                }
+                if (city) {
+                    querystring = querystring + '+' + city;
+                }
+                if (street) {
+                    querystring = querystring + '+' + street;
+                }
+
+                if (md.os() === 'iOS') {
+                    mapLink = '<a href="http://maps.apple.com/?q' + querystring + '">' + Drupal.t('Open map') + '</a>';
+                }
+                else if (md.os() === 'AndroidOS') {
+                    mapLink = '<a href="geo:' + lat + ',' + lng + '?q=' + querystring + '&zoom=14">' + Drupal.t('Open map') + '</a>';
+                }
+                else {
+                    mapLink = '<a href="#cf-map" data-toggle="collapse" class="pull-right map-toggle collapsed">' + Drupal.t('Show map') + ' <span class="caret"></span></a>';
+                }
+
+                $('.map-js-link').html(mapLink);
+            }
+        }
+      }
+    };
+
 })(jQuery);
