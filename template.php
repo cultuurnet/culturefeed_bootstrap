@@ -1516,7 +1516,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&
 function culturefeed_bootstrap_form_culturefeed_pages_remove_page_confirm_form_alter(&$form, &$form_state, &$request_type) {
 
   if ($request_type != 'ajax') {
-    $modal_title = t('Remove member');
+    $modal_title = t('Remove page');
     $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
     $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
   }
