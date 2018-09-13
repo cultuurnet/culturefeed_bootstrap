@@ -99,14 +99,12 @@
 
       <php ?>
 
-      <?php if (isset($uitpas_info)):  ?>
-        <?php if ($uitpas_info->numberOfPoints > 0.00): ?>
-          <tr><td><strong class="hidden-xs hidden-sm"><?php print t('UiTPAS'); ?></strong><i class="fa fa-credit-card hidden-md hidden-lg"></i></td>
-            <td>
-              <?php echo t("Collect") . " " . $uitpas_info->numberOfPoints . " " . t(" point(s)"); ?></span>
-            </td>
-          </tr>
-        <?php endif; ?>
+      <?php if (isset($uitpas_save_points)):  ?>
+        <tr><td><strong class="hidden-xs hidden-sm"><?php print t('UiTPAS'); ?></strong><i class="fa fa-credit-card hidden-md hidden-lg"></i></td>
+          <td>
+            <?php echo t("Collect UiTPAS-points"); ?></span>
+          </td>
+        </tr>
       <?php endif; ?>
 
       <?php if (!empty($price)): ?>
