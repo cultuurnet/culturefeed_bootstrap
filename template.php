@@ -531,10 +531,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_basic_search_page(&$
   }
 
   if ($variables['total_results'] > 0) {
-    $variables['total_results_message'] = '<div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for <em>@zipcode @search</em>", array('@total' => $variables['total_results'], '@zipcode' => $variables['zipcode'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] = '<div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for <em>@zipcode @search @keyword</em>", array('@total' => $variables['total_results'], '@zipcode' => $variables['zipcode'], '@search' => $variables['search'], '@keyword' => $variables['keyword'], 'html' => TRUE)) . '</p></div></div>';
   }
   else {
-    $variables['total_results_message'] =  '<div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for <em>@zipcode @search</em>", array('@zipcode' => $variables['zipcode'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] =  '<div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for <em>@zipcode @search @keyword</em>", array('@zipcode' => $variables['zipcode'], '@search' => $variables['search'], '@keyword' => $variables['keyword'], 'html' => TRUE)) . '</p></div></div>';
   }
 
   $query = drupal_get_query_parameters();
