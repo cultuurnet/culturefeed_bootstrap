@@ -820,11 +820,11 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
 
   $form['contact'] = array(
     '#type' => 'fieldset',
-    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
+    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a></h3>',
     '#default_value' => '',
     '#weight' => 13,
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
   );
 
   $form['contact']['street'] = array(
@@ -847,7 +847,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
 
   $form['contact']['city'] = array(
     '#prefix' => '<div class="col-xs-9">',
-    '#suffix' => '</div></div><hr />',
+    '#suffix' => '</div></div>',
     '#type' => 'textfield',
     '#title' => t('City'),
     '#default_value' => '',
@@ -1083,11 +1083,11 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
 
   $form['contact'] = array(
     '#type' => 'fieldset',
-    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
+    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a></h3>',
     '#default_value' => '',
     '#weight' => 10,
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
   );
 
   // Address.
@@ -1112,7 +1112,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
 
   $form['contact']['city'] = array(
     '#prefix' => '<div class="col-xs-9">',
-    '#suffix' => '</div></div><hr />',
+    '#suffix' => '</div></div>',
     '#type' => 'textfield',
     '#title' => t('City'),
     '#default_value' => $city,
