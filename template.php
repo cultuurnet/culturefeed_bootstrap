@@ -917,16 +917,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#weight' => 15,
     );
 
-  $form['contact']['linkGooglePlus'] = array(
-    '#type' => 'textfield',
-    '#title' => '<span class="hidden">' . t('Google+') . '</span>',
-    '#default_value' => '',
-    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Google+') . '" class="fa fa-google-plus fa-fw"></i> </span>',
-    '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.google.com/mypage'),
-    '#weight' => 16,
-    );
-
   $form['contact']['linkYouTube'] = array(
     '#type' => 'textfield',
     '#title' => '<span class="hidden">' . t('Youtube') . '</span>',
@@ -1182,16 +1172,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#field_suffix' => '</div>',
     '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),
     '#weight' => 19,
-    );
-
-  $form['contact']['linkGooglePlus'] = array(
-    '#type' => 'textfield',
-    '#title' => '<span class="hidden">' . t('Google+') . '</span>',
-    '#default_value' => isset($links['linkGooglePlus']) ? $links['linkGooglePlus'] : '',
-    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Google+') . '" class="fa fa-google-plus fa-fw"></i> </span>',
-    '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.google.com/mypage'),
-    '#weight' => 20,
     );
 
   $form['contact']['linkYouTube'] = array(
