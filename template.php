@@ -252,10 +252,18 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
   }
 
   // Check for external articles.
-  $curatorClient = culturefeed_get_curator_client(FALSE); // TODO: check if cache works.
+  $variables['external_article_links'] = [];
+  $curatorClient = culturefeed_get_curator_client(TRUE);
 
-  // Using Test CDBID that certainly has data.
-  $external_articles = $curatorClient->getExternalArticlesForCdbItem('cab9676d-33fd-4da5-a2a1-9e082920d0ec');
+  if ($external_articles = $curatorClient->getExternalArticlesForCdbItem($item->getId())) {
+    foreach ($external_articles as $external_article) {
+      $variables['external_article_links'][] = l("$external_article->headline ($external_article->publisher)", $external_article->url, [
+        'attributes' => [
+          'class' => 'external-article-link',
+        ]
+      ]);
+    }
+  }
 }
 
 /**
