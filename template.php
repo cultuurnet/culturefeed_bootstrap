@@ -260,6 +260,7 @@ function _culturefeed_bootstrap_preprocess_culturefeed_agenda_detail(&$variables
       $variables['external_article_links'][] = l("$external_article->headline ($external_article->publisher)", $external_article->url, [
         'attributes' => [
           'class' => 'external-article-link',
+          'target' => '_blank',
         ]
       ]);
     }
