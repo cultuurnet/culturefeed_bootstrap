@@ -13,19 +13,6 @@
   }
 
   $(document).ready(function () {
-    var extraOffset = getScrollOffset();
-
-    $(window).resize(function () {
-      extraOffset = getScrollOffset();
-    });
-
-    $(".scroll-to-anchor").click(function (e) {
-      e.preventDefault();
-
-      $([document.documentElement, document.body]).animate({
-        scrollTop: $($(this).attr('href')).offset().top - extraOffset
-      }, 300);
-    });
 
     // Init popovers
     $("a[data-toggle=popover]")
@@ -158,6 +145,21 @@
       });
     }
   };
+
+  /**
+   * Add smooth scroll on the anchor links.
+   */
+  Drupal.behaviors.scrollToAnchorLinks = {
+    attach: function (context, settings) {
+      $(context).find(".scroll-to-anchor").once().click(function (e) {
+        e.preventDefault();
+
+        $([document.documentElement, document.body]).animate({
+          scrollTop: $($(this).attr('href')).offset().top - getScrollOffset()
+        }, 300);
+      });
+    }
+  }
 
   if (Drupal.file) {
 
