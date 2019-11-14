@@ -108,14 +108,7 @@
           <a class="text-muted" href="<?php print $link; ?>">
             <?php print $link; ?>
           </a> 
-        </p>   
-        <?php elseif ($class == 'linkGooglePlus'): ?>
-        <p class="text-muted">
-          <i title="<?php print $title ?> <?php print t('on'); ?> Google+" class="fa fa-google-plus fa-lg fa-fw"></i>
-          <a class="text-muted" href="<?php print $link; ?>">
-            <?php print $link; ?>
-          </a> 
-        </p>      
+        </p>
         <?php elseif ($class == 'linkTwitter'): ?>
         <p class="text-muted">
           <i title="<?php print $title ?> <?php print t('on'); ?> Twitter" class="fa fa-twitter fa-lg fa-fw"></i>

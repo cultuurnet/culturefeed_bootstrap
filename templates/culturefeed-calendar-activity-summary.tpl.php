@@ -4,83 +4,63 @@
  * Template for the calendar summary of an activity.
  */
 ?>
-<div class="calendar-activity-group col-sm-6">
-  <ul class="list-group">
-    <li class="list-group-item">
-      <div class="activity-header">
-        <div class="pull-right">
-          <?php if ($my_calendar): ?>
-            <span class="calendar-delete-event">
-              <i class="fa fa-trash"></i>
-              <a class="use-ajax" href="<?php print $delete_link['url'] ?>"><?php print $delete_link['text']; ?></a>
-            </span>
-            <?php if ($edit_link['show']): ?>
-              <br />
-              <span class="calendar-move-event">
-                <i class="fa fa-arrows-alt"></i>
-                <a class="use-ajax" href="<?php print $edit_link['url'] ?>"><?php print $edit_link['text']; ?></a>
-              </span>
-            <?php endif; ?>
-          <?php endif; ?>
-        </div>
-        <?php if (!empty($date)): ?>
-          <span class="text-muted"><?php print $date; ?></span>
-        <?php endif; ?>
-        <h4 class="media-heading"><?php print $title; ?></h4>
+<div class="col-lg-4 col-sm-6 calender-activity-summary">
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+
+      <?php if (!empty($main_picture)): ?>
+      <div class="thumbnail">
+        <a href="<?php print $url; ?>" class="hyperspan"></a>
+        <img src="<?php print $main_picture; ?>?width=420&height=280&crop=auto&scale=both"/>
       </div>
-    </li>
-    <?php if ($location): ?>
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-sm-2">
-            <strong><?php print t('Where'); ?></strong>
-          </div>
-          <div class="col-sm-10">
-            <?php if (!empty($location['link'])): ?>
-              <?php print $location['link']; ?><br />
-            <?php else: ?>
-              <?php print $location['title'];?><br />
-            <?php endif; ?>
-            <?php if (!empty($location['street'])): ?>
-              <?php print $location['street'] ?><br />
-            <?php endif; ?>
-            <?php if (!empty($location['zip'])): ?>
-              <?php print $location['zip']; ?>
-            <?php endif; ?>
-            <?php if (!empty($location['city'])): ?>
-              <?php print $location['city']; ?>
-            <?php endif; ?>
-          </div>
-        </div>
-      </li>
-    <?php endif; ?>
-    <?php if (!empty($reservation) || !empty($tickets)) : ?>
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-sm-2">
-            <strong><?php print t('Price'); ?></strong>
-          </div>
-          <div class="col-sm-10">
-            <?php if (!empty($tickets)) : ?>
-              <?php print implode(', ', $tickets) ?><br />
-            <?php endif; ?>
-            <?php if (!empty($reservation['mail'])) : ?>
-              <?php print $reservation['mail'] ?><br />
-            <?php endif; ?>
-            <?php if (!empty($reservation['url'])) : ?>
-              <?php print $reservation['url'] ?><br />
-            <?php endif; ?>
-            <?php if (!empty($reservation['phone'])) : ?>
-              <?php print t('Phone'); ?>: <?php print $reservation['phone'] ?><br />
-            <?php endif; ?>
-          </div>
-        </div>
-      </li>
-    <?php endif; ?>
-    <li class="list-group-item">
-      <span class="calendar-view-event">
-        <a href="<?php print $url; ?>"><?php print t('More info'); ?></a>
-      </span>
-    </li>
-  </ul>
+      <?php endif; ?>
+
+      <div class="calender-item-header">
+        <?php if (!empty($date)): ?>
+          <p class="calendar-item-summary"><?php print $date; ?></p>
+        <?php endif; ?>
+        <a href="<?php print $url; ?>">
+          <h4 class="calendar-item-title"><?php print $title; ?></h4>
+        </a>
+      </div>
+
+    </div>
+    <ul class="list-group">
+      <?php if ($location): ?>
+        <li class="list-group-item">
+          <?php if (!empty($location['link'])): ?>
+            <?php print $location['link']; ?><br />
+          <?php else: ?>
+            <?php print $location['title'];?><br />
+          <?php endif; ?>
+          <?php if (!empty($location['street'])): ?>
+            <?php print $location['street'] ?><br />
+          <?php endif; ?>
+          <?php if (!empty($location['zip'])): ?>
+            <?php print $location['zip']; ?>
+          <?php endif; ?>
+          <?php if (!empty($location['city'])): ?>
+            <?php print $location['city']; ?>
+          <?php endif; ?>
+        </li>
+      <?php endif; ?>
+    </ul>
+
+    <div class="panel-footer">
+      <small class="calendar-item-actions">
+      <?php if ($my_calendar): ?>
+        <span class="calendar-delete-event">
+          <a class="use-ajax calendar-item-delete" href="<?php print $delete_link['url'] ?>"><?php print $delete_link['text']; ?></a>
+        </span>
+        <?php if ($edit_link['show']): ?>
+        <span class="calendar-move-event">
+          <a class="use-ajax calendar-item-move" href="<?php print $edit_link['url'] ?>"><?php print $edit_link['text']; ?></a>
+        </span>
+        <?php endif; ?>
+      <?php endif; ?>
+      </small>
+    </div>
+
+  </div>
 </div>

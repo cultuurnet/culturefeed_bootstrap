@@ -15,23 +15,26 @@
 ?>
 <div class="detail advantage-detail row">
   <div class="col-xs-8 col-md-9" role="main">
-    <?php if ($provider_raw): ?>
-      <div class="provider-label">
-        <p class="text-muted <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?></p>
-      </div>
-    <?php endif; ?>
+    <p class="clearfix">
+      <?php if ($provider_raw): ?>
+        <span class="provider-label text-muted <?php print drupal_html_class($provider_raw); ?>"><?php print $provider_raw; ?>
+      </span>
+      <?php endif; ?>
+    </p>
     <?php if ($description1): ?>
       <p class="description1"><?php print $description1; ?></p>
     <?php endif; ?>
     <?php if ($description2): ?>
     <div class="how-to-exchange">
-      <button class="show-exchange-info btn btn-primary" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
+      <p>
+        <button class="show-exchange-info btn btn-default" onclick="Drupal.CultureFeed.UiTPASToggleExchangeInfo()"><?php print t('How to exchange'); ?></button>
+      </p>
       <div class="exchange-info">
         <p class="description2"><?php print $description2; ?></p>
       </div>
     </div>
     <?php endif; ?>
-    <p class="block-title">Info</p>
+    <br />
     <table class="detail-table">
       <tbody>
         <?php if ($counters): ?>
@@ -42,9 +45,6 @@
           <td><?php print $counters; ?></td>
         </tr>
         <?php endif; ?>
-        <?php if($period or $available): ?>
-        <tr><td colspan="2" class="divider"></td></tr>
-        <?php endif; ?>
         <?php if ($period): ?>
         <tr>
           <td>
@@ -52,9 +52,6 @@
           </td>
           <td><?php print $period; ?></td>
         </tr>
-        <?php endif; ?>
-        <?php if($available): ?>
-        <tr><td colspan="2" class="divider"></td></tr>
         <?php endif; ?>
         <?php if ($available): ?>
         <tr>
@@ -108,3 +105,7 @@
         </div>
       </div>
     </div>
+
+  <hr />
+
+  <p class="hidden-xs hidden-sm"><?php print l(t('Show all advantages'), 'advantages'); ?></a></p>

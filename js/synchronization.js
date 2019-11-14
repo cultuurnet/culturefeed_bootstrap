@@ -14,7 +14,7 @@
           type: 'GET',
           success: function(data) {
 
-            $.cookie('profile-synchronization', 1);
+            $.cookie('profile-synchronization', 1, { expires: 365, path: '/' });
 
             var new_content = "<div class=\"modal-header\">";
             new_content += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">";

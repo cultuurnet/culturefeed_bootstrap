@@ -24,6 +24,17 @@
   }
 }
 
+#nearby-activities {
+  div[class^='col']{
+    @media (min-width: @screen-sm) {
+      min-height: 130px;
+    }
+    @media (min-width: @screen-md) {
+      min-height: 140px;
+    }
+  }
+}
+
 .form-item-nearby label {
   font-size: @font-size-small;
 }
@@ -190,5 +201,13 @@
   }
   .cf-date {
     margin-right: 4px;
+  }
+}
+
+/* short vs long description */
+
+.page-agenda {
+  #cf-longdescription {
+    margin-top: 20px;
   }
 }

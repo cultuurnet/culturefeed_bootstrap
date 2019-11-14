@@ -7,7 +7,7 @@
 
 <div class="calendar-activities-liked-wrapper row">
 <div class="col-xs-12">
-  <h4 class="calendar-activities-label"><?php print t('Unscheduled events'); ?></h4>
+  <h4 class="calendar-activities-label"><?php print t('Events you\'re interested in'); ?></h4>
   <table class="table table-condensed">
     <tbody>
       <?php foreach ($activities as $activity): ?>

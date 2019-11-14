@@ -487,8 +487,15 @@ function culturefeed_bootstrap_culturefeed_calendar_profile_box_item($variables)
 
 function culturefeed_bootstrap_form_culturefeed_pages_basic_search_form_alter(&$form, &$form_state) {
 
+  $form['zipcode'] = array(
+    '#prefix' => '<div class="row"><div class="col-sm-2">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#default_value' => isset($_GET['zipcode']) ? $_GET['zipcode'] : '',
+  );
+
   $form['page'] = array(
-    '#prefix' => '<div class="row"><div class="col-sm-9">',
+    '#prefix' => '<div class="col-sm-7">',
     '#suffix' => '</div>',
     '#type' => 'textfield',
     '#attributes' => array('placeholder' => array(t('Keyword'))),
@@ -524,10 +531,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_pages_basic_search_page(&$
   }
 
   if ($variables['total_results'] > 0) {
-    $variables['total_results_message'] = '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for '@search'", array('@total' => $variables['total_results'], '@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] = '<div class="row"><div class="col-xs-12"><p class="text-muted">' . t("<strong>@total pages</strong> found for <em>@zipcode @search @keyword</em>", array('@total' => $variables['total_results'], '@zipcode' => $variables['zipcode'], '@search' => $variables['search'], '@keyword' => $variables['keyword'], 'html' => TRUE)) . '</p></div></div>';
   }
   else {
-    $variables['total_results_message'] =  '<hr /><div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for '@search'", array('@search' => $variables['search'], 'html' => TRUE)) . '</p></div></div>';
+    $variables['total_results_message'] =  '<div class="row"><div class="col-xs-12"><p class="text-muted">' .t("<strong>0 pages</strong> found for <em>@zipcode @search @keyword</em>", array('@zipcode' => $variables['zipcode'], '@search' => $variables['search'], '@keyword' => $variables['keyword'], 'html' => TRUE)) . '</p></div></div>';
   }
 
   $query = drupal_get_query_parameters();
@@ -813,11 +820,11 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
 
   $form['contact'] = array(
     '#type' => 'fieldset',
-    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
+    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a></h3>',
     '#default_value' => '',
     '#weight' => 13,
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
   );
 
   $form['contact']['street'] = array(
@@ -840,7 +847,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
 
   $form['contact']['city'] = array(
     '#prefix' => '<div class="col-xs-9">',
-    '#suffix' => '</div></div><hr />',
+    '#suffix' => '</div></div>',
     '#type' => 'textfield',
     '#title' => t('City'),
     '#default_value' => '',
@@ -908,16 +915,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_add_form_alter(&$form, &$f
     '#field_suffix' => '</div>',
     '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),
     '#weight' => 15,
-    );
-
-  $form['contact']['linkGooglePlus'] = array(
-    '#type' => 'textfield',
-    '#title' => '<span class="hidden">' . t('Google+') . '</span>',
-    '#default_value' => '',
-    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Google+') . '" class="fa fa-google-plus fa-fw"></i> </span>',
-    '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.google.com/mypage'),
-    '#weight' => 16,
     );
 
   $form['contact']['linkYouTube'] = array(
@@ -1076,11 +1073,11 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
 
   $form['contact'] = array(
     '#type' => 'fieldset',
-    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a> <small class="text-muted">(' .  t('Optional') . ')</small></h3>',
+    '#title' => '<h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#edit-contact" class="bootstrap-collapse-processed"><i class="fa fa-caret-down"></i>' . ' ' . t('Contact') . '</a></h3>',
     '#default_value' => '',
     '#weight' => 10,
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
   );
 
   // Address.
@@ -1105,7 +1102,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
 
   $form['contact']['city'] = array(
     '#prefix' => '<div class="col-xs-9">',
-    '#suffix' => '</div></div><hr />',
+    '#suffix' => '</div></div>',
     '#type' => 'textfield',
     '#title' => t('City'),
     '#default_value' => $city,
@@ -1175,16 +1172,6 @@ function culturefeed_bootstrap_form_culturefeed_pages_edit_page_form_alter(&$for
     '#field_suffix' => '</div>',
     '#attributes' => array('placeholder' => 'www.twitter.com/myfeed'),
     '#weight' => 19,
-    );
-
-  $form['contact']['linkGooglePlus'] = array(
-    '#type' => 'textfield',
-    '#title' => '<span class="hidden">' . t('Google+') . '</span>',
-    '#default_value' => isset($links['linkGooglePlus']) ? $links['linkGooglePlus'] : '',
-    '#field_prefix' => '<div class="input-group"> <span class="input-group-addon"><i title="' . t('Google+') . '" class="fa fa-google-plus fa-fw"></i> </span>',
-    '#field_suffix' => '</div>',
-    '#attributes' => array('placeholder' => 'www.google.com/mypage'),
-    '#weight' => 20,
     );
 
   $form['contact']['linkYouTube'] = array(
@@ -1509,7 +1496,7 @@ function culturefeed_bootstrap_form_culturefeed_pages_delete_member_form_alter(&
 function culturefeed_bootstrap_form_culturefeed_pages_remove_page_confirm_form_alter(&$form, &$form_state, &$request_type) {
 
   if ($request_type != 'ajax') {
-    $modal_title = t('Remove member');
+    $modal_title = t('Remove page');
     $form['#prefix'] = culturefeed_bootstrap_modal_prefix($modal_title);
     $form['#suffix'] = culturefeed_bootstrap_modal_suffix();
   }
@@ -1865,11 +1852,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
     $remove_path = 'culturefeed/activity/delete/' . $activity->id;
     $attributes = array(
-      /*'class' => array('remove-link', 'use-ajax'),
+      'class' => array('remove-link'),
       'role' => 'button',
       'data-toggle' => 'modal',
       'data-target' => '#delete-wrapper-' . $activity->id,
-      'data-remote' => url($remove_path . "/ajax", array('query' => $destination)),*/
+      'data-remote' => url($remove_path . "/ajax", array('query' => $destination)),
     );
 
     if ($variables['level'] == 0) {
@@ -1883,11 +1870,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
       $comment_url = 'culturefeed/activity/comment/' . $activity->id;
       $attributes = array(
-        /*'class' => array('comment-link link-icon'),
+        'class' => array('comment-link link-icon'),
         'role' => 'button',
         'data-toggle' => 'modal',
         'data-target' => '#comment-wrapper-' . $activity->id,
-        'data-remote' => url($comment_url . "/ajax", array('query' => $destination)),*/
+        'data-remote' => url($comment_url . "/ajax", array('query' => $destination)),
       );
 
       $variables['comment_link'] = l(t('Reply'), $comment_url . '/nojs', array(
@@ -1932,11 +1919,11 @@ function culturefeed_bootstrap_preprocess_culturefeed_social_comment_list_item(&
 
     $abuse_url = 'culturefeed/activity/report-abuse/' . $activity->id;
     $attributes = array(
-      /*'class' => array('comment-abuse-link'),
+      'class' => array('comment-abuse-link'),
       'role' => 'button',
       'data-toggle' => 'modal',
       'data-target' => '#abuse-wrapper-' . $activity->id,
-      'href' => url($abuse_url . "/ajax", array('query' => $destination)),*/
+      'href' => url($abuse_url . "/ajax", array('query' => $destination)),
     );
 
     $variables['abuse_link'] = l(t('Report as inappropriate'), $abuse_url . '/nojs', array(
@@ -2109,13 +2096,13 @@ function culturefeed_bootstrap_culturefeed_search_sort_links(&$variables) {
   }
 
   $output = '<div class="btn-group pull-right">';
-  $output .= '<a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#">';
+  $output .= '<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
   foreach ($variables['links'] as $link) {
     if (isset($link['options']['attributes']['class'][0])) {
       $output .= $link['text'] . ' ';
     }
   }
-  $output .= ' <span class="caret"></span></a>';
+  $output .= ' <span class="caret"></span></button>';
   $output .= '<ul class="cf-sort-links dropdown-menu text-left">';
   foreach ($variables['links'] as $link) {
     $output .= '<li>' . theme('link', $link) . '</li>';
@@ -2178,6 +2165,34 @@ function culturefeed_bootstrap_js_alter(&$javascript) {
     $javascript[$account_edit_tooltip_file]['data'] = drupal_get_path('theme', 'culturefeed_bootstrap') . '/js/account_edit_tooltip.js';
   }
 
+}
+
+function culturefeed_bootstrap_form_culturefeed_uitpas_advantages_filter_sort_alter(&$form, &$form_state) {
+
+  // Advantages.
+  $form['advantages_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['advantages_link']['#links']['promotions'];
+  $form['advantages_link']['#links']['promotions lead'] = $promotions;
+  unset($form['advantages_link']['#links']['promotions']);
+  $advantages = $form['advantages_link']['#links']['advantages'];
+  $form['advantages_link']['#links']['advantages lead'] = $advantages;
+  unset($form['advantages_link']['#links']['advantages']);
+
+  return $form;
+}
+
+function culturefeed_bootstrap_form_culturefeed_uitpas_promotions_filter_sort_alter(&$form, &$form_state) {
+
+  // Promotions.
+  $form['promotions_link']['#attributes']['class'][] = 'nav nav-tabs';
+  $promotions = $form['promotions_link']['#links']['promotions'];
+  $form['promotions_link']['#links']['promotions lead'] = $promotions;
+  unset($form['promotions_link']['#links']['promotions']);
+  $advantages = $form['promotions_link']['#links']['advantages'];
+  $form['promotions_link']['#links']['advantages lead'] = $advantages;
+  unset($form['promotions_link']['#links']['advantages']);
+
+  return $form;
 }
 
 function culturefeed_bootstrap_form_culturefeed_uitpas_profile_advantages_filter_sort_alter(&$form, &$form_state) {
@@ -2489,10 +2504,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_advantage(&$vars) {
   $vars['images_list'] = '';
   $images = array();
   if (isset($advantage->pictures[0])) {
-    $vars['image'] = theme_image(array('path' => $advantage->pictures[0], 'attributes' => array()));
+    $vars['image'] = theme_image(array('path' => $advantage->pictures[0], 'alt' => $advantage->title, 'title' => $advantage->title, 'attributes' => array()));
     foreach ($advantage->pictures as $key => $picture) {
       $images[] = l(
-        theme('image', array('path' => $advantage->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        theme('image', array('path' => $advantage->pictures[$key] . '?maxwidth=300&max-height=300', 'alt' => $advantage->title, 'title' => $advantage->title, 'attributes' => array())),
         $advantage->pictures[$key],
         array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
       );
@@ -2601,10 +2616,10 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_promotion(&$vars) {
   $vars['images_list'] = '';
   $images = array();
   if (isset($promotion->pictures[0])) {
-    $vars['image'] = theme('image', array('path' => $promotion->pictures[0] . '?maxwidth=300&max-height=300', 'attributes' => array()));
+    $vars['image'] = theme('image', array('path' => $promotion->pictures[0] . '?maxwidth=300&max-height=300', 'alt' => $promotion->title, 'title' => $promotion->title, 'attributes' => array()));
     foreach ($promotion->pictures as $key => $picture) {
       $images[] = l(
-        theme('image', array('path' => $promotion->pictures[$key] . '?maxwidth=300&max-height=300', 'attributes' => array())),
+        theme('image', array('path' => $promotion->pictures[$key] . '?maxwidth=300&max-height=300', 'alt' => $promotion->title, 'title' => $promotion->title, 'attributes' => array())),
         $promotion->pictures[$key],
         array('html' => TRUE, 'attributes' => array('data-gallery' => 'data-gallery'))
       );
@@ -2689,19 +2704,20 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
     'type' => 'ul',
     'attributes' => array(),
     'title' => '',
-  );
+  ); 
+  
   foreach ($passholder->cardSystemSpecific as $card_system_specific) {
 
-    if ($card_system_specific->currentCard) {
-
-      $output = isset($card_system_specific->currentCard->uitpasNumber)?:'' . ' (' . $card_system_specific->cardSystem->name . ')';
-      if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
-        $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
-        $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
-      }
-      $uitpas_numbers['items'][] = $output;
-
+    $cardsystemnumber = isset($card_system_specific->currentCard->uitpasNumber) ? $card_system_specific->currentCard->uitpasNumber : '';
+    $output = $cardsystemnumber . ' <span class="text-muted">(' . $card_system_specific->cardSystem->name . ')</span>';
+    if ($card_system_specific->kansenStatuut && time() < $card_system_specific->kansenStatuutEndDate) {
+      $status_end_date = t('valid till !date', array('!date' => date('j/m/Y', $card_system_specific->kansenStatuutEndDate)));
+      $output .= '<br /><label>' . t('Opportunity status') . ':</label> ' . $status_end_date;
     }
+    $uitpas_numbers['items'][] = array(
+      'class' => array(drupal_html_class($card_system_specific->cardSystem->name)),
+      'data' => $output,
+    );
   }
   $uitpas_numbers_output = '<div class="panel-heading"><h3 class="panel-title">' . $vars['uitpas_numbers_title'] . ':</h3></div><div class="panel-body">';
   $uitpas_numbers_output .= theme('item_list', $uitpas_numbers);
@@ -2734,3 +2750,21 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
  
 }
 
+
+/**
+ * Implements hook_preprocess_culturefeed_uitpas_profile_section_register().
+ */
+function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_section_register(&$vars) {
+
+  if(culturefeed_uitpas_not_yet_registered()) {
+    $vars['intro_title'] = t('You did not register your UiTPAS yet.');
+    $vars['intro_text'] = t('Register here, so you can follow your UiTPAS advantages and points balance online.');
+    $vars['cta_link'] = l(t('Register your UiTPAS'), 'register_uitpas', array('attributes' => array('class' => array('btn', 'btn-primary', 'btn-block'))));
+  }
+
+  else {
+    $vars['intro_title'] = t('No UiTPAS yet?');
+    $vars['intro_text'] = t('Holders of an UiTPAS can earn points by participating in leisure activities and exchange them for') . ' ' . l(t('nice benefits'), 'promotions') . '.';
+    $vars['cta_link'] = l(t('Get an UiTPAS'), 'register_where', array('attributes' => array('class' => array('btn', 'btn-primary', 'btn-block'))));
+  }
+}

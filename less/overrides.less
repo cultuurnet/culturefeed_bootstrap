@@ -91,6 +91,30 @@ body {
   width: 1px;
 }
 
+// Skip link.
+#skip-link {
+  a:focus {
+    background-color: @brand-primary;
+    border-radius: 5px;
+    color: @white;
+    display: inline-block;
+    margin-bottom: 30px;
+    outline: thin dotted;
+    padding: 5px 10px;
+    text-decoration: none;
+    width: auto;
+  }
+  a:active {
+    background-color: darken(@brand-primary, 10%);
+  }
+}
+#main-content {
+  &:focus {
+    outline: inherit;
+  }
+}
+
+
 // Branding.
 .navbar .logo {
   margin-right: -15px;

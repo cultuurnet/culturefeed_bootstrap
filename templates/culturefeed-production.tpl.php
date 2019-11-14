@@ -23,14 +23,22 @@
     <?php endif; ?>
 
     <p>
-      <?php print $shortdescription; ?>
-      <?php if (!empty($longdescription)): ?>
-        <?php print l(t('Read more'), '', $read_more_options) ?>
-        <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
+      <?php if (!empty($shortdescription)): ?>
+        <div class="short-description">
+          <?php print $shortdescription; ?>
+        </div>
+        <?php if (!empty($longdescription)): ?>
+          <div class="long-description">
+            <div id="cf-longdescription" class="collapse collapse-in"><?php print $longdescription; ?></div>
+            <?php print l(t('Read more'), '', $readmore_options) ?>
+          </div>
+        <?php endif; ?>
+      <?php else: ?>
+        <?php print $longdescription; ?>
       <?php endif; ?>
     </p>
 
-    <table class="table table-condended">
+    <table class="table table-condended detail-table">
       <tbody>
 
       <?php if (!empty($performers)): ?>
@@ -42,13 +50,7 @@
       <tr><td class="col-lg-2 col-md-2 col-sm-1 col-xs-1"><strong class="hidden-xs hidden-sm"><?php print t('Where'); ?></strong><i class="fa fa-map-marker hidden-md hidden-lg"></i></td>
       <td>
         <?php if (!empty($coordinates)): ?>
-          <?php if ($is_ios): ?>
-            <a href="http://maps.apple.com/?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : ''); ?>" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
-          <?php elseif ($is_android): ?>
-            <a href="geo:<?php print (!empty($coordinates['lat']) ? $coordinates['lat'] : '0') . ',' . (!empty($coordinates['lng']) ? $coordinates['lng'] : '0'); ?>?q=<?php print $location['title'] . (!empty($location['zip']) ? '+' . $location['zip'] : '') . (!empty($location['city']) ? '+' . $location['city'] : '') . (!empty($location['street']) ? '+' . $location['street'] : '') ?>&zoom=14" class="btn btn-default btn-sm pull-right"><?php print t('Open map'); ?></a>
-          <?php else: ?>
-            <?php print l(t('Show map') . ' <span class="caret"></span>', '', array('attributes' => array('data-toggle' => 'collapse', 'class' => array('pull-right map-toggle')), 'fragment' => 'cf-map', 'html' => TRUE, 'external' => 'TRUE')) ?>
-          <?php endif; ?>
+            <div class="map-js-link"></div>
         <?php endif; ?>
         <?php if (!empty($location['link'])): ?>
         <?php print $location['link']; ?><br/>
@@ -103,7 +105,10 @@
           <span><?php print implode(' ', $tickets); ?></span>
         <?php endif; ?>
         <?php if (!empty($reservation['phone'])): ?>
-          <?php print (!empty($tickets) ? ' ' . t('or call') : ''); ?> <?php print implode(', ', $reservation['phone']); ?>
+          <?php print (!empty($tickets) ? ' ' . t('or call') : ''); ?>
+            <span class="reservation-phone-placeholder">
+                <?php print $reservation['phone']; ?>
+            </span><br />
         <?php endif; ?>
       </td></tr>
       <?php endif; ?>
@@ -115,12 +120,9 @@
           <?php print $contact['mail'] ?><br />
         <?php endif; ?>
         <?php if (!empty($contact['phone'])): ?>
-          <?php if (!empty($reservation['phone']) && ($contact['phone'] != implode(', ', $reservation['phone'])) || empty($reservation['phone'])): ?>
-            <i class="fa fa-phone"></i> <?php print $contact['phone'] ?><br />
-          <?php endif; ?>
-        <?php endif; ?>
-        <?php if (!empty($contact['fax'])): ?>
-          <i class="fa fa-print"></i> <?php print $contact['fax'] ?>
+            <span class="phone-placeholder">
+              <?php print $contact['phone']; ?>
+            </span><br />
         <?php endif; ?>
         </td></tr>
       <?php endif; ?>
