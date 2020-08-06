@@ -1737,7 +1737,7 @@ function culturefeed_bootstrap_form_culturefeed_search_ui_city_facet_form_alter(
   $form['#attributes']['class'][] = '';
 
   $form['location']['#prefix'] = '<div class="input-group">';
-  $form['location']['#title'] = '';
+  $form['location']['#title'] = t('Zipcode or city');
 
   $form['submit']['#prefix'] = '<span class="input-group-btn">';
   $form['submit']['#suffix'] = '</span></div>';
@@ -2704,8 +2704,8 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
     'type' => 'ul',
     'attributes' => array(),
     'title' => '',
-  ); 
-  
+  );
+
   foreach ($passholder->cardSystemSpecific as $card_system_specific) {
 
     $cardsystemnumber = isset($card_system_specific->currentCard->uitpasNumber) ? $card_system_specific->currentCard->uitpasNumber : '';
@@ -2747,7 +2747,7 @@ function culturefeed_bootstrap_preprocess_culturefeed_uitpas_profile_details(&$v
   else {
     $vars['memberships'] = '';
   }
- 
+
 }
 
 
